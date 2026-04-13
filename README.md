@@ -84,6 +84,46 @@ compute saliency on the first PH + non-PH case from its validation set.
 
 Combined 5×2 grid: [`outputs/viz_saliency_all_folds.png`](outputs/viz_saliency_all_folds.png)
 
+### Why do folds 4 & 5 underperform? — mPAP audit
+
+Gold standard: COPD-PH iff mPAP > 20 mmHg (resting). For each fold's val set we
+joined the case_id back to the patient excel, recovered mPAP, and asked: are
+folds 4/5 dominated by borderline (mPAP ≈ 20) cases?
+
+![Per-fold mPAP audit](outputs/fold_mpap_audit.png)
+
+| Fold | val AUC | n_val (matched) | n_PH | n_nonPH | nonPH max mPAP | PH min mPAP | gap | borderline ∈[18,22] |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 0.96 | 21 | 15 | 6 | 20 | 22 | **+2.0** | 5 |
+| 2 | 1.00 | 17 | 11 | 6 | 18 | 26 | +8.0 | 1 |
+| 3 | 1.00 | 21 | 17 | 4 | 15 | 23 | +8.0 | 0 |
+| 4 | 0.78 | 24 | 19 | 5 | 20 | 26 | +6.0 | 2 |
+| 5 | 0.78 | 22 | 17 | 5 | 19 | 24 | +5.0 | 3 |
+
+**Findings (audit script: `analyze_folds_mpap.py`):**
+
+1. **Labels are clean** — case_id prefix ↔ excel `PH` column agree on every
+   matched case (0 mismatches across 105 val cases).
+2. **Borderline density does not explain the gap.** Fold 1 has the *most*
+   borderline overlap (gap = +2 mmHg, 5 borderline cases) yet still hits
+   AUC = 0.96. Folds 4/5 have moderate borderline load (2–3 cases) and
+   reasonably wide separation gaps (+5/+6 mmHg).
+3. **Class imbalance is the dominant likely driver.** Folds 4 & 5 have only
+   5 nonPH cases each (~20% negatives) — a single misclassified negative
+   pushes specificity down by 0.20 and AUC noticeably. Folds 2/3 had cleaner
+   negative-class examples (max mPAP ≤ 18, well below threshold).
+4. **Individual variation, not threshold ambiguity.** In fold 5 the lowest
+   PH case is at mPAP = 24 (clearly above 20) and the highest non-PH is at
+   19 — clinically separable. The remaining errors are vessel-graph features
+   for *clinically* clear-cut PH cases that nonetheless look atypical to the
+   GCN. See `outputs/viz_saliency_fold5.png` for which nodes drive the
+   prediction.
+
+So the answer to "is it threshold-borderline cases?" is **no** — it's a
+combination of (i) very few negatives in folds 4/5 inflating the variance of
+specificity-driven AUC, and (ii) a few PH cases whose pulmonary vessel graph
+geometry is atypical. Per-case mPAP is in `outputs/fold_mpap_audit.xlsx`.
+
 ## Repo layout
 
 ```
