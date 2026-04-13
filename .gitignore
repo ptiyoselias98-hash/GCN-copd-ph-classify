@@ -1,0 +1,39 @@
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.venv/
+.env
+.env.*
+
+# data (patient-level, do not redistribute)
+cache/
+data/
+*.pkl
+*.xlsx
+!outputs/sprint2_metrics.xlsx
+*.csv
+*.dcm
+*.nii
+*.nii.gz
+
+# experiment artifacts
+outputs/sprint1_hybrid/
+outputs/cv_full/
+outputs/features/
+outputs/**/*.log
+outputs/**/*.npz
+outputs/**/*.pt
+outputs/**/*_raw/
+
+# credentials
+_ssh.py
+*.key
+*.pem
+credentials.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
