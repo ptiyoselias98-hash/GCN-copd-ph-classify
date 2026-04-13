@@ -63,6 +63,27 @@ Same two cases, nodes coloured by input-gradient saliency `|∂ p(PH) / ∂ x_no
 
 ![Saliency trees](outputs/viz_saliency_trees.png)
 
+### Per-node saliency across all 5 folds
+
+For each fold k, we re-train the enhanced-hybrid GCN on its training set and
+compute saliency on the first PH + non-PH case from its validation set.
+
+| | val AUC |
+|---|---|
+| Fold 1 | 0.96 |
+| Fold 2 | 1.00 |
+| Fold 3 | 1.00 |
+| Fold 4 | 0.78 |
+| Fold 5 | 0.78 |
+
+![Saliency — fold 1](outputs/viz_saliency_fold1.png)
+![Saliency — fold 2](outputs/viz_saliency_fold2.png)
+![Saliency — fold 3](outputs/viz_saliency_fold3.png)
+![Saliency — fold 4](outputs/viz_saliency_fold4.png)
+![Saliency — fold 5](outputs/viz_saliency_fold5.png)
+
+Combined 5×2 grid: [`outputs/viz_saliency_all_folds.png`](outputs/viz_saliency_all_folds.png)
+
 ## Repo layout
 
 ```
