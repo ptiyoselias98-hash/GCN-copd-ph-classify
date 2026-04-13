@@ -80,7 +80,9 @@ def radar_axes(ax, n):
 def plot_one(ax, data, feat, title):
     angles = radar_axes(ax, len(METRICS))
     ref = [0.9] * len(METRICS) + [0.9]
-    ax.plot(angles, ref, color="red", linestyle="--", linewidth=1.3, label="Ref = 0.9", zorder=3)
+    ax.plot(angles, ref, color="gray", linestyle=":", linewidth=0.9, alpha=0.7, zorder=2)
+    ax.text(np.deg2rad(8), 0.9, "0.9", fontsize=8, color="gray",
+            ha="left", va="center")
 
     colors = {"radiomics_only": "#1f77b4", "gcn_only": "#2ca02c", "hybrid": "#d62728"}
     for mode in MODES:
@@ -108,7 +110,9 @@ def plot_radar_combined(data: dict, path: Path) -> None:
     fig, ax = plt.subplots(figsize=(9, 9), subplot_kw=dict(polar=True))
     angles = radar_axes(ax, len(METRICS))
     ref = [0.9] * len(METRICS) + [0.9]
-    ax.plot(angles, ref, color="red", linestyle="--", linewidth=1.5, label="Ref = 0.9", zorder=3)
+    ax.plot(angles, ref, color="gray", linestyle=":", linewidth=0.9, alpha=0.7, zorder=2)
+    ax.text(np.deg2rad(8), 0.9, "0.9", fontsize=8, color="gray",
+            ha="left", va="center")
 
     palette = {
         ("baseline", "radiomics_only"): ("#1f77b4", "-"),
