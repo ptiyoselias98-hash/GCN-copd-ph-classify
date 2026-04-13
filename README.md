@@ -37,16 +37,31 @@ See `outputs/sprint2_metrics.xlsx` and `outputs/sprint2_radar*.png`.
 The 4 enhancement features (fractal dim, artery/vein density, volume-calibrated
 diameter) substantially lift specificity of the hybrid model (0.54 → 0.82).
 
-## Visualizations — `outputs/`
+## Visualizations
 
-- `sprint2_radar.png`, `sprint2_radar_combined.png` — 6-metric radar (ACC, AUC,
-  F1, Specificity, Sensitivity, Precision), with a 0.9 reference ring.
-- `viz_group_stats.png` — PH vs non-PH distributions of the 4 commercial
-  vessel features (boxplots + Mann-Whitney p).
-- `viz_vessel_tree_samples.png` — 3D vessel graphs of one PH + one non-PH case,
-  nodes coloured by branching degree.
-- `viz_saliency_trees.png` — same two cases, nodes coloured by input-gradient
-  saliency from a fold-1 enhanced-hybrid GCN.
+### 6-metric radar (5-fold CV, 0.9 reference ring)
+
+![Sprint 2 radar — split](outputs/sprint2_radar.png)
+
+![Sprint 2 radar — all 6 configs overlaid](outputs/sprint2_radar_combined.png)
+
+### Group statistics — PH vs non-PH
+
+Distributions of the 4 commercial vessel features (boxplots + Mann-Whitney p).
+
+![Group stats](outputs/viz_group_stats.png)
+
+### 3D pulmonary vessel graphs
+
+One PH + one non-PH case, nodes coloured by branching degree.
+
+![Vessel tree samples](outputs/viz_vessel_tree_samples.png)
+
+### Per-node saliency (enhanced-hybrid GCN, fold 1)
+
+Same two cases, nodes coloured by input-gradient saliency `|∂ p(PH) / ∂ x_node|`.
+
+![Saliency trees](outputs/viz_saliency_trees.png)
 
 ## Repo layout
 
