@@ -86,6 +86,8 @@ def combined_bar(arms_data: dict, sprint2: dict) -> Path:
         vals = [m[k] for k in labels]
         ax.bar(x + (i - (len(series) - 1) / 2) * w, vals, w, label=name, color=color)
     ax.set_xticks(x); ax.set_xticklabels(labels); ax.set_ylim(0, 1.05)
+    ax.set_yticks([0.0, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0])
+    ax.axhline(0.9, color="gray", linewidth=0.8, alpha=0.55, zorder=0)
     ax.set_ylabel("Score")
     ax.set_title("Sprint 3 P0 vs Sprint 2 v2 — enhanced/hybrid across arms "
                  "(all 6 metrics, 5-fold CV mean)")
@@ -111,6 +113,8 @@ def combined_radar(arms_data: dict) -> Path:
             ax.fill(angles, vals, color=palette[arm], alpha=0.12)
         ax.set_xticks(angles[:-1]); ax.set_xticklabels(KEYS, fontsize=9)
         ax.set_ylim(0, 1)
+        ax.set_rgrids([0.2, 0.4, 0.6, 0.8, 0.9, 1.0], angle=30, fontsize=7)
+        ax.grid(True, color="gray", alpha=0.55, linewidth=0.7)
         ax.set_title(f"enhanced / {mode}", y=1.08, fontsize=12)
         ax.legend(loc="upper right", bbox_to_anchor=(1.3, 1.1), fontsize=8)
     fig.suptitle("Sprint 3 — enhanced feature set, 3 arms compared", fontsize=14, y=1.02)
