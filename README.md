@@ -271,3 +271,53 @@ supply:
 Python 3.9, PyTorch 2.x, `torch_geometric`, pandas, numpy, matplotlib,
 scikit-learn, scipy, openpyxl. See `pulmonary_bv5_py39` conda env on the
 training server for exact versions.
+
+
+## Sprint 4 — gated fusion + A/V node flag
+
+Two orthogonal P1 upgrades on top of sprint 3's `focal_local4` best arm:
+
+| Arm | Change | Layer |
+|---|---|---|
+| **4a — gated fusion** | replace `concat(graph_emb, rad_emb)` with `gate * graph + (1-gate) * proj(rad)` | fusion layer |
+| **4b — A/V node flag** | append a 3-valued flag per node (artery=+1 / vein=-1 / none=0) looked up from commercial `artery.nii.gz` & `vein.nii.gz` masks | information layer |
+
+The A/V flag comes from a one-shot preprocess (`_build_av_lookup.py`) that
+rasterises each cached node's voxel coordinates against the 512×512×442
+commercial artery/vein masks; 4a and 4b otherwise reuse the sprint 3 config
+(focal γ=2, CB-weighted α, `globals_keep=local4`, Youden threshold, 5-fold CV).
+
+### Cross-arm comparison (enhanced feature set)
+
+![sprint4 arms radar](outputs/sprint4_arms_radar.png)
+
+### Bar chart (enhanced / hybrid)
+
+![sprint4 combined bar](outputs/sprint4_combined_bar.png)
+
+Full 18-row table: [`outputs/sprint4_vs_sprint3.xlsx`](outputs/sprint4_vs_sprint3.xlsx).
+
+Reproduce:
+
+```bash
+# arm 4a  (GPU 0) — gated fusion only
+python run_sprint3.py --cache_dir ./cache \
+    --radiomics ./data/copd_ph_radiomics.csv \
+    --labels <labels.csv> --splits <splits_dir> \
+    --output_dir ./outputs/sprint4a_gated \
+    --epochs 300 --batch_size 8 --lr 1e-3 \
+    --loss focal --globals_keep local4 --fusion gated
+
+# arm 4b  (GPU 1) — A/V flag, concat fusion
+python _build_av_lookup.py --cache_dir ./cache \
+    --nii_root <nii_root> --out ./outputs/sprint4b_av/av_lookup.pt
+python run_sprint3.py --cache_dir ./cache \
+    --radiomics ./data/copd_ph_radiomics.csv \
+    --labels <labels.csv> --splits <splits_dir> \
+    --output_dir ./outputs/sprint4b_av \
+    --epochs 300 --batch_size 8 --lr 1e-3 \
+    --loss focal --globals_keep local4 --fusion concat \
+    --av_lookup ./outputs/sprint4b_av/av_lookup.pt
+```
+
+---

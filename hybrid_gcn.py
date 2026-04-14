@@ -41,11 +41,15 @@ class HybridGCN(nn.Module):
         pooling: str = "mean",
         mode: str = "hybrid",
         global_dim: int = 0,
+        fusion: str = "concat",
     ) -> None:
         super().__init__()
         if mode not in ("hybrid", "gcn_only", "radiomics_only"):
             raise ValueError(f"unknown mode={mode}")
+        if fusion not in ("concat", "gated"):
+            raise ValueError(f"unknown fusion={fusion}")
         self.mode = mode
+        self.fusion = fusion
         self.dropout = dropout
         self.global_dim = int(global_dim)
 
@@ -78,6 +82,15 @@ class HybridGCN(nn.Module):
             fused_dim = graph_branch_dim
         elif mode == "radiomics_only":
             fused_dim = radiomics_dim
+        elif fusion == "gated":
+            # Project radiomics to graph_branch_dim; gate chooses per-patient
+            # mix between structural (graph) and statistical (radiomics) info.
+            self.rad_proj = nn.Linear(radiomics_dim, graph_branch_dim)
+            self.gate_layer = nn.Sequential(
+                nn.Linear(graph_branch_dim * 2, graph_branch_dim),
+                nn.Sigmoid(),
+            )
+            fused_dim = graph_branch_dim
         else:
             fused_dim = graph_branch_dim + radiomics_dim
 
@@ -130,7 +143,12 @@ class HybridGCN(nn.Module):
             if radiomics is None:
                 raise ValueError("radiomics tensor required in hybrid mode")
             rad_emb = self.radiomics_bn(radiomics)
-            fused = torch.cat([graph_emb, rad_emb], dim=1)
+            if self.fusion == "gated":
+                r = self.rad_proj(rad_emb)
+                gate = self.gate_layer(torch.cat([graph_emb, r], dim=1))
+                fused = gate * graph_emb + (1.0 - gate) * r
+            else:
+                fused = torch.cat([graph_emb, rad_emb], dim=1)
 
         logits = self.classifier(fused)
         embedding = self.embedding_head(fused)

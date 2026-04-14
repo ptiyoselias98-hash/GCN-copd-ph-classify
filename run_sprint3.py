@@ -116,10 +116,10 @@ def apply_globals_keep(dataset: list[dict], keep: str) -> int:
 
 # ---------------- Training ----------------
 def _train_fold(mode, radiomics_dim, gcn_in, tl, vl, trl, device, epochs, lr, wd,
-                loss_type, patience=40, global_dim=0):
+                loss_type, patience=40, global_dim=0, fusion="concat"):
     model = HybridGCN(gcn_in=gcn_in, gcn_hidden=64, radiomics_dim=radiomics_dim,
                       num_layers=3, dropout=0.3, mode=mode,
-                      global_dim=global_dim).to(device)
+                      global_dim=global_dim, fusion=fusion).to(device)
     n1 = int((trl == 1).sum()); n0 = int((trl == 0).sum())
     criterion = build_loss(loss_type, n0, n1, device)
     opt = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=wd)
@@ -190,7 +190,8 @@ def run_all(dataset, folds, device, args, radiomics_dim, gcn_in, global_dim):
             tl, vl, trl = _mk_loaders_base(dataset, tr, va, args.batch_size)
             m, yt, pr = _train_fold(mode, radiomics_dim, gcn_in, tl, vl, trl,
                                     device, args.epochs, args.lr, args.wd,
-                                    args.loss, global_dim=global_dim)
+                                    args.loss, global_dim=global_dim,
+                                    fusion=args.fusion)
             logger.info("  fold %d thr=%.3f AUC=%.4f Acc=%.4f F1=%.4f Sens=%.4f Spec=%.4f",
                         k, m["threshold"], m["AUC"], m["Accuracy"], m["F1"],
                         m["Sensitivity"], m["Specificity"])
@@ -222,6 +223,10 @@ def main() -> int:
     p.add_argument("--loss", default="focal", choices=["focal", "cb", "weighted_ce"])
     p.add_argument("--globals_keep", default="local4",
                    choices=["all", "local4", "none"])
+    p.add_argument("--fusion", default="concat", choices=["concat", "gated"])
+    p.add_argument("--av_lookup", default="",
+                   help="path to .pt dict {case_id: av_tensor(N)} to inject "
+                        "as an extra node feature column (sprint4b).")
     args = p.parse_args()
     torch.manual_seed(args.seed); np.random.seed(args.seed)
     out_dir = Path(args.output_dir); out_dir.mkdir(parents=True, exist_ok=True)
@@ -237,16 +242,41 @@ def main() -> int:
 
     all_results = {"_config": {
         "loss": args.loss, "globals_keep": args.globals_keep,
+        "fusion": args.fusion, "av_lookup": args.av_lookup,
         "epochs": args.epochs, "lr": args.lr, "wd": args.wd,
         "batch_size": args.batch_size, "seed": args.seed,
         "local4_indices": LOCAL4_IDX,
         "local4_names": [GLOBAL_NAMES[i] for i in LOCAL4_IDX],
     }}
 
+    av_lookup = {}
+    if args.av_lookup:
+        av_lookup = torch.load(args.av_lookup, map_location="cpu")
+        logger.info("loaded av_lookup: %d cases", len(av_lookup))
+
     for fs in [s.strip() for s in args.feature_sets.split(",") if s.strip()]:
         enhanced = fs == "enhanced"
         dataset = build_dataset_v2(args.cache_dir, labels, rad_df, feat_cols,
                                    enhanced=enhanced)
+        if av_lookup:
+            miss = 0
+            for e in dataset:
+                g = e["graph"]
+                pid = e["patient_id"]
+                av = av_lookup.get(pid)
+                if av is None:
+                    av = torch.zeros(g.x.size(0), 1, dtype=g.x.dtype)
+                    miss += 1
+                else:
+                    av = av.view(-1, 1).to(g.x.dtype)
+                    if av.size(0) != g.x.size(0):
+                        logger.warning("av size mismatch for %s: %d vs %d",
+                                       pid, av.size(0), g.x.size(0))
+                        av = torch.zeros(g.x.size(0), 1, dtype=g.x.dtype)
+                        miss += 1
+                g.x = torch.cat([g.x, av], dim=1)
+            logger.info("[%s] av_lookup injected — miss=%d / %d, new gcn_in=%d",
+                        fs, miss, len(dataset), dataset[0]["graph"].x.size(1))
         id_set = {e["patient_id"] for e in dataset}
         filtered = [([i for i in tr if i in id_set], [i for i in va if i in id_set])
                     for tr, va in folds]
