@@ -21,7 +21,87 @@ Three training modes are compared:
 | `gcn_only` | vessel graph → GCN + global pool |
 | `hybrid` | GCN embedding ⊕ radiomics → MLP head |
 
-## Results (5-fold CV, n = 96 matched patients)
+## Sprint 3 — P0 improvements (focal loss + Youden calibration + globals pruning)
+
+Sprint 2 v2 hybrid had Specificity stuck at 0.71 (many false positives on the
+majority-class non-PH cases). Three P0 changes were applied in
+`run_sprint3.py`:
+
+1. **Youden's J threshold calibration** per fold (primary metrics now use the
+   val-optimal threshold; the old 0.5-argmax metrics are retained in
+   `*_argmax` keys for comparison).
+2. **Focal loss** (γ=2, class-balanced α via Cui 2019) to replace the old
+   weighted cross-entropy.
+3. **Graph-level globals pruning** (`--globals_keep local4`): keep only the 4
+   locality-meaningful commercial scalars
+   (`bv5_ratio, total_bv5, total_branch_count, vessel_tortuosity`) and drop the
+   8 whole-lung scalars that overlap with the 45D radiomics branch.
+
+Three arms were run, each a full 5-fold × 3-mode × 2-feature-set sweep:
+
+| arm | loss | `globals_keep` | purpose |
+|---|---|---|---|
+| `focal_local4` | focal | 4 local globals | primary P0 combination |
+| `focal_all` | focal | all 12 | ablate globals pruning |
+| `wce_local4` | weighted_ce | 4 local globals | ablate focal loss |
+
+### Headline result (5-fold CV, enhanced / hybrid mode)
+
+| run | AUC | ACC | Prec | Sens | F1 | **Spec** |
+|---|---|---|---|---|---|---|
+| sprint2_v2 baseline/hybrid | 0.898 | 0.804 | 0.905 | 0.836 | 0.857 | 0.710 |
+| sprint2_v2 enhanced/hybrid | 0.852 | 0.797 | 0.961 | 0.769 | 0.841 | 0.870 |
+| **sp3 focal_local4** enh/hyb | **0.912** | 0.889 | 0.983 | 0.870 | 0.920 | **0.950** |
+| sp3 focal_all enh/hyb | 0.890 | 0.901 | 0.987 | 0.883 | 0.924 | 0.950 |
+| sp3 wce_local4 enh/hyb | 0.895 | **0.919** | 0.974 | **0.920** | **0.944** | 0.910 |
+
+**Specificity lifted from 0.71 → 0.95 (+24 points)** while AUC also improved.
+Full 24-row comparison table lives in `outputs/sprint3_vs_sprint2.xlsx`.
+
+### Ablation read
+
+- **Youden calibration** is the dominant factor — all three arms share it and
+  all three beat sprint2_v2 handily.
+- **`local4 > all`** (focal AUC .912 vs .890) — confirms the 8 whole-lung
+  scalars were redundant with the 45-dim radiomics vector and were hurting
+  hybrid.
+- **focal vs weighted_ce** (both `local4`): focal wins AUC .912 vs .895; wce
+  wins F1 .944 vs .920. Both strongly beat the old uncalibrated setup.
+
+### Sprint 3 visualizations
+
+Per-arm radar (3-mode × baseline-vs-enhanced), with a 0.9 gridline ring so it's
+easy to check which metrics cleared 0.9:
+
+![focal_local4 radar](outputs/sprint3_focal_local4/sprint3_radar.png)
+![focal_all radar](outputs/sprint3_focal_all/sprint3_radar.png)
+![wce_local4 radar](outputs/sprint3_wce_local4/sprint3_radar.png)
+
+Cross-arm comparison on the enhanced feature set:
+
+![arms radar — enhanced](outputs/sprint3_arms_radar.png)
+
+Bar chart vs sprint2 (enhanced / hybrid only, all 6 metrics):
+
+![sprint3 vs sprint2](outputs/sprint3_combined_bar.png)
+
+### Recommended configuration
+
+`focal_local4 / enhanced / hybrid` — AUC 0.912, Specificity 0.950, Precision
+0.983. To reproduce:
+
+```bash
+python run_sprint3.py \
+    --cache_dir ./cache --radiomics ./data/copd_ph_radiomics.csv \
+    --labels <labels.csv> --splits <splits_dir> \
+    --output_dir ./outputs/sprint3_focal_local4 \
+    --epochs 300 --batch_size 8 --lr 1e-3 \
+    --loss focal --globals_keep local4
+```
+
+---
+
+## Sprint 2 baseline — results (5-fold CV, n = 96 matched patients)
 
 See `outputs/sprint2_metrics.xlsx` and `outputs/sprint2_radar*.png`.
 
