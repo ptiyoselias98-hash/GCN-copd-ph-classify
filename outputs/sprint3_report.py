@@ -55,11 +55,9 @@ def per_arm_radar(arm: str, data: dict) -> Path:
             vals += vals[:1]
             ax.plot(angles, vals, color=color, linewidth=2, label=fs)
             ax.fill(angles, vals, color=color, alpha=0.15)
-        ref = [0.9] * len(KEYS) + [0.9]
-        ax.plot(angles, ref, color="#000", linewidth=1.2, linestyle="--",
-                alpha=0.6, label="0.9 ref")
         ax.set_xticks(angles[:-1]); ax.set_xticklabels(KEYS, fontsize=9)
         ax.set_ylim(0, 1)
+        ax.set_yticks([0.2, 0.4, 0.6, 0.8, 0.9, 1.0])
         ax.set_title(mode, y=1.08, fontsize=12)
         ax.legend(loc="upper right", bbox_to_anchor=(1.3, 1.1), fontsize=8)
     fig.suptitle(f"Sprint 3 — {arm}", fontsize=14, y=1.02)
