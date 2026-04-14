@@ -176,12 +176,22 @@ class Trainer:
         y_pred = np.array(preds)
         y_prob = np.concatenate(probs) if probs else np.zeros_like(y_true, dtype=float)
 
+        # Specificity = TN / (TN + FP); recall on positive class = sensitivity.
+        if len(y_true):
+            tn = int(((y_true == 0) & (y_pred == 0)).sum())
+            fp = int(((y_true == 0) & (y_pred == 1)).sum())
+            specificity = float(tn / (tn + fp)) if (tn + fp) > 0 else 0.0
+        else:
+            specificity = 0.0
+
         metrics = {
             "loss": float(np.mean(losses)) if losses else 0.0,
             "accuracy": float(accuracy_score(y_true, y_pred)) if len(y_true) else 0.0,
             "f1": float(f1_score(y_true, y_pred, zero_division=0)) if len(y_true) else 0.0,
             "precision": float(precision_score(y_true, y_pred, zero_division=0)) if len(y_true) else 0.0,
             "recall": float(recall_score(y_true, y_pred, zero_division=0)) if len(y_true) else 0.0,
+            "sensitivity": float(recall_score(y_true, y_pred, zero_division=0)) if len(y_true) else 0.0,
+            "specificity": specificity,
         }
         try:
             metrics["auc"] = float(roc_auc_score(y_true, y_prob)) if len(np.unique(y_true)) > 1 else 0.0
@@ -241,7 +251,7 @@ def cross_validate(
         logger.info("fold %d: %s", fold, val_metrics)
 
     agg = {}
-    for k in ("auc", "accuracy", "f1", "precision", "recall"):
+    for k in ("auc", "accuracy", "f1", "precision", "recall", "sensitivity", "specificity"):
         vals = [m[k] for m in fold_metrics]
         agg[k] = {"mean": float(np.mean(vals)), "std": float(np.std(vals))}
     return {"folds": fold_metrics, "mean": agg}

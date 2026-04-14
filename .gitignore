@@ -12,6 +12,8 @@ data/
 *.pkl
 *.xlsx
 !outputs/sprint2_metrics.xlsx
+!outputs/sprint3_**/sprint3_metrics.xlsx
+!outputs/sprint3_vs_sprint2.xlsx
 *.csv
 *.dcm
 *.nii
@@ -28,6 +30,7 @@ outputs/**/*_raw/
 
 # credentials
 _ssh.py
+_remote_*.py
 *.key
 *.pem
 credentials.json

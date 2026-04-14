@@ -64,9 +64,34 @@ def build_dataset_v2(cache_dir, labels, rad_df, feat_cols, *, enhanced: bool):
     col_fractal = _first_col(rad_df, ["肺血管分形维度"]) or _first_col(rad_df, ["分形维度"])
     col_art_dens = _first_col(rad_df, ["动脉平均密度"])
     col_vein_dens = _first_col(rad_df, ["静脉平均密度"])
+    # top-10 extras (rank-ordered from analyze_all_ct_features.py)
+    col_vein_bv5 = _first_col(rad_df, ["静脉BV5"])
+    col_vein_branches = _first_col(rad_df, ["静脉血管分支数量"])
+    col_bv5_ratio = _first_col(rad_df, ["bv5_ratio"])
+    col_av_ratio = _first_col(rad_df, ["artery_vein_vol_ratio"])
+    col_total_bv5 = _first_col(rad_df, ["肺血管BV5"])
+    col_lung_std = _first_col(rad_df, ["左右肺密度标准差"])
+    col_vein_bv10 = _first_col(rad_df, ["静脉BV10"])
+    col_total_branches = _first_col(rad_df, ["肺血管血管分支数量"]) \
+        or _first_col(rad_df, ["肺血管分支数量"])
+    col_tort = _first_col(rad_df, ["肺血管弯曲度"])
 
-    logger.info("enhancement cols: total=%r fractal=%r art_dens=%r vein_dens=%r",
-                col_total, col_fractal, col_art_dens, col_vein_dens)
+    logger.info(
+        "enhancement cols: total=%r fractal=%r art_dens=%r vein_dens=%r | "
+        "vein_bv5=%r vein_branches=%r bv5_ratio=%r av_ratio=%r "
+        "total_bv5=%r lung_std=%r vein_bv10=%r total_branches=%r tort=%r",
+        col_total, col_fractal, col_art_dens, col_vein_dens,
+        col_vein_bv5, col_vein_branches, col_bv5_ratio, col_av_ratio,
+        col_total_bv5, col_lung_std, col_vein_bv10, col_total_branches, col_tort,
+    )
+
+    def _get(full, col):
+        if col is None or full is None:
+            return None
+        try:
+            return float(full[col])
+        except (TypeError, ValueError, KeyError):
+            return None
 
     dataset = []
     for case_id, label in labels.items():
@@ -87,11 +112,20 @@ def build_dataset_v2(cache_dir, labels, rad_df, feat_cols, *, enhanced: bool):
             )
             g = augment_graph(
                 g,
-                commercial_total_vol_ml=float(full[col_total]) if col_total else None,
-                commercial_fractal_dim=float(full[col_fractal]) if col_fractal else None,
-                commercial_artery_density=float(full[col_art_dens]) if col_art_dens else None,
-                commercial_vein_density=float(full[col_vein_dens]) if col_vein_dens else None,
+                commercial_total_vol_ml=_get(full, col_total),
+                commercial_fractal_dim=_get(full, col_fractal),
+                commercial_artery_density=_get(full, col_art_dens),
+                commercial_vein_density=_get(full, col_vein_dens),
                 pipeline_total_vol_ml=float(pipeline_vol) if pipeline_vol else None,
+                commercial_vein_bv5=_get(full, col_vein_bv5),
+                commercial_vein_branch_count=_get(full, col_vein_branches),
+                commercial_bv5_ratio=_get(full, col_bv5_ratio),
+                commercial_artery_vein_vol_ratio=_get(full, col_av_ratio),
+                commercial_total_bv5=_get(full, col_total_bv5),
+                commercial_lung_density_std=_get(full, col_lung_std),
+                commercial_vein_bv10=_get(full, col_vein_bv10),
+                commercial_total_branch_count=_get(full, col_total_branches),
+                commercial_vessel_tortuosity=_get(full, col_tort),
             )
         dataset.append({
             "patient_id": case_id,
@@ -123,8 +157,21 @@ def make_loaders(dataset, train_ids, val_ids, batch_size):
         v = np.nan_to_num(v, nan=0.0, posinf=0.0, neginf=0.0)
         return ((v - mu) / sd).astype(np.float32)
 
-    tr_items = [attach_radiomics(g, std(e["radiomics"])) for g, e in zip(tr_graphs, tr)]
-    va_items = [attach_radiomics(g, std(e["radiomics"])) for g, e in zip(va_graphs, va)]
+    def _wrap(g, rad_vec, src):
+        # Mutate the already-normalized graph in place (no extra clone).
+        g.radiomics = torch.from_numpy(rad_vec).float().unsqueeze(0)
+        gf = getattr(src, "global_features", None)
+        if gf is not None:
+            g.global_features = gf.clone() if hasattr(gf, "clone") else gf
+        return g
+
+    tr_items = [_wrap(g, std(e["radiomics"]), e["graph"]) for g, e in zip(tr_graphs, tr)]
+    va_items = [_wrap(g, std(e["radiomics"]), e["graph"]) for g, e in zip(va_graphs, va)]
+    if tr_items:
+        itm = tr_items[0]
+        keys = list(itm.keys) if not callable(getattr(itm, "keys", None)) else list(itm.keys())
+        logger.info("  sample item attrs: %s has_gf=%s",
+                    sorted(keys), hasattr(itm, "global_features"))
 
     tl = DataLoader(tr_items, batch_size=batch_size, shuffle=True)
     vl = DataLoader(va_items, batch_size=batch_size)
@@ -132,17 +179,18 @@ def make_loaders(dataset, train_ids, val_ids, batch_size):
     return tl, vl, tr_labels
 
 
-def run_all(dataset, folds, device, args, radiomics_dim, gcn_in):
+def run_all(dataset, folds, device, args, radiomics_dim, gcn_in, global_dim):
     modes = [m.strip() for m in args.modes.split(",") if m.strip()]
     out = {}
     for mode in modes:
-        logger.info("=== mode=%s  gcn_in=%d ===", mode, gcn_in)
+        logger.info("=== mode=%s  gcn_in=%d  global_dim=%d ===",
+                    mode, gcn_in, global_dim)
         fold_metrics, yts, prs = [], [], []
         for k, (tr, va) in enumerate(folds, 1):
             tl, vl, trl = make_loaders(dataset, tr, va, args.batch_size)
-            # train_one_fold uses hardcoded gcn_in=12 — patch by wrapping
             m, yt, pr = _train_fold(mode, radiomics_dim, gcn_in, tl, vl, trl,
-                                    device, args.epochs, args.lr, args.wd)
+                                    device, args.epochs, args.lr, args.wd,
+                                    global_dim=global_dim)
             logger.info("  fold %d AUC=%.4f Acc=%.4f F1=%.4f Prec=%.4f Sens=%.4f Spec=%.4f",
                         k, m["AUC"], m["Accuracy"], m["F1"], m["Precision"],
                         m["Sensitivity"], m["Specificity"])
@@ -158,10 +206,11 @@ def run_all(dataset, folds, device, args, radiomics_dim, gcn_in):
 
 
 def _train_fold(mode, radiomics_dim, gcn_in, tl, vl, trl, device, epochs, lr, wd,
-                patience=40):
+                patience=40, global_dim=0):
     import torch.nn.functional as F
     model = HybridGCN(gcn_in=gcn_in, gcn_hidden=64, radiomics_dim=radiomics_dim,
-                      num_layers=3, dropout=0.3, mode=mode).to(device)
+                      num_layers=3, dropout=0.3, mode=mode,
+                      global_dim=global_dim).to(device)
     n1 = int((trl == 1).sum()); n0 = int((trl == 0).sum())
     w = torch.tensor([max(n1, 1) / max(n0, 1), 1.0], dtype=torch.float32, device=device)
     opt = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=wd)
@@ -171,7 +220,8 @@ def _train_fold(mode, radiomics_dim, gcn_in, tl, vl, trl, device, epochs, lr, wd
         for batch in tl:
             batch = batch.to(device)
             logits, _, _ = model(batch.x, batch.edge_index, batch.batch,
-                                 getattr(batch, "radiomics", None))
+                                 getattr(batch, "radiomics", None),
+                                 global_features=getattr(batch, "global_features", None))
             loss = F.cross_entropy(logits, batch.y.view(-1), weight=w)
             opt.zero_grad(); loss.backward(); opt.step()
         model.eval(); yt, pr = [], []
@@ -199,7 +249,8 @@ def _train_fold(mode, radiomics_dim, gcn_in, tl, vl, trl, device, epochs, lr, wd
         for batch in vl:
             batch = batch.to(device)
             logits, _, _ = model(batch.x, batch.edge_index, batch.batch,
-                                 getattr(batch, "radiomics", None))
+                                 getattr(batch, "radiomics", None),
+                                 global_features=getattr(batch, "global_features", None))
             prob = F.softmax(logits, dim=1)[:, 1].cpu().numpy()
             pred = logits.argmax(dim=1).cpu().numpy()
             y = batch.y.view(-1).cpu().numpy()
@@ -239,9 +290,18 @@ def main() -> int:
         id_set = {e["patient_id"] for e in dataset}
         filtered = [([i for i in tr if i in id_set], [i for i in va if i in id_set])
                     for tr, va in folds]
-        gcn_in = 16 if enhanced else 12
+        gcn_in = dataset[0]["graph"].x.size(1) if dataset else (13 if enhanced else 12)
+        # graph-level global features attached only in enhanced mode (see
+        # enhance_features.augment_graph). Baseline graphs leave the attribute
+        # absent → global_dim = 0 and the model skips the concat.
+        g0 = dataset[0]["graph"] if dataset else None
+        if enhanced and g0 is not None and hasattr(g0, "global_features") \
+                and g0.global_features is not None:
+            global_dim = int(g0.global_features.size(-1))
+        else:
+            global_dim = 0
         all_results[fs] = run_all(dataset, filtered, device, args,
-                                  len(feat_cols), gcn_in)
+                                  len(feat_cols), gcn_in, global_dim)
 
     with (out / "sprint2_results.json").open("w") as f:
         json.dump(all_results, f, indent=2)
