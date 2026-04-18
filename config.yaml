@@ -1,0 +1,55 @@
+# ============================================================
+# Pulmonary Microvascular GCN — Configuration
+# ============================================================
+
+data:
+  root_dir: "./data/raw"            # Root directory containing patient folders
+  output_dir: "./outputs"
+  # Expected structure per patient folder:
+  #   <patient_id>/
+  #     ct.nii.gz          — Original CT volume
+  #     artery.nii.gz      — Artery segmentation mask
+  #     vein.nii.gz        — Vein segmentation mask
+  #     lung.nii.gz        — Lung mask
+  #     airway.nii.gz      — Airway mask
+
+  labels_csv: "./data/labels.csv"   # CSV: patient_id, label (0=COPD, 1=COPD-PH)
+  cache_dir: "./data/cache"         # Precomputed graph cache
+
+skeleton:
+  min_branch_length: 3              # Minimum branch length in voxels (prune noise)
+  resample_spacing: [1.0, 1.0, 1.0] # Resample CT to isotropic spacing (mm)
+
+graph:
+  node_features: 12                 # Dimension of node feature vector
+  spatial_edge_threshold: 15.0      # Max distance (mm) for spatial proximity edges
+  use_directed: false               # Use directed edges (proximal→distal)
+  add_spatial_edges: true           # Add non-tree spatial proximity edges
+
+model:
+  type: "GraphSAGE"                 # Options: GCN, GraphSAGE, GAT
+  hidden_channels: 64
+  num_layers: 3
+  dropout: 0.3
+  pooling: "mean"                   # Options: mean, max, attention
+  heads: 4                          # Only for GAT
+
+training:
+  epochs: 200
+  lr: 0.001
+  weight_decay: 0.0005
+  batch_size: 8
+  val_ratio: 0.15
+  test_ratio: 0.15
+  patience: 30                      # Early stopping patience
+  seed: 42
+  num_workers: 4
+
+quantification:
+  # BV5/BV10: blood volume in vessels < 5mm / < 10mm cross-section
+  bv5_threshold: 5.0                # mm
+  bv10_threshold: 10.0              # mm
+  # Lung parenchyma
+  laa_threshold: -950               # HU threshold for low attenuation areas
+  # Airway
+  pi10_target: 10.0                 # Internal perimeter for Pi10 calculation
