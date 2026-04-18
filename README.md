@@ -206,13 +206,48 @@ CT measurement via `measure_pa_aorta_v2.py`:
 
 ## Feature attribution & ablation
 
-Ablation over feature subsets (from `outputs/attribution/ablation_results.json`):
+Same 5-fold RF ablation, run twice with different PA/Ao sources to isolate the
+measurement-method effect. The CT v2 version is the current one; the echo
+version is kept as a legacy comparator.
 
-- PA diameter + PA/Ao alone: AUC 0.510
-- Small-vessel features (BV5, BV10, branch count, pruning index): AUC 0.815
-- Full CT feature stack: AUC 0.913
+### CT v2 PA/Ao (current — direct 3D measurement from `artery.nii.gz`)
 
-![Attribution feature ablation](outputs/attribution/feature_ablation.png)
+Source: `outputs/attribution/ablation_results_ct.json`. Generator:
+`copdph-gcn-repo/attribution_analysis_ct.py`. Cohort: 100 patients (74 PH /
+26 nPH), 93 matched to the CT v2 measurement set.
+
+| Config | AUC |
+|---|---|
+| **PA diam + PA/Ao only (CT, 3D)** | **0.542** |
+| Small vessel features (13D) | 0.815 |
+| Global vascular (26D) | 0.837 |
+| Parenchyma + airway (15D) | 0.732 |
+| Lobe-level vascular (60D) | 0.909 |
+| All CT features (101D) | 0.913 |
+| All CT + PA/Ao (CT, 104D) | 0.906 |
+| All CT − small vessels (88D) | 0.904 |
+
+![Attribution feature ablation (CT v2)](outputs/attribution/feature_ablation_ct.png)
+
+CT v2 PA/Ao alone (AUC 0.542) is only marginally stronger than the echo
+version (0.510); small-vessel topology features still beat it by +0.27 AUC.
+The "measurement modality" is not where the signal lives — the full small-
+vessel topology is.
+
+### Echo-derived PA/Ao (legacy — 2D, parsed from 超声报告)
+
+Source: `outputs/attribution/ablation_results_echo.json`. This predates the
+CT v2 measurement work and is kept only as a historical comparator. The PA
+diameter here is extracted by regex from the ultrasound report column — a
+2D thumbnail view, not a direct CT measurement.
+
+| Config | AUC |
+|---|---|
+| PA diam + PA/Ao only (echo, 3D) | 0.510 |
+| Small vessel features (13D) | 0.815 |
+| All CT features (101D) | 0.913 |
+
+![Attribution feature ablation (echo, legacy)](outputs/attribution/feature_ablation_echo.png)
 
 Per-feature violin plots (PH vs non-PH, top 9 commercial scalars):
 

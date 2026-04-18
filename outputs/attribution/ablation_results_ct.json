@@ -1,0 +1,93 @@
+{
+  "pa_ao_stats_ct": {
+    "method": "CT v2 minor-axis (measure_pa_aorta_v2.py)",
+    "cohort_n": 100,
+    "matched_to_ct": 93,
+    "PA_diam_ct": {
+      "threshold_mm": 29.0,
+      "PH_mean_mm": 34.56391304347826,
+      "PH_std_mm": 5.9735836881553,
+      "nPH_mean_mm": 31.347083333333334,
+      "nPH_std_mm": 6.293943172584434,
+      "PH_gt29mm": 54,
+      "nPH_gt29mm": 13,
+      "PH_total_with_data": 69,
+      "nPH_total_with_data": 24
+    },
+    "PA_Ao_ratio_ct": {
+      "threshold": 1.0,
+      "PH_mean": 1.1330434782608696,
+      "PH_std": 0.5289707105335744,
+      "nPH_mean": 0.9243333333333333,
+      "nPH_std": 0.2539234902266604,
+      "PH_gt1": 35,
+      "nPH_gt1": 10,
+      "PH_total_with_data": 69,
+      "nPH_total_with_data": 24
+    }
+  },
+  "ablation": [
+    {
+      "name": "PA diam + PA/Ao only (CT, 3D)",
+      "auc_mean": 0.5419047619047619,
+      "auc_std": 0.10405998618884967,
+      "f1_mean": 0.7531090942798396,
+      "acc_mean": 0.6199999999999999
+    },
+    {
+      "name": "Small vessel features (13D)",
+      "auc_mean": 0.8146190476190476,
+      "auc_std": 0.08910280948206051,
+      "f1_mean": 0.8519047619047619,
+      "acc_mean": 0.7799999999999999
+    },
+    {
+      "name": "Global vascular (26D)",
+      "auc_mean": 0.8373333333333333,
+      "auc_std": 0.05208539995899898,
+      "f1_mean": 0.8747943722943724,
+      "acc_mean": 0.8099999999999999
+    },
+    {
+      "name": "Parenchyma + airway (15D)",
+      "auc_mean": 0.731904761904762,
+      "auc_std": 0.12481060481717866,
+      "f1_mean": 0.8768939393939394,
+      "acc_mean": 0.8
+    },
+    {
+      "name": "Lobe-level vascular (60D)",
+      "auc_mean": 0.908952380952381,
+      "auc_std": 0.051596199476836614,
+      "f1_mean": 0.9034562211981567,
+      "acc_mean": 0.85
+    },
+    {
+      "name": "All CT features (101D)",
+      "auc_mean": 0.9130476190476191,
+      "auc_std": 0.07661287672329367,
+      "f1_mean": 0.8966666666666667,
+      "acc_mean": 0.8400000000000001
+    },
+    {
+      "name": "All CT + PA/Ao (CT, 104D)",
+      "auc_mean": 0.9057619047619049,
+      "auc_std": 0.0703016500195042,
+      "f1_mean": 0.9168450635386118,
+      "acc_mean": 0.8699999999999999
+    },
+    {
+      "name": "All CT - small vessels (88D)",
+      "auc_mean": 0.9043333333333333,
+      "auc_std": 0.047604855027845894,
+      "f1_mean": 0.8970869990224829,
+      "acc_mean": 0.8400000000000001
+    }
+  ],
+  "verdict": {
+    "pa_ao_ct_auc": 0.5419047619047619,
+    "small_vessel_auc": 0.8146190476190476,
+    "all_ct_auc": 0.9130476190476191,
+    "small_vessel_contribution": 0.008714285714285785
+  }
+}
