@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+.env
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Excel lock files
+~$*.xlsx
+~$*.xls
+
+# Large precomputed caches (regeneratable)
+copdph-gcn-repo/cache/
+*.pkl
+
+# Logs
+*.log
+
+# PHI / patient data - public repo defaults
+copd-ph患者113例0331.xlsx
+data/labels.csv
+data/copd_ph_radiomics.csv
+copdph-gcn-repo/data/ct_pa_ao_measurements_v2.json
+copdph-gcn-repo/data/mpap_lookup.json
+copdph-gcn-repo/data/splits_mpap_stratified.json
+outputs/features/features.csv
+
+# Scratch / local automation artifacts
+chk_cache.txt
+ph_cands.txt
+ph_find.txt
+ph2.txt
+_codex*
+
