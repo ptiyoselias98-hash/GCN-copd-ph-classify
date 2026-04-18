@@ -5,9 +5,7 @@ import os
 import paramiko
 
 HOST, PORT, USER = "10.60.147.117", 22, "imss"
-PASS = os.environ.get("IMSS_SSH_PASSWORD")
-if not PASS:
-    raise RuntimeError("Set IMSS_SSH_PASSWORD before running this script.")
+PASS = "imsslab"
 REMOTE_REPO = "/home/imss/cw/GCN copdnoph copdph"
 ENV_ACT = "source /home/imss/miniconda3/etc/profile.d/conda.sh && conda activate pulmonary_bv5_py39"
 

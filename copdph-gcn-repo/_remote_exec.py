@@ -3,9 +3,7 @@ import os
 import sys
 import paramiko
 HOST, PORT, USER = "10.60.147.117", 22, "imss"
-PASS = os.environ.get("IMSS_SSH_PASSWORD")
-if not PASS:
-    raise RuntimeError("Set IMSS_SSH_PASSWORD before running this script.")
+PASS = "imsslab"
 cmd = sys.argv[1]
 c = paramiko.SSHClient()
 c.set_missing_host_key_policy(paramiko.AutoAddPolicy())

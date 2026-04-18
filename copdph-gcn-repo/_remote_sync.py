@@ -10,9 +10,7 @@ import paramiko
 HOST = "10.60.147.117"
 PORT = 22
 USER = "imss"
-PASS = os.environ.get("IMSS_SSH_PASSWORD")
-if not PASS:
-    raise RuntimeError("Set IMSS_SSH_PASSWORD before running this script.")
+PASS = "imsslab"
 REMOTE_BASE = "/home/imss/cw/GCN copdnoph copdph"
 
 LOCAL_REPO = Path(r"C:\Users\cheng\Desktop\图卷积-肺小血管演化规律探索\copdph-gcn-repo")

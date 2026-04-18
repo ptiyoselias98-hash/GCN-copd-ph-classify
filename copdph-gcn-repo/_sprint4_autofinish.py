@@ -37,9 +37,7 @@ import paramiko
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 HOST, PORT, USER = "10.60.147.117", 22, "imss"
-PASS = os.environ.get("IMSS_SSH_PASSWORD")
-if not PASS:
-    raise RuntimeError("Set IMSS_SSH_PASSWORD before running this script.")
+PASS = "imsslab"
 REMOTE = "/home/imss/cw/GCN copdnoph copdph"
 SENTINEL = "outputs/sprint4_done.flag"
 

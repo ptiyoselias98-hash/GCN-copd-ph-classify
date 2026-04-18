@@ -5,9 +5,7 @@ import sys
 import os
 import paramiko
 
-HOST = "10.60.147.117"; USER = "imss"; PASS = os.environ.get("IMSS_SSH_PASSWORD")
-if not PASS:
-    raise RuntimeError("Set IMSS_SSH_PASSWORD before running this script.")
+HOST = "10.60.147.117"; USER = "imss"; PASS = "imsslab"
 PY = "/home/imss/miniconda3/envs/pulmonary_bv5_py39/bin/python"
 REPO = "/home/imss/cw/GCN copdnoph copdph"
 LABELS = "/home/imss/cw/COPDnonPH COPD-PH /data/tables/labels.csv"

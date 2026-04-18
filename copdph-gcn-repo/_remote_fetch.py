@@ -6,9 +6,7 @@ from pathlib import Path
 import os
 import paramiko
 
-HOST = "10.60.147.117"; USER = "imss"; PASS = os.environ.get("IMSS_SSH_PASSWORD")
-if not PASS:
-    raise RuntimeError("Set IMSS_SSH_PASSWORD before running this script.")
+HOST = "10.60.147.117"; USER = "imss"; PASS = "imsslab"
 REPO_R = "/home/imss/cw/GCN copdnoph copdph"
 OUT_R = f"{REPO_R}/outputs/sprint2_enhanced_v2"
 LOCAL = Path(r"C:\Users\cheng\Desktop\图卷积-肺小血管演化规律探索\outputs\sprint2_v2")

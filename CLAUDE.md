@@ -142,7 +142,7 @@ Scripts in `C:\Users\cheng\Desktop\从claude下载的实验执行脚本\`:
 
 ## Server Connection Details
 
-- **IP:** 10.60.147.117, port 22, user `imss`; use password auth via local secret management or `IMSS_SSH_PASSWORD`
+- **IP:** 10.60.147.117, port 22, user `imss`, password `imsslab`
 - **SSH key auth DOES NOT WORK** — use paramiko password auth only
 - **Python env:** `/home/imss/.virtualenvs/causcal_time_series/bin/python` (Python 3.7, nibabel 4.0.2, scipy, numpy, torch)
 - **CAUTION:** Do not run more than 1 SSH monitor loop concurrently — overloads sshd MaxStartups
