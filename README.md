@@ -456,3 +456,63 @@ Key findings:
 - Vessel topology shows reproducible unsupervised phenotypes, but they are largely orthogonal to PH labels: best label-aligned clustering is only `ARI +0.091`.
 
 Full details: [followup_experiments/outputs/comparison_full_report.md](followup_experiments/outputs/comparison_full_report.md)
+
+## Tri-structure GCN (artery / vein / airway) — Phase 1 vs v2
+
+Three per-structure GCN encoders fused by cross-structure attention. Phase 1
+uses mean pooling within each encoder; v2 adds per-structure attention pooling,
+24-D graph signatures concatenated into the fusion head, and hybrid clustering
+over three views (embedding / signature / hybrid). 3×5 CV, n=106.
+
+```
+artery → Graph_A → GCN_A (pool) → z_A ─┐
+                                        ├─ CrossAttn → z_fused → logits
+vein   → Graph_V → GCN_V (pool) → z_V ─┤
+airway → Graph_W → GCN_W (pool) → z_W ─┘
+```
+
+### Headline (15-fold CV, mean ± std, n=106)
+
+| Metric | Phase 1 (mean pool) | **v2 (attn pool + signatures)** | mode_radiomics | v2 vs Phase 1 |
+|---|---|---|---|---|
+| AUC  | 0.880 ± 0.093 | **0.734 ± 0.142** | 0.885 | **−0.146** |
+| Sens | 0.869 ± 0.113 | **0.708 ± 0.144** | 0.895 | **−0.161** |
+| Spec | 0.900 ± 0.119 | **0.824 ± 0.166** | 0.862 | −0.076 |
+| F1   | 0.910 ± 0.070 | **0.794 ± 0.101** | 0.919 | **−0.116** |
+| Prec | 0.964 ± 0.041 | 0.926 ± 0.064 | — | −0.038 |
+| Acc  | 0.877 ± 0.089 | 0.739 ± 0.115 | — | −0.138 |
+
+**v2 is a regression on every classification metric** with ~1.5× larger std.
+
+Grouped bar with error bars (Phase 1 vs v2; `mode_radiomics` shown as green diamonds):
+
+![Tri-structure metrics — v2 vs Phase 1](tri_structure/outputs/phase2_v2/figures/v2_vs_phase1_metrics.png)
+
+Six-metric radar (Phase 1 polygon encloses v2 on every axis):
+
+![Tri-structure radar — v2 vs Phase 1](tri_structure/outputs/phase2_v2/figures/v2_vs_phase1_radar.png)
+
+### Interpretability: per-structure attention vs mPAP
+
+Phase 1 produces a biologically meaningful signal — artery attention rises
+with mPAP (r = +0.486), airway attention falls (r = −0.468). **v2 loses it
+entirely** (r = +0.074 / −0.125):
+
+![Attention × mPAP — Phase 1 vs v2](tri_structure/outputs/phase2_v2/figures/attention_mpap.png)
+
+### Clustering over three views (embedding / signature / hybrid)
+
+All three views produce cluster assignments that are **not aligned with the PH
+label** (ARI ≈ 0 across k=2..4 for both KMeans and GMM) — same negative finding
+as the follow-up topology experiments. The signature view yields tighter
+geometric clusters (Silhouette ≈ 0.30) but the clusters are PH-orthogonal.
+
+### Takeaway
+
+Do not adopt v2. Phase 1 remains the best tri-structure configuration. If
+signatures are worth keeping, try them as an auxiliary multi-task regression
+head rather than as direct concat inputs to the classifier.
+
+Full write-up, source code, and raw JSON outputs: [`tri_structure/`](tri_structure/) (see
+[`tri_structure/RESULTS.md`](tri_structure/RESULTS.md)). `shared_embeddings.npz`
+is withheld as it contains patient identifiers.
