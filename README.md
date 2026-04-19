@@ -426,3 +426,33 @@ excluded.
 ## License
 
 License TBD.
+
+## Follow-up experiments (gold subset + clustering)
+
+These follow-up analyses stress-tested three questions on the 106-case gold subset against the broader 197-label setting: how much the original 197-vs-106 mismatch was contributing label leakage, whether the dropped `mPAP` auxiliary triple could recover the Sprint 5 operating point when reintroduced with per-fold Youden calibration, and whether vessel-topology fingerprints show unsupervised phenotypes that align with PH labels. The packaged results below archive the full 4-way comparison, 3-mode ablation, and clustering sanity check without rerunning training.
+
+| run                                 | folds | AUC               | Sens              | Spec              | Acc               | F1                | Prec              |
+|---|---|---|---|---|---|---|---|
+| Sprint 5 Final (GitHub, no Youden)  |   5   | 0.924             | 0.870             | 0.920             | n/r               | n/r               | n/r               |
+| `medium`        (0.5 threshold)     |   5   | 0.919 ± 0.082     | 0.431 ± 0.170     | 0.920 ± 0.160     | 0.557 ± 0.104     | 0.571 ± 0.157     | 0.969 ± 0.062     |
+| **`medium_youden`** (per-fold J)    |   5   | 0.899 ± 0.100     | **0.798 ± 0.195** | **0.960 ± 0.080** | 0.838 ± 0.143     | 0.866 ± 0.135     | **0.988 ± 0.025** |
+| **`medium_youden_rep`** (3×5-fold)  |  15   | 0.883 ± 0.094     | **0.835 ± 0.161** | **0.900 ± 0.141** | 0.851 ± 0.115     | 0.885 ± 0.098     | **0.966 ± 0.048** |
+
+| mode                 | AUC                | Sens               | Spec               | Acc                | F1                 | Prec               |
+|---|---|---|---|---|---|---|
+| `mode_gcn`           | 0.872 ± 0.101      | 0.865 ± 0.127      | 0.853 ± 0.170      | 0.862 ± 0.095      | 0.898 ± 0.079      | 0.948 ± 0.055      |
+| `mode_hybrid`        | 0.886 ± 0.090      | 0.838 ± 0.128      | **0.936 ± 0.117**  | 0.865 ± 0.088      | 0.897 ± 0.075      | **0.979 ± 0.038**  |
+| **`mode_radiomics`** | 0.885 ± 0.088      | **0.895 ± 0.101**  | 0.862 ± 0.146      | **0.887 ± 0.075**  | **0.919 ± 0.059**  | 0.954 ± 0.047      |
+
+![Topology fingerprint UMAP (gmm_k2, best label-aligned clustering ARI +0.091)](followup_experiments/outputs/cluster_topology/umap_topology.png)
+
+![Vascular-full UMAP (kmeans_k2, sil 0.72 is outlier-vs-bulk artefact)](followup_experiments/outputs/cluster_topology/umap_vascular_full.png)
+
+Key findings:
+- Label leakage from the 197-vs-106 mismatch is modest rather than dominant: the follow-up delta is about `ΔAUC ≈ 0.05`, not a collapse.
+- Reintroducing the `mPAP` auxiliary triple with Youden calibration restores specificity to `0.96` on `medium_youden`.
+- Per-fold Youden on the repeated `3×5` CV run recovers sensitivity to `0.83` while keeping specificity high enough to stay competitive with Sprint 5.
+- `RadiomicsMLP` is the surprise leader on sensitivity and F1 in the 3-mode ablation, despite using no graph topology.
+- Vessel topology shows reproducible unsupervised phenotypes, but they are largely orthogonal to PH labels: best label-aligned clustering is only `ARI +0.091`.
+
+Full details: [followup_experiments/outputs/comparison_full_report.md](followup_experiments/outputs/comparison_full_report.md)

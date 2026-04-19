@@ -1,0 +1,33 @@
+===== follow-up pipeline start 2026-04-18T23:52:46+08:00 =====
+variant=mode_radiomics epochs=200 n_folds=5
+project=/home/imss/cw/GCN copdnoph copdph
+output=/home/imss/cw/GCN copdnoph copdph/outputs/followup_mode_radiomics
+2026-04-18 23:52:50,161 INFO device=cuda
+2026-04-18 23:52:50,167 INFO labels: 106 cases in data/labels_gold.csv
+2026-04-18 23:52:50,213 INFO loaded 106 graphs from cache /home/imss/cw/GCN copdnoph copdph/cache
+2026-04-18 23:52:50,220 INFO variant=mode_radiomics mode=radiomics_only repeats=3 focal=True node_drop=0.00 mpap_aux=False (w=0.10) youden=True splits=True
+2026-04-18 23:52:53,361 INFO [radiomics] r0 f0 Youden=0.436 sens=1.000 spec=1.000 auc=1.000
+2026-04-18 23:52:55,244 INFO [radiomics] r0 f1 Youden=0.389 sens=0.750 spec=1.000 auc=0.900
+2026-04-18 23:52:58,052 INFO [radiomics] r0 f2 Youden=0.318 sens=0.938 spec=0.600 auc=0.775
+2026-04-18 23:52:59,678 INFO [radiomics] r0 f3 Youden=0.355 sens=1.000 spec=0.800 auc=0.950
+2026-04-18 23:53:02,551 INFO [radiomics] r0 f4 Youden=0.410 sens=0.867 spec=0.833 auc=0.867
+2026-04-18 23:53:04,835 INFO [radiomics] r1 f0 Youden=0.366 sens=1.000 spec=1.000 auc=1.000
+2026-04-18 23:53:06,359 INFO [radiomics] r1 f1 Youden=0.445 sens=0.938 spec=0.600 auc=0.750
+2026-04-18 23:53:09,560 INFO [radiomics] r1 f2 Youden=0.363 sens=0.812 spec=0.800 auc=0.825
+2026-04-18 23:53:11,340 INFO [radiomics] r1 f3 Youden=0.408 sens=0.875 spec=1.000 auc=0.963
+2026-04-18 23:53:13,508 INFO [radiomics] r1 f4 Youden=0.337 sens=0.933 spec=0.667 auc=0.722
+2026-04-18 23:53:16,300 INFO [radiomics] r2 f0 Youden=0.404 sens=0.625 spec=1.000 auc=0.875
+2026-04-18 23:53:18,945 INFO [radiomics] r2 f1 Youden=0.449 sens=0.875 spec=0.800 auc=0.863
+2026-04-18 23:53:20,427 INFO [radiomics] r2 f2 Youden=0.434 sens=0.875 spec=1.000 auc=0.938
+2026-04-18 23:53:23,461 INFO [radiomics] r2 f3 Youden=0.338 sens=1.000 spec=1.000 auc=1.000
+2026-04-18 23:53:25,351 INFO [radiomics] r2 f4 Youden=0.390 sens=0.933 spec=0.833 auc=0.856
+2026-04-18 23:53:25,353 INFO wrote /home/imss/cw/GCN copdnoph copdph/outputs/followup_mode_radiomics/cv_results.json
+
+====== 5-fold CV — six-metric summary ======
+  auc         : 0.8855 ± 0.0876
+  accuracy    : 0.8866 ± 0.0755
+  precision   : 0.9536 ± 0.0473
+  sensitivity : 0.8947 ± 0.1011
+  f1          : 0.9189 ± 0.0595
+  specificity : 0.8622 ± 0.1465
+===== follow-up pipeline done 2026-04-18T23:53:26+08:00  (flag: /home/imss/cw/GCN copdnoph copdph/outputs/followup_mode_radiomics/followup_mode_radiomics_done.flag) =====

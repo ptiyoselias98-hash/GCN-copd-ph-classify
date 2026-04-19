@@ -1,0 +1,332 @@
+{
+  "n_cases": 106,
+  "ph_count": 79,
+  "nonph_count": 27,
+  "mpap_available": 106,
+  "mpap_tertile_cutoffs": [
+    25.0,
+    33.0
+  ],
+  "results": {
+    "topology": {
+      "feature_keys": [
+        "airway_frac",
+        "artery_frac",
+        "branch_frac",
+        "density",
+        "diameter_std",
+        "max_degree",
+        "max_strahler",
+        "mean_degree",
+        "mean_diameter",
+        "mean_strahler",
+        "n_branch",
+        "n_edges",
+        "n_nodes",
+        "n_tips",
+        "small_vessel_frac",
+        "tip_frac",
+        "vein_frac"
+      ],
+      "n_features": 8,
+      "best_method_by_silhouette": "kmeans_k5",
+      "scores": {
+        "kmeans_k2": {
+          "n_clusters": 2,
+          "n_noise": 0,
+          "silhouette": 0.2034280002117157,
+          "davies_bouldin": 1.6095568764394377,
+          "calinski_harabasz": 29.100897866924814,
+          "ari_label": 0.0003414578624737809,
+          "nmi_label": 0.0034521187658287295,
+          "ari_mpap_tertile": -0.0018441014554550369,
+          "nmi_mpap_tertile": 0.008628110269029493
+        },
+        "kmeans_k3": {
+          "n_clusters": 3,
+          "n_noise": 0,
+          "silhouette": 0.20588605105876923,
+          "davies_bouldin": 1.1484575047048584,
+          "calinski_harabasz": 26.159939839578183,
+          "ari_label": -0.005710232023693282,
+          "nmi_label": 0.007106443619404114,
+          "ari_mpap_tertile": -0.004513551137321899,
+          "nmi_mpap_tertile": 0.017868705773741868
+        },
+        "kmeans_k4": {
+          "n_clusters": 4,
+          "n_noise": 0,
+          "silhouette": 0.21887525916099548,
+          "davies_bouldin": 1.0337368084424783,
+          "calinski_harabasz": 25.270517940882506,
+          "ari_label": 0.025365432916144043,
+          "nmi_label": 0.03325361397874928,
+          "ari_mpap_tertile": -0.002443127699088527,
+          "nmi_mpap_tertile": 0.05812560716332927
+        },
+        "kmeans_k5": {
+          "n_clusters": 5,
+          "n_noise": 0,
+          "silhouette": 0.2688363492488861,
+          "davies_bouldin": 0.9614030785573172,
+          "calinski_harabasz": 25.766253557697066,
+          "ari_label": 0.0035335270235291915,
+          "nmi_label": 0.04093298219138357,
+          "ari_mpap_tertile": 0.008469262452251183,
+          "nmi_mpap_tertile": 0.06986763674350135
+        },
+        "gmm_k2": {
+          "n_clusters": 2,
+          "n_noise": 0,
+          "silhouette": 0.4255260229110718,
+          "davies_bouldin": 0.7382794182081318,
+          "calinski_harabasz": 13.62909893318579,
+          "ari_label": 0.09120963744190891,
+          "nmi_label": 0.058318273326985096,
+          "ari_mpap_tertile": 0.005319358294788289,
+          "nmi_mpap_tertile": 0.06886168446431912
+        },
+        "gmm_k3": {
+          "n_clusters": 3,
+          "n_noise": 0,
+          "silhouette": 0.22885026037693024,
+          "davies_bouldin": 1.6381589515721735,
+          "calinski_harabasz": 19.84760366661763,
+          "ari_label": 0.03146560449961974,
+          "nmi_label": 0.0240365653334227,
+          "ari_mpap_tertile": 0.0026750692651863308,
+          "nmi_mpap_tertile": 0.04475986672001485
+        },
+        "gmm_k4": {
+          "n_clusters": 4,
+          "n_noise": 0,
+          "silhouette": 0.19798590242862701,
+          "davies_bouldin": 1.422483372892619,
+          "calinski_harabasz": 20.46447390109327,
+          "ari_label": 0.0021823549191996726,
+          "nmi_label": 0.07145336758984734,
+          "ari_mpap_tertile": 0.009862094142847113,
+          "nmi_mpap_tertile": 0.07930285143938852
+        },
+        "gmm_k5": {
+          "n_clusters": 5,
+          "n_noise": 0,
+          "silhouette": 0.2784484922885895,
+          "davies_bouldin": 1.0762832078341695,
+          "calinski_harabasz": 24.307037986639724,
+          "ari_label": 0.0019167558270766656,
+          "nmi_label": 0.049675364985948586,
+          "ari_mpap_tertile": 0.01678994466228169,
+          "nmi_mpap_tertile": 0.08027786916368342
+        },
+        "spectral_k2": {
+          "n_clusters": 2,
+          "n_noise": 0,
+          "silhouette": 0.20226237177848816,
+          "davies_bouldin": 1.6219724989146382,
+          "calinski_harabasz": 28.494165427798652,
+          "ari_label": -0.0013371016228256587,
+          "nmi_label": 0.0015967075280137106,
+          "ari_mpap_tertile": 0.0027925166333803396,
+          "nmi_mpap_tertile": 0.012337450497861438
+        },
+        "spectral_k3": {
+          "n_clusters": 3,
+          "n_noise": 0,
+          "silhouette": 0.16635964810848236,
+          "davies_bouldin": 1.651198986619307,
+          "calinski_harabasz": 24.070343071392927,
+          "ari_label": -0.01919323596780014,
+          "nmi_label": 0.010561085034625148,
+          "ari_mpap_tertile": -0.010275187752076979,
+          "nmi_mpap_tertile": 0.012994795043089754
+        },
+        "spectral_k4": {
+          "n_clusters": 4,
+          "n_noise": 0,
+          "silhouette": 0.13660390675067902,
+          "davies_bouldin": 1.757873391204428,
+          "calinski_harabasz": 18.956907699334447,
+          "ari_label": -0.015037593984962405,
+          "nmi_label": 0.015607634956035286,
+          "ari_mpap_tertile": -0.0067401610784257725,
+          "nmi_mpap_tertile": 0.01841970023649632
+        },
+        "hdbscan": {
+          "err": "No module named 'hdbscan'"
+        }
+      }
+    },
+    "vascular_full": {
+      "feature_keys": [
+        "airway.airway_count",
+        "airway.airway_to_lung_ratio",
+        "airway.airway_volume_ml",
+        "airway.mean_airway_hu",
+        "airway.wall_area_pct",
+        "airway.wall_thickness_ratio",
+        "airway_frac",
+        "artery_frac",
+        "branch_frac",
+        "density",
+        "diameter_std",
+        "max_degree",
+        "max_strahler",
+        "mean_degree",
+        "mean_diameter",
+        "mean_strahler",
+        "n_branch",
+        "n_edges",
+        "n_nodes",
+        "n_tips",
+        "small_vessel_frac",
+        "tip_frac",
+        "vascular.artery_vein_ratio",
+        "vascular.artery_volume_ml",
+        "vascular.bv10",
+        "vascular.bv10_absolute_ml",
+        "vascular.bv5",
+        "vascular.bv5_absolute_ml",
+        "vascular.lung_volume_ml",
+        "vascular.mean_diameter",
+        "vascular.median_diameter",
+        "vascular.num_small_branches",
+        "vascular.num_total_branches",
+        "vascular.pruning_index",
+        "vascular.std_diameter",
+        "vascular.total_vessel_volume_ml",
+        "vascular.vein_volume_ml",
+        "vascular.vessel_to_lung_ratio",
+        "vein_frac"
+      ],
+      "n_features": 11,
+      "best_method_by_silhouette": "kmeans_k2",
+      "scores": {
+        "kmeans_k2": {
+          "n_clusters": 2,
+          "n_noise": 0,
+          "silhouette": 0.7240467667579651,
+          "davies_bouldin": 0.7526871780967183,
+          "calinski_harabasz": 55.197199802954685,
+          "ari_label": -0.002137718317144399,
+          "nmi_label": 6.337318895318156e-06,
+          "ari_mpap_tertile": -0.0018985308161063536,
+          "nmi_mpap_tertile": 0.002986385429357425
+        },
+        "kmeans_k3": {
+          "n_clusters": 3,
+          "n_noise": 0,
+          "silhouette": 0.2604580223560333,
+          "davies_bouldin": 1.2459662952958024,
+          "calinski_harabasz": 43.80150795321259,
+          "ari_label": -0.0419461746718973,
+          "nmi_label": 0.010345275614279056,
+          "ari_mpap_tertile": 0.0030310187013124386,
+          "nmi_mpap_tertile": 0.021418601999338552
+        },
+        "kmeans_k4": {
+          "n_clusters": 4,
+          "n_noise": 0,
+          "silhouette": 0.2679594159126282,
+          "davies_bouldin": 0.9040577965636174,
+          "calinski_harabasz": 45.08165792658172,
+          "ari_label": -0.04054715895280606,
+          "nmi_label": 0.04347617450860877,
+          "ari_mpap_tertile": 0.003696876555264145,
+          "nmi_mpap_tertile": 0.044680782932575054
+        },
+        "kmeans_k5": {
+          "n_clusters": 5,
+          "n_noise": 0,
+          "silhouette": 0.16412656009197235,
+          "davies_bouldin": 1.170537628699754,
+          "calinski_harabasz": 42.35951720583239,
+          "ari_label": -0.022402740882527663,
+          "nmi_label": 0.03798618585134499,
+          "ari_mpap_tertile": -0.007480062651924888,
+          "nmi_mpap_tertile": 0.035255254124112616
+        },
+        "gmm_k2": {
+          "n_clusters": 2,
+          "n_noise": 0,
+          "silhouette": 0.7240467667579651,
+          "davies_bouldin": 0.7526871780967183,
+          "calinski_harabasz": 55.197199802954685,
+          "ari_label": -0.002137718317144399,
+          "nmi_label": 6.337318895318156e-06,
+          "ari_mpap_tertile": -0.0018985308161063536,
+          "nmi_mpap_tertile": 0.002986385429357425
+        },
+        "gmm_k3": {
+          "n_clusters": 3,
+          "n_noise": 0,
+          "silhouette": 0.13145653903484344,
+          "davies_bouldin": 2.053904620845291,
+          "calinski_harabasz": 33.075670511245235,
+          "ari_label": 0.04479707002644024,
+          "nmi_label": 0.010866861860149244,
+          "ari_mpap_tertile": 0.00036282784428014767,
+          "nmi_mpap_tertile": 0.013858210675293013
+        },
+        "gmm_k4": {
+          "n_clusters": 4,
+          "n_noise": 0,
+          "silhouette": 0.12675416469573975,
+          "davies_bouldin": 1.7418690664760463,
+          "calinski_harabasz": 31.890906787687285,
+          "ari_label": 0.0007611644730167776,
+          "nmi_label": 0.05001425920318411,
+          "ari_mpap_tertile": -0.004841138421116383,
+          "nmi_mpap_tertile": 0.026583635192953464
+        },
+        "gmm_k5": {
+          "n_clusters": 5,
+          "n_noise": 0,
+          "silhouette": 0.3793657720088959,
+          "davies_bouldin": 0.5156781178755288,
+          "calinski_harabasz": 35.208868684245864,
+          "ari_label": 0.0708814045598499,
+          "nmi_label": 0.09366141687527219,
+          "ari_mpap_tertile": 0.0021344549561682843,
+          "nmi_mpap_tertile": 0.10178818621933895
+        },
+        "spectral_k2": {
+          "n_clusters": 2,
+          "n_noise": 0,
+          "silhouette": 0.18828228116035461,
+          "davies_bouldin": 1.4603688424871266,
+          "calinski_harabasz": 13.189486141823478,
+          "ari_label": -0.061874599401020504,
+          "nmi_label": 0.02143315893759216,
+          "ari_mpap_tertile": -0.0003965782682473707,
+          "nmi_mpap_tertile": 0.01705529356123174
+        },
+        "spectral_k3": {
+          "n_clusters": 3,
+          "n_noise": 0,
+          "silhouette": 0.07748948037624359,
+          "davies_bouldin": 2.0394797417283796,
+          "calinski_harabasz": 10.376285329425604,
+          "ari_label": -0.0004127975511856745,
+          "nmi_label": 0.031686385172239935,
+          "ari_mpap_tertile": 0.0020072400537203246,
+          "nmi_mpap_tertile": 0.029550634943208434
+        },
+        "spectral_k4": {
+          "n_clusters": 4,
+          "n_noise": 0,
+          "silhouette": 0.048114899545907974,
+          "davies_bouldin": 2.041008643138304,
+          "calinski_harabasz": 8.78324787829624,
+          "ari_label": 0.047536495730073826,
+          "nmi_label": 0.0426729974555843,
+          "ari_mpap_tertile": 0.039846591681962154,
+          "nmi_mpap_tertile": 0.06699852838418943
+        },
+        "hdbscan": {
+          "err": "No module named 'hdbscan'"
+        }
+      }
+    }
+  }
+}

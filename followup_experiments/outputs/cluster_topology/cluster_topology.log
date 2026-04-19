@@ -1,0 +1,104 @@
+===== cluster pipeline start 2026-04-18T23:40:03+08:00 =====
+project=/home/imss/cw/GCN copdnoph copdph
+output=/home/imss/cw/GCN copdnoph copdph/outputs/cluster_topology
+  error: subprocess-exited-with-error
+  
+  × installing build dependencies for hdbscan did not run successfully.
+  │ exit code: 1
+  ╰─> [52 lines of output]
+      Looking in indexes: https://mirrors.aliyun.com/pypi/simple, https://pypi.ngc.nvidia.com, https://pypi.ngc.nvidia.com
+      Collecting setuptools
+        Downloading https://mirrors.aliyun.com/pypi/packages/9d/76/f789f7a86709c6b087c5a2f52f911838cad707cc613162401badc665acfe/setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 13.7 MB/s  0:00:00
+      Collecting wheel
+        Downloading https://mirrors.aliyun.com/pypi/packages/87/22/b76d483683216dde3d67cba61fb2444be8d5be289bf628c13fc0fd90e5f9/wheel-0.46.3-py3-none-any.whl (30 kB)
+      Collecting cython<4
+        Downloading https://mirrors.aliyun.com/pypi/packages/c3/1a/416cc55d567f94b1249a0e007951115e2f7d296eabc345276c3859af76c9/cython-3.2.4-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.5 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.5/3.5 MB 11.0 MB/s  0:00:00
+      Collecting numpy<3
+        Downloading https://mirrors.aliyun.com/pypi/packages/d7/9f/b8cef5bffa569759033adda9481211426f12f53299629b410340795c2514/numpy-2.4.4.tar.gz (20.7 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20.7/20.7 MB 10.4 MB/s  0:00:01
+        Installing build dependencies: started
+        Installing build dependencies: finished with status 'done'
+        Getting requirements to build wheel: started
+        Getting requirements to build wheel: finished with status 'done'
+        Preparing metadata (pyproject.toml): started
+        Preparing metadata (pyproject.toml): finished with status 'error'
+        error: subprocess-exited-with-error
+      
+        × Preparing metadata (pyproject.toml) did not run successfully.
+        │ exit code: 1
+        ╰─> [19 lines of output]
+            + /home/imss/miniconda3/envs/pulmonary_bv5_py39/bin/python3.9 /tmp/pip-install-ch9bkbh5/numpy_44495fc0215a4ab88372e78352f4ac68/vendored-meson/meson/meson.py setup /tmp/pip-install-ch9bkbh5/numpy_44495fc0215a4ab88372e78352f4ac68 /tmp/pip-install-ch9bkbh5/numpy_44495fc0215a4ab88372e78352f4ac68/.mesonpy-c8r5oqv1 -Dbuildtype=release -Db_ndebug=if-release -Db_vscrt=md --native-file=/tmp/pip-install-ch9bkbh5/numpy_44495fc0215a4ab88372e78352f4ac68/.mesonpy-c8r5oqv1/meson-python-native-file.ini
+            The Meson build system
+            Version: 1.9.2
+            Source dir: /tmp/pip-install-ch9bkbh5/numpy_44495fc0215a4ab88372e78352f4ac68
+            Build dir: /tmp/pip-install-ch9bkbh5/numpy_44495fc0215a4ab88372e78352f4ac68/.mesonpy-c8r5oqv1
+            Build type: native build
+            Project name: NumPy
+            Project version: 2.4.4
+            C compiler for the host machine: cc (gcc 7.5.0 "cc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0")
+            C linker for the host machine: cc ld.bfd 2.30
+            C++ compiler for the host machine: c++ (gcc 7.5.0 "c++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0")
+            C++ linker for the host machine: c++ ld.bfd 2.30
+            Cython compiler for the host machine: cython (cython 3.2.4)
+            Host machine cpu family: x86_64
+            Host machine cpu: x86_64
+      
+            ../meson.build:25:4: ERROR: Problem encountered: NumPy requires GCC >= 9.3
+      
+            A full log can be found at /tmp/pip-install-ch9bkbh5/numpy_44495fc0215a4ab88372e78352f4ac68/.mesonpy-c8r5oqv1/meson-logs/meson-log.txt
+            [end of output]
+      
+        note: This error originates from a subprocess, and is likely not a problem with pip.
+      error: metadata-generation-failed
+      
+      × Encountered error while generating package metadata.
+      ╰─> numpy
+      
+      note: This is an issue with the package mentioned above, not pip.
+      hint: See above for details.
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+ERROR: Failed to build 'hdbscan' when installing build dependencies for hdbscan
+2026-04-18 23:40:35,496 INFO loading 106 cached graphs
+2026-04-18 23:40:38,465 INFO loaded 106 entries
+2026-04-18 23:40:38,500 INFO y_label PH=79 nonPH=27   mPAP available=106  tertile cutoffs=[25.0, 33.0]
+2026-04-18 23:40:39,061 INFO === fingerprint=topology shape=(106, 17) ===
+2026-04-18 23:40:39,076 INFO   PCA components retained=8 (var=0.957)
+2026-04-18 23:40:40,103 INFO wrote /home/imss/cw/GCN copdnoph copdph/outputs/cluster_topology/umap_topology.png
+2026-04-18 23:40:40,103 INFO === fingerprint=vascular_full shape=(106, 39) ===
+2026-04-18 23:40:40,109 INFO   PCA components retained=11 (var=0.953)
+2026-04-18 23:40:40,700 INFO wrote /home/imss/cw/GCN copdnoph copdph/outputs/cluster_topology/umap_vascular_full.png
+2026-04-18 23:40:41,129 INFO wrote /home/imss/cw/GCN copdnoph copdph/outputs/cluster_topology/cluster_assignments.csv
+2026-04-18 23:40:41,130 INFO wrote /home/imss/cw/GCN copdnoph copdph/outputs/cluster_topology/cluster_results.json
+
+====== unsupervised clustering summary ======
+
+[topology]  best=kmeans_k5
+  kmeans_k2       k= 2  sil=0.203  ARI(label)=+0.000  NMI(label)=0.003  ARI(mPAP_t)=-0.002
+  kmeans_k3       k= 3  sil=0.206  ARI(label)=-0.006  NMI(label)=0.007  ARI(mPAP_t)=-0.005
+  kmeans_k4       k= 4  sil=0.219  ARI(label)=+0.025  NMI(label)=0.033  ARI(mPAP_t)=-0.002
+  kmeans_k5       k= 5  sil=0.269  ARI(label)=+0.004  NMI(label)=0.041  ARI(mPAP_t)=+0.008
+  gmm_k2          k= 2  sil=0.426  ARI(label)=+0.091  NMI(label)=0.058  ARI(mPAP_t)=+0.005
+  gmm_k3          k= 3  sil=0.229  ARI(label)=+0.031  NMI(label)=0.024  ARI(mPAP_t)=+0.003
+  gmm_k4          k= 4  sil=0.198  ARI(label)=+0.002  NMI(label)=0.071  ARI(mPAP_t)=+0.010
+  gmm_k5          k= 5  sil=0.278  ARI(label)=+0.002  NMI(label)=0.050  ARI(mPAP_t)=+0.017
+  spectral_k2     k= 2  sil=0.202  ARI(label)=-0.001  NMI(label)=0.002  ARI(mPAP_t)=+0.003
+  spectral_k3     k= 3  sil=0.166  ARI(label)=-0.019  NMI(label)=0.011  ARI(mPAP_t)=-0.010
+  spectral_k4     k= 4  sil=0.137  ARI(label)=-0.015  NMI(label)=0.016  ARI(mPAP_t)=-0.007
+
+[vascular_full]  best=kmeans_k2
+  kmeans_k2       k= 2  sil=0.724  ARI(label)=-0.002  NMI(label)=0.000  ARI(mPAP_t)=-0.002
+  kmeans_k3       k= 3  sil=0.260  ARI(label)=-0.042  NMI(label)=0.010  ARI(mPAP_t)=+0.003
+  kmeans_k4       k= 4  sil=0.268  ARI(label)=-0.041  NMI(label)=0.043  ARI(mPAP_t)=+0.004
+  kmeans_k5       k= 5  sil=0.164  ARI(label)=-0.022  NMI(label)=0.038  ARI(mPAP_t)=-0.007
+  gmm_k2          k= 2  sil=0.724  ARI(label)=-0.002  NMI(label)=0.000  ARI(mPAP_t)=-0.002
+  gmm_k3          k= 3  sil=0.131  ARI(label)=+0.045  NMI(label)=0.011  ARI(mPAP_t)=+0.000
+  gmm_k4          k= 4  sil=0.127  ARI(label)=+0.001  NMI(label)=0.050  ARI(mPAP_t)=-0.005
+  gmm_k5          k= 5  sil=0.379  ARI(label)=+0.071  NMI(label)=0.094  ARI(mPAP_t)=+0.002
+  spectral_k2     k= 2  sil=0.188  ARI(label)=-0.062  NMI(label)=0.021  ARI(mPAP_t)=-0.000
+  spectral_k3     k= 3  sil=0.077  ARI(label)=-0.000  NMI(label)=0.032  ARI(mPAP_t)=+0.002
+  spectral_k4     k= 4  sil=0.048  ARI(label)=+0.048  NMI(label)=0.043  ARI(mPAP_t)=+0.040
+===== cluster pipeline done 2026-04-18T23:40:42+08:00  (flag: /home/imss/cw/GCN copdnoph copdph/outputs/cluster_topology/cluster_pipeline_done.flag) =====

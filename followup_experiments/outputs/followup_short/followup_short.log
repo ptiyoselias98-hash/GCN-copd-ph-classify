@@ -1,0 +1,93 @@
+===== follow-up pipeline start 2026-04-18T22:39:49+08:00 =====
+variant=short epochs=200 n_folds=5
+project=/home/imss/cw/GCN copdnoph copdph
+output=/home/imss/cw/GCN copdnoph copdph/outputs/followup_short
+2026-04-18 22:39:53,277 INFO device=cuda
+2026-04-18 22:39:53,283 INFO labels: 106 cases in data/labels_gold.csv
+2026-04-18 22:39:53,330 INFO loaded 106 graphs from cache /home/imss/cw/GCN copdnoph copdph/cache
+2026-04-18 22:39:53,337 INFO variant=short focal=False node_drop=0.00 mpap_aux=False (weight=0.10) splits=True
+2026-04-18 22:39:53,337 INFO using preset splits: 5 folds
+2026-04-18 22:39:53,337 INFO === fold 1/5  (train=84  val=22) ===
+2026-04-18 22:39:54,334 INFO CE loss weights=[2.0, 0.6666666666666666]
+2026-04-18 22:39:55,265 INFO epoch   1 | loss=0.7529 | val auc=0.8438 f1=0.5455 acc=0.5455  *best
+2026-04-18 22:39:55,456 INFO epoch   2 | loss=0.6525 | val auc=0.8542 f1=0.7407 acc=0.6818  *best
+2026-04-18 22:39:55,666 INFO epoch   3 | loss=0.5986 | val auc=0.9062 f1=0.7857 acc=0.7273  *best
+2026-04-18 22:39:55,809 INFO epoch   4 | loss=0.5908 | val auc=0.9479 f1=0.9143 acc=0.8636  *best
+2026-04-18 22:39:55,989 INFO epoch   5 | loss=0.4856 | val auc=0.9583 f1=0.8571 acc=0.8182  *best
+2026-04-18 22:39:56,853 INFO epoch  10 | loss=0.3658 | val auc=0.9271 f1=0.9032 acc=0.8636
+2026-04-18 22:39:57,729 INFO epoch  15 | loss=0.3259 | val auc=0.8229 f1=0.8824 acc=0.8182
+2026-04-18 22:39:58,607 INFO epoch  20 | loss=0.1802 | val auc=0.8125 f1=0.9091 acc=0.8636
+2026-04-18 22:39:59,574 INFO epoch  25 | loss=0.1362 | val auc=0.8021 f1=0.8485 acc=0.7727
+2026-04-18 22:40:00,484 INFO epoch  30 | loss=0.1318 | val auc=0.9479 f1=0.8824 acc=0.8182
+2026-04-18 22:40:01,396 INFO epoch  35 | loss=0.0272 | val auc=0.8958 f1=0.9091 acc=0.8636
+2026-04-18 22:40:01,397 INFO early stopping at epoch 35
+2026-04-18 22:40:01,415 INFO fold 0: {'accuracy': 0.8181818181818182, 'f1': 0.8571428571428571, 'precision': 1.0, 'recall': 0.75, 'sensitivity': 0.75, 'specificity': 1.0, 'auc': 0.9583333333333334, 'fold': 0}
+2026-04-18 22:40:01,415 INFO === fold 2/5  (train=85  val=21) ===
+2026-04-18 22:40:01,422 INFO CE loss weights=[1.9318181818181819, 0.6746031746031746]
+2026-04-18 22:40:01,632 INFO epoch   1 | loss=0.7442 | val auc=0.8375 f1=0.9143 acc=0.8571  *best
+2026-04-18 22:40:02,204 INFO epoch   4 | loss=0.5203 | val auc=0.8625 f1=0.7407 acc=0.6667  *best
+2026-04-18 22:40:02,398 INFO epoch   5 | loss=0.5487 | val auc=0.8250 f1=0.8750 acc=0.8095
+2026-04-18 22:40:03,275 INFO epoch  10 | loss=0.3848 | val auc=0.8000 f1=0.7143 acc=0.6190
+2026-04-18 22:40:03,837 INFO epoch  13 | loss=0.2930 | val auc=0.8875 f1=0.7407 acc=0.6667  *best
+2026-04-18 22:40:04,183 INFO epoch  15 | loss=0.2814 | val auc=0.8750 f1=0.6667 acc=0.6190
+2026-04-18 22:40:05,062 INFO epoch  20 | loss=0.4352 | val auc=0.8625 f1=0.7692 acc=0.7143
+2026-04-18 22:40:05,898 INFO epoch  25 | loss=0.1590 | val auc=0.8000 f1=0.8571 acc=0.7619
+2026-04-18 22:40:06,742 INFO epoch  30 | loss=0.1748 | val auc=0.8000 f1=0.8000 acc=0.7143
+2026-04-18 22:40:07,659 INFO epoch  35 | loss=0.0414 | val auc=0.8000 f1=0.7857 acc=0.7143
+2026-04-18 22:40:08,551 INFO epoch  40 | loss=0.0352 | val auc=0.8500 f1=0.8667 acc=0.8095
+2026-04-18 22:40:09,077 INFO early stopping at epoch 43
+2026-04-18 22:40:09,096 INFO fold 1: {'accuracy': 0.6666666666666666, 'f1': 0.7407407407407407, 'precision': 0.9090909090909091, 'recall': 0.625, 'sensitivity': 0.625, 'specificity': 0.8, 'auc': 0.8875, 'fold': 1}
+2026-04-18 22:40:09,096 INFO === fold 3/5  (train=85  val=21) ===
+2026-04-18 22:40:09,103 INFO CE loss weights=[1.9318181818181819, 0.6746031746031746]
+2026-04-18 22:40:09,315 INFO epoch   1 | loss=0.6706 | val auc=0.5500 f1=0.7333 acc=0.6190  *best
+2026-04-18 22:40:09,536 INFO epoch   2 | loss=0.6276 | val auc=0.6250 f1=0.7500 acc=0.6190  *best
+2026-04-18 22:40:09,746 INFO epoch   3 | loss=0.5366 | val auc=0.6625 f1=0.8000 acc=0.7143  *best
+2026-04-18 22:40:10,093 INFO epoch   5 | loss=0.5148 | val auc=0.6375 f1=0.7586 acc=0.6667
+2026-04-18 22:40:10,968 INFO epoch  10 | loss=0.4256 | val auc=0.6375 f1=0.7143 acc=0.6190
+2026-04-18 22:40:11,902 INFO epoch  15 | loss=0.2214 | val auc=0.6125 f1=0.8000 acc=0.7143
+2026-04-18 22:40:12,771 INFO epoch  20 | loss=0.1524 | val auc=0.6375 f1=0.8000 acc=0.7143
+2026-04-18 22:40:13,756 INFO epoch  25 | loss=0.0620 | val auc=0.5875 f1=0.8235 acc=0.7143
+2026-04-18 22:40:14,565 INFO epoch  30 | loss=0.1911 | val auc=0.6500 f1=0.7586 acc=0.6667
+2026-04-18 22:40:15,101 INFO early stopping at epoch 33
+2026-04-18 22:40:15,122 INFO fold 2: {'accuracy': 0.7142857142857143, 'f1': 0.8, 'precision': 0.8571428571428571, 'recall': 0.75, 'sensitivity': 0.75, 'specificity': 0.6, 'auc': 0.6625, 'fold': 2}
+2026-04-18 22:40:15,122 INFO === fold 4/5  (train=85  val=21) ===
+2026-04-18 22:40:15,130 INFO CE loss weights=[1.9318181818181819, 0.6746031746031746]
+2026-04-18 22:40:15,330 INFO epoch   1 | loss=0.6912 | val auc=0.5375 f1=0.5926 acc=0.4762  *best
+2026-04-18 22:40:15,508 INFO epoch   2 | loss=0.6499 | val auc=0.5875 f1=0.7742 acc=0.6667  *best
+2026-04-18 22:40:15,687 INFO epoch   3 | loss=0.5477 | val auc=0.6375 f1=0.7333 acc=0.6190  *best
+2026-04-18 22:40:15,859 INFO epoch   4 | loss=0.6097 | val auc=0.6875 f1=0.7333 acc=0.6190  *best
+2026-04-18 22:40:16,042 INFO epoch   5 | loss=0.4949 | val auc=0.8125 f1=0.7407 acc=0.6667  *best
+2026-04-18 22:40:16,952 INFO epoch  10 | loss=0.2925 | val auc=0.6125 f1=0.8485 acc=0.7619
+2026-04-18 22:40:17,872 INFO epoch  15 | loss=0.2127 | val auc=0.6500 f1=0.8125 acc=0.7143
+2026-04-18 22:40:18,705 INFO epoch  20 | loss=0.3585 | val auc=0.6625 f1=0.8485 acc=0.7619
+2026-04-18 22:40:19,245 INFO epoch  23 | loss=0.2527 | val auc=0.8250 f1=0.8571 acc=0.7619  *best
+2026-04-18 22:40:19,566 INFO epoch  25 | loss=0.1435 | val auc=0.5625 f1=0.8889 acc=0.8095
+2026-04-18 22:40:20,481 INFO epoch  30 | loss=0.0840 | val auc=0.6250 f1=0.8571 acc=0.7619
+2026-04-18 22:40:21,391 INFO epoch  35 | loss=0.1651 | val auc=0.8000 f1=0.8485 acc=0.7619
+2026-04-18 22:40:22,285 INFO epoch  40 | loss=0.0481 | val auc=0.7625 f1=0.8649 acc=0.7619
+2026-04-18 22:40:23,143 INFO epoch  45 | loss=0.0083 | val auc=0.7250 f1=0.8235 acc=0.7143
+2026-04-18 22:40:24,084 INFO epoch  50 | loss=0.0222 | val auc=0.7500 f1=0.8000 acc=0.7143
+2026-04-18 22:40:24,635 INFO early stopping at epoch 53
+2026-04-18 22:40:24,654 INFO fold 3: {'accuracy': 0.7619047619047619, 'f1': 0.8571428571428571, 'precision': 0.7894736842105263, 'recall': 0.9375, 'sensitivity': 0.9375, 'specificity': 0.2, 'auc': 0.8250000000000001, 'fold': 3}
+2026-04-18 22:40:24,654 INFO === fold 5/5  (train=85  val=21) ===
+2026-04-18 22:40:24,661 INFO CE loss weights=[2.0238095238095237, 0.6640625]
+2026-04-18 22:40:24,845 INFO epoch   1 | loss=0.6592 | val auc=0.8556 f1=0.5000 acc=0.5238  *best
+2026-04-18 22:40:25,172 INFO epoch   3 | loss=0.4597 | val auc=0.8667 f1=0.8750 acc=0.8095  *best
+2026-04-18 22:40:25,530 INFO epoch   5 | loss=0.4602 | val auc=0.6111 f1=0.7143 acc=0.6190
+2026-04-18 22:40:26,410 INFO epoch  10 | loss=0.2859 | val auc=0.6000 f1=0.8125 acc=0.7143
+2026-04-18 22:40:27,359 INFO epoch  15 | loss=0.3812 | val auc=0.7000 f1=0.6667 acc=0.5714
+2026-04-18 22:40:28,250 INFO epoch  20 | loss=0.1503 | val auc=0.4667 f1=0.7333 acc=0.6190
+2026-04-18 22:40:29,152 INFO epoch  25 | loss=0.1795 | val auc=0.6222 f1=0.7333 acc=0.6190
+2026-04-18 22:40:30,079 INFO epoch  30 | loss=0.0994 | val auc=0.6667 f1=0.7586 acc=0.6667
+2026-04-18 22:40:30,592 INFO early stopping at epoch 33
+2026-04-18 22:40:30,613 INFO fold 4: {'accuracy': 0.8095238095238095, 'f1': 0.875, 'precision': 0.8235294117647058, 'recall': 0.9333333333333333, 'sensitivity': 0.9333333333333333, 'specificity': 0.5, 'auc': 0.8666666666666667, 'fold': 4}
+2026-04-18 22:40:30,614 INFO wrote /home/imss/cw/GCN copdnoph copdph/outputs/followup_short/cv_results.json
+
+====== 5-fold CV — six-metric summary ======
+  auc         : 0.8400 ± 0.0987
+  accuracy    : 0.7541 ± 0.0574
+  precision   : 0.8758 ± 0.0736
+  sensitivity : 0.7992 ± 0.1203
+  f1          : 0.8260 ± 0.0496
+  specificity : 0.6200 ± 0.2713
+===== follow-up pipeline done 2026-04-18T22:40:31+08:00  (flag: /home/imss/cw/GCN copdnoph copdph/outputs/followup_short/followup_short_done.flag) =====

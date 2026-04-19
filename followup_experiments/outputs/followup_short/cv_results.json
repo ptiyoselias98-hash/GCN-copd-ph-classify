@@ -1,0 +1,94 @@
+{
+  "variant": "short",
+  "use_focal": false,
+  "node_drop_p": 0.0,
+  "mpap_aux": false,
+  "mpap_aux_weight": 0.1,
+  "splits_file": "data/splits_gold.json",
+  "labels_file": "data/labels_gold.csv",
+  "n_cases": 106,
+  "results": {
+    "folds": [
+      {
+        "accuracy": 0.8181818181818182,
+        "f1": 0.8571428571428571,
+        "precision": 1.0,
+        "recall": 0.75,
+        "sensitivity": 0.75,
+        "specificity": 1.0,
+        "auc": 0.9583333333333334,
+        "fold": 0
+      },
+      {
+        "accuracy": 0.6666666666666666,
+        "f1": 0.7407407407407407,
+        "precision": 0.9090909090909091,
+        "recall": 0.625,
+        "sensitivity": 0.625,
+        "specificity": 0.8,
+        "auc": 0.8875,
+        "fold": 1
+      },
+      {
+        "accuracy": 0.7142857142857143,
+        "f1": 0.8,
+        "precision": 0.8571428571428571,
+        "recall": 0.75,
+        "sensitivity": 0.75,
+        "specificity": 0.6,
+        "auc": 0.6625,
+        "fold": 2
+      },
+      {
+        "accuracy": 0.7619047619047619,
+        "f1": 0.8571428571428571,
+        "precision": 0.7894736842105263,
+        "recall": 0.9375,
+        "sensitivity": 0.9375,
+        "specificity": 0.2,
+        "auc": 0.8250000000000001,
+        "fold": 3
+      },
+      {
+        "accuracy": 0.8095238095238095,
+        "f1": 0.875,
+        "precision": 0.8235294117647058,
+        "recall": 0.9333333333333333,
+        "sensitivity": 0.9333333333333333,
+        "specificity": 0.5,
+        "auc": 0.8666666666666667,
+        "fold": 4
+      }
+    ],
+    "mean": {
+      "auc": {
+        "mean": 0.8400000000000001,
+        "std": 0.0986928456261029
+      },
+      "accuracy": {
+        "mean": 0.7541125541125542,
+        "std": 0.05739156162485387
+      },
+      "f1": {
+        "mean": 0.826005291005291,
+        "std": 0.04956994301288779
+      },
+      "precision": {
+        "mean": 0.8758473724417997,
+        "std": 0.07357506313853547
+      },
+      "recall": {
+        "mean": 0.7991666666666667,
+        "std": 0.12025436005031631
+      },
+      "sensitivity": {
+        "mean": 0.7991666666666667,
+        "std": 0.12025436005031631
+      },
+      "specificity": {
+        "mean": 0.62,
+        "std": 0.2712931993250107
+      }
+    }
+  }
+}

@@ -1,0 +1,329 @@
+===== follow-up pipeline start 2026-04-18T23:46:31+08:00 =====
+variant=mode_gcn epochs=200 n_folds=5
+project=/home/imss/cw/GCN copdnoph copdph
+output=/home/imss/cw/GCN copdnoph copdph/outputs/followup_mode_gcn
+2026-04-18 23:46:35,217 INFO device=cuda
+2026-04-18 23:46:35,223 INFO labels: 106 cases in data/labels_gold.csv
+2026-04-18 23:46:35,270 INFO loaded 106 graphs from cache /home/imss/cw/GCN copdnoph copdph/cache
+2026-04-18 23:46:35,276 INFO variant=mode_gcn mode=pulmonary_gcn repeats=3 focal=True node_drop=0.10 mpap_aux=True (w=0.10) youden=True splits=True
+2026-04-18 23:46:35,277 INFO [note] preset splits ignored: repeats=3 > 1 → regenerating stratified splits per seed
+2026-04-18 23:46:35,278 INFO repeat 1/3  seed=42  → 5 folds
+2026-04-18 23:46:35,278 INFO repeat 2/3  seed=43  → 5 folds
+2026-04-18 23:46:35,279 INFO repeat 3/3  seed=44  → 5 folds
+2026-04-18 23:46:35,279 INFO === repeat 0 / fold 1/5  (train=84  val=22) ===
+2026-04-18 23:46:36,248 INFO focal loss alpha=[1.499212622642517, 0.5007873773574829] gamma=2
+2026-04-18 23:46:37,208 INFO epoch   1 | loss=2.8888 | val auc=0.7292 f1=0.1176 acc=0.3182  *best
+2026-04-18 23:46:37,418 INFO epoch   2 | loss=1.4232 | val auc=0.8854 f1=0.2222 acc=0.3636  *best
+2026-04-18 23:46:37,645 INFO epoch   3 | loss=0.9407 | val auc=0.9688 f1=0.4000 acc=0.4545  *best
+2026-04-18 23:46:38,031 INFO epoch   5 | loss=0.8122 | val auc=0.9792 f1=0.9333 acc=0.9091  *best
+2026-04-18 23:46:38,244 INFO epoch   6 | loss=0.8738 | val auc=1.0000 f1=0.7200 acc=0.6818  *best
+2026-04-18 23:46:39,126 INFO epoch  10 | loss=0.7778 | val auc=0.9688 f1=0.8148 acc=0.7727
+2026-04-18 23:46:40,162 INFO epoch  15 | loss=0.6427 | val auc=0.9792 f1=0.5455 acc=0.5455
+2026-04-18 23:46:41,282 INFO epoch  20 | loss=0.5535 | val auc=0.9688 f1=0.3158 acc=0.4091
+2026-04-18 23:46:42,384 INFO epoch  25 | loss=0.6320 | val auc=0.9792 f1=0.8571 acc=0.8182
+2026-04-18 23:46:43,502 INFO epoch  30 | loss=0.5470 | val auc=0.9271 f1=0.9375 acc=0.9091
+2026-04-18 23:46:44,603 INFO epoch  35 | loss=0.5500 | val auc=0.9688 f1=0.9032 acc=0.8636
+2026-04-18 23:46:44,818 INFO early stopping at epoch 36
+2026-04-18 23:46:44,846 INFO fold 0: Youden threshold=0.431  sens=1.000  spec=1.000
+2026-04-18 23:46:44,846 INFO fold 0: {'threshold': 0.4308599531650543, 'accuracy': 1.0, 'f1': 1.0, 'precision': 1.0, 'recall': 1.0, 'sensitivity': 1.0, 'specificity': 1.0, 'auc': 1.0, 'fold': 0, 'repeat': 0, 'accuracy_argmax': 0.6818181818181818, 'f1_argmax': 0.72, 'precision_argmax': 1.0, 'recall_argmax': 0.5625, 'sensitivity_argmax': 0.5625, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:46:44,846 INFO === repeat 0 / fold 2/5  (train=85  val=21) ===
+2026-04-18 23:46:44,854 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:46:45,080 INFO epoch   1 | loss=2.9206 | val auc=0.4875 f1=0.4762 acc=0.4762  *best
+2026-04-18 23:46:45,324 INFO epoch   2 | loss=1.5277 | val auc=0.7500 f1=0.2222 acc=0.3333  *best
+2026-04-18 23:46:45,967 INFO epoch   5 | loss=0.9083 | val auc=0.7250 f1=0.4000 acc=0.4286
+2026-04-18 23:46:46,840 INFO epoch   9 | loss=0.8810 | val auc=0.7875 f1=0.3158 acc=0.3810  *best
+2026-04-18 23:46:47,035 INFO epoch  10 | loss=0.7904 | val auc=0.8000 f1=0.4762 acc=0.4762  *best
+2026-04-18 23:46:48,181 INFO epoch  15 | loss=0.5999 | val auc=0.8500 f1=0.2222 acc=0.3333  *best
+2026-04-18 23:46:48,875 INFO epoch  18 | loss=0.7405 | val auc=0.8750 f1=0.8000 acc=0.7143  *best
+2026-04-18 23:46:49,334 INFO epoch  20 | loss=0.5230 | val auc=0.7000 f1=0.4762 acc=0.4762
+2026-04-18 23:46:50,383 INFO epoch  25 | loss=0.4834 | val auc=0.7875 f1=0.7857 acc=0.7143
+2026-04-18 23:46:51,428 INFO epoch  30 | loss=0.5043 | val auc=0.8125 f1=0.4000 acc=0.4286
+2026-04-18 23:46:51,656 INFO epoch  31 | loss=0.4666 | val auc=0.9000 f1=0.7692 acc=0.7143  *best
+2026-04-18 23:46:52,527 INFO epoch  35 | loss=0.5258 | val auc=0.6250 f1=0.5217 acc=0.4762
+2026-04-18 23:46:53,618 INFO epoch  40 | loss=0.4319 | val auc=0.8250 f1=0.5455 acc=0.5238
+2026-04-18 23:46:54,632 INFO epoch  45 | loss=0.6578 | val auc=0.7250 f1=0.4000 acc=0.4286
+2026-04-18 23:46:55,719 INFO epoch  50 | loss=0.3377 | val auc=0.7750 f1=0.5217 acc=0.4762
+2026-04-18 23:46:56,847 INFO epoch  55 | loss=0.3933 | val auc=0.8250 f1=0.6087 acc=0.5714
+2026-04-18 23:46:57,881 INFO epoch  60 | loss=0.3283 | val auc=0.8000 f1=0.7407 acc=0.6667
+2026-04-18 23:46:58,086 INFO early stopping at epoch 61
+2026-04-18 23:46:58,113 INFO fold 1: Youden threshold=0.410  sens=0.812  spec=1.000
+2026-04-18 23:46:58,113 INFO fold 1: {'threshold': 0.4100547432899475, 'accuracy': 0.8571428571428571, 'f1': 0.896551724137931, 'precision': 1.0, 'recall': 0.8125, 'sensitivity': 0.8125, 'specificity': 1.0, 'auc': 0.8999999999999999, 'fold': 1, 'repeat': 0, 'accuracy_argmax': 0.7142857142857143, 'f1_argmax': 0.7692307692307693, 'precision_argmax': 1.0, 'recall_argmax': 0.625, 'sensitivity_argmax': 0.625, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:46:58,113 INFO === repeat 0 / fold 3/5  (train=85  val=21) ===
+2026-04-18 23:46:58,121 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:46:58,332 INFO epoch   1 | loss=2.8394 | val auc=0.5375 f1=0.1176 acc=0.2857  *best
+2026-04-18 23:46:58,550 INFO epoch   2 | loss=1.5939 | val auc=0.6125 f1=0.7586 acc=0.6667  *best
+2026-04-18 23:46:59,001 INFO epoch   4 | loss=0.9113 | val auc=0.6250 f1=0.5000 acc=0.4286  *best
+2026-04-18 23:46:59,231 INFO epoch   5 | loss=1.0426 | val auc=0.6500 f1=0.5000 acc=0.4286  *best
+2026-04-18 23:47:00,232 INFO epoch  10 | loss=0.6622 | val auc=0.6375 f1=0.7143 acc=0.6190
+2026-04-18 23:47:00,837 INFO epoch  13 | loss=0.5984 | val auc=0.6625 f1=0.5600 acc=0.4762  *best
+2026-04-18 23:47:01,254 INFO epoch  15 | loss=0.5587 | val auc=0.6625 f1=0.5000 acc=0.4286
+2026-04-18 23:47:01,959 INFO epoch  18 | loss=0.5778 | val auc=0.6875 f1=0.6154 acc=0.5238  *best
+2026-04-18 23:47:02,385 INFO epoch  20 | loss=0.5148 | val auc=0.6625 f1=0.6667 acc=0.5714
+2026-04-18 23:47:03,224 INFO epoch  24 | loss=0.4649 | val auc=0.7000 f1=0.7143 acc=0.6190  *best
+2026-04-18 23:47:03,406 INFO epoch  25 | loss=0.4297 | val auc=0.6375 f1=0.6154 acc=0.5238
+2026-04-18 23:47:04,456 INFO epoch  30 | loss=0.4502 | val auc=0.6250 f1=0.7143 acc=0.6190
+2026-04-18 23:47:05,547 INFO epoch  35 | loss=0.3433 | val auc=0.6750 f1=0.7143 acc=0.6190
+2026-04-18 23:47:06,608 INFO epoch  40 | loss=0.4091 | val auc=0.6625 f1=0.7143 acc=0.6190
+2026-04-18 23:47:07,675 INFO epoch  45 | loss=0.3437 | val auc=0.6500 f1=0.7143 acc=0.6190
+2026-04-18 23:47:08,727 INFO epoch  50 | loss=0.3818 | val auc=0.6750 f1=0.7143 acc=0.6190
+2026-04-18 23:47:09,493 INFO early stopping at epoch 54
+2026-04-18 23:47:09,521 INFO fold 2: Youden threshold=0.172  sens=1.000  spec=0.400
+2026-04-18 23:47:09,521 INFO fold 2: {'threshold': 0.17237068712711334, 'accuracy': 0.8571428571428571, 'f1': 0.9142857142857143, 'precision': 0.8421052631578947, 'recall': 1.0, 'sensitivity': 1.0, 'specificity': 0.4, 'auc': 0.7, 'fold': 2, 'repeat': 0, 'accuracy_argmax': 0.6190476190476191, 'f1_argmax': 0.7142857142857143, 'precision_argmax': 0.8333333333333334, 'recall_argmax': 0.625, 'sensitivity_argmax': 0.625, 'specificity_argmax': 0.6, 'threshold_argmax': 0.5}
+2026-04-18 23:47:09,521 INFO === repeat 0 / fold 4/5  (train=85  val=21) ===
+2026-04-18 23:47:09,529 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:47:09,764 INFO epoch   1 | loss=2.8921 | val auc=0.6750 f1=0.1176 acc=0.2857  *best
+2026-04-18 23:47:09,972 INFO epoch   2 | loss=1.5259 | val auc=0.7500 f1=0.0000 acc=0.2381  *best
+2026-04-18 23:47:10,611 INFO epoch   5 | loss=0.8024 | val auc=0.6500 f1=0.4000 acc=0.4286
+2026-04-18 23:47:11,051 INFO epoch   7 | loss=0.7474 | val auc=0.8375 f1=0.6667 acc=0.6190  *best
+2026-04-18 23:47:11,665 INFO epoch  10 | loss=0.8627 | val auc=0.7000 f1=0.4000 acc=0.4286
+2026-04-18 23:47:12,727 INFO epoch  15 | loss=0.7666 | val auc=0.7625 f1=0.4000 acc=0.4286
+2026-04-18 23:47:12,931 INFO epoch  16 | loss=0.7020 | val auc=0.8500 f1=0.4000 acc=0.4286  *best
+2026-04-18 23:47:13,785 INFO epoch  20 | loss=0.5811 | val auc=0.8750 f1=0.4762 acc=0.4762  *best
+2026-04-18 23:47:14,812 INFO epoch  25 | loss=0.5562 | val auc=0.7750 f1=0.5455 acc=0.5238
+2026-04-18 23:47:15,812 INFO epoch  30 | loss=0.3702 | val auc=0.8000 f1=0.5455 acc=0.5238
+2026-04-18 23:47:16,912 INFO epoch  35 | loss=0.3640 | val auc=0.8375 f1=0.6667 acc=0.6190
+2026-04-18 23:47:17,970 INFO epoch  40 | loss=0.4077 | val auc=0.9000 f1=0.7692 acc=0.7143  *best
+2026-04-18 23:47:19,047 INFO epoch  45 | loss=0.3011 | val auc=0.8375 f1=0.8667 acc=0.8095
+2026-04-18 23:47:19,486 INFO epoch  47 | loss=0.3593 | val auc=0.9125 f1=0.7200 acc=0.6667  *best
+2026-04-18 23:47:19,941 INFO epoch  49 | loss=0.5315 | val auc=0.9250 f1=0.9333 acc=0.9048  *best
+2026-04-18 23:47:20,158 INFO epoch  50 | loss=0.3964 | val auc=0.8875 f1=0.8966 acc=0.8571
+2026-04-18 23:47:21,243 INFO epoch  55 | loss=0.3437 | val auc=0.8625 f1=0.6667 acc=0.6190
+2026-04-18 23:47:22,409 INFO epoch  60 | loss=0.2738 | val auc=0.9000 f1=0.8966 acc=0.8571
+2026-04-18 23:47:23,485 INFO epoch  65 | loss=0.3394 | val auc=0.8750 f1=0.7692 acc=0.7143
+2026-04-18 23:47:24,663 INFO epoch  70 | loss=0.2450 | val auc=0.8625 f1=0.8750 acc=0.8095
+2026-04-18 23:47:25,660 INFO epoch  75 | loss=0.2885 | val auc=0.9125 f1=0.9333 acc=0.9048
+2026-04-18 23:47:26,499 INFO early stopping at epoch 79
+2026-04-18 23:47:26,527 INFO fold 3: Youden threshold=0.516  sens=0.875  spec=1.000
+2026-04-18 23:47:26,527 INFO fold 3: {'threshold': 0.5161368250846863, 'accuracy': 0.9047619047619048, 'f1': 0.9333333333333333, 'precision': 1.0, 'recall': 0.875, 'sensitivity': 0.875, 'specificity': 1.0, 'auc': 0.925, 'fold': 3, 'repeat': 0, 'accuracy_argmax': 0.9047619047619048, 'f1_argmax': 0.9333333333333333, 'precision_argmax': 1.0, 'recall_argmax': 0.875, 'sensitivity_argmax': 0.875, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:47:26,527 INFO === repeat 0 / fold 5/5  (train=85  val=21) ===
+2026-04-18 23:47:26,536 INFO focal loss alpha=[1.505082607269287, 0.49491745233535767] gamma=2
+2026-04-18 23:47:26,725 INFO epoch   1 | loss=2.9405 | val auc=0.6222 f1=0.3333 acc=0.4286  *best
+2026-04-18 23:47:26,945 INFO epoch   2 | loss=1.7087 | val auc=0.8333 f1=0.1250 acc=0.3333  *best
+2026-04-18 23:47:27,150 INFO epoch   3 | loss=0.8538 | val auc=0.8556 f1=0.6667 acc=0.6190  *best
+2026-04-18 23:47:27,615 INFO epoch   5 | loss=0.9111 | val auc=0.6444 f1=0.2353 acc=0.3810
+2026-04-18 23:47:28,641 INFO epoch  10 | loss=0.7105 | val auc=0.7111 f1=0.6667 acc=0.6190
+2026-04-18 23:47:29,703 INFO epoch  15 | loss=0.6661 | val auc=0.6778 f1=0.8000 acc=0.7143
+2026-04-18 23:47:30,801 INFO epoch  20 | loss=0.5760 | val auc=0.6667 f1=0.7143 acc=0.6190
+2026-04-18 23:47:31,832 INFO epoch  25 | loss=0.5370 | val auc=0.6222 f1=0.8387 acc=0.7619
+2026-04-18 23:47:32,870 INFO epoch  30 | loss=0.4588 | val auc=0.5444 f1=0.7586 acc=0.6667
+2026-04-18 23:47:33,489 INFO early stopping at epoch 33
+2026-04-18 23:47:33,517 INFO fold 4: Youden threshold=0.405  sens=0.800  spec=0.833
+2026-04-18 23:47:33,517 INFO fold 4: {'threshold': 0.40464264154434204, 'accuracy': 0.8095238095238095, 'f1': 0.8571428571428571, 'precision': 0.9230769230769231, 'recall': 0.8, 'sensitivity': 0.8, 'specificity': 0.8333333333333334, 'auc': 0.8555555555555556, 'fold': 4, 'repeat': 0, 'accuracy_argmax': 0.6190476190476191, 'f1_argmax': 0.6666666666666666, 'precision_argmax': 0.8888888888888888, 'recall_argmax': 0.5333333333333333, 'sensitivity_argmax': 0.5333333333333333, 'specificity_argmax': 0.8333333333333334, 'threshold_argmax': 0.5}
+2026-04-18 23:47:33,517 INFO === repeat 1 / fold 1/5  (train=84  val=22) ===
+2026-04-18 23:47:33,525 INFO focal loss alpha=[1.499212622642517, 0.5007873773574829] gamma=2
+2026-04-18 23:47:33,769 INFO epoch   1 | loss=2.8948 | val auc=0.6771 f1=0.4000 acc=0.4545  *best
+2026-04-18 23:47:33,977 INFO epoch   2 | loss=1.6239 | val auc=0.8854 f1=0.8148 acc=0.7727  *best
+2026-04-18 23:47:34,586 INFO epoch   5 | loss=0.9008 | val auc=0.9167 f1=0.5455 acc=0.5455  *best
+2026-04-18 23:47:34,784 INFO epoch   6 | loss=0.7065 | val auc=0.9792 f1=0.8148 acc=0.7727  *best
+2026-04-18 23:47:35,605 INFO epoch  10 | loss=0.7886 | val auc=0.9479 f1=0.7692 acc=0.7273
+2026-04-18 23:47:36,643 INFO epoch  15 | loss=0.5256 | val auc=0.8854 f1=0.5455 acc=0.5455
+2026-04-18 23:47:37,676 INFO epoch  20 | loss=0.5572 | val auc=0.8958 f1=0.6087 acc=0.5909
+2026-04-18 23:47:38,697 INFO epoch  25 | loss=0.6406 | val auc=0.9062 f1=0.8571 acc=0.8182
+2026-04-18 23:47:39,735 INFO epoch  30 | loss=0.4400 | val auc=0.9167 f1=0.7692 acc=0.7273
+2026-04-18 23:47:40,793 INFO epoch  35 | loss=0.5036 | val auc=0.9062 f1=0.7200 acc=0.6818
+2026-04-18 23:47:40,984 INFO early stopping at epoch 36
+2026-04-18 23:47:41,012 INFO fold 0: Youden threshold=0.483  sens=0.875  spec=1.000
+2026-04-18 23:47:41,012 INFO fold 0: {'threshold': 0.48292431235313416, 'accuracy': 0.9090909090909091, 'f1': 0.9333333333333333, 'precision': 1.0, 'recall': 0.875, 'sensitivity': 0.875, 'specificity': 1.0, 'auc': 0.9791666666666667, 'fold': 0, 'repeat': 1, 'accuracy_argmax': 0.7727272727272727, 'f1_argmax': 0.8148148148148148, 'precision_argmax': 1.0, 'recall_argmax': 0.6875, 'sensitivity_argmax': 0.6875, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:47:41,012 INFO === repeat 1 / fold 2/5  (train=85  val=21) ===
+2026-04-18 23:47:41,019 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:47:41,246 INFO epoch   1 | loss=2.8685 | val auc=0.6625 f1=0.5217 acc=0.4762  *best
+2026-04-18 23:47:42,096 INFO epoch   5 | loss=0.8440 | val auc=0.6500 f1=0.4545 acc=0.4286
+2026-04-18 23:47:42,331 INFO epoch   6 | loss=0.7090 | val auc=0.7000 f1=0.6400 acc=0.5714  *best
+2026-04-18 23:47:42,558 INFO epoch   7 | loss=0.7289 | val auc=0.7500 f1=0.6400 acc=0.5714  *best
+2026-04-18 23:47:43,164 INFO epoch  10 | loss=0.7172 | val auc=0.7375 f1=0.5833 acc=0.5238
+2026-04-18 23:47:44,255 INFO epoch  15 | loss=0.6805 | val auc=0.6625 f1=0.4545 acc=0.4286
+2026-04-18 23:47:45,288 INFO epoch  20 | loss=0.6053 | val auc=0.7375 f1=0.5217 acc=0.4762
+2026-04-18 23:47:45,961 INFO epoch  23 | loss=0.5513 | val auc=0.7625 f1=0.6400 acc=0.5714  *best
+2026-04-18 23:47:46,385 INFO epoch  25 | loss=0.5204 | val auc=0.7625 f1=0.4545 acc=0.4286
+2026-04-18 23:47:47,471 INFO epoch  30 | loss=0.4547 | val auc=0.7875 f1=0.5833 acc=0.5238  *best
+2026-04-18 23:47:48,608 INFO epoch  35 | loss=0.5182 | val auc=0.7750 f1=0.6923 acc=0.6190
+2026-04-18 23:47:48,811 INFO epoch  36 | loss=0.4229 | val auc=0.8000 f1=0.7407 acc=0.6667  *best
+2026-04-18 23:47:49,026 INFO epoch  37 | loss=0.4925 | val auc=0.8125 f1=0.6667 acc=0.6190  *best
+2026-04-18 23:47:49,635 INFO epoch  40 | loss=0.4683 | val auc=0.7500 f1=0.6400 acc=0.5714
+2026-04-18 23:47:50,760 INFO epoch  45 | loss=0.3554 | val auc=0.7750 f1=0.7143 acc=0.6190
+2026-04-18 23:47:51,449 INFO epoch  48 | loss=0.3432 | val auc=0.8250 f1=0.8000 acc=0.7143  *best
+2026-04-18 23:47:51,871 INFO epoch  50 | loss=0.3702 | val auc=0.8250 f1=0.6923 acc=0.6190
+2026-04-18 23:47:52,246 INFO epoch  52 | loss=0.3210 | val auc=0.8375 f1=0.7586 acc=0.6667  *best
+2026-04-18 23:47:52,921 INFO epoch  55 | loss=0.3920 | val auc=0.8125 f1=0.6400 acc=0.5714
+2026-04-18 23:47:53,365 INFO epoch  57 | loss=0.3253 | val auc=0.8500 f1=0.7857 acc=0.7143  *best
+2026-04-18 23:47:53,992 INFO epoch  60 | loss=0.2437 | val auc=0.8125 f1=0.7143 acc=0.6190
+2026-04-18 23:47:54,417 INFO epoch  62 | loss=0.2820 | val auc=0.8625 f1=0.7586 acc=0.6667  *best
+2026-04-18 23:47:55,063 INFO epoch  65 | loss=0.3488 | val auc=0.8375 f1=0.7586 acc=0.6667
+2026-04-18 23:47:56,171 INFO epoch  70 | loss=0.2835 | val auc=0.7875 f1=0.8000 acc=0.7143
+2026-04-18 23:47:57,268 INFO epoch  75 | loss=0.4707 | val auc=0.8375 f1=0.7857 acc=0.7143
+2026-04-18 23:47:58,365 INFO epoch  80 | loss=0.2585 | val auc=0.8375 f1=0.7586 acc=0.6667
+2026-04-18 23:47:59,437 INFO epoch  85 | loss=0.2018 | val auc=0.8375 f1=0.7586 acc=0.6667
+2026-04-18 23:48:00,507 INFO epoch  90 | loss=0.1606 | val auc=0.8375 f1=0.8000 acc=0.7143
+2026-04-18 23:48:00,921 INFO early stopping at epoch 92
+2026-04-18 23:48:00,949 INFO fold 1: Youden threshold=0.721  sens=0.625  spec=1.000
+2026-04-18 23:48:00,949 INFO fold 1: {'threshold': 0.7208924889564514, 'accuracy': 0.7142857142857143, 'f1': 0.7692307692307693, 'precision': 1.0, 'recall': 0.625, 'sensitivity': 0.625, 'specificity': 1.0, 'auc': 0.8625, 'fold': 1, 'repeat': 1, 'accuracy_argmax': 0.6666666666666666, 'f1_argmax': 0.7586206896551724, 'precision_argmax': 0.8461538461538461, 'recall_argmax': 0.6875, 'sensitivity_argmax': 0.6875, 'specificity_argmax': 0.6, 'threshold_argmax': 0.5}
+2026-04-18 23:48:00,949 INFO === repeat 1 / fold 3/5  (train=85  val=21) ===
+2026-04-18 23:48:00,956 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:48:01,144 INFO epoch   1 | loss=2.9547 | val auc=0.7625 f1=0.2222 acc=0.3333  *best
+2026-04-18 23:48:01,976 INFO epoch   5 | loss=0.7545 | val auc=0.7625 f1=0.8000 acc=0.7143
+2026-04-18 23:48:02,598 INFO epoch   8 | loss=0.7009 | val auc=0.8000 f1=0.6400 acc=0.5714  *best
+2026-04-18 23:48:03,048 INFO epoch  10 | loss=0.6312 | val auc=0.7250 f1=0.7586 acc=0.6667
+2026-04-18 23:48:04,017 INFO epoch  15 | loss=0.6197 | val auc=0.7375 f1=0.5833 acc=0.5238
+2026-04-18 23:48:04,215 INFO epoch  16 | loss=0.6257 | val auc=0.8500 f1=0.6087 acc=0.5714  *best
+2026-04-18 23:48:05,060 INFO epoch  20 | loss=0.4942 | val auc=0.8250 f1=0.7143 acc=0.6190
+2026-04-18 23:48:06,180 INFO epoch  25 | loss=0.4707 | val auc=0.7750 f1=0.6923 acc=0.6190
+2026-04-18 23:48:07,198 INFO epoch  30 | loss=0.5660 | val auc=0.7625 f1=0.4000 acc=0.4286
+2026-04-18 23:48:08,221 INFO epoch  35 | loss=0.3916 | val auc=0.7375 f1=0.8000 acc=0.7143
+2026-04-18 23:48:09,289 INFO epoch  40 | loss=0.3527 | val auc=0.6750 f1=0.6667 acc=0.5714
+2026-04-18 23:48:10,364 INFO epoch  45 | loss=0.3662 | val auc=0.6875 f1=0.7143 acc=0.6190
+2026-04-18 23:48:10,610 INFO early stopping at epoch 46
+2026-04-18 23:48:10,640 INFO fold 2: Youden threshold=0.342  sens=0.812  spec=0.800
+2026-04-18 23:48:10,641 INFO fold 2: {'threshold': 0.3421473503112793, 'accuracy': 0.8095238095238095, 'f1': 0.8666666666666667, 'precision': 0.9285714285714286, 'recall': 0.8125, 'sensitivity': 0.8125, 'specificity': 0.8, 'auc': 0.85, 'fold': 2, 'repeat': 1, 'accuracy_argmax': 0.5714285714285714, 'f1_argmax': 0.6086956521739131, 'precision_argmax': 1.0, 'recall_argmax': 0.4375, 'sensitivity_argmax': 0.4375, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:48:10,641 INFO === repeat 1 / fold 4/5  (train=85  val=21) ===
+2026-04-18 23:48:10,649 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:48:10,824 INFO epoch   1 | loss=2.8277 | val auc=0.8500 f1=0.4000 acc=0.4286  *best
+2026-04-18 23:48:11,053 INFO epoch   2 | loss=1.4933 | val auc=0.8750 f1=0.3158 acc=0.3810  *best
+2026-04-18 23:48:11,247 INFO epoch   3 | loss=1.1375 | val auc=0.8875 f1=0.6087 acc=0.5714  *best
+2026-04-18 23:48:11,685 INFO epoch   5 | loss=1.0396 | val auc=0.8500 f1=0.5455 acc=0.5238
+2026-04-18 23:48:12,718 INFO epoch  10 | loss=0.6515 | val auc=0.7750 f1=0.5833 acc=0.5238
+2026-04-18 23:48:13,818 INFO epoch  15 | loss=0.8164 | val auc=0.8375 f1=0.7692 acc=0.7143
+2026-04-18 23:48:14,967 INFO epoch  20 | loss=0.5809 | val auc=0.7750 f1=0.7407 acc=0.6667
+2026-04-18 23:48:15,982 INFO epoch  25 | loss=0.4477 | val auc=0.8125 f1=0.8000 acc=0.7143
+2026-04-18 23:48:17,100 INFO epoch  30 | loss=0.5447 | val auc=0.8250 f1=0.8000 acc=0.7143
+2026-04-18 23:48:17,751 INFO early stopping at epoch 33
+2026-04-18 23:48:17,791 INFO fold 3: Youden threshold=0.430  sens=0.938  spec=0.800
+2026-04-18 23:48:17,791 INFO fold 3: {'threshold': 0.42964857816696167, 'accuracy': 0.9047619047619048, 'f1': 0.9375, 'precision': 0.9375, 'recall': 0.9375, 'sensitivity': 0.9375, 'specificity': 0.8, 'auc': 0.8875000000000001, 'fold': 3, 'repeat': 1, 'accuracy_argmax': 0.5714285714285714, 'f1_argmax': 0.6086956521739131, 'precision_argmax': 1.0, 'recall_argmax': 0.4375, 'sensitivity_argmax': 0.4375, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:48:17,791 INFO === repeat 1 / fold 5/5  (train=85  val=21) ===
+2026-04-18 23:48:17,798 INFO focal loss alpha=[1.505082607269287, 0.49491745233535767] gamma=2
+2026-04-18 23:48:18,039 INFO epoch   1 | loss=2.9110 | val auc=0.8000 f1=0.1250 acc=0.3333  *best
+2026-04-18 23:48:18,868 INFO epoch   5 | loss=0.8022 | val auc=0.7222 f1=0.6957 acc=0.6667
+2026-04-18 23:48:19,941 INFO epoch  10 | loss=0.7593 | val auc=0.6889 f1=0.4211 acc=0.4762
+2026-04-18 23:48:20,949 INFO epoch  15 | loss=0.5618 | val auc=0.6778 f1=0.5455 acc=0.5238
+2026-04-18 23:48:22,084 INFO epoch  20 | loss=0.5700 | val auc=0.7222 f1=0.5000 acc=0.5238
+2026-04-18 23:48:23,122 INFO epoch  25 | loss=0.5379 | val auc=0.6000 f1=0.3333 acc=0.4286
+2026-04-18 23:48:24,197 INFO epoch  30 | loss=0.4293 | val auc=0.6889 f1=0.7857 acc=0.7143
+2026-04-18 23:48:24,410 INFO early stopping at epoch 31
+2026-04-18 23:48:24,438 INFO fold 4: Youden threshold=0.288  sens=0.867  spec=0.667
+2026-04-18 23:48:24,438 INFO fold 4: {'threshold': 0.2884531021118164, 'accuracy': 0.8095238095238095, 'f1': 0.8666666666666667, 'precision': 0.8666666666666667, 'recall': 0.8666666666666667, 'sensitivity': 0.8666666666666667, 'specificity': 0.6666666666666666, 'auc': 0.7999999999999999, 'fold': 4, 'repeat': 1, 'accuracy_argmax': 0.3333333333333333, 'f1_argmax': 0.125, 'precision_argmax': 1.0, 'recall_argmax': 0.06666666666666667, 'sensitivity_argmax': 0.06666666666666667, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:48:24,438 INFO === repeat 2 / fold 1/5  (train=84  val=22) ===
+2026-04-18 23:48:24,446 INFO focal loss alpha=[1.499212622642517, 0.5007873773574829] gamma=2
+2026-04-18 23:48:24,668 INFO epoch   1 | loss=2.8759 | val auc=0.4792 f1=0.1176 acc=0.3182  *best
+2026-04-18 23:48:24,901 INFO epoch   2 | loss=1.6479 | val auc=0.5625 f1=0.6154 acc=0.5455  *best
+2026-04-18 23:48:25,142 INFO epoch   3 | loss=1.0784 | val auc=0.5938 f1=0.4000 acc=0.4545  *best
+2026-04-18 23:48:25,594 INFO epoch   5 | loss=0.7690 | val auc=0.5312 f1=0.5600 acc=0.5000
+2026-04-18 23:48:26,654 INFO epoch  10 | loss=0.6462 | val auc=0.5625 f1=0.6667 acc=0.5909
+2026-04-18 23:48:27,306 INFO epoch  13 | loss=0.5643 | val auc=0.6042 f1=0.4545 acc=0.4545  *best
+2026-04-18 23:48:27,732 INFO epoch  15 | loss=0.6920 | val auc=0.4792 f1=0.6207 acc=0.5000
+2026-04-18 23:48:27,965 INFO epoch  16 | loss=0.5962 | val auc=0.6146 f1=0.6154 acc=0.5455  *best
+2026-04-18 23:48:28,788 INFO epoch  20 | loss=0.6909 | val auc=0.5938 f1=0.5833 acc=0.5455
+2026-04-18 23:48:29,232 INFO epoch  22 | loss=0.5186 | val auc=0.6354 f1=0.6667 acc=0.5909  *best
+2026-04-18 23:48:29,860 INFO epoch  25 | loss=0.5026 | val auc=0.5521 f1=0.6429 acc=0.5455
+2026-04-18 23:48:30,906 INFO epoch  30 | loss=0.4090 | val auc=0.5208 f1=0.5926 acc=0.5000
+2026-04-18 23:48:31,139 INFO epoch  31 | loss=0.4645 | val auc=0.6458 f1=0.5833 acc=0.5455  *best
+2026-04-18 23:48:32,016 INFO epoch  35 | loss=0.3753 | val auc=0.5729 f1=0.6429 acc=0.5455
+2026-04-18 23:48:33,107 INFO epoch  40 | loss=0.5574 | val auc=0.6042 f1=0.6207 acc=0.5000
+2026-04-18 23:48:34,181 INFO epoch  45 | loss=0.3934 | val auc=0.5729 f1=0.6207 acc=0.5000
+2026-04-18 23:48:35,227 INFO epoch  50 | loss=0.4198 | val auc=0.5729 f1=0.5926 acc=0.5000
+2026-04-18 23:48:36,244 INFO epoch  55 | loss=0.2823 | val auc=0.5521 f1=0.5926 acc=0.5000
+2026-04-18 23:48:37,362 INFO epoch  60 | loss=0.4138 | val auc=0.5417 f1=0.5714 acc=0.4545
+2026-04-18 23:48:37,559 INFO early stopping at epoch 61
+2026-04-18 23:48:37,589 INFO fold 0: Youden threshold=0.433  sens=0.562  spec=0.833
+2026-04-18 23:48:37,589 INFO fold 0: {'threshold': 0.4334649443626404, 'accuracy': 0.6363636363636364, 'f1': 0.6923076923076923, 'precision': 0.9, 'recall': 0.5625, 'sensitivity': 0.5625, 'specificity': 0.8333333333333334, 'auc': 0.6458333333333334, 'fold': 0, 'repeat': 2, 'accuracy_argmax': 0.5454545454545454, 'f1_argmax': 0.5833333333333334, 'precision_argmax': 0.875, 'recall_argmax': 0.4375, 'sensitivity_argmax': 0.4375, 'specificity_argmax': 0.8333333333333334, 'threshold_argmax': 0.5}
+2026-04-18 23:48:37,589 INFO === repeat 2 / fold 2/5  (train=85  val=21) ===
+2026-04-18 23:48:37,597 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:48:37,808 INFO epoch   1 | loss=2.8294 | val auc=0.7500 f1=0.7857 acc=0.7143  *best
+2026-04-18 23:48:38,627 INFO epoch   5 | loss=0.8065 | val auc=0.5750 f1=0.3810 acc=0.3810
+2026-04-18 23:48:39,666 INFO epoch  10 | loss=0.7775 | val auc=0.7875 f1=0.6923 acc=0.6190  *best
+2026-04-18 23:48:40,783 INFO epoch  15 | loss=0.5954 | val auc=0.7375 f1=0.7586 acc=0.6667
+2026-04-18 23:48:41,868 INFO epoch  20 | loss=0.5234 | val auc=0.7500 f1=0.7586 acc=0.6667
+2026-04-18 23:48:42,914 INFO epoch  25 | loss=0.4943 | val auc=0.7750 f1=0.7586 acc=0.6667
+2026-04-18 23:48:43,131 INFO epoch  26 | loss=0.5425 | val auc=0.8000 f1=0.7586 acc=0.6667  *best
+2026-04-18 23:48:43,971 INFO epoch  30 | loss=0.3990 | val auc=0.8125 f1=0.8148 acc=0.7619  *best
+2026-04-18 23:48:44,199 INFO epoch  31 | loss=0.3992 | val auc=0.8625 f1=0.8148 acc=0.7619  *best
+2026-04-18 23:48:45,076 INFO epoch  35 | loss=0.4802 | val auc=0.7750 f1=0.5455 acc=0.5238
+2026-04-18 23:48:46,146 INFO epoch  40 | loss=0.4308 | val auc=0.7750 f1=0.7586 acc=0.6667
+2026-04-18 23:48:47,162 INFO epoch  45 | loss=0.3383 | val auc=0.7500 f1=0.8000 acc=0.7143
+2026-04-18 23:48:48,305 INFO epoch  50 | loss=0.3514 | val auc=0.8000 f1=0.8000 acc=0.7143
+2026-04-18 23:48:48,952 INFO epoch  53 | loss=0.2808 | val auc=0.8750 f1=0.8387 acc=0.7619  *best
+2026-04-18 23:48:49,364 INFO epoch  55 | loss=0.2273 | val auc=0.7625 f1=0.8000 acc=0.7143
+2026-04-18 23:48:49,978 INFO epoch  58 | loss=0.3759 | val auc=0.8875 f1=0.9143 acc=0.8571  *best
+2026-04-18 23:48:50,402 INFO epoch  60 | loss=0.3380 | val auc=0.8500 f1=0.8750 acc=0.8095
+2026-04-18 23:48:51,468 INFO epoch  65 | loss=0.2815 | val auc=0.7625 f1=0.7143 acc=0.6190
+2026-04-18 23:48:52,571 INFO epoch  70 | loss=0.2501 | val auc=0.7625 f1=0.8000 acc=0.7143
+2026-04-18 23:48:53,636 INFO epoch  75 | loss=0.2370 | val auc=0.7750 f1=0.8387 acc=0.7619
+2026-04-18 23:48:54,721 INFO epoch  80 | loss=0.1883 | val auc=0.8125 f1=0.8824 acc=0.8095
+2026-04-18 23:48:55,804 INFO epoch  85 | loss=0.1238 | val auc=0.8000 f1=0.8750 acc=0.8095
+2026-04-18 23:48:56,593 INFO early stopping at epoch 88
+2026-04-18 23:48:56,622 INFO fold 1: Youden threshold=0.758  sens=0.875  spec=0.800
+2026-04-18 23:48:56,622 INFO fold 1: {'threshold': 0.757955014705658, 'accuracy': 0.8571428571428571, 'f1': 0.9032258064516129, 'precision': 0.9333333333333333, 'recall': 0.875, 'sensitivity': 0.875, 'specificity': 0.8, 'auc': 0.8875, 'fold': 1, 'repeat': 2, 'accuracy_argmax': 0.8571428571428571, 'f1_argmax': 0.9142857142857143, 'precision_argmax': 0.8421052631578947, 'recall_argmax': 1.0, 'sensitivity_argmax': 1.0, 'specificity_argmax': 0.4, 'threshold_argmax': 0.5}
+2026-04-18 23:48:56,622 INFO === repeat 2 / fold 3/5  (train=85  val=21) ===
+2026-04-18 23:48:56,629 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:48:56,857 INFO epoch   1 | loss=2.9811 | val auc=0.8875 f1=0.4762 acc=0.4762  *best
+2026-04-18 23:48:57,740 INFO epoch   5 | loss=0.7893 | val auc=0.9125 f1=0.9333 acc=0.9048  *best
+2026-04-18 23:48:58,370 INFO epoch   8 | loss=0.7983 | val auc=0.9625 f1=0.6667 acc=0.6190  *best
+2026-04-18 23:48:58,801 INFO epoch  10 | loss=0.7888 | val auc=0.9500 f1=0.6667 acc=0.6190
+2026-04-18 23:48:59,829 INFO epoch  15 | loss=0.6070 | val auc=0.9750 f1=0.6087 acc=0.5714  *best
+2026-04-18 23:49:00,898 INFO epoch  20 | loss=0.6341 | val auc=0.9500 f1=0.8276 acc=0.7619
+2026-04-18 23:49:01,944 INFO epoch  25 | loss=0.5695 | val auc=0.9500 f1=0.9333 acc=0.9048
+2026-04-18 23:49:03,006 INFO epoch  30 | loss=0.4475 | val auc=0.9375 f1=0.7692 acc=0.7143
+2026-04-18 23:49:04,062 INFO epoch  35 | loss=0.4941 | val auc=0.9625 f1=0.8148 acc=0.7619
+2026-04-18 23:49:04,304 INFO epoch  36 | loss=0.5531 | val auc=0.9875 f1=0.7692 acc=0.7143  *best
+2026-04-18 23:49:05,152 INFO epoch  40 | loss=0.3958 | val auc=0.9750 f1=0.8571 acc=0.8095
+2026-04-18 23:49:06,189 INFO epoch  45 | loss=0.4229 | val auc=0.9500 f1=0.9032 acc=0.8571
+2026-04-18 23:49:07,266 INFO epoch  50 | loss=0.4301 | val auc=0.9625 f1=0.8966 acc=0.8571
+2026-04-18 23:49:08,317 INFO epoch  55 | loss=0.3101 | val auc=0.9375 f1=0.8571 acc=0.8095
+2026-04-18 23:49:09,447 INFO epoch  60 | loss=0.4611 | val auc=0.9500 f1=0.7692 acc=0.7143
+2026-04-18 23:49:10,461 INFO epoch  65 | loss=0.3640 | val auc=0.9250 f1=0.8571 acc=0.8095
+2026-04-18 23:49:10,673 INFO early stopping at epoch 66
+2026-04-18 23:49:10,705 INFO fold 2: Youden threshold=0.396  sens=0.938  spec=1.000
+2026-04-18 23:49:10,705 INFO fold 2: {'threshold': 0.3963923156261444, 'accuracy': 0.9523809523809523, 'f1': 0.967741935483871, 'precision': 1.0, 'recall': 0.9375, 'sensitivity': 0.9375, 'specificity': 1.0, 'auc': 0.9875, 'fold': 2, 'repeat': 2, 'accuracy_argmax': 0.7142857142857143, 'f1_argmax': 0.7692307692307693, 'precision_argmax': 1.0, 'recall_argmax': 0.625, 'sensitivity_argmax': 0.625, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:49:10,705 INFO === repeat 2 / fold 4/5  (train=85  val=21) ===
+2026-04-18 23:49:10,713 INFO focal loss alpha=[1.4815665483474731, 0.5184334516525269] gamma=2
+2026-04-18 23:49:10,939 INFO epoch   1 | loss=2.7427 | val auc=0.9625 f1=0.1176 acc=0.2857  *best
+2026-04-18 23:49:11,829 INFO epoch   5 | loss=0.7249 | val auc=0.9500 f1=0.2222 acc=0.3333
+2026-04-18 23:49:12,041 INFO epoch   6 | loss=0.7414 | val auc=1.0000 f1=0.2222 acc=0.3333  *best
+2026-04-18 23:49:12,870 INFO epoch  10 | loss=0.6577 | val auc=1.0000 f1=0.4000 acc=0.4286
+2026-04-18 23:49:13,952 INFO epoch  15 | loss=0.8159 | val auc=0.9875 f1=0.1176 acc=0.2857
+2026-04-18 23:49:14,994 INFO epoch  20 | loss=0.6998 | val auc=1.0000 f1=0.7200 acc=0.6667
+2026-04-18 23:49:16,009 INFO epoch  25 | loss=0.5341 | val auc=1.0000 f1=0.6667 acc=0.6190
+2026-04-18 23:49:17,062 INFO epoch  30 | loss=0.5667 | val auc=1.0000 f1=0.3158 acc=0.3810
+2026-04-18 23:49:18,066 INFO epoch  35 | loss=0.3898 | val auc=1.0000 f1=0.8148 acc=0.7619
+2026-04-18 23:49:18,299 INFO early stopping at epoch 36
+2026-04-18 23:49:18,327 INFO fold 3: Youden threshold=0.343  sens=1.000  spec=1.000
+2026-04-18 23:49:18,327 INFO fold 3: {'threshold': 0.34314659237861633, 'accuracy': 1.0, 'f1': 1.0, 'precision': 1.0, 'recall': 1.0, 'sensitivity': 1.0, 'specificity': 1.0, 'auc': 1.0, 'fold': 3, 'repeat': 2, 'accuracy_argmax': 0.3333333333333333, 'f1_argmax': 0.2222222222222222, 'precision_argmax': 1.0, 'recall_argmax': 0.125, 'sensitivity_argmax': 0.125, 'specificity_argmax': 1.0, 'threshold_argmax': 0.5}
+2026-04-18 23:49:18,327 INFO === repeat 2 / fold 5/5  (train=85  val=21) ===
+2026-04-18 23:49:18,334 INFO focal loss alpha=[1.505082607269287, 0.49491745233535767] gamma=2
+2026-04-18 23:49:18,566 INFO epoch   1 | loss=2.9425 | val auc=0.4778 f1=0.1250 acc=0.3333  *best
+2026-04-18 23:49:18,756 INFO epoch   2 | loss=1.5661 | val auc=0.5111 f1=0.0000 acc=0.2857  *best
+2026-04-18 23:49:19,185 INFO epoch   4 | loss=0.8922 | val auc=0.5333 f1=0.2353 acc=0.3810  *best
+2026-04-18 23:49:19,385 INFO epoch   5 | loss=0.8639 | val auc=0.5667 f1=0.4000 acc=0.4286  *best
+2026-04-18 23:49:19,597 INFO epoch   6 | loss=0.7176 | val auc=0.6444 f1=0.6667 acc=0.5714  *best
+2026-04-18 23:49:20,026 INFO epoch   8 | loss=0.7824 | val auc=0.7000 f1=0.5455 acc=0.5238  *best
+2026-04-18 23:49:20,430 INFO epoch  10 | loss=0.6833 | val auc=0.6222 f1=0.7143 acc=0.6190
+2026-04-18 23:49:21,459 INFO epoch  15 | loss=0.6069 | val auc=0.7000 f1=0.5833 acc=0.5238  *best
+2026-04-18 23:49:21,866 INFO epoch  17 | loss=0.5730 | val auc=0.7111 f1=0.6400 acc=0.5714  *best
+2026-04-18 23:49:22,473 INFO epoch  20 | loss=0.5825 | val auc=0.6556 f1=0.5833 acc=0.5238
+2026-04-18 23:49:23,497 INFO epoch  25 | loss=0.7553 | val auc=0.6778 f1=0.4545 acc=0.4286
+2026-04-18 23:49:24,539 INFO epoch  30 | loss=0.5539 | val auc=0.6778 f1=0.6923 acc=0.6190
+2026-04-18 23:49:24,768 INFO epoch  31 | loss=0.4808 | val auc=0.7444 f1=0.5833 acc=0.5238  *best
+2026-04-18 23:49:25,596 INFO epoch  35 | loss=0.4064 | val auc=0.7000 f1=0.8276 acc=0.7619
+2026-04-18 23:49:26,673 INFO epoch  40 | loss=0.4291 | val auc=0.7222 f1=0.4000 acc=0.4286
+2026-04-18 23:49:27,741 INFO epoch  45 | loss=0.4978 | val auc=0.6556 f1=0.7879 acc=0.6667
+2026-04-18 23:49:28,712 INFO epoch  50 | loss=0.3462 | val auc=0.6556 f1=0.7407 acc=0.6667
+2026-04-18 23:49:29,803 INFO epoch  55 | loss=0.3679 | val auc=0.6889 f1=0.7407 acc=0.6667
+2026-04-18 23:49:30,894 INFO epoch  60 | loss=0.2432 | val auc=0.7556 f1=0.7857 acc=0.7143  *best
+2026-04-18 23:49:31,085 INFO epoch  61 | loss=0.2564 | val auc=0.8000 f1=0.8276 acc=0.7619  *best
+2026-04-18 23:49:31,963 INFO epoch  65 | loss=0.3040 | val auc=0.7222 f1=0.6400 acc=0.5714
+2026-04-18 23:49:33,050 INFO epoch  70 | loss=0.2279 | val auc=0.7000 f1=0.8000 acc=0.7143
+2026-04-18 23:49:34,075 INFO epoch  75 | loss=0.2466 | val auc=0.6889 f1=0.8276 acc=0.7619
+2026-04-18 23:49:35,132 INFO epoch  80 | loss=0.2981 | val auc=0.7000 f1=0.8276 acc=0.7619
+2026-04-18 23:49:36,172 INFO epoch  85 | loss=0.2130 | val auc=0.7444 f1=0.8667 acc=0.8095
+2026-04-18 23:49:37,201 INFO epoch  90 | loss=0.2901 | val auc=0.7222 f1=0.8276 acc=0.7619
+2026-04-18 23:49:37,405 INFO early stopping at epoch 91
+2026-04-18 23:49:37,433 INFO fold 4: Youden threshold=0.259  sens=1.000  spec=0.667
+2026-04-18 23:49:37,433 INFO fold 4: {'threshold': 0.2586628794670105, 'accuracy': 0.9047619047619048, 'f1': 0.9375, 'precision': 0.8823529411764706, 'recall': 1.0, 'sensitivity': 1.0, 'specificity': 0.6666666666666666, 'auc': 0.8, 'fold': 4, 'repeat': 2, 'accuracy_argmax': 0.7619047619047619, 'f1_argmax': 0.8275862068965517, 'precision_argmax': 0.8571428571428571, 'recall_argmax': 0.8, 'sensitivity_argmax': 0.8, 'specificity_argmax': 0.6666666666666666, 'threshold_argmax': 0.5}
+2026-04-18 23:49:37,435 INFO wrote /home/imss/cw/GCN copdnoph copdph/outputs/followup_mode_gcn/cv_results.json
+
+====== 5-fold CV — six-metric summary ======
+  auc         : 0.8720 ± 0.1012
+  accuracy    : 0.8618 ± 0.0949
+  precision   : 0.9476 ± 0.0546
+  sensitivity : 0.8653 ± 0.1272
+  f1          : 0.8984 ± 0.0792
+  specificity : 0.8533 ± 0.1703
+===== follow-up pipeline done 2026-04-18T23:49:38+08:00  (flag: /home/imss/cw/GCN copdnoph copdph/outputs/followup_mode_gcn/followup_mode_gcn_done.flag) =====
