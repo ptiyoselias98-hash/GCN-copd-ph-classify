@@ -1,0 +1,19 @@
+QA decision: OK
+loaded 106/106 patients (missing: 0)
+per-patient FAILs: 0
+
+Population checks:
+  [OK  ] all_gold_present: 106/106
+  [OK  ] median_artery>median_vein: artery=146.5 vein=78.0
+  [OK  ] airway_real_rate>=0.80: 86/106 (81.13%)
+  [WARN] artery_median_diam_mm: median=1.50 expected [2.0,8.0]
+  [WARN] vein_median_diam_mm: median=1.49 expected [1.5,6.0]
+  [WARN] airway_median_diam_mm: median=1.61 expected [3.0,15.0]
+  [OK  ] cross_cache_r>0.6: r=0.995 n=106
+
+Median node counts:
+  artery: median=146 min=1 max=1292
+  vein  : median=78 min=1 max=229
+  airway: median=8 min=1 max=110
+
+Airway real-graph rate: 86/106 (81.13%)

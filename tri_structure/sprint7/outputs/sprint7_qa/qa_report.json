@@ -1,0 +1,3071 @@
+{
+  "overall": "OK",
+  "n_expected": 106,
+  "n_loaded": 106,
+  "n_missing": 0,
+  "missing_ids": [],
+  "per_patient_fail_count": 0,
+  "population_checks": [
+    {
+      "check": "all_gold_present",
+      "severity": "OK",
+      "detail": "106/106"
+    },
+    {
+      "check": "median_artery>median_vein",
+      "severity": "OK",
+      "detail": "artery=146.5 vein=78.0"
+    },
+    {
+      "check": "airway_real_rate>=0.80",
+      "severity": "OK",
+      "detail": "86/106 (81.13%)"
+    },
+    {
+      "check": "artery_median_diam_mm",
+      "severity": "WARN",
+      "detail": "median=1.50 expected [2.0,8.0]"
+    },
+    {
+      "check": "vein_median_diam_mm",
+      "severity": "WARN",
+      "detail": "median=1.49 expected [1.5,6.0]"
+    },
+    {
+      "check": "airway_median_diam_mm",
+      "severity": "WARN",
+      "detail": "median=1.61 expected [3.0,15.0]"
+    },
+    {
+      "check": "cross_cache_r>0.6",
+      "severity": "OK",
+      "detail": "r=0.995 n=106"
+    }
+  ],
+  "per_patient": {
+    "ph_caohujie_9001710072_friday_september_18_2020_000": {
+      "artery": {
+        "num_nodes": 184,
+        "num_edges": 186,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5005208253860474
+      },
+      "vein": {
+        "num_nodes": 70,
+        "num_edges": 70,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4502604007720947
+      },
+      "airway": {
+        "num_nodes": 22,
+        "num_edges": 22,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6297465562820435
+      }
+    },
+    "ph_changyongshan_k5064b626_thursday_december_24_2020_000": {
+      "artery": {
+        "num_nodes": 328,
+        "num_edges": 328,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5849770307540894
+      },
+      "vein": {
+        "num_nodes": 121,
+        "num_edges": 122,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4625811576843262
+      },
+      "airway": {
+        "num_nodes": 12,
+        "num_edges": 12,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4693317413330078
+      }
+    },
+    "ph_chenmeizhen_9001615013_friday_may_7_2021_000": {
+      "artery": {
+        "num_nodes": 52,
+        "num_edges": 52,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 5.324484348297119
+      },
+      "vein": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_chenmeiying_l00103539_thursday_may_10_2018_000": {
+      "artery": {
+        "num_nodes": 48,
+        "num_edges": 48,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 6.409913539886475
+      },
+      "vein": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_chenshunhe_9002254177_monday_august_1_2022_000": {
+      "artery": {
+        "num_nodes": 77,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.81640625
+      },
+      "vein": {
+        "num_nodes": 56,
+        "num_edges": 56,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9204503297805786
+      },
+      "airway": {
+        "num_nodes": 15,
+        "num_edges": 16,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.0
+      }
+    },
+    "ph_chenshunming_9001485699_thursday_june_11_2020_000": {
+      "artery": {
+        "num_nodes": 86,
+        "num_edges": 86,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 7.7759318351745605
+      },
+      "vein": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_chenglaifu_9001619565_thursday_june_4_2020_000": {
+      "artery": {
+        "num_nodes": 112,
+        "num_edges": 112,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4928817749023438
+      },
+      "vein": {
+        "num_nodes": 66,
+        "num_edges": 66,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.441153883934021
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5684155225753784
+      }
+    },
+    "ph_daijianxiang_9002624140_friday_april_28_2023_000": {
+      "artery": {
+        "num_nodes": 142,
+        "num_edges": 142,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.412760615348816
+      },
+      "vein": {
+        "num_nodes": 92,
+        "num_edges": 92,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.412760615348816
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7097795009613037
+      }
+    },
+    "ph_douhuaming_9001874814_saturday_april_10_2021_000": {
+      "artery": {
+        "num_nodes": 115,
+        "num_edges": 116,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5281248092651367
+      },
+      "vein": {
+        "num_nodes": 117,
+        "num_edges": 120,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.528645396232605
+      },
+      "airway": {
+        "num_nodes": 18,
+        "num_edges": 18,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.806249737739563
+      }
+    },
+    "ph_fanhailong_j03617717_wednesday_may_12_2021_000": {
+      "artery": {
+        "num_nodes": 159,
+        "num_edges": 160,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3697936534881592
+      },
+      "vein": {
+        "num_nodes": 84,
+        "num_edges": 84,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4895848035812378
+      },
+      "airway": {
+        "num_nodes": 12,
+        "num_edges": 12,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5609874725341797
+      }
+    },
+    "ph_fancaihong_m00243088_friday_march_10_2023_000": {
+      "artery": {
+        "num_nodes": 149,
+        "num_edges": 152,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.361979365348816
+      },
+      "vein": {
+        "num_nodes": 119,
+        "num_edges": 122,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.361979365348816
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.949374794960022
+      }
+    },
+    "ph_fengaizhi_9001615515_friday_june_12_2020_000": {
+      "artery": {
+        "num_nodes": 190,
+        "num_edges": 190,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5216671228408813
+      },
+      "vein": {
+        "num_nodes": 102,
+        "num_edges": 102,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.658129334449768
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5026096105575562
+      }
+    },
+    "ph_fengyueqin_9002263183_friday_august_5_2022_000": {
+      "artery": {
+        "num_nodes": 157,
+        "num_edges": 158,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3281265497207642
+      },
+      "vein": {
+        "num_nodes": 108,
+        "num_edges": 108,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3281265497207642
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6457571983337402
+      }
+    },
+    "ph_gaozhongxiang_9001532337_thursday_november_28_2019_000": {
+      "artery": {
+        "num_nodes": 119,
+        "num_edges": 120,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.548229694366455
+      },
+      "vein": {
+        "num_nodes": 96,
+        "num_edges": 96,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5424532890319824
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_gerenfu_9001890663_monday_april_26_2021_000": {
+      "artery": {
+        "num_nodes": 268,
+        "num_edges": 270,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3098959922790527
+      },
+      "vein": {
+        "num_nodes": 174,
+        "num_edges": 174,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3098959922790527
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7426165342330933
+      }
+    },
+    "ph_gengxinyi_9001466552_tuesday_august_27_2019_000": {
+      "artery": {
+        "num_nodes": 146,
+        "num_edges": 146,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5742841958999634
+      },
+      "vein": {
+        "num_nodes": 46,
+        "num_edges": 46,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.56929349899292
+      },
+      "airway": {
+        "num_nodes": 22,
+        "num_edges": 22,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.576324701309204
+      }
+    },
+    "ph_gongmeidi_9002706836_monday_june_26_2023_000": {
+      "artery": {
+        "num_nodes": 147,
+        "num_edges": 148,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4518226385116577
+      },
+      "vein": {
+        "num_nodes": 63,
+        "num_edges": 64,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.579081416130066
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_gupinfang_v00059278_saturday_october_20_2018_000": {
+      "artery": {
+        "num_nodes": 121,
+        "num_edges": 122,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6012647151947021
+      },
+      "vein": {
+        "num_nodes": 58,
+        "num_edges": 58,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6124626398086548
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_guwenzhong_9002654032_tuesday_may_23_2023_000": {
+      "artery": {
+        "num_nodes": 126,
+        "num_edges": 126,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.52500319480896
+      },
+      "vein": {
+        "num_nodes": 97,
+        "num_edges": 98,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5208333730697632
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7302130460739136
+      }
+    },
+    "ph_guochunying_k02529106_friday_september_15_2023_000": {
+      "artery": {
+        "num_nodes": 156,
+        "num_edges": 156,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.597656011581421
+      },
+      "vein": {
+        "num_nodes": 19,
+        "num_edges": 20,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8654541969299316
+      },
+      "airway": {
+        "num_nodes": 24,
+        "num_edges": 24,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5095157623291016
+      }
+    },
+    "ph_haliba_ahengbieke_9001193667_friday_june_1_2018_000": {
+      "artery": {
+        "num_nodes": 90,
+        "num_edges": 90,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.608756422996521
+      },
+      "vein": {
+        "num_nodes": 46,
+        "num_edges": 46,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6303709745407104
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_hanlingen_9001080084_thursday_september_21_2017_000": {
+      "artery": {
+        "num_nodes": 189,
+        "num_edges": 190,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5216671228408813
+      },
+      "vein": {
+        "num_nodes": 175,
+        "num_edges": 176,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5026096105575562
+      },
+      "airway": {
+        "num_nodes": 14,
+        "num_edges": 14,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6849067211151123
+      }
+    },
+    "ph_helongbao_q0615857x_saturday_july_29_2017_000": {
+      "artery": {
+        "num_nodes": 258,
+        "num_edges": 262,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.745471715927124
+      },
+      "vein": {
+        "num_nodes": 124,
+        "num_edges": 126,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.555734634399414
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_huangjianguo_b00818793_friday_july_26_2019_000": {
+      "artery": {
+        "num_nodes": 111,
+        "num_edges": 114,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6355650424957275
+      },
+      "vein": {
+        "num_nodes": 36,
+        "num_edges": 36,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6646015644073486
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_huangxiuying_9001333504_saturday_april_20_2019_000": {
+      "artery": {
+        "num_nodes": 147,
+        "num_edges": 148,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.548229694366455
+      },
+      "vein": {
+        "num_nodes": 46,
+        "num_edges": 46,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.548229694366455
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5747921466827393
+      }
+    },
+    "ph_jiangkefang_9002512620_wednesday_february_15_2023_000": {
+      "artery": {
+        "num_nodes": 207,
+        "num_edges": 208,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.544270634651184
+      },
+      "vein": {
+        "num_nodes": 77,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5343923568725586
+      },
+      "airway": {
+        "num_nodes": 22,
+        "num_edges": 22,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8286631107330322
+      }
+    },
+    "ph_jinheping_9001152251_friday_march_30_2018_000": {
+      "artery": {
+        "num_nodes": 78,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.37109375
+      },
+      "vein": {
+        "num_nodes": 41,
+        "num_edges": 42,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3903645277023315
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7497107982635498
+      }
+    },
+    "ph_licuilan_9001042942_friday_june_30_2017_000": {
+      "artery": {
+        "num_nodes": 152,
+        "num_edges": 154,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.767121434211731
+      },
+      "vein": {
+        "num_nodes": 41,
+        "num_edges": 42,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4403342008590698
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2166666984558105
+      }
+    },
+    "ph_limaocai_l01147541_thursday_april_13_2017_000": {
+      "artery": {
+        "num_nodes": 322,
+        "num_edges": 324,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4988281726837158
+      },
+      "vein": {
+        "num_nodes": 102,
+        "num_edges": 102,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.641421914100647
+      },
+      "airway": {
+        "num_nodes": 14,
+        "num_edges": 14,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.641421914100647
+      }
+    },
+    "ph_lixiangzhen_9002255526_friday_july_29_2022_000": {
+      "artery": {
+        "num_nodes": 60,
+        "num_edges": 60,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.414884328842163
+      },
+      "vein": {
+        "num_nodes": 46,
+        "num_edges": 46,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4760822057724
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_liyan_9001217879_thursday_july_19_2018_000": {
+      "artery": {
+        "num_nodes": 130,
+        "num_edges": 130,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6326576471328735
+      },
+      "vein": {
+        "num_nodes": 58,
+        "num_edges": 58,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5560063123703003
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5920482873916626
+      }
+    },
+    "ph_liyibing_9001307506_wednesday_april_28_2021_000": {
+      "artery": {
+        "num_nodes": 219,
+        "num_edges": 222,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3567686080932617
+      },
+      "vein": {
+        "num_nodes": 87,
+        "num_edges": 88,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3567686080932617
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7547192573547363
+      }
+    },
+    "ph_linzhenghuan_t11844357_tuesday_may_8_2018_000": {
+      "artery": {
+        "num_nodes": 74,
+        "num_edges": 74,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4328153133392334
+      },
+      "vein": {
+        "num_nodes": 20,
+        "num_edges": 20,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5999137163162231
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_lingquanying_9001029494_monday_may_22_2017_000": {
+      "artery": {
+        "num_nodes": 76,
+        "num_edges": 76,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2199161052703857
+      },
+      "vein": {
+        "num_nodes": 54,
+        "num_edges": 54,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2960821390151978
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.515916347503662
+      }
+    },
+    "ph_lingxueyong_9001115979_friday_june_18_2021_000": {
+      "artery": {
+        "num_nodes": 68,
+        "num_edges": 68,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.527083396911621
+      },
+      "vein": {
+        "num_nodes": 210,
+        "num_edges": 212,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5260413885116577
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7558003664016724
+      }
+    },
+    "ph_liucaiyun_9002784353_friday_august_25_2023_000": {
+      "artery": {
+        "num_nodes": 21,
+        "num_edges": 22,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6709994077682495
+      },
+      "vein": {
+        "num_nodes": 203,
+        "num_edges": 204,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4604997634887695
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 7.1207685470581055
+      }
+    },
+    "ph_liuyunfeng_9002284531_wednesday_august_31_2022_000": {
+      "artery": {
+        "num_nodes": 322,
+        "num_edges": 326,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.430929183959961
+      },
+      "vein": {
+        "num_nodes": 218,
+        "num_edges": 218,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4543691873550415
+      },
+      "airway": {
+        "num_nodes": 14,
+        "num_edges": 14,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4426491260528564
+      }
+    },
+    "ph_liuzhongping_9001930939_tuesday_june_15_2021_000": {
+      "artery": {
+        "num_nodes": 133,
+        "num_edges": 134,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4982939958572388
+      },
+      "vein": {
+        "num_nodes": 63,
+        "num_edges": 64,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4531253576278687
+      },
+      "airway": {
+        "num_nodes": 18,
+        "num_edges": 18,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 3.160642623901367
+      }
+    },
+    "ph_luyoufa_9001673515_wednesday_august_5_2020_000": {
+      "artery": {
+        "num_nodes": 124,
+        "num_edges": 124,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5559567213058472
+      },
+      "vein": {
+        "num_nodes": 70,
+        "num_edges": 70,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5559567213058472
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3781249523162842
+      }
+    },
+    "ph_luwanhai_9001941408_friday_june_25_2021_000": {
+      "artery": {
+        "num_nodes": 490,
+        "num_edges": 492,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3671879768371582
+      },
+      "vein": {
+        "num_nodes": 157,
+        "num_edges": 158,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4508285522460938
+      },
+      "airway": {
+        "num_nodes": 22,
+        "num_edges": 22,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4898911714553833
+      }
+    },
+    "ph_lvyuntang_9001145670_wednesday_november_21_2018_000": {
+      "artery": {
+        "num_nodes": 216,
+        "num_edges": 220,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4624162912368774
+      },
+      "vein": {
+        "num_nodes": 82,
+        "num_edges": 82,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7621750831604004
+      },
+      "airway": {
+        "num_nodes": 22,
+        "num_edges": 22,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.427034616470337
+      }
+    },
+    "ph_maoxinmin_0800429547_friday_may_24_2019_000": {
+      "artery": {
+        "num_nodes": 224,
+        "num_edges": 224,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8497512340545654
+      },
+      "vein": {
+        "num_nodes": 68,
+        "num_edges": 68,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.745945692062378
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.903153896331787
+      }
+    },
+    "ph_pengying_k00487440_wednesday_april_24_2019_000": {
+      "artery": {
+        "num_nodes": 116,
+        "num_edges": 118,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8200627565383911
+      },
+      "vein": {
+        "num_nodes": 64,
+        "num_edges": 64,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.1375508308410645
+      },
+      "airway": {
+        "num_nodes": 16,
+        "num_edges": 16,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.806260585784912
+      }
+    },
+    "ph_qiancunying_9001515419_wednesday_november_20_2019_000": {
+      "artery": {
+        "num_nodes": 90,
+        "num_edges": 90,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9714521169662476
+      },
+      "vein": {
+        "num_nodes": 72,
+        "num_edges": 72,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.0485236644744873
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.524837613105774
+      }
+    },
+    "ph_shijinlan_k02855681_thursday_august_13_2020_000": {
+      "artery": {
+        "num_nodes": 72,
+        "num_edges": 72,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3468749523162842
+      },
+      "vein": {
+        "num_nodes": 46,
+        "num_edges": 48,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5158908367156982
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_shisinv_9001742055_thursday_october_29_2020_000": {
+      "artery": {
+        "num_nodes": 88,
+        "num_edges": 88,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6061351299285889
+      },
+      "vein": {
+        "num_nodes": 78,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.738312005996704
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_shixiaolan_9002504475_thursday_february_16_2023_000": {
+      "artery": {
+        "num_nodes": 472,
+        "num_edges": 478,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3984373807907104
+      },
+      "vein": {
+        "num_nodes": 207,
+        "num_edges": 210,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3242186307907104
+      },
+      "airway": {
+        "num_nodes": 30,
+        "num_edges": 30,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5514304637908936
+      }
+    },
+    "ph_sunyuzhen_9001901206_saturday_may_29_2021_000": {
+      "artery": {
+        "num_nodes": 195,
+        "num_edges": 196,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5289539098739624
+      },
+      "vein": {
+        "num_nodes": 84,
+        "num_edges": 84,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2890626192092896
+      },
+      "airway": {
+        "num_nodes": 12,
+        "num_edges": 12,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.01594877243042
+      }
+    },
+    "ph_tangdaoqun_9002344547_saturday_march_11_2023_000": {
+      "artery": {
+        "num_nodes": 98,
+        "num_edges": 98,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3536864519119263
+      },
+      "vein": {
+        "num_nodes": 90,
+        "num_edges": 90,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6370540857315063
+      },
+      "airway": {
+        "num_nodes": 12,
+        "num_edges": 12,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5748004913330078
+      }
+    },
+    "ph_tanglaikou_9001748361_monday_november_2_2020_000": {
+      "artery": {
+        "num_nodes": 154,
+        "num_edges": 154,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3541666269302368
+      },
+      "vein": {
+        "num_nodes": 34,
+        "num_edges": 34,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4533697366714478
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9786392450332642
+      }
+    },
+    "ph_wangfulan_9002502365_thursday_february_9_2023_000": {
+      "artery": {
+        "num_nodes": 175,
+        "num_edges": 176,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4508285522460938
+      },
+      "vein": {
+        "num_nodes": 111,
+        "num_edges": 112,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3281253576278687
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6516571044921875
+      }
+    },
+    "ph_wanghaitao_9001792097_wednesday_january_13_2021_000": {
+      "artery": {
+        "num_nodes": 179,
+        "num_edges": 180,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.433560848236084
+      },
+      "vein": {
+        "num_nodes": 42,
+        "num_edges": 42,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.734813928604126
+      },
+      "airway": {
+        "num_nodes": 16,
+        "num_edges": 16,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.037799596786499
+      }
+    },
+    "ph_wenhaibo_9002847466_monday_september_25_2023_000": {
+      "artery": {
+        "num_nodes": 1292,
+        "num_edges": 1306,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9190274477005005
+      },
+      "vein": {
+        "num_nodes": 203,
+        "num_edges": 204,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5023608207702637
+      },
+      "airway": {
+        "num_nodes": 30,
+        "num_edges": 30,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5023608207702637
+      }
+    },
+    "ph_wucaiya_9001292249_saturday_december_15_2018_000": {
+      "artery": {
+        "num_nodes": 92,
+        "num_edges": 92,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9274920225143433
+      },
+      "vein": {
+        "num_nodes": 56,
+        "num_edges": 56,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.531069040298462
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 6.9202728271484375
+      }
+    },
+    "ph_wugengxiang_9001369225_tuesday_april_30_2019_000": {
+      "artery": {
+        "num_nodes": 107,
+        "num_edges": 108,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5920422077178955
+      },
+      "vein": {
+        "num_nodes": 78,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5915213823318481
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.628943681716919
+      }
+    },
+    "ph_wumaosheng_9002492157_thursday_february_2_2023_000": {
+      "artery": {
+        "num_nodes": 182,
+        "num_edges": 184,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3645833730697632
+      },
+      "vein": {
+        "num_nodes": 229,
+        "num_edges": 230,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3645833730697632
+      },
+      "airway": {
+        "num_nodes": 17,
+        "num_edges": 18,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6230741739273071
+      }
+    },
+    "ph_wupengnian_p04004991_friday_october_24_2014_000": {
+      "artery": {
+        "num_nodes": 83,
+        "num_edges": 84,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3911458253860474
+      },
+      "vein": {
+        "num_nodes": 46,
+        "num_edges": 48,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5336384773254395
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 6.57396936416626
+      }
+    },
+    "ph_wushuike_9002636449_thursday_may_11_2023_000": {
+      "artery": {
+        "num_nodes": 414,
+        "num_edges": 418,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3841146230697632
+      },
+      "vein": {
+        "num_nodes": 82,
+        "num_edges": 82,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.518229365348816
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.123352527618408
+      }
+    },
+    "ph_wuyunlong_9001201453_saturday_july_16_2022_000": {
+      "artery": {
+        "num_nodes": 179,
+        "num_edges": 180,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5729162693023682
+      },
+      "vein": {
+        "num_nodes": 121,
+        "num_edges": 122,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4114567041397095
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9579079151153564
+      }
+    },
+    "ph_xingkeming_k02641464_wednesday_february_10_2021_000": {
+      "artery": {
+        "num_nodes": 278,
+        "num_edges": 280,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7082114219665527
+      },
+      "vein": {
+        "num_nodes": 198,
+        "num_edges": 200,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7082114219665527
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9660239219665527
+      }
+    },
+    "ph_xuyuemei_m00100300_tuesday_november_28_2023_000": {
+      "artery": {
+        "num_nodes": 88,
+        "num_edges": 88,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2890626192092896
+      },
+      "vein": {
+        "num_nodes": 129,
+        "num_edges": 130,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2890626192092896
+      },
+      "airway": {
+        "num_nodes": 14,
+        "num_edges": 14,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6516571044921875
+      }
+    },
+    "ph_xuguorong_9002523294_friday_april_21_2023_000": {
+      "artery": {
+        "num_nodes": 500,
+        "num_edges": 502,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4841874837875366
+      },
+      "vein": {
+        "num_nodes": 214,
+        "num_edges": 214,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6508541107177734
+      }
+    },
+    "ph_xuexiangtian_9002323494_thursday_september_7_2023_000": {
+      "artery": {
+        "num_nodes": 262,
+        "num_edges": 266,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5
+      },
+      "vein": {
+        "num_nodes": 52,
+        "num_edges": 52,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5
+      },
+      "airway": {
+        "num_nodes": 14,
+        "num_edges": 14,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7834349870681763
+      }
+    },
+    "ph_yangeryu_9001880895_tuesday_april_27_2021_000": {
+      "artery": {
+        "num_nodes": 413,
+        "num_edges": 416,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.625
+      },
+      "vein": {
+        "num_nodes": 209,
+        "num_edges": 210,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.625
+      },
+      "airway": {
+        "num_nodes": 32,
+        "num_edges": 32,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.625
+      }
+    },
+    "ph_yangrujuan_9001272816_wednesday_november_7_2018_000": {
+      "artery": {
+        "num_nodes": 111,
+        "num_edges": 112,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3536864519119263
+      },
+      "vein": {
+        "num_nodes": 70,
+        "num_edges": 70,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5559567213058472
+      },
+      "airway": {
+        "num_nodes": 22,
+        "num_edges": 22,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7737462520599365
+      }
+    },
+    "ph_yuyiming_9002771055_friday_august_4_2023_000": {
+      "artery": {
+        "num_nodes": 152,
+        "num_edges": 154,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3945313692092896
+      },
+      "vein": {
+        "num_nodes": 148,
+        "num_edges": 150,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5322998762130737
+      },
+      "airway": {
+        "num_nodes": 16,
+        "num_edges": 16,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9342091083526611
+      }
+    },
+    "ph_yuzhengfu_m0400376x_friday_august_18_2017_000": {
+      "artery": {
+        "num_nodes": 106,
+        "num_edges": 106,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7039642333984375
+      },
+      "vein": {
+        "num_nodes": 58,
+        "num_edges": 58,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5026096105575562
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7854766845703125
+      }
+    },
+    "ph_yufuquan_n01295290_wednesday_march_20_2019_000": {
+      "artery": {
+        "num_nodes": 225,
+        "num_edges": 226,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8860465288162231
+      },
+      "vein": {
+        "num_nodes": 60,
+        "num_edges": 60,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9735500812530518
+      },
+      "airway": {
+        "num_nodes": 24,
+        "num_edges": 24,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5936506986618042
+      }
+    },
+    "ph_yuanaizhu_0800444469_tuesday_may_24_2016_000": {
+      "artery": {
+        "num_nodes": 358,
+        "num_edges": 362,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5975483655929565
+      },
+      "vein": {
+        "num_nodes": 94,
+        "num_edges": 94,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4119791984558105
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.399999976158142
+      }
+    },
+    "ph_zhanxiuyu_9002225451_thursday_june_30_2022_000": {
+      "artery": {
+        "num_nodes": 204,
+        "num_edges": 204,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5302090644836426
+      },
+      "vein": {
+        "num_nodes": 64,
+        "num_edges": 64,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5312505960464478
+      },
+      "airway": {
+        "num_nodes": 16,
+        "num_edges": 16,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8104183673858643
+      }
+    },
+    "ph_zhangguihua_0800466690_wednesday_august_17_2016_000": {
+      "artery": {
+        "num_nodes": 197,
+        "num_edges": 198,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.658129334449768
+      },
+      "vein": {
+        "num_nodes": 96,
+        "num_edges": 98,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6849067211151123
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.266660213470459
+      }
+    },
+    "ph_zhangling_7100028761_wednesday_june_7_2017_000": {
+      "artery": {
+        "num_nodes": 115,
+        "num_edges": 116,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5216671228408813
+      },
+      "vein": {
+        "num_nodes": 130,
+        "num_edges": 132,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7114691734313965
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_zhangxuelin_r01231034_saturday_july_30_2016_000": {
+      "artery": {
+        "num_nodes": 86,
+        "num_edges": 86,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2000000476837158
+      },
+      "vein": {
+        "num_nodes": 42,
+        "num_edges": 42,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2000000476837158
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5026096105575562
+      }
+    },
+    "ph_zhangzongqi_9001787068_thursday_december_17_2020_000": {
+      "artery": {
+        "num_nodes": 66,
+        "num_edges": 66,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 2.0494141578674316
+      },
+      "vein": {
+        "num_nodes": 48,
+        "num_edges": 48,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6058317422866821
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "ph_zhaoguoping_p02540627_thursday_february_16_2023_000": {
+      "artery": {
+        "num_nodes": 141,
+        "num_edges": 142,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4843753576278687
+      },
+      "vein": {
+        "num_nodes": 48,
+        "num_edges": 48,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6062930822372437
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8406684398651123
+      }
+    },
+    "ph_zhaohongxia_9002303083_friday_september_9_2022_000": {
+      "artery": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      },
+      "vein": {
+        "num_nodes": 88,
+        "num_edges": 88,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6884911060333252
+      },
+      "airway": {
+        "num_nodes": 110,
+        "num_edges": 110,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5559567213058472
+      }
+    },
+    "ph_zhengcaimei_9002408336_friday_november_25_2022_000": {
+      "artery": {
+        "num_nodes": 377,
+        "num_edges": 382,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5033799409866333
+      },
+      "vein": {
+        "num_nodes": 129,
+        "num_edges": 130,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.466145396232605
+      },
+      "airway": {
+        "num_nodes": 14,
+        "num_edges": 14,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8648326396942139
+      }
+    },
+    "ph_zhengzhongbao_9002648649_tuesday_may_16_2023_000": {
+      "artery": {
+        "num_nodes": 196,
+        "num_edges": 196,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5459622144699097
+      },
+      "vein": {
+        "num_nodes": 112,
+        "num_edges": 112,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5459622144699097
+      },
+      "airway": {
+        "num_nodes": 20,
+        "num_edges": 20,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9361313581466675
+      }
+    },
+    "ph_zhuzhengxia_9001183184_monday_may_14_2018_000": {
+      "artery": {
+        "num_nodes": 195,
+        "num_edges": 196,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.55117666721344
+      },
+      "vein": {
+        "num_nodes": 40,
+        "num_edges": 40,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5337287187576294
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6329925060272217
+      }
+    },
+    "nonph_caochenglin_g02017953_thursday_july_9_2020_000": {
+      "artery": {
+        "num_nodes": 68,
+        "num_edges": 68,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3963541984558105
+      },
+      "vein": {
+        "num_nodes": 24,
+        "num_edges": 24,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3963541984558105
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7796204090118408
+      }
+    },
+    "nonph_chenxijun_j01076013_wednesday_november_23_2016_000": {
+      "artery": {
+        "num_nodes": 284,
+        "num_edges": 286,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5026096105575562
+      },
+      "vein": {
+        "num_nodes": 147,
+        "num_edges": 148,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5026096105575562
+      },
+      "airway": {
+        "num_nodes": 12,
+        "num_edges": 12,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5254195928573608
+      }
+    },
+    "nonph_chenzhanghu_5002094379_wednesday_november_20_2019_000": {
+      "artery": {
+        "num_nodes": 58,
+        "num_edges": 58,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2000000476837158
+      },
+      "vein": {
+        "num_nodes": 77,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2401041984558105
+      },
+      "airway": {
+        "num_nodes": 14,
+        "num_edges": 14,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.794719934463501
+      }
+    },
+    "nonph_chenzhixing_n11110528_saturday_december_7_2019_000": {
+      "artery": {
+        "num_nodes": 110,
+        "num_edges": 110,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4533697366714478
+      },
+      "vein": {
+        "num_nodes": 93,
+        "num_edges": 94,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4533697366714478
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.759840488433838
+      }
+    },
+    "nonph_cuiyuanjing_9001642864_thursday_july_2_2020_000": {
+      "artery": {
+        "num_nodes": 26,
+        "num_edges": 26,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3468749523162842
+      },
+      "vein": {
+        "num_nodes": 26,
+        "num_edges": 26,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3468749523162842
+      },
+      "airway": {
+        "num_nodes": 4,
+        "num_edges": 4,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3468749523162842
+      }
+    },
+    "nonph_dinghuiyan_9002758757_tuesday_december_26_2023_000": {
+      "artery": {
+        "num_nodes": 217,
+        "num_edges": 218,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2890626192092896
+      },
+      "vein": {
+        "num_nodes": 135,
+        "num_edges": 136,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3281253576278687
+      },
+      "airway": {
+        "num_nodes": 16,
+        "num_edges": 16,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.921563982963562
+      }
+    },
+    "nonph_fengjianhong_9002916926_friday_november_10_2023_000": {
+      "artery": {
+        "num_nodes": 179,
+        "num_edges": 180,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.330729365348816
+      },
+      "vein": {
+        "num_nodes": 141,
+        "num_edges": 142,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.330729365348816
+      },
+      "airway": {
+        "num_nodes": 20,
+        "num_edges": 20,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8794634342193604
+      }
+    },
+    "nonph_gushenggui_9001770270_tuesday_april_6_2021_000": {
+      "artery": {
+        "num_nodes": 157,
+        "num_edges": 158,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4508285522460938
+      },
+      "vein": {
+        "num_nodes": 77,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4508285522460938
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5289539098739624
+      }
+    },
+    "nonph_heyude_c00242568_saturday_october_11_2014_000": {
+      "artery": {
+        "num_nodes": 136,
+        "num_edges": 136,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.0401041507720947
+      },
+      "vein": {
+        "num_nodes": 83,
+        "num_edges": 84,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.0401041507720947
+      },
+      "airway": {
+        "num_nodes": 6,
+        "num_edges": 6,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.0
+      }
+    },
+    "nonph_huangkunquan_9001148669_saturday_march_24_2018_000": {
+      "artery": {
+        "num_nodes": 84,
+        "num_edges": 84,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2825521230697632
+      },
+      "vein": {
+        "num_nodes": 45,
+        "num_edges": 46,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.45209801197052
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "nonph_huangzutian_9002735639_monday_july_24_2023_000": {
+      "artery": {
+        "num_nodes": 229,
+        "num_edges": 230,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3541666269302368
+      },
+      "vein": {
+        "num_nodes": 129,
+        "num_edges": 130,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3541666269302368
+      },
+      "airway": {
+        "num_nodes": 14,
+        "num_edges": 14,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5625
+      }
+    },
+    "nonph_huichunyi_0800212702_tuesday_july_16_2013_000": {
+      "artery": {
+        "num_nodes": 150,
+        "num_edges": 152,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4268229007720947
+      },
+      "vein": {
+        "num_nodes": 78,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4536458253860474
+      },
+      "airway": {
+        "num_nodes": 16,
+        "num_edges": 16,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.745619773864746
+      }
+    },
+    "nonph_lilele_0800247111_tuesday_september_6_2022_000": {
+      "artery": {
+        "num_nodes": 135,
+        "num_edges": 136,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5861819982528687
+      },
+      "vein": {
+        "num_nodes": 113,
+        "num_edges": 114,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5861819982528687
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7911313772201538
+      }
+    },
+    "nonph_lixiangqing_9002785345_thursday_august_31_2023_001": {
+      "artery": {
+        "num_nodes": 232,
+        "num_edges": 232,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.650754451751709
+      },
+      "vein": {
+        "num_nodes": 82,
+        "num_edges": 82,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.579046368598938
+      },
+      "airway": {
+        "num_nodes": 18,
+        "num_edges": 18,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.751861333847046
+      }
+    },
+    "nonph_lixingbo_p06685241_saturday_november_21_2015_000": {
+      "artery": {
+        "num_nodes": 198,
+        "num_edges": 200,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5877208709716797
+      },
+      "vein": {
+        "num_nodes": 117,
+        "num_edges": 118,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.39453125
+      },
+      "airway": {
+        "num_nodes": 24,
+        "num_edges": 24,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.588898777961731
+      }
+    },
+    "nonph_liufanggao_0800044115_thursday_september_29_2016_000": {
+      "artery": {
+        "num_nodes": 50,
+        "num_edges": 50,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3203125
+      },
+      "vein": {
+        "num_nodes": 58,
+        "num_edges": 58,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.3468749523162842
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4342710971832275
+      }
+    },
+    "nonph_liuzhusheng_0800410895_saturday_january_23_2016_000": {
+      "artery": {
+        "num_nodes": 151,
+        "num_edges": 152,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.428125023841858
+      },
+      "vein": {
+        "num_nodes": 56,
+        "num_edges": 56,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5348639488220215
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.9434928894042969
+      }
+    },
+    "nonph_lujianlan_9002629358_monday_may_8_2023_000": {
+      "artery": {
+        "num_nodes": 132,
+        "num_edges": 132,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.371093988418579
+      },
+      "vein": {
+        "num_nodes": 130,
+        "num_edges": 132,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4619145393371582
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "nonph_shenjuhua_u13807530_thursday_november_1_2018_000": {
+      "artery": {
+        "num_nodes": 73,
+        "num_edges": 74,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.6125311851501465
+      },
+      "vein": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "nonph_wenjincun_9002777736_tuesday_august_22_2023_000": {
+      "artery": {
+        "num_nodes": 330,
+        "num_edges": 332,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.316406011581421
+      },
+      "vein": {
+        "num_nodes": 132,
+        "num_edges": 134,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.316406011581421
+      },
+      "airway": {
+        "num_nodes": 24,
+        "num_edges": 24,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4602468013763428
+      }
+    },
+    "nonph_wentaomei_9002233843_friday_july_15_2022_000": {
+      "artery": {
+        "num_nodes": 124,
+        "num_edges": 124,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.266508936882019
+      },
+      "vein": {
+        "num_nodes": 77,
+        "num_edges": 78,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.266508936882019
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "nonph_xugaofeng_0800392509_monday_october_26_2015_001": {
+      "artery": {
+        "num_nodes": 110,
+        "num_edges": 110,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.0976837873458862
+      },
+      "vein": {
+        "num_nodes": 40,
+        "num_edges": 40,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.0
+      },
+      "airway": {
+        "num_nodes": 12,
+        "num_edges": 12,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2000000476837158
+      }
+    },
+    "nonph_xuguozhong_p02313459_wednesday_november_11_2015_001": {
+      "artery": {
+        "num_nodes": 95,
+        "num_edges": 96,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2088541984558105
+      },
+      "vein": {
+        "num_nodes": 46,
+        "num_edges": 46,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.2669932842254639
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5162782669067383
+      }
+    },
+    "nonph_yangjicai_9001716005_sunday_september_27_2020_001": {
+      "artery": {
+        "num_nodes": 125,
+        "num_edges": 126,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.261107325553894
+      },
+      "vein": {
+        "num_nodes": 74,
+        "num_edges": 74,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4199614524841309
+      },
+      "airway": {
+        "num_nodes": 1,
+        "num_edges": 0,
+        "failed": [],
+        "warned": [],
+        "median_diameter": 0.0
+      }
+    },
+    "nonph_zhangjinsheng_0800410017_sunday_january_3_2016_001": {
+      "artery": {
+        "num_nodes": 297,
+        "num_edges": 298,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.482812523841858
+      },
+      "vein": {
+        "num_nodes": 143,
+        "num_edges": 144,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.482812523841858
+      },
+      "airway": {
+        "num_nodes": 8,
+        "num_edges": 8,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.7370516061782837
+      }
+    },
+    "nonph_zhangchengguo_9001294653_wednesday_december_19_2018_001": {
+      "artery": {
+        "num_nodes": 179,
+        "num_edges": 180,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.432031273841858
+      },
+      "vein": {
+        "num_nodes": 66,
+        "num_edges": 68,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4480469226837158
+      },
+      "airway": {
+        "num_nodes": 10,
+        "num_edges": 10,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.8326497077941895
+      }
+    },
+    "nonph_zhouxufang_h02447862_saturday_march_23_2019_001": {
+      "artery": {
+        "num_nodes": 114,
+        "num_edges": 114,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4020832777023315
+      },
+      "vein": {
+        "num_nodes": 96,
+        "num_edges": 96,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.4020832777023315
+      },
+      "airway": {
+        "num_nodes": 12,
+        "num_edges": 12,
+        "failed": [],
+        "warned": [
+          "largest_cc_pct"
+        ],
+        "median_diameter": 1.5958161354064941
+      }
+    }
+  }
+}

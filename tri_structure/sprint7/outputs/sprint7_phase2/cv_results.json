@@ -1,0 +1,179 @@
+{
+  "experiment": "tri_structure_pipeline",
+  "config": {
+    "hidden": 64,
+    "n_layers": 3,
+    "dropout": 0.3,
+    "epochs": 200,
+    "n_folds": 5,
+    "repeats": 3,
+    "use_airway": true,
+    "mpap_aux": true,
+    "pool_mode": "mean",
+    "use_signature": true
+  },
+  "n_cases": 106,
+  "mean_metrics": {
+    "auc": {
+      "mean": 0.7284722222222222,
+      "std": 0.1250295746906511
+    },
+    "accuracy": {
+      "mean": 0.7431457431457431,
+      "std": 0.1285300429130378
+    },
+    "sensitivity": {
+      "mean": 0.7186111111111111,
+      "std": 0.20983826811483194
+    },
+    "specificity": {
+      "mean": 0.8177777777777777,
+      "std": 0.20032073048421223
+    },
+    "f1": {
+      "mean": 0.7892482221552429,
+      "std": 0.12933440566828464
+    },
+    "precision": {
+      "mean": 0.9328941635133586,
+      "std": 0.06667748111763278
+    }
+  },
+  "fold_metrics": [
+    {
+      "auc": 0.6875,
+      "accuracy": 0.5454545454545454,
+      "sensitivity": 0.375,
+      "specificity": 1.0,
+      "f1": 0.5454545454545454,
+      "precision": 1.0,
+      "threshold": 0.8374212980270386
+    },
+    {
+      "auc": 0.7875,
+      "accuracy": 0.8571428571428571,
+      "sensitivity": 0.875,
+      "specificity": 0.8,
+      "f1": 0.9032258064516129,
+      "precision": 0.9333333333333333,
+      "threshold": 0.41618257761001587
+    },
+    {
+      "auc": 0.6875,
+      "accuracy": 0.6666666666666666,
+      "sensitivity": 0.5625,
+      "specificity": 1.0,
+      "f1": 0.72,
+      "precision": 1.0,
+      "threshold": 0.8788477778434753
+    },
+    {
+      "auc": 0.475,
+      "accuracy": 0.5238095238095238,
+      "sensitivity": 0.4375,
+      "specificity": 0.8,
+      "f1": 0.5833333333333334,
+      "precision": 0.875,
+      "threshold": 0.868561863899231
+    },
+    {
+      "auc": 0.7666666666666667,
+      "accuracy": 0.7619047619047619,
+      "sensitivity": 0.6666666666666666,
+      "specificity": 1.0,
+      "f1": 0.8,
+      "precision": 1.0,
+      "threshold": 0.7388284802436829
+    },
+    {
+      "auc": 0.5625,
+      "accuracy": 0.5909090909090909,
+      "sensitivity": 0.5,
+      "specificity": 0.8333333333333334,
+      "f1": 0.64,
+      "precision": 0.8888888888888888,
+      "threshold": 0.7114197015762329
+    },
+    {
+      "auc": 0.775,
+      "accuracy": 0.6190476190476191,
+      "sensitivity": 0.5,
+      "specificity": 1.0,
+      "f1": 0.6666666666666666,
+      "precision": 1.0,
+      "threshold": 0.7941595911979675
+    },
+    {
+      "auc": 0.85,
+      "accuracy": 0.9047619047619048,
+      "sensitivity": 1.0,
+      "specificity": 0.6,
+      "f1": 0.9411764705882353,
+      "precision": 0.8888888888888888,
+      "threshold": 0.7290639281272888
+    },
+    {
+      "auc": 0.825,
+      "accuracy": 0.7142857142857143,
+      "sensitivity": 0.625,
+      "specificity": 1.0,
+      "f1": 0.7692307692307693,
+      "precision": 1.0,
+      "threshold": 0.3037383556365967
+    },
+    {
+      "auc": 0.788888888888889,
+      "accuracy": 0.8095238095238095,
+      "sensitivity": 0.8666666666666667,
+      "specificity": 0.6666666666666666,
+      "f1": 0.8666666666666667,
+      "precision": 0.8666666666666667,
+      "threshold": 0.7896862030029297
+    },
+    {
+      "auc": 0.65625,
+      "accuracy": 0.7727272727272727,
+      "sensitivity": 0.875,
+      "specificity": 0.5,
+      "f1": 0.8484848484848485,
+      "precision": 0.8235294117647058,
+      "threshold": 0.49842265248298645
+    },
+    {
+      "auc": 0.95,
+      "accuracy": 0.9523809523809523,
+      "sensitivity": 0.9375,
+      "specificity": 1.0,
+      "f1": 0.967741935483871,
+      "precision": 1.0,
+      "threshold": 0.43655720353126526
+    },
+    {
+      "auc": 0.575,
+      "accuracy": 0.8571428571428571,
+      "sensitivity": 1.0,
+      "specificity": 0.4,
+      "f1": 0.9142857142857143,
+      "precision": 0.8421052631578947,
+      "threshold": 0.813438892364502
+    },
+    {
+      "auc": 0.6625,
+      "accuracy": 0.7142857142857143,
+      "sensitivity": 0.625,
+      "specificity": 1.0,
+      "f1": 0.7692307692307693,
+      "precision": 1.0,
+      "threshold": 0.7512140870094299
+    },
+    {
+      "auc": 0.8777777777777778,
+      "accuracy": 0.8571428571428571,
+      "sensitivity": 0.9333333333333333,
+      "specificity": 0.6666666666666666,
+      "f1": 0.9032258064516129,
+      "precision": 0.875,
+      "threshold": 0.785203218460083
+    }
+  ]
+}

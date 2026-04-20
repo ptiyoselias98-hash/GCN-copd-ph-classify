@@ -1,0 +1,89 @@
+{
+  "experiment": "tri_structure_pipeline",
+  "config": {
+    "hidden": 64,
+    "n_layers": 3,
+    "dropout": 0.3,
+    "epochs": 200,
+    "n_folds": 5,
+    "repeats": 1,
+    "use_airway": true,
+    "mpap_aux": true,
+    "pool_mode": "mean",
+    "use_signature": false
+  },
+  "n_cases": 106,
+  "mean_metrics": {
+    "auc": {
+      "mean": 0.7206944444444444,
+      "std": 0.1597091782113297
+    },
+    "accuracy": {
+      "mean": 0.667965367965368,
+      "std": 0.14616144449434793
+    },
+    "sensitivity": {
+      "mean": 0.5700000000000001,
+      "std": 0.1774119499921017
+    },
+    "specificity": {
+      "mean": 0.96,
+      "std": 0.07999999999999999
+    },
+    "f1": {
+      "mean": 0.7041780696953112,
+      "std": 0.1535770521201759
+    },
+    "precision": {
+      "mean": 0.975,
+      "std": 0.049999999999999996
+    }
+  },
+  "fold_metrics": [
+    {
+      "auc": 0.8645833333333334,
+      "accuracy": 0.8636363636363636,
+      "sensitivity": 0.8125,
+      "specificity": 1.0,
+      "f1": 0.896551724137931,
+      "precision": 1.0,
+      "threshold": 0.8675093650817871
+    },
+    {
+      "auc": 0.875,
+      "accuracy": 0.7619047619047619,
+      "sensitivity": 0.6875,
+      "specificity": 1.0,
+      "f1": 0.8148148148148148,
+      "precision": 1.0,
+      "threshold": 0.991417646408081
+    },
+    {
+      "auc": 0.6124999999999999,
+      "accuracy": 0.47619047619047616,
+      "sensitivity": 0.3125,
+      "specificity": 1.0,
+      "f1": 0.47619047619047616,
+      "precision": 1.0,
+      "threshold": 0.9986949563026428
+    },
+    {
+      "auc": 0.4625,
+      "accuracy": 0.5238095238095238,
+      "sensitivity": 0.4375,
+      "specificity": 0.8,
+      "f1": 0.5833333333333334,
+      "precision": 0.875,
+      "threshold": 0.9133572578430176
+    },
+    {
+      "auc": 0.7888888888888889,
+      "accuracy": 0.7142857142857143,
+      "sensitivity": 0.6,
+      "specificity": 1.0,
+      "f1": 0.75,
+      "precision": 1.0,
+      "threshold": 0.9816046953201294
+    }
+  ]
+}

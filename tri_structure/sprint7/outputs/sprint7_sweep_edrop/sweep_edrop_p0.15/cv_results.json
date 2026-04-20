@@ -1,0 +1,89 @@
+{
+  "experiment": "tri_structure_pipeline",
+  "config": {
+    "hidden": 64,
+    "n_layers": 3,
+    "dropout": 0.3,
+    "epochs": 200,
+    "n_folds": 5,
+    "repeats": 1,
+    "use_airway": true,
+    "mpap_aux": true,
+    "pool_mode": "mean",
+    "use_signature": false
+  },
+  "n_cases": 106,
+  "mean_metrics": {
+    "auc": {
+      "mean": 0.6934722222222222,
+      "std": 0.1058708740651018
+    },
+    "accuracy": {
+      "mean": 0.6497835497835497,
+      "std": 0.06845304398837042
+    },
+    "sensitivity": {
+      "mean": 0.545,
+      "std": 0.08824681297361395
+    },
+    "specificity": {
+      "mean": 0.9666666666666666,
+      "std": 0.06666666666666665
+    },
+    "f1": {
+      "mean": 0.6953687600644122,
+      "std": 0.06933095403703109
+    },
+    "precision": {
+      "mean": 0.9800000000000001,
+      "std": 0.039999999999999994
+    }
+  },
+  "fold_metrics": [
+    {
+      "auc": 0.84375,
+      "accuracy": 0.7727272727272727,
+      "sensitivity": 0.6875,
+      "specificity": 1.0,
+      "f1": 0.8148148148148148,
+      "precision": 1.0,
+      "threshold": 0.9131242036819458
+    },
+    {
+      "auc": 0.7125,
+      "accuracy": 0.6190476190476191,
+      "sensitivity": 0.5,
+      "specificity": 1.0,
+      "f1": 0.6666666666666666,
+      "precision": 1.0,
+      "threshold": 0.9999290704727173
+    },
+    {
+      "auc": 0.6875,
+      "accuracy": 0.6190476190476191,
+      "sensitivity": 0.5,
+      "specificity": 1.0,
+      "f1": 0.6666666666666666,
+      "precision": 1.0,
+      "threshold": 0.9998745918273926
+    },
+    {
+      "auc": 0.5125,
+      "accuracy": 0.5714285714285714,
+      "sensitivity": 0.4375,
+      "specificity": 1.0,
+      "f1": 0.6086956521739131,
+      "precision": 1.0,
+      "threshold": 0.9401882886886597
+    },
+    {
+      "auc": 0.7111111111111111,
+      "accuracy": 0.6666666666666666,
+      "sensitivity": 0.6,
+      "specificity": 0.8333333333333334,
+      "f1": 0.72,
+      "precision": 0.9,
+      "threshold": 0.9810150861740112
+    }
+  ]
+}
