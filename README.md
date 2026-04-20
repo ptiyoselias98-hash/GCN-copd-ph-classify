@@ -516,3 +516,55 @@ head rather than as direct concat inputs to the classifier.
 Full write-up, source code, and raw JSON outputs: [`tri_structure/`](tri_structure/) (see
 [`tri_structure/RESULTS.md`](tri_structure/RESULTS.md)). `shared_embeddings.npz`
 is withheld as it contains patient identifiers.
+
+## Sprint 7 — real per-structure cache + regularisation (2026-04-20, negative result)
+
+Sprint 7 rebuilt the per-structure (artery / vein / airway) skeleton cache with
+three fixes — largest-component filter, airway `<3`-node fallback, Strahler
+default = 1 — and added three regularisation knobs to the pipeline:
+**edge dropout**, **label smoothing**, and **cosine warmup**. New CLI flags:
+`--edge_drop_p`, `--label_smoothing`, `--warmup_epochs`, `--cache_format`.
+
+### Task 3 — edge-dropout sweep (5-fold CV, 1 repeat, 200 epochs)
+
+| p    | AUC (mean ± std) |
+|------|------------------|
+| 0.00 | 0.673 ± 0.110    |
+| 0.05 | 0.678 ± 0.166    |
+| **0.10** | **0.721 ± 0.160** |
+| 0.15 | 0.694 ± 0.106    |
+
+![Sprint 7 edge-dropout sweep](tri_structure/sprint7/outputs/figures/sweep_edrop_auc.png)
+
+### Task 5 — Phase 2 full training (p=0.10, label_smoothing=0.1, warmup=20, 3×5 CV)
+
+| Metric | Phase 1 (mean pool) | v2 (attn + signatures) | **Sprint 7 (tri-cache + reg.)** |
+|---|---|---|---|
+| AUC  | 0.880 ± 0.093 | 0.734 ± 0.142 | **0.729 ± 0.125** |
+| Acc  | 0.877 ± 0.089 | 0.739 ± 0.115 | 0.743 ± 0.129 |
+| Sens | 0.869 ± 0.113 | 0.708 ± 0.144 | 0.719 ± 0.210 |
+| Spec | 0.900 ± 0.119 | 0.824 ± 0.166 | 0.818 ± 0.200 |
+| F1   | 0.910 ± 0.070 | 0.794 ± 0.101 | 0.789 ± 0.129 |
+| Prec | 0.964 ± 0.041 | 0.926 ± 0.064 | 0.933 ± 0.067 |
+
+![Sprint 7 vs Phase 1 vs v2 — 6 metrics](tri_structure/sprint7/outputs/figures/phase2_vs_phase1_auc.png)
+
+### Per-structure attention vs mPAP
+
+Phase 1's biological signal (|r(artery, mPAP)|=0.486, |r(airway, mPAP)|=0.468)
+does **not** return with the real per-structure cache. Sprint 7 gives
+|r(artery, mPAP)|=0.073 and |r(airway, mPAP)|=0.042 — the latter below the
+plan's own investigation threshold of 0.40.
+
+![Sprint 7 attention × mPAP](tri_structure/sprint7/outputs/figures/attention_mpap_sprint7.png)
+
+### Takeaway
+
+Swapping the heuristic unified partition for a real per-structure cache regressed
+every classification metric and destroyed the attention-mPAP signal. The plan's
+own guidance triggers an airway-segmentation quality investigation before any
+further training in this direction. Phase 1 (heuristic partition, mean pool)
+remains the reference configuration.
+
+Automation + source + raw outputs: [`tri_structure/sprint7/`](tri_structure/sprint7/)
+(see [`tri_structure/sprint7/SPRINT7_RESULTS.md`](tri_structure/sprint7/SPRINT7_RESULTS.md)).
