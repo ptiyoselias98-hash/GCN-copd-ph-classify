@@ -21,7 +21,7 @@ partition.
 | 2 | QA gate (cross-cache reproducibility) | rc=0, pairwise r = 0.995, airway real-rate 81.13% |
 | 3 | Edge-drop sweep p ∈ {0.0, 0.05, 0.10, 0.15} | best p = 0.10, AUC 0.721 ± 0.160 |
 | 5 | Phase 2 full training (p=0.10, label_smoothing=0.1, warmup=20) | AUC 0.729 ± 0.125 |
-| 6 | Comparison report | deferred — waiting on root-cause investigation |
+| 6 | Comparison report | done — see [`SPRINT7_COMPARISON_REPORT.md`](SPRINT7_COMPARISON_REPORT.md) |
 
 ## Phase 2 vs Phase 1
 
