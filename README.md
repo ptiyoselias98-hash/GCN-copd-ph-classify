@@ -826,3 +826,75 @@ just by Euclidean distance).
 
 Per-fold metrics + config:
 [`outputs/p_zeta_cluster_269/plan_c/cv_results.json`](outputs/p_zeta_cluster_269/plan_c/cv_results.json).
+
+## Topology evolution — does unsupervised topology alone separate PH? (2026-04-21)
+
+Plans A–C all use the *supervised* tri-structure GCN embedding, so any cluster
+structure there could be a memorised decision boundary. A cleaner question:
+
+> Strip the PH label. Does pulmonary-tree topology on its own organise cases
+> along the PH axis?
+
+Three label-free views of each patient's (artery, vein, airway) graphs were
+built on the n=269 cohort and clustered with KMeans / SpectralClustering
+(k ∈ {2,3,4}). ARI vs the held-out PH label is used only as external
+validation — never during training.
+
+| view | signature | dim |
+|---|---|---|
+| **A — WL kernel** | Weisfeiler-Lehman subtree hashing (T=3), bag-of-subtrees → TruncatedSVD | 64 |
+| **B — graph stats** | 19 per-structure scalars × 3 structures (degree / diameter / length / tortuosity / Strahler) | 57 |
+| **C — GAE (SSL)** | per-structure `GCNConv(12→64→32)` autoencoder, BCE edge recon, 2-seed ensemble | 96 |
+
+### Raw n=269 result — looks promising but is confounded
+
+![Topology evolution — raw vs filtered](outputs/p_zeta_cluster_269/topology_evolution/topo_evolution_raw_vs_filtered.png)
+
+Raw best is **C_GAE spectral k=3, ARI 0.544**. Inspecting the three clusters
+tells a different story than "topology phenotype":
+
+| cluster | n | PH rate | mean artery nodes | mean vein nodes | mean airway nodes |
+|---|---:|---:|---:|---:|---:|
+| 0 | 189 | **85.7%** | 195 | 97 | 12 |
+| 2 | 57 | 3.5% | 31 | 36 | **1** |
+| 1 | 23 | 0.0% | **1** | **1** | 30 |
+
+Clusters 1 and 2 are *segmentation failure modes* (only the airway, or only
+the vessels, have non-trivial trees). They're tagged non-PH simply because
+the segmentation-failed scans happen to be the healthier ones. The 0.544 ARI
+is therefore a **data-quality artifact, not a topology signal**.
+
+### Filtered n=141 — the honest answer
+
+Keeping only cases with all three trees non-degenerate
+(`artery_n ≥ 20 AND vein_n ≥ 20 AND airway_n ≥ 5`) leaves 141 / 269 cases
+(120 PH / 21 non-PH, base rate 85.1%). Best ARI per view:
+
+| view | best (method, k) | ARI | NMI | silhouette |
+|---|---|---:|---:|---:|
+| A — WL kernel | spectral k=2 | **0.144** | 0.043 | 0.231 |
+| B — graph stats | spectral k=3 | 0.056 | 0.052 | 0.120 |
+| C — GAE (SSL) | spectral k=2 | 0.076 | 0.087 | 0.368 |
+
+Once the segmentation artifact is removed, **no unsupervised view separates
+PH above chance on the clean sub-cohort**. The WL kernel still edges the
+other two, but an ARI of 0.14 with 85% base-rate imbalance means the
+structure it picks up is not PH-specific.
+
+### What this says about the project
+
+- The supervised tri-structure GCN's AUC ~0.92 is *not* recoverable from
+  topology alone without labels — PH topology is **not a dominant axis of
+  unsupervised variation** in this cohort.
+- Segmentation-quality auditing should be a mandatory first gate on any
+  future unsupervised analysis here; otherwise any reported cluster / ARI
+  is suspect.
+- For the "from COPD to COPD-PH topological evolution" question, the next
+  productive direction is **supervised contrastive or weakly-label-conditioned
+  representation learning**, not pure SSL clustering.
+
+Scripts & artifacts:
+- remote runner: [`copdph-gcn-repo/_remote_topology_evolution.py`](copdph-gcn-repo/_remote_topology_evolution.py) (dual-GPU GAE ensemble + joblib WL/stats)
+- local filtered re-analysis: [`copdph-gcn-repo/_remote_topology_evolution_filtered.py`](copdph-gcn-repo/_remote_topology_evolution_filtered.py)
+- figure driver: [`copdph-gcn-repo/outputs/_drivers_sprint6/make_topology_evolution_figs.py`](copdph-gcn-repo/outputs/_drivers_sprint6/make_topology_evolution_figs.py)
+- summaries: [`outputs/p_zeta_cluster_269/topology_evolution/topo_summary.json`](outputs/p_zeta_cluster_269/topology_evolution/topo_summary.json) · [`topo_summary_filtered.json`](outputs/p_zeta_cluster_269/topology_evolution/topo_summary_filtered.json)

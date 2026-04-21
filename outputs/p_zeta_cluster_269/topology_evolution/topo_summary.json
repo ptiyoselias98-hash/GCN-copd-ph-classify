@@ -1,0 +1,243 @@
+{
+  "n_cases": 269,
+  "label_counts": [
+    105,
+    164
+  ],
+  "rows": [
+    {
+      "experiment": "A_WL",
+      "method": "kmeans",
+      "k": 2,
+      "ARI_vs_PH": 0.12237161404361241,
+      "NMI_vs_PH": 0.18067692531979931,
+      "silhouette": 0.4083022177219391,
+      "sizes": [
+        246,
+        23
+      ]
+    },
+    {
+      "experiment": "A_WL",
+      "method": "spectral",
+      "k": 2,
+      "ARI_vs_PH": 0.04645958819767886,
+      "NMI_vs_PH": 0.08722787013388014,
+      "silhouette": 0.3777385354042053,
+      "sizes": [
+        259,
+        10
+      ]
+    },
+    {
+      "experiment": "A_WL",
+      "method": "kmeans",
+      "k": 3,
+      "ARI_vs_PH": 0.4832255729955131,
+      "NMI_vs_PH": 0.41569450106033373,
+      "silhouette": 0.30003851652145386,
+      "sizes": [
+        55,
+        191,
+        23
+      ]
+    },
+    {
+      "experiment": "A_WL",
+      "method": "spectral",
+      "k": 3,
+      "ARI_vs_PH": 0.11522448057646437,
+      "NMI_vs_PH": 0.17030249391346688,
+      "silhouette": 0.42922747135162354,
+      "sizes": [
+        246,
+        13,
+        10
+      ]
+    },
+    {
+      "experiment": "A_WL",
+      "method": "kmeans",
+      "k": 4,
+      "ARI_vs_PH": 0.34395013802396684,
+      "NMI_vs_PH": 0.32086253353257543,
+      "silhouette": 0.20238852500915527,
+      "sizes": [
+        23,
+        142,
+        55,
+        49
+      ]
+    },
+    {
+      "experiment": "A_WL",
+      "method": "spectral",
+      "k": 4,
+      "ARI_vs_PH": 0.37040791005940477,
+      "NMI_vs_PH": 0.3692449053411395,
+      "silhouette": 0.33049845695495605,
+      "sizes": [
+        210,
+        36,
+        13,
+        10
+      ]
+    },
+    {
+      "experiment": "B_stats",
+      "method": "kmeans",
+      "k": 2,
+      "ARI_vs_PH": 0.11691917898346979,
+      "NMI_vs_PH": 0.15029376929844274,
+      "silhouette": 0.44563496112823486,
+      "sizes": [
+        245,
+        24
+      ]
+    },
+    {
+      "experiment": "B_stats",
+      "method": "spectral",
+      "k": 2,
+      "ARI_vs_PH": 0.11691917898346979,
+      "NMI_vs_PH": 0.15029376929844274,
+      "silhouette": 0.44563496112823486,
+      "sizes": [
+        245,
+        24
+      ]
+    },
+    {
+      "experiment": "B_stats",
+      "method": "kmeans",
+      "k": 3,
+      "ARI_vs_PH": 0.44814463321420567,
+      "NMI_vs_PH": 0.34746592370300455,
+      "silhouette": 0.2940128445625305,
+      "sizes": [
+        24,
+        179,
+        66
+      ]
+    },
+    {
+      "experiment": "B_stats",
+      "method": "spectral",
+      "k": 3,
+      "ARI_vs_PH": 0.44814463321420567,
+      "NMI_vs_PH": 0.34746592370300455,
+      "silhouette": 0.2940128445625305,
+      "sizes": [
+        179,
+        66,
+        24
+      ]
+    },
+    {
+      "experiment": "B_stats",
+      "method": "kmeans",
+      "k": 4,
+      "ARI_vs_PH": 0.28116000894541804,
+      "NMI_vs_PH": 0.2919707211527245,
+      "silhouette": 0.2674168646335602,
+      "sizes": [
+        35,
+        67,
+        143,
+        24
+      ]
+    },
+    {
+      "experiment": "B_stats",
+      "method": "spectral",
+      "k": 4,
+      "ARI_vs_PH": 0.2627993556505297,
+      "NMI_vs_PH": 0.27488242789578504,
+      "silhouette": 0.23128102719783783,
+      "sizes": [
+        24,
+        123,
+        66,
+        56
+      ]
+    },
+    {
+      "experiment": "C_GAE",
+      "method": "kmeans",
+      "k": 2,
+      "ARI_vs_PH": 0.3645821343375666,
+      "NMI_vs_PH": 0.34789244893809723,
+      "silhouette": 0.8000286221504211,
+      "sizes": [
+        212,
+        57
+      ]
+    },
+    {
+      "experiment": "C_GAE",
+      "method": "spectral",
+      "k": 2,
+      "ARI_vs_PH": 0.3645821343375666,
+      "NMI_vs_PH": 0.34789244893809723,
+      "silhouette": 0.8000286221504211,
+      "sizes": [
+        212,
+        57
+      ]
+    },
+    {
+      "experiment": "C_GAE",
+      "method": "kmeans",
+      "k": 3,
+      "ARI_vs_PH": 0.3218146592335152,
+      "NMI_vs_PH": 0.30493311129457884,
+      "silhouette": 0.6638891696929932,
+      "sizes": [
+        57,
+        200,
+        12
+      ]
+    },
+    {
+      "experiment": "C_GAE",
+      "method": "spectral",
+      "k": 3,
+      "ARI_vs_PH": 0.5443979375896014,
+      "NMI_vs_PH": 0.4787798677894961,
+      "silhouette": 0.37360233068466187,
+      "sizes": [
+        189,
+        23,
+        57
+      ]
+    },
+    {
+      "experiment": "C_GAE",
+      "method": "kmeans",
+      "k": 4,
+      "ARI_vs_PH": 0.19292949770091045,
+      "NMI_vs_PH": 0.27817407063351135,
+      "silhouette": 0.4741867780685425,
+      "sizes": [
+        57,
+        133,
+        12,
+        67
+      ]
+    },
+    {
+      "experiment": "C_GAE",
+      "method": "spectral",
+      "k": 4,
+      "ARI_vs_PH": 0.31907129026298164,
+      "NMI_vs_PH": 0.3786792166969096,
+      "silhouette": 0.4348142147064209,
+      "sizes": [
+        94,
+        95,
+        57,
+        23
+      ]
+    }
+  ]
+}
