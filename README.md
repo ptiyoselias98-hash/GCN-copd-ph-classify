@@ -753,3 +753,76 @@ hypotheses are complementary, not competitive.
 
 Full per-case rows and summary CSVs:
 [`outputs/p_zeta_cluster_269/plan_b/`](outputs/p_zeta_cluster_269/plan_b/).
+
+---
+
+## Plan C — Joint heterograph (artery+vein+airway as one PyG HeteroData) (2026-04-21)
+
+**Motivation.** The Sprint-5/6 backbone (`p_theta_269_lr2x`) treats artery,
+vein, and airway as **three independent GCN towers** whose pooled embeddings
+are fused through a learned cross-structure attention head. The natural
+counter-design is a **single joint heterograph** in which the three vessel
+trees are stitched together by anatomical companion edges, so messages can
+pass between structures inside the GCN itself rather than only at the
+fusion stage. Plan C builds this counterfactual and compares it head-to-head
+on the same n=269 cohort and the same training budget.
+
+**Method.** For each case we build a `torch_geometric.data.HeteroData` with
+three node types (artery / vein / airway, each carrying the same 12D
+features as the separate model). Edges:
+
+- **Within-structure** edges (3 types): copied directly from each tri cache
+  graph's `edge_index`.
+- **Cross-structure "near"** edges (6 types, both directions): for every
+  source node we add edges to its **k = 3 nearest** target-structure nodes
+  in mm-space, capped at 25 mm. This implements the "anatomical companion"
+  prior as a hard graph relation rather than a learned attention weight.
+
+The encoder is two `HeteroConv` layers with a `SAGEConv((−1, −1), 96)`
+per edge type, followed by per-structure `global_mean_pool`, concatenation
+of the three pools, and a 2-layer MLP head. Same training budget as
+`p_theta_269_lr2x`: 5-fold stratified CV, 40 epochs, lr = 2e-3, AdamW with
+weight-decay 1e-4, class-weighted CE loss, batch size 16. Script:
+[`copdph-gcn-repo/_remote_plan_c_heterograph.py`](copdph-gcn-repo/_remote_plan_c_heterograph.py).
+
+**Coverage.** All 269 cases build successfully (skipped = 0); this confirms
+the cache is internally consistent for joint construction even though Plan B
+loses ~half of cases to the 25 mm-pair filter (Plan C tolerates 0 cross
+edges for a structure pair without dropping the case).
+
+**Result — joint heterograph slightly *underperforms* the separate-tower
+attention model on every metric.**
+
+![Plan C — separate vs joint](outputs/p_zeta_cluster_269/plan_c/plan_c_vs_p_theta.png)
+
+| metric        | p_theta_269_lr2x (separate + cross-attention) | Plan C (joint heterograph + companion edges) | Δ (C − theta) |
+|:--------------|:-----:|:-----:|:-----:|
+| AUC           | **0.928 ± 0.027** | 0.907 ± 0.050 | −0.021 |
+| Accuracy      | **0.886 ± 0.036** | 0.840 ± 0.076 | −0.046 |
+| Sensitivity   | **0.927 ± 0.081** | 0.885 ± 0.135 | −0.042 |
+| Specificity   | **0.822 ± 0.091** | 0.771 ± 0.070 | −0.051 |
+| F1            | **0.907 ± 0.034** | 0.866 ± 0.075 | −0.041 |
+| Precision     | **0.895 ± 0.047** | 0.859 ± 0.034 | −0.037 |
+
+**Interpretation.** Hand-crafting companion edges from k-NN proximity bakes
+the cross-structure topology into the graph *before* training; learned
+attention lets the model decide *per case* how much each structure
+contributes (and Plan A showed that this weight flips between PH and
+non-PH). The joint heterograph also pays a wider variance cost (AUC σ
+nearly doubles, 0.027 → 0.050), most likely because k=3 NN edges add
+spurious connections in cases where a vein branch happens to lie near an
+unrelated artery — geometric proximity is not the same as anatomical
+companionship. **Net design verdict: stick with the separate-tower
+cross-attention fusion; the joint-heterograph counterfactual was a useful
+ablation but not a Pareto improvement.**
+
+Caveats: (i) we did not re-tune `k_cross`, `MAX_CROSS_MM`, hidden width, or
+depth for the joint model — a fair sweep might close part of the gap;
+(ii) the heterograph still uses geometric NN as a proxy for true
+anatomical companionship, so a future direction is to seed cross edges from
+a real airway-segmentation pairing (e.g. trace each pulmonary-artery branch
+back to the closest accompanying bronchus along the bronchial tree, not
+just by Euclidean distance).
+
+Per-fold metrics + config:
+[`outputs/p_zeta_cluster_269/plan_c/cv_results.json`](outputs/p_zeta_cluster_269/plan_c/cv_results.json).
