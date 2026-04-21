@@ -1,0 +1,7 @@
+﻿feats,clf,AUC,AUC_std,Accuracy,Sensitivity,Specificity,Precision,F1
+AB_only,logreg,0.5769,0.1369,0.68,0.9117,0.04,0.7238,0.8051
+AB_only,rf,0.6588,0.1289,0.7007,0.8927,0.1644,0.7507,0.813
+radiomics+AB,logreg,0.7981,0.0872,0.7784,0.8749,0.5111,0.834,0.8518
+radiomics+AB,rf,0.7739,0.0958,0.8096,0.921,0.4978,0.8376,0.8759
+radiomics_only,logreg,0.8103,0.0879,0.796,0.8797,0.5644,0.8501,0.8629
+radiomics_only,rf,0.7834,0.08,0.8063,0.9073,0.5244,0.8421,0.8723
