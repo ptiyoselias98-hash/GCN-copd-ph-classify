@@ -584,12 +584,12 @@ with a single-pipeline model. Ten variants were run (5-fold × 3-rep CV,
 
 ![Sprint 6 AUC bar](copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_auc_bar.png)
 
-| rank | model | n | AUC | F1 | Sens | Spec |
-|---|---|---|---|---|---|---|
-| 1 | `arm_a_ensemble` (sprint 5 baseline) | 113 | **0.944** | – | – | – |
-| 2 | **`p_theta_269_lr2x`** (tri_structure best) | 269 | **0.928 ± 0.027** | 0.907 | 0.927 | 0.822 |
-| 3 | `p_zeta_sig` (signature view, default lr) | 269 | 0.923 ± 0.034 | 0.918 | 0.933 | 0.844 |
-| 4 | `p_zeta_attn` / `p_zeta_tri_282` | 269 | 0.917 | 0.911 / 0.908 | 0.94 / 0.94 | 0.81 / 0.80 |
+| rank | model | n | AUC | F1 | Sens | Spec | Acc | Prec |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `arm_a_ensemble` (sprint 5 baseline/gcn_only ensemble) | 113 | **0.944** | 0.897 | 0.847 | 0.915 | 0.869 | 0.954 |
+| 2 | **`p_theta_269_lr2x`** (tri_structure best) | 269 | **0.928 ± 0.027** | 0.907 | 0.927 | 0.822 | 0.886 | 0.895 |
+| 3 | `p_zeta_sig` (signature view, default lr) | 269 | 0.923 ± 0.034 | 0.918 | 0.933 | 0.844 | 0.898 | 0.908 |
+| 4 | `p_zeta_attn` / `p_zeta_tri_282` | 269 | 0.917 | 0.911 / 0.908 | 0.94 / 0.94 | 0.81 / 0.80 | 0.89 / 0.89 | 0.88 / 0.88 |
 
 The tri-structure pipeline at its best (`p_theta_269_lr2x`) lands **~1.6 pts
 below** the radiomics ensemble baseline (0.944), but with a single end-to-end
@@ -629,3 +629,63 @@ python tri_structure_pipeline.py \
 
 Full analysis (10-variant table, per-fold variance, retirement list):
 [`copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_tri_structure_summary.md`](copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_tri_structure_summary.md).
+
+---
+
+## Plan A — Unsupervised clustering on n=269 tri_structure embeddings
+
+Re-ran clustering on the 64-D shared embeddings dumped by `p_theta_269_lr2x`
+(the new tri_structure best). Earlier n=106 cluster-topology runs showed
+ARI-vs-PH ≈ 0 — clusters only tracked emphysema severity. At **n=269 the
+picture flips**: both the unsupervised partition and the cross-structure
+attention separate PH from non-PH almost on their own.
+
+### 2D projection (PCA + t-SNE), coloured by PH label and by the best cluster
+
+![Plan A — 2D projection](copdph-gcn-repo/outputs/_drivers_sprint6/plan_a/projection_2d.png)
+
+t-SNE makes the split obvious: non-PH sits in the top-right lobe,
+PH in the bottom-left lobe, and `spectral_k2` recovers that split unsupervised.
+
+### Cluster-quality sweep (k ∈ {2..6} × kmeans / GMM / spectral)
+
+| method | k | silhouette | **ARI vs PH** | NMI vs PH | sizes |
+|---|---|---|---|---|---|
+| **spectral** | **2** | 0.141 | **0.611** | 0.542 | 189 / 80 |
+| kmeans | 2 | 0.136 | 0.600 | 0.512 | 186 / 83 |
+| gmm | 2 | 0.140 | 0.588 | 0.511 | 189 / 80 |
+| spectral | 3 | 0.067 | 0.446 | 0.428 | 146 / 42 / 81 |
+| gmm | 3 | 0.084 | 0.428 | 0.392 | 148 / 84 / 37 |
+
+k=2 is the dominant regime across all three methods (ARI ≈ 0.59–0.61 vs
+PH label). k≥3 fragments the PH block without finding a clinically
+distinct third sub-phenotype in this cohort.
+
+### PH rate per cluster (spectral k=2)
+
+![Plan A — PH rate per cluster](copdph-gcn-repo/outputs/_drivers_sprint6/plan_a/cluster_ph_profile.png)
+
+- Cluster 0 (n=189): PH rate **86 %** — PH-enriched. Vein-dominant attention (0.42).
+- Cluster 1 (n=80): PH rate **3 %** — non-PH. Artery-dominant attention (0.45).
+
+### Cross-structure attention flip
+
+![Plan A — Attention flip](copdph-gcn-repo/outputs/_drivers_sprint6/plan_a/attention_flip.png)
+
+| group | artery | vein | airway |
+|---|---|---|---|
+| non-PH (n=105) | **0.43** | 0.35 | 0.22 |
+| PH (n=164) | 0.38 | **0.42** | 0.20 |
+
+**The attention weight placed on the vein encoder rises from 0.35 (non-PH)
+to 0.42 (PH), flipping above the artery encoder.** Paired per-case, cluster 1
+(non-PH) has artery = 0.45 > vein = 0.33, while cluster 0 (PH) has vein = 0.42 >
+artery = 0.37. This is the first mechanistic signal the tri_structure model
+has produced: the classifier prefers venous geometry when predicting PH.
+It does not by itself establish causation, but it earmarks post-capillary /
+pulmonary-venous remodelling as the next anatomical hypothesis worth testing
+directly — and it is the bridge into Plan B (lobe-stratified artery-to-bronchus
+ratio) and Plan C (true heterograph with cross-structure companion edges).
+
+Full table (all 15 method × k combinations) + CSVs:
+[`copdph-gcn-repo/outputs/_drivers_sprint6/plan_a/`](copdph-gcn-repo/outputs/_drivers_sprint6/plan_a/).
