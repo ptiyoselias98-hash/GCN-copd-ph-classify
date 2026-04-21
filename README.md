@@ -596,6 +596,15 @@ below** the radiomics ensemble baseline (0.944), but with a single end-to-end
 model (no manual feature stack) and with lower variance than the n=106
 sprint 5 runs.
 
+### 6-metric radar — top 3 n=269 vs best/worst n=106
+
+![Sprint 6 radar](copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_radar.png)
+
+The n=269 trio (blue shades) collapses onto a single envelope that clears
+the 0.9 ring on every metric except specificity; both n=106 curves fall
+inside that envelope by 0.15–0.25 on AUC/Acc/F1. The shape confirms that
+cohort size, not architecture, is the first-order lever.
+
 ### LR sensitivity — cohort size dominates
 
 ![Sprint 6 LR sensitivity](copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_lr_sensitivity.png)

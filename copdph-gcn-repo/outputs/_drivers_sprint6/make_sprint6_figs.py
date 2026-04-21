@@ -113,6 +113,59 @@ fig.tight_layout()
 fig.savefig(HERE / "sprint6_lr_sensitivity.png")
 plt.close(fig)
 
+# --- Figure 3: 6-metric radar — 5 configs head-to-head
+def get_metrics(blk):
+    m = blk["mean_metrics"]
+    return [
+        m["auc"]["mean"],
+        m["accuracy"]["mean"],
+        m["sensitivity"]["mean"],
+        m["specificity"]["mean"],
+        m["f1"]["mean"],
+        m["precision"]["mean"],
+    ]
+
+configs = [
+    ("p_theta_269_lr2x (lr=2e-3, n=269)", get_metrics(lrs["p_theta_269_lr2x"]), "#1a4e8a"),
+    ("p_zeta_sig (signature, n=269)", get_metrics(six["p_zeta_sig"]), "#4a7ab8"),
+    ("p_zeta_tri_282 (default, n=269)", get_metrics(six["p_zeta_tri_282"]), "#8ab4e2"),
+    ("p_eta_pool_attn (best n=106)", get_metrics(six["p_eta_pool_attn"]), "#d98b5f"),
+    ("p_theta_106_lrhalf (worst n=106)", get_metrics(lrs["p_theta_106_lrhalf"]), "#c9453a"),
+]
+
+labels_r = ["AUC", "Accuracy", "Sensitivity", "Specificity", "F1", "Precision"]
+N = len(labels_r)
+angles = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
+angles += angles[:1]
+
+fig, ax = plt.subplots(figsize=(8.5, 7.5), dpi=130,
+                       subplot_kw=dict(polar=True))
+for name, vals, color in configs:
+    v = vals + vals[:1]
+    ax.plot(angles, v, "-", color=color, linewidth=2, label=name)
+    ax.fill(angles, v, color=color, alpha=0.08)
+
+ax.set_xticks(angles[:-1])
+ax.set_xticklabels(labels_r, fontsize=11)
+ax.set_ylim(0.5, 1.0)
+ax.set_yticks([0.6, 0.7, 0.8, 0.9, 0.95])
+ax.set_yticklabels(["0.6", "0.7", "0.8", "0.9", "0.95"], fontsize=8)
+ax.set_rlabel_position(90)
+ax.grid(True, linestyle=":", alpha=0.6)
+
+# emphasise 0.9 reference ring
+circle_vals = [0.9] * (N + 1)
+ax.plot(angles, circle_vals, "--", color="#222", linewidth=1, alpha=0.5)
+
+ax.set_title("Sprint 6 — 6-metric radar (5 configs, 5-fold × 3-rep CV)",
+             fontsize=13, pad=18)
+ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.18),
+          fontsize=9, ncol=1, frameon=False)
+fig.tight_layout()
+fig.savefig(HERE / "sprint6_radar.png", bbox_inches="tight")
+plt.close(fig)
+
 print("wrote:")
 print(" ", HERE / "sprint6_auc_bar.png")
 print(" ", HERE / "sprint6_lr_sensitivity.png")
+print(" ", HERE / "sprint6_radar.png")
