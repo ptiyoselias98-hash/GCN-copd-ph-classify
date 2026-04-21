@@ -568,3 +568,55 @@ remains the reference configuration.
 
 Automation + source + raw outputs: [`tri_structure/sprint7/`](tri_structure/sprint7/)
 (see [`tri_structure/sprint7/SPRINT7_RESULTS.md`](tri_structure/sprint7/SPRINT7_RESULTS.md)).
+
+---
+
+## Sprint 6 — tri-structure GCN 10-variant sweep (2026-04-21)
+
+End-to-end tri-structure GCN (artery / vein / airway) with attention fusion
+across the three pulmonary anatomies, replacing the radiomics + graph hybrid
+with a single-pipeline model. Ten variants were run (5-fold × 3-rep CV,
+`mpap_aux` on) across cohort size `{n=106 gold, n=269 expanded}`, pool mode
+`{mean, attn, add}`, optional signature view, and an LR sweep
+`{5e-4, 1e-3, 2e-3}` on the top config.
+
+### Headline — AUC across all 10 variants
+
+![Sprint 6 AUC bar](copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_auc_bar.png)
+
+| rank | model | n | AUC | F1 | Sens | Spec |
+|---|---|---|---|---|---|---|
+| 1 | `arm_a_ensemble` (sprint 5 baseline) | 113 | **0.944** | – | – | – |
+| 2 | **`p_theta_269_lr2x`** (tri_structure best) | 269 | **0.928 ± 0.027** | 0.907 | 0.927 | 0.822 |
+| 3 | `p_zeta_sig` (signature view, default lr) | 269 | 0.923 ± 0.034 | 0.918 | 0.933 | 0.844 |
+| 4 | `p_zeta_attn` / `p_zeta_tri_282` | 269 | 0.917 | 0.911 / 0.908 | 0.94 / 0.94 | 0.81 / 0.80 |
+
+The tri-structure pipeline at its best (`p_theta_269_lr2x`) lands **~1.6 pts
+below** the radiomics ensemble baseline (0.944), but with a single end-to-end
+model (no manual feature stack) and with lower variance than the n=106
+sprint 5 runs.
+
+### LR sensitivity — cohort size dominates
+
+![Sprint 6 LR sensitivity](copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_lr_sensitivity.png)
+
+1. **n=269 > n=106 by ~0.23 AUC** regardless of LR — the expanded cohort
+   crosses a stability threshold the tri-structure attention model needs.
+2. **lr=2e-3 beats the 1e-3 default by +0.011 AUC at n=269** (0.928 vs 0.917),
+   same variance. Promoted to new canonical LR.
+3. **`pool_mode=attn` is catastrophic on n=106** (AUC 0.697) but matches
+   `mean` on n=269 — attention heads need more samples per parameter.
+
+### Promoted config for next sprint
+
+```bash
+python tri_structure_pipeline.py \
+    --cache_dir ./cache_tri_converted \
+    --labels ./data/labels_expanded_282.csv \
+    --output_dir ./outputs/p_theta_269_lr2x \
+    --epochs 200 --repeats 3 --lr 2e-3 \
+    --mpap_aux --pool_mode mean
+```
+
+Full analysis (10-variant table, per-fold variance, retirement list):
+[`copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_tri_structure_summary.md`](copdph-gcn-repo/outputs/_drivers_sprint6/sprint6_tri_structure_summary.md).
