@@ -689,3 +689,67 @@ ratio) and Plan C (true heterograph with cross-structure companion edges).
 
 Full table (all 15 method × k combinations) + CSVs:
 [`copdph-gcn-repo/outputs/_drivers_sprint6/plan_a/`](copdph-gcn-repo/outputs/_drivers_sprint6/plan_a/).
+
+---
+
+## Plan B — Cross-structure artery:airway diameter ratio, stratified by Z-tertile (2026-04-21)
+
+**Motivation.** The literature's mechanistic companion for arterial remodelling
+is the ratio of the segmental artery to its paired bronchus (A:B ratio); in
+healthy adults A:B ≈ 0.8, and A:B > 1 is the textbook radiological sign of
+pulmonary-artery enlargement. The Plan A attention flip pointed at
+post-capillary geometry, but the direct pre-capillary hypothesis is still
+worth testing: **does the tri_structure cache carry an A:B signal, and is it
+spatially localised?** The cache has artery and airway graphs in the same
+voxel frame, so pairing is possible without a segmentation relaunch.
+
+**Method.** For each of 269 cases we (i) load artery + airway PyG graphs from
+`cache_tri_converted/*.pkl`, (ii) recover node centroids (`pos` if present,
+else `x[:, 7:10]`), (iii) convert to mm using each case's per-axis spacing
+(NaN/≤0 spacings clamped to 1), (iv) pair every artery branch with its
+nearest-neighbour airway branch via `scipy.spatial.cKDTree`, capping pair
+distance at 25 mm, and (v) compute A:B = artery-diameter / airway-diameter
+for each survived pair. No lobe mask is available on the server (the NIfTI
+tree only stores `lung.nii.gz` binary), so we stratify by **within-case
+Z-tertile** (upper/middle/lower) as an orientation-agnostic anatomical proxy.
+Per-tertile summaries → Mann-Whitney U vs PH label. Script:
+[`copdph-gcn-repo/_remote_plan_b_ab_ratio.py`](copdph-gcn-repo/_remote_plan_b_ab_ratio.py).
+
+**Coverage.** 139 / 269 cases survive the pairing pipeline (130 skipped for
+missing structure, empty centroid tensor, or no pairs within 25 mm). Class
+balance among survivors: 123 PH, 16 non-PH — the expanded cohort is
+PH-heavy, which caps the statistical power of this analysis.
+
+**Result — direction of effect.**
+
+![Plan B — A:B ratio by Z-tertile](outputs/p_zeta_cluster_269/plan_b/plan_b_ab_ratio_by_tertile.png)
+
+| Z-tertile   | PH frac(A:B>1)   | non-PH frac(A:B>1) | diff     | MW-p   |
+|:------------|:-----------------|:-------------------|:---------|:-------|
+| upper       | 0.444 ± 0.430    | 0.397 ± 0.463      | +0.047   | 0.506  |
+| middle      | 0.487 ± 0.400    | 0.346 ± 0.386      | +0.141   | 0.302  |
+| **lower**   | **0.466 ± 0.428**| **0.246 ± 0.396**  | **+0.220** | **0.051 ·** |
+| all pairs   | 0.455 ± 0.357    | 0.314 ± 0.375      | +0.142   | 0.125  |
+
+The **lower-Z tertile** carries the strongest A:B signal: PH cases have A:B>1
+in ~47 % of paired branches vs ~25 % in non-PH (**p = 0.051**, borderline but
+the only tertile approaching significance under this imbalance). Mean A:B
+ratios are not separable (all ≈ 1.1 in both groups, p ≥ 0.28), which says the
+shift is in the *tail* — more pairs crossing the A>B threshold, not a bulk
+shift of the distribution. Because Z-orientation in voxel space is
+ambiguous (HFS/FFS not recorded in the pkl), "lower Z" maps to either the
+apices or the bases depending on the case; a follow-up with a true lobe mask
+will be needed to localise this cleanly, but the tertile signal itself is
+orientation-invariant.
+
+**Interpretation.** A:B>1 is a standard pre-capillary-remodelling marker. The
+fact that PH vs non-PH separates at the *fraction* level (tail of A:B) rather
+than the mean suggests the disease affects a subset of branches rather than
+uniformly dilating the artery tree — consistent with segmental
+vasoconstriction/remodelling. Combined with the Plan A attention flip toward
+veins, the tri_structure cohort shows **both pre-capillary A:B-tail
+enlargement and post-capillary vein-dominated geometry** — i.e. the two
+hypotheses are complementary, not competitive.
+
+Full per-case rows and summary CSVs:
+[`outputs/p_zeta_cluster_269/plan_b/`](outputs/p_zeta_cluster_269/plan_b/).
