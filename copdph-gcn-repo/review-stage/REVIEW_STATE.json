@@ -1,0 +1,35 @@
+{
+  "round": 1,
+  "status": "round_1_complete_needs_fixes",
+  "max_rounds": 4,
+  "positive_threshold_score": 6.0,
+  "difficulty": "hard",
+  "history": [
+    {
+      "round": 1,
+      "timestamp": "2026-04-23T10:33:00",
+      "score": 2,
+      "verdict": "reject",
+      "reviewer": "codex-mcp gpt-5 high-reasoning",
+      "critical_weaknesses": [
+        {"id": "W1", "title": "Severe cohort/protocol confounding likely explains the high AUC", "severity": "critical", "detail": "All 170 PH cases are contrast-enhanced; many nonPH are plain-scan CT. AUC ~0.95 may be protocol classification, not disease.", "fix_direction": "Protocol-balanced analyses: contrast-only PH vs contrast-only nonPH, site/scanner-stratified splits, acquisition-protocol prediction controls."},
+        {"id": "W2", "title": "No independent validation / leakage-resistant splits", "severity": "critical", "detail": "Internal 5-fold CV only. No patient-level grouping verification, no held-out test, possible multiple scans per patient crossing folds.", "fix_direction": "Locked patient-level splits, external or temporal validation, freeze preprocessing before test."},
+        {"id": "W3", "title": "Graph construction insufficiently validated anatomically", "severity": "critical", "detail": "No overlay audits or morphometric comparisons; TEASAR params assumed correct without sensitivity analysis.", "fix_direction": "Per-structure overlays, blinded QC, skeleton-to-mask coverage, radius/diameter calibration."},
+        {"id": "W4", "title": "Feature engineering defects (voxel-space, ct_density=0, Strahler-approx)", "severity": "major", "detail": "Centroid-relative position in voxel index space, orientation in index space, ct_density hardcoded 0, Strahler without cycle handling.", "fix_direction": "Physical-mm coordinates, cycle detection, corrected schema before rerun."},
+        {"id": "W5", "title": "QC and exclusions are ad hoc and potentially label-biased", "severity": "major", "detail": "vox_per_key>2000, mask_vox>100k + num_nodes<100 are arbitrary; 27 placeholder nonPH excluded changes class balance; airway never hard-failed.", "fix_direction": "Predefined QC, exclusion counts by label/protocol, sensitivity analysis, manual audit."},
+        {"id": "W6", "title": "Statistics underpowered, multiplicity uncontrolled", "severity": "major", "detail": "Many arms/configs compared without nested CV or multiple-comparison correction; v1->v2 AUC jump lacks CIs, DeLong/bootstrap.", "fix_direction": "Nested CV or locked test, bootstrap/DeLong CIs, paired comparisons, multiplicity correction."},
+        {"id": "W7", "title": "Airway claims unsupportable", "severity": "critical", "detail": "47 airway rebuild: only 41/47 valid (2 invalid, 4 errored). No airway QC. arm_b v2 AUCs unstable.", "fix_direction": "Either remove airway claims or rebuild with dedicated QC + visual validation + complete all failed cases."},
+        {"id": "W8", "title": "Reproducibility package incomplete", "severity": "major", "detail": "kimimaro version not pinned, no env lockfile, no case manifest/splits/commit hash, no one-command rebuild.", "fix_direction": "Release code, env lockfile, immutable manifests, fold assignments, cache-builder commit/hash, raw result JSONs."}
+      ],
+      "strengths": [
+        "Mask extraction bug correctly identified and sentinel-based fix is directionally reasonable.",
+        "Report exposes QC fields, cache formats, and known limitations.",
+        "arm_a vessel-only v2 fold AUC ~0.96 is internally strong but not yet credible as disease performance."
+      ],
+      "must_fix_before_next_round": ["W1", "W2", "W3", "W5", "W6", "W7", "W8"],
+      "reviewer_notes_for_memory": "Central threat is acquisition/source confounding: all PH=contrast-enhanced, many nonPH=plain-scan -> AUC ~0.95 may be protocol leakage. Airway claims are no-go. Round 2 must show protocol-balanced + patient-level + locked validation + QC + reproducibility manifests."
+    }
+  ],
+  "timestamp": "2026-04-23T10:33:00",
+  "notes": "Round 1 complete. Next: apply fixes for W4/W7/W8 that can be done now (doc-level) + queue W1 protocol-confound analysis once arm_b/arm_c training finishes. W2/W3/W5/W6 require user decisions."
+}

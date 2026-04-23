@@ -1,0 +1,351 @@
+# COPD-PH GCN — v2 Graph Cache Final Report
+
+_Auto-generated 2026-04-23 01:17:10_
+
+## 1. Cohort & Mask Encoding
+
+- **Total cases**: 282 (112 nonPH / 170 PH)
+- **Two source cohorts**:
+  - Contrast-enhanced CT: 197 cases (170 PH + 27 nonPH), masks live at `nii/<case>/`
+  - **Plain-scan CT: 85 nonPH cases**, masks live at `nii-unified-282/<case>/`
+- All NIfTI masks use HU sentinel **`-2048` for background**; structure interior carries raw HU.
+  - Vessels (contrast-enhanced): positive HU
+  - **Airway in plain-scan CT: lumen air ≈ -1024 to -800 HU**
+
+### Mask-extraction bug (FIXED 2026-04-22)
+
+`_remote_build_v2_cache.py` originally used `(arr > 0)` to extract the binary mask. This **silently dropped 47 plain-scan airway segmentations** (median HU ≈ -930, `(arr > 0).sum()` = 0–44 on bodies of 100k–11M valid voxels). Patched to **`(arr != -2048)`**, which is a universal sentinel-based extraction (codex-reviewed; verdict: correct given dataset convention).
+
+## 2. Cohort Rollup (post-patch)
+
+| Bucket | Count | Notes |
+|---|---|---|
+| fully_ok (all 3 structures valid) | 201 | both contrast-enhanced + good plain-scan |
+| needs_patch_only (47 airway-bug recoveries) | 54 | salvaged by builder patch |
+| has_placeholder (≥1 structure 768-voxel marker) | 27 | upstream segmentation failed on plain-scan |
+| has_truly_missing (≥1 file genuinely absent) | 0 | requires re-upload |
+
+**Effective cohort for vessel analysis: 247 cases** (282 − 27 placeholder nonPH − 7 PH missing − 1 PH artery missing).
+
+## 3. Graph-Build Pipeline (kimimaro v2)
+
+```
+NIfTI mask (raw HU + sentinel -2048)
+   │
+   ├── arr = (raw != -2048).astype(uint32)   # mask extraction
+   ├── connected components QC (largest_frac, dust_dropped_frac)
+   │
+   ├── kimimaro.skeletonize(arr, teasar_params, anisotropy=spacing, dust=1000)
+   │     ├── artery/vein: scale=1.0  const=5  pdrf_exp=2
+   │     └── airway:     scale=1.5  const=10 pdrf_exp=4
+   │
+   ├── per-skeleton degree-2 chain contraction → key nodes (deg ≠ 2)
+   ├── per-edge geometry from 3D distance-transform (mm units)
+   │
+   └── PyG Data per structure
+```
+
+### Node features (12-d per key node)
+
+| Idx | Name | Description |
+|---|---|---|
+| 0 | mean_diameter | mean of `2 × radius_med_mm` over incident edges |
+| 1 | mean_length | mean `length_mm` over incident edges |
+| 2 | mean_tortuosity | mean `length / chord` over incident edges |
+| 3 | ct_density | hardcoded 0 (no CT lookup in v2) |
+| 4–6 | orientation | mean unit-vector along incident edges (3-d) |
+| 7–9 | centroid_rel_pos | `node_pos − graph_centroid` (voxel index space) |
+| 10 | strahler_order | BFS-from-leaves approximate Horton-Strahler |
+| 11 | degree | `len(incident_edges)` |
+
+### Edge features (3-d per directed edge, both directions stored)
+
+| Idx | Name | Unit |
+|---|---|---|
+| 0 | diameter_mm | mm |
+| 1 | length_mm | mm |
+| 2 | tortuosity | unitless |
+
+### Per-structure QC fields (in `qc[<struct>]`)
+
+`mask_vox, n_components_mask, largest_comp_frac, dust_dropped_frac,
+n_skeletons, num_nodes, num_edges,
+edge_len_mm_p50/p90/max, radius_mm_p50, vox_per_key,
+suspect, failed_hard_qc, valid_structure, top3_longest_edges, missing_reason`
+
+### Hard-fail rules (vessel exclusion)
+```
+failed_hard_qc = (vox_per_key > 2000) OR (mask_vox > 100_000 AND num_nodes < 100)
+```
+Airway is never hard-failed (kept for arm_b experiments only).
+
+## 4. Cache Files Produced
+
+| Cache | Format | Cases | Use |
+|---|---|---|---|
+| `cache_tri_v2/<case>_tri.pkl` | per-structure dict | 282 | full QC + per-structure Data |
+| `cache_v2_flat/<case>.pkl` | flat A+V graph | 247 | Sprint 6 arm_a |
+| `cache_v2_tri_flat/<case>.pkl` | offset A+V[+W] graph | ≤247 | future arm_b with airway |
+
+Tri-flat cache adds a `struct_id` channel (0=artery / 1=vein / 2=airway) as 13th node feature.
+
+## 5. Sprint 6 Results (v2 cache)
+
+```
+See outputs/sprint6_arm_*_v2/ JSON
+```
+
+Key numbers (from prior session):
+- arm_a base v2: pooled AUC ~0.95 (vs v1 ~0.78 — kimimaro rebuild **+0.17 absolute**)
+- arm_a ensemble v2 (3 seeds + augment): comparable
+- arm_b base/full: see per-arm JSON
+
+## 6. Codex Audit Verdict
+
+> **GO for final arm_a artery+vein analysis**, with cache/QC manifest frozen and exclusions audited;
+> **NO-GO for claims involving airway** until airway-specific QC and schema handling are added.
+
+Important codex follow-ups (deferred — not blocking arm_a):
+1. Convert node `centroid_rel_pos` from voxel-index to mm: `(ijk − centroid_ijk) * spacing`
+2. Add edge orientation `[dx, dy, dz]` in mm
+3. Backfill `ct_density` from raw CT volume (currently hardcoded 0)
+4. Add airway-specific QC: largest-component fraction, HU-distribution sanity, placeholder-shape detection
+5. Strahler should record `has_cycles` flag (kimimaro can produce small cycles in tube-like vessels)
+
+## 7. 47-case airway rebuild verification
+
+`{
+  "valid": 41,
+  "invalid": 2,
+  "missing_pkl": 0,
+  "errored": 4
+}`
+
+## 8. Reproducibility
+
+- Builder version tag: `v2_kimimaro` (in `_tri.pkl["builder_version"]`)
+- TEASAR / dust / contraction params: see `_remote_build_v2_cache.py:307-409`
+- kimimaro version: see `pip show kimimaro` on remote (pulmonary_bv5_py39 env)
+- Mask sentinel convention: HU == -2048 = background, all other voxels = structure
+
+
+## 9. Multi-structure Phenotype Evolution (auto)
+
+# Phenotype Evolution Report
+- n_cases: 280
+- n_features: 34
+- n_clusters: 4
+- COPD-no-PH (label=0): 110
+- COPD-PH (label=1): 170
+
+## Cluster 0 (n=18, dominant label=0, label_counts={0: 18})
+- LAA_950_frac: z=+3.79 (mean=0.946)
+- LAA_910_frac: z=+3.61 (mean=0.956)
+- LAA_856_frac: z=+2.78 (mean=0.974)
+- HU_p95: z=-2.43 (mean=-932)
+- HU_p75: z=-2.26 (mean=-1.02e+03)
+- mean_HU: z=-2.18 (mean=-1.01e+03)
+
+## Cluster 1 (n=198, dominant label=1, label_counts={0: 28, 1: 170})
+- HU_p5: z=+0.63 (mean=0)
+- HU_p25: z=+0.59 (mean=0)
+- mean_HU: z=+0.56 (mean=0.0719)
+- std_HU: z=-0.54 (mean=0.25)
+- HU_p50: z=+0.53 (mean=0)
+- HU_p75: z=+0.52 (mean=0)
+
+## Cluster 2 (n=45, dominant label=0, label_counts={0: 45})
+- largest_comp_frac: z=-1.87 (mean=0.682)
+- HU_p25: z=-1.72 (mean=-889)
+- HU_p50: z=-1.72 (mean=-856)
+- mean_HU: z=-1.70 (mean=-836)
+- HU_p5: z=-1.68 (mean=-930)
+- HU_p75: z=-1.67 (mean=-808)
+
+## Cluster 3 (n=19, dominant label=0, label_counts={0: 19})
+- n_components: z=+3.25 (mean=13.2)
+- std_HU: z=+3.10 (mean=216)
+- lung_vol_mL: z=-1.69 (mean=223)
+- HU_p95: z=+0.77 (mean=84.4)
+- HU_p5: z=-0.74 (mean=-550)
+- HU_p75: z=+0.65 (mean=48.3)
+
+## High-risk COPD-noPH cases (closest to PH centroid in UMAP)
+| case_id | cluster | ph_proximity |
+|---|---|---|
+| nonph_lixiangqing_9002785345_thursday_august_31_2023_001 | 1 | -0.002 |
+| nonph_fengjianhong_9002916926_friday_november_10_2023_000 | 1 | -0.022 |
+| nonph_yangjicai_9001716005_sunday_september_27_2020_001 | 1 | -0.029 |
+| nonph_wentaomei_9002233843_friday_july_15_2022_000 | 1 | -0.043 |
+| nonph_shenjuhua_u13807530_thursday_november_1_2018_000 | 1 | -0.046 |
+| nonph_xugaofeng_0800392509_monday_october_26_2015_001 | 1 | -0.049 |
+| nonph_caochenglin_g02017953_thursday_july_9_2020_000 | 1 | -0.050 |
+| nonph_chenzhanghu_5002094379_wednesday_november_20_2019_000 | 1 | -0.051 |
+| nonph_huichunyi_0800212702_tuesday_july_16_2013_000 | 1 | -0.061 |
+| nonph_heyude_c00242568_saturday_october_11_2014_000 | 1 | -0.083 |
+| nonph_dinghuiyan_9002758757_tuesday_december_26_2023_000 | 1 | -0.087 |
+| nonph_lilele_0800247111_tuesday_september_6_2022_000 | 1 | -0.103 |
+| nonph_lujianlan_9002629358_monday_may_8_2023_000 | 1 | -0.140 |
+| nonph_chenyunhua_9001865098_tuesday_july_27_2021_000 | 1 | -0.146 |
+| nonph_huangzutian_9002735639_monday_july_24_2023_000 | 1 | -0.166 |
+
+
+## 10. Training status — arm_b (tri-flat) / arm_c (+ lung feats)
+
+- Launched 2026-04-23 10:29 via `_remote_launch_arm_bc_v2.py` using patched
+  `run_sprint6_v2.py` (the earlier `_remote_train_arm_bc_parallel.py` referenced
+  a non-existent `src/train_sprint6.py` and never actually trained).
+- **arm_b** (GPU0): `--cache_dir cache_v2_tri_flat --keep_full_node_dim`
+  (13-D node features incl. struct_id channel), gcn_only mode, 5-fold × 3
+  repeats × 120 epochs, augment=edge_drop+feature_mask. Log at
+  `outputs/sprint6_arm_b_triflat_v2/run.log`.
+- **arm_c** (GPU1): same as arm_b + `--lung_features_csv lung_features_only.csv`
+  injects 13 z-scored lung scalars (lung_vol, HU percentiles, LAA fractions,
+  largest_comp_frac, n_components) as graph-level globals. Log at
+  `outputs/sprint6_arm_c_quad_v2/run.log`.
+
+### 10.1 Final metrics (2026-04-23, 5-fold × 3 repeats, 243 cases)
+
+| Arm | Mode | AUC | Acc | Precision | Sensitivity | F1 | Specificity | pooled AUC |
+|---|---|---|---|---|---|---|---|---|
+| arm_b (tri-flat A+V+W, 13D)        | gcn_only | 0.920 ± 0.030 | 0.890 ± 0.037 | 0.937 ± 0.038 | 0.901 ± 0.086 | 0.915 ± 0.035 | 0.867 ± 0.089 | 0.900 |
+| arm_c (tri-flat + 13 lung globals) | gcn_only | 0.959 ± 0.033 | 0.934 ± 0.027 | 0.959 ± 0.025 | 0.943 ± 0.041 | 0.950 ± 0.022 | 0.916 ± 0.056 | 0.947 |
+
+**Observation**: arm_c > arm_b by ~0.04 AUC, consistent with lung scalar features
+adding signal. **However**, per §11.1, this gain may be confounded with acquisition
+protocol: HU percentiles and LAA fractions are very different between contrast-enhanced
+and plain-scan CT, and all PH cases are contrast-enhanced. A protocol-balanced
+ablation (contrast-only arm_c vs contrast-only arm_b) is required before claiming
+the lung-feature contribution is disease-relevant rather than protocol-informative.
+
+## 11. Limitations (explicit, reviewer-facing)
+
+**11.1 Cohort/protocol confounding (CRITICAL)**. All 170 PH cases are
+contrast-enhanced CT; 85/112 nonPH cases are plain-scan CT. The headline
+arm_a pooled AUC ~0.95 therefore cannot be interpreted as disease
+discrimination until it is verified on a protocol-balanced subset
+(contrast-only PH vs contrast-only nonPH) and against a protocol-prediction
+baseline. This analysis is queued as the first experiment after arm_b/c
+training completes.
+
+**11.2 Validation is internal 5-fold only**. No external or temporal
+held-out test. Fold splits are case-id based; patient-level leakage has
+not yet been verified via a case_id → patient_id audit. Claims of
+generalization are deferred pending (a) patient-disjoint fold audit and
+(b) ideally an external validation cohort.
+
+**11.3 Feature-engineering defects (known, un-addressed in v2)**.
+- `centroid_rel_pos` in voxel-index space, not mm.
+- `ct_density` hardcoded to 0 (no CT-HU lookup yet).
+- Strahler order is BFS-approximate; cycle handling and `has_cycles` flag
+  are not recorded.
+- Edge orientation uses index-space endpoint vectors, not mm.
+
+**11.4 Ad-hoc QC thresholds**. Hard-fail rules (`vox_per_key>2000`,
+`mask_vox>100k ∧ num_nodes<100`) are single thresholds chosen without a
+sensitivity sweep. Exclusion of 27 placeholder nonPH alters the class
+balance in a label-correlated way. An exclusion-sensitivity rerun is
+queued.
+
+**11.5 Airway results are appendix-only**. 47-case airway rebuild
+verification: 41 valid / 2 invalid / 4 errored. There is no airway-specific
+QC (largest-component fraction, HU-distribution sanity, placeholder-shape
+detection). No airway-derived conclusion should be drawn from arm_b/arm_c
+until airway QC is implemented and all failed rebuilds are resolved.
+
+**11.6 Statistical reporting**. Current results lack paired DeLong /
+bootstrap CIs on the v1→v2 improvement and do not correct for the
+multiplicity of arm × feature-set × augmentation combinations. A
+confirmatory analysis with predefined primary endpoint is required for
+a top-venue submission.
+
+## 12. Reproducibility (expanded)
+
+- **Builder version tag**: `v2_kimimaro` (stored in each `_tri.pkl["builder_version"]`).
+- **kimimaro version**: run `pip show kimimaro` on remote inside
+  `pulmonary_bv5_py39` conda env (ver. pinned by `conda env export`,
+  TODO: publish `environment.yml` alongside release).
+- **TEASAR / dust / contraction params**: see `_remote_build_v2_cache.py:307-409`.
+- **Mask sentinel convention**: HU == -2048 = background; all other voxels = structure.
+- **Cache manifest**: `cache_v2_flat/manifest.json` (247 entries),
+  `cache_v2_tri_flat/manifest.json` (243 entries).
+- **Fold splits**: `data/splits_expanded_282/fold_{1..5}.csv` (case-id level;
+  patient-id audit pending).
+- **Result JSONs**: `outputs/sprint6_arm_{a_base,a_ensemble,b_base,b_full}_v2/sprint6_results.json`.
+- **TODO before submission**: publish `environment.yml` lockfile, cache-builder
+  git commit hash, one-command rebuild script, and de-identified patient-id map.
+
+## 13. W1 protocol-confound ablation (2026-04-23)
+
+Direct response to the hostile-review W1 concern (ARIS Round 1 reviewer memory):
+**is the AUC ~0.95 disease signal, or is it acquisition-protocol classification?**
+
+### 13.1 Design
+
+Retrain arm_b and arm_c on the contrast-enhanced-only subset (197 cases
+in the label file → 189 cases after intersection with `cache_v2_tri_flat`:
+163 PH + 26 nonPH). If the headline numbers survive this restriction, the
+protocol-confound concern is weakened; if they collapse, the signal was
+partly or wholly driven by contrast-enhanced-vs-plain-scan cues.
+
+Identical training config to §10.1: 5-fold × 3 repeats × 120 epochs,
+batch=16, `--keep_full_node_dim --skip_enhanced --augment
+edge_drop,feature_mask`. Splits preserved from the 282-cohort splits by
+filtering each `fold_*/{train,val}.txt` to the contrast subset. Class
+imbalance in val folds: 3–7 nonPH per fold.
+
+### 13.2 Results (5-fold × 3 repeats, 189 cases, 163 PH + 26 nonPH)
+
+| Arm | AUC | Acc | Precision | Sensitivity | F1 | Specificity | pooled AUC |
+|---|---|---|---|---|---|---|---|
+| arm_b (tri-flat, contrast-only) | 0.871 ± 0.092 | 0.858 ± 0.047 | 0.978 ± 0.029 | 0.857 ± 0.050 | 0.912 ± 0.029 | 0.889 ± 0.145 | 0.821 |
+| arm_c (tri-flat + lung globals, contrast-only) | 0.877 ± 0.085 | 0.862 ± 0.043 | 0.984 ± 0.022 | 0.855 ± 0.042 | 0.914 ± 0.028 | 0.922 ± 0.103 | 0.862 |
+
+### 13.3 Comparison with full 243-case cohort (§10.1)
+
+| Arm | full-cohort AUC | contrast-only AUC | Δ |
+|---|---|---|---|
+| arm_b | 0.920 ± 0.030 | 0.871 ± 0.092 | **−0.049** |
+| arm_c | 0.959 ± 0.033 | 0.877 ± 0.085 | **−0.082** |
+| arm_c − arm_b | +0.039 | **+0.006** | — |
+
+### 13.4 Interpretation (direct)
+
+- **Partial confounding confirmed.** Both arms drop 0.05–0.08 absolute AUC
+  when the acquisition protocol is balanced. The headline AUC in §10.1
+  was inflated by acquisition cues.
+- **Residual signal is real but modest.** At AUC ~0.87 with small negatives
+  (26 contrast nonPH), arm_b/c still discriminate PH from nonPH above
+  chance — but this is the honest upper bound of what these features
+  currently measure.
+- **The arm_c lung-feature advantage mostly disappears** on the balanced
+  cohort (+0.04 → +0.006 AUC). The lung HU/LAA scalars were informative
+  primarily because HU distributions differ between contrast-enhanced and
+  plain-scan CT, not because they encode disease beyond what vessels
+  already capture.
+- **Variance is high** (±0.08–0.09 AUC) due to 26 nonPH split across 5 folds
+  (3–7 per fold). Confidence intervals / DeLong on the Δ will be reported
+  in Round 2.
+
+### 13.5 Implications for claims
+
+1. **Drop the v1→v2 “+0.17 absolute AUC” narrative** in any public
+   description; the honest number in a protocol-balanced evaluation is
+   closer to ~0.87.
+2. **Retract the arm_c lung-feature contribution claim** as a disease
+   result. Report it only as a dataset observation that disappears under
+   protocol balancing.
+3. **Next-round experiments queued**: (a) protocol-prediction baseline
+   (train arm_b to predict `is_contrast_enhanced` from the graph — if
+   AUC → 1.0, protocol is trivially decodable from graphs and the §13
+   residual 0.87 is a *lower* bound on confounding, not an upper bound);
+   (b) patient-id leakage audit on the contrast-only folds; (c) DeLong /
+   bootstrap CIs on all Δ comparisons.
+
+### 13.6 Artifacts
+
+- Results: `outputs/sprint6_arm_{b,c}_contrast_only_v2/sprint6_results.json`
+- Logs: `outputs/sprint6_arm_{b,c}_contrast_only_v2/run.log`
+- Launcher: `_remote_launch_w1_ablation.py`
+- Contrast subset labels/splits: `data/labels_contrast_only.csv`,
+  `data/splits_contrast_only/fold_{1..5}/{train,val}.txt` (pushed to remote).
