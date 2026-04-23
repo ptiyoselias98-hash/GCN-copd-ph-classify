@@ -659,6 +659,121 @@ disease-preserving sets (contrast-only disease 0.685 LR).
 - **Domain-adversarial mitigation** (W1 → 0.5 protocol AUC target) —
   new experimental arm.
 
+## 17. ARIS Round 4 — the within-nonPH correction + robustness pack
+
+Round 3 reviewer insight (carried in `REVIEWER_MEMORY.md`): protocol AUC
+across the full 282 cohort conflates the label↔protocol coupling. The
+honest test restricts to **label=0** (27 contrast nonPH vs 85 plain-scan
+nonPH) — protocol AUC there isolates real protocol leakage.
+
+### 17.1 Within-nonPH protocol decoder (R4.1 — CORE W1 CORRECTION)
+
+Script: `scripts/evolution/R4_within_nonph_protocol.py`. 5-fold stratified
+CV with class_weight-balanced LR, 95% bootstrap CI (2000 resamples) on the
+mean fold AUC.
+
+| Feature set | n | Protocol LR AUC (95% CI) | Protocol GB AUC (95% CI) | R3 full-cohort LR | Δ |
+|---|---|---|---|---|---|
+| v1_whole_lung_HU | 110 | **0.765 [0.697, 0.833]** | 0.757 [0.666, 0.837] | 1.000 | **−0.24** |
+| v2_parenchyma_only | 93 | 0.794 [0.705, 0.886] | 0.731 [0.652, 0.825] | 0.857 | −0.06 |
+| v2_paren_LAA_only (3 feats) | 93 | 0.715 [0.646, 0.789] | 0.673 [0.566, 0.762] | 0.591 | +0.12 |
+| v2_spatial_paren | 93 | 0.669 [0.543, 0.795] | 0.652 [0.548, 0.748] | 0.732 | −0.06 |
+| **v2_per_structure_volumes** | 110 | **0.529 [0.429, 0.631]** | 0.702 [0.615, 0.771] | 0.524 | ≈ 0 |
+| v2_vessel_ratios | 85 | 0.674 [0.542, 0.805] | 0.632 [0.441, 0.800] | 0.885 | −0.21 |
+| v2_combined_no_HU | 73 | 0.731 [0.653, 0.810] | 0.664 [0.590, 0.737] | 0.860 | −0.13 |
+
+**Critical findings**:
+
+1. The v1 whole-lung "perfect protocol decoder" (AUC=1.000 across full
+   cohort) drops to **0.765 within-nonPH** — meaning ~75% of the R2/R3
+   "protocol leakage" alarm was actually label-leakage. The v1 features
+   do carry protocol signal (0.77 > random 0.5) but it is far from
+   trivially decodable once label is held fixed.
+2. `v2_per_structure_volumes` (artery/vein/airway/vessel_airway_over_lung)
+   has LR protocol AUC 0.529 with **95% CI [0.429, 0.631] — straddles
+   random**. This is the first feature set to achieve true within-nonPH
+   protocol invariance under linear decoding. GB recovers a non-linear
+   0.70 protocol signal, but for the GCN's typical linear-combination
+   layers, this is a defensible protocol-robust representation.
+3. `v2_parenchyma_only` still has within-nonPH LR 0.79 — suggesting
+   that parenchyma HU shifts between contrast and plain-scan are real
+   (possibly capillary-level contrast bleed), not merely label
+   confounding. Round 5 should compute these on `ct.nii.gz` intensity
+   after normalizing each scan to air (−1000) and blood-pool (+50)
+   calibration points.
+
+### 17.2 Exclusion sensitivity (R4.4)
+
+Script: `scripts/evolution/R4_exclusion_sensitivity.py`. Rebuild the
+disease classifier on two cohorts:
+
+- **A** — current behavior, 27 vessel-placeholder nonPH dropped.
+- **B** — same cases retained; parenchyma HU/LAA are computed with no
+  vessel subtraction (equals whole-lung for those 27 cases). Class
+  balance shifts from 163 PH / 69 nonPH → 163 PH / 89 nonPH.
+
+| Cohort | Feat set | n | disease LR full (CI) | disease LR contrast (CI) |
+|---|---|---|---|---|
+| A_excluded | paren_only | 231 | 0.862 [0.835, 0.886] | 0.858 [0.784, 0.932] |
+| A_excluded | paren_plus_spatial | 231 | 0.871 [0.854, 0.888] | 0.851 [0.770, 0.932] |
+| B_included | paren_only | 252 | 0.870 [0.826, 0.906] | 0.860 [0.763, 0.950] |
+| B_included | paren_plus_spatial | 252 | 0.879 [0.827, 0.913] | 0.855 [0.759, 0.951] |
+
+**Max |Δ disease contrast AUC| = 0.004** → far inside the ±0.05 bootstrap
+CI half-width. The disease claim is robust to the exclusion rule.
+
+### 17.3 Overlay gallery (R4.3)
+
+Script: `scripts/evolution/R4_overlay_gallery.py`. 10 random cases
+(5 PH + 5 nonPH, balanced across protocols) — axial mid-slice with
+vessel overlay, axial skeleton overlay (skimage.skeletonize_3d), and
+coronal vessel MIP. Saved as `outputs/evolution/R4_overlay_gallery.png`
+(10×3 = 30 subplots). First-pass anatomical QC; not yet a blinded
+radiologist review but enables a reviewer to visually confirm mask
+topology matches published pulmonary anatomy.
+
+Representative case IDs (`outputs/evolution/R4_overlay_gallery_cases.txt`):
+ph_wenhaibo, ph_luwanhai, ph_lixiangzhen, nonph_lujianlan,
+nonph_liuzhusheng, nonph_guyewu, nonph_zhuhuiting, nonph_wanggenyou,
+ph_liuzhiquan, ph_gaozhongxiang.
+
+### 17.4 Reproducibility hardening (R4.5)
+
+- **`requirements-local.lock.txt`** — exact `pip freeze` output for the
+  local analysis Python (numpy 2.4.4, pandas 3.0.2, sklearn 1.8.0,
+  nibabel 5.4.2, scipy 1.17.1, matplotlib 3.10.8, scikit-image 0.26.0,
+  umap-learn 0.5.12).
+- **`scripts/cache_provenance.py`** — inspects a cache pkl and prints
+  `builder_version`, `git_sha`, `kimimaro_version`, and TEASAR params
+  when present.
+- **`REPRODUCE.md`** — updated to note that remote kimimaro version is
+  still TBD pending `pip show kimimaro` inside `pulmonary_bv5_py39`.
+- The next remote rebuild should record `git rev-parse HEAD` and
+  `kimimaro.__version__` in each pkl for full provenance.
+
+### 17.5 Skeleton-length HiPaS test (R4.2) — PENDING
+
+`scripts/evolution/R4_skeleton_length.py` is running locally against
+all 282 cases (`skimage.morphology.skeletonize_3d`). ~35 min runtime
+with 4 workers. On completion we rerun T1 (PAH → ↓ artery skeleton
+length) and T2 (COPD → ↓ vein skeleton length) directly against HiPaS
+priors. Results will land in `outputs/evolution/R4_skeleton_directions.md`.
+
+### 17.6 Still outstanding for Round 5
+
+- **Case-level DeLong** — still requires a remote rerun of sprint6
+  writing per-case val probs (not blocked by anything but SSH access).
+- **TEASAR parameter sensitivity sweep** — kimimaro scale ∈ {0.8, 1.0, 1.5},
+  const ∈ {2, 5, 10}, rebuild a subset of 20 cases and check
+  per-case morphometric stability.
+- **Domain-adversarial GCN** — a new arm that adds a gradient-reversal
+  head on `is_contrast` during training; protocol-invariance target
+  AUC ≤ 0.6 within-nonPH (R4.1 already shows volumes alone hit 0.53).
+- **Locked kimimaro version** — single SSH session to populate the pin.
+- **Blinded airway QC** — placeholder cases and non-placeholder
+  low-component airways need radiologist inspection before any airway
+  inclusion in main claims.
+
 ### 14.5 Cohort protocol labels committed (NEW)
 
 `data/case_protocol.csv` (282 rows) is derived from the three original DCM

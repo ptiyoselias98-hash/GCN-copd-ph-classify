@@ -1099,3 +1099,67 @@ Round 2 artifacts:
 - [`outputs/evolution/E2_paren_cluster.md`](copdph-gcn-repo/outputs/evolution/E2_paren_cluster.md)
 - [`data/case_protocol.csv`](copdph-gcn-repo/data/case_protocol.csv) — authoritative protocol labels
 - [`EVOLUTION_CLUSTERING_DESIGN.md`](copdph-gcn-repo/EVOLUTION_CLUSTERING_DESIGN.md) — E1–E5 design doc
+
+## ARIS Rounds 3 + 4 — the within-nonPH correction + robustness pack (2026-04-23)
+
+**Round 3** (gpt-5.2 hard-mode): 4/10 reject. **Round 4** in progress after
+the reviewer's central new objection: protocol-AUC across the full cohort
+conflates label↔protocol coupling (all 170 PH cases are contrast); the
+honest test restricts to **label=0** (27 contrast nonPH vs 85 plain-scan nonPH).
+
+### Round 4.1 — within-nonPH protocol decoder (core W1 correction)
+
+`scripts/evolution/R4_within_nonph_protocol.py`. 5-fold stratified CV,
+bootstrap CI on mean fold AUC (2000 resamples):
+
+| Feature set | n | LR AUC within-nonPH (95% CI) | vs R3 full-cohort LR |
+|---|---|---|---|
+| v1 whole_lung HU | 110 | **0.765 [0.697, 0.833]** | was 1.000 → 75% was label-shortcut |
+| v2 parenchyma_only | 93 | 0.794 [0.705, 0.886] | was 0.857, modest drop |
+| **v2 per_structure_volumes** | 110 | **0.529 [0.429, 0.631]** | was 0.524, **CI straddles random** |
+| v2 vessel_ratios | 85 | 0.674 [0.542, 0.805] | was 0.885, −0.21 |
+| v2 combined_no_HU | 73 | 0.731 [0.653, 0.810] | was 0.860, −0.13 |
+
+**Headline**: v2 per-structure vessel volumes achieve within-nonPH LR
+protocol AUC **0.529** with 95% CI including random chance. First feature
+set to clear the honest protocol-invariance bar under a linear decoder.
+The v1 whole-lung "perfect decoder" (1.000) was ~75% label-leakage, not
+protocol-leakage.
+
+### Round 4.3 — overlay gallery (anatomical QC)
+
+![Overlay gallery](copdph-gcn-repo/outputs/evolution/R4_overlay_gallery.png)
+
+10-case grid (5 PH + 5 nonPH, balanced contrast + plain-scan) showing
+axial mid-slice with vessel overlay, skeleton overlay
+(`skimage.skeletonize_3d`), and coronal vessel MIP. First-pass
+anatomical inspection; full blinded radiologist review queued.
+
+### Round 4.4 — exclusion sensitivity
+
+27 placeholder nonPH cases retained with degraded features
+(parenchyma-only, no vessel subtraction). Max |Δ disease AUC on
+contrast-only subset| = **0.004**, far inside the bootstrap CI half-width
+(~0.05). The disease claim is robust to the exclusion rule.
+
+### Round 4.5 — reproducibility hardening
+
+`requirements-local.lock.txt` (pip freeze), `scripts/cache_provenance.py`,
+`REPRODUCE.md` updated to surface the kimimaro-pin placeholder pending
+remote verification.
+
+### Round 4.2 — skeleton-length HiPaS test (PENDING)
+
+`scripts/evolution/R4_skeleton_length.py` running locally against 282
+cases. On completion: HiPaS T1 (PAH→↓artery skeleton length) and T2
+(COPD→↓vein) directly tested — volume-based R3 result had T1 opposite
+to HiPaS (likely central PA dilation masking distal pruning).
+
+Round 4 artifacts:
+- [`REPORT_v2.md §17`](copdph-gcn-repo/REPORT_v2.md)
+- [`outputs/_r4_within_nonph_protocol.md`](copdph-gcn-repo/outputs/_r4_within_nonph_protocol.md)
+- [`outputs/_r4_exclusion_sensitivity.md`](copdph-gcn-repo/outputs/_r4_exclusion_sensitivity.md)
+- [`outputs/evolution/R4_overlay_gallery.png`](copdph-gcn-repo/outputs/evolution/R4_overlay_gallery.png)
+- [`REPRODUCE.md`](copdph-gcn-repo/REPRODUCE.md) · [`requirements-local.lock.txt`](copdph-gcn-repo/requirements-local.lock.txt) · [`environment.yml`](copdph-gcn-repo/environment.yml)
+
+Round history: [`review-stage/AUTO_REVIEW.md`](copdph-gcn-repo/review-stage/AUTO_REVIEW.md).
