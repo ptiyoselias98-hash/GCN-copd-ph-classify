@@ -30,6 +30,24 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 3 key concerns (2026-04-23 16:40) — CARRY INTO ROUND 4
+
+**Score 4/10 reject.** Main new insight over Round 2:
+
+**Protocol-AUC should be measured WITHIN label=0 only** (27 contrast nonPH
+vs 85 plain-scan nonPH), not across the full 282. Measuring across the
+cohort lets the model shortcut via `label → contrast` (since 170/170 PH
+are contrast), so "protocol decodability" was entangled with label
+decodability. The within-nonPH test is the honest W1 endpoint.
+
+Round 4 minimum-to-reach-8:
+1. Protocol-matched primary analysis (matching/weighting OR adequate contrast nonPH).
+2. Protocol decodability on *exact GCN inputs* computed **within nonPH only**.
+3. Per-case val-prob dumps → paired DeLong on headline deltas (single predefined primary endpoint).
+4. Overlay gallery + TEASAR parameter-sensitivity sweep (anatomical validity).
+5. Exclusion sensitivity (placeholders retained with degraded handling).
+6. Locked reproducibility: conda-lock, kimimaro version from remote, git SHA in cache metadata.
+
 ## Round 2 key concerns (2026-04-23 15:45) — CARRY INTO ROUND 3
 
 **Score 3/10 reject.** Key new concerns beyond Round 1:

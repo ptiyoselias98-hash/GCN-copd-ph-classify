@@ -111,14 +111,19 @@ review-stage/context_round{N}.md
 
 Latest v2 cache was built at commit `61c35b3` (2026-04-22) with
 `_remote_build_v2_cache.py` after the `(arr != -2048)` mask-extraction
-patch. The exact commit hash is stored in each pkl's `builder_version`
-field; verify with:
+patch. Each pkl stores a `builder_version` tag and the next rebuild will
+add `git_sha` + `kimimaro_version`. Inspect with:
 
 ```
-python -c "import pickle; import sys; d=pickle.load(open(sys.argv[1],'rb')); print(d.get('builder_version'))" \
-       cache_v2_tri_flat/nonph_baoxiaoping_9001193765_thursday_january_2_2020_000.pkl
+python scripts/cache_provenance.py cache_v2_tri_flat/<case>.pkl
 ```
 
-Should print `v2_kimimaro`. The next rebuild should additionally record the
-git SHA via `git rev-parse HEAD` and the kimimaro version via
-`kimimaro.__version__`.
+- `requirements-local.lock.txt` — exact local analysis-env versions
+  (pip freeze on the Windows Python 3.14 analysis machine, 2026-04-23).
+- `environment.yml` — remote training-env spec; kimimaro version is a
+  placeholder (pinned as 4.0.4) to be **replaced with the exact output of
+  `pip show kimimaro` from the `pulmonary_bv5_py39` env** on next remote
+  SSH session.
+- The next remote build should `git rev-parse HEAD` and include the SHA
+  plus `kimimaro.__version__` in the pkl. `_remote_build_v2_cache.py`
+  needs a one-liner patch to do this (tracked as a Round 4 TODO).

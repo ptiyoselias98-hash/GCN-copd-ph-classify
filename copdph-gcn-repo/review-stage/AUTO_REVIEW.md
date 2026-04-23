@@ -56,6 +56,31 @@
 
 ---
 
+### Round 3 — 2026-04-23 16:40
+
+**Score**: 4/10 | **Verdict**: `reject` (gpt-5.2 high-reasoning)
+
+**Delta since Round 2**:
+- `data/case_protocol.csv` + explicit cross-tab documents label↔protocol entanglement
+- R3 cache-adjacent feature protocol decodability (proxy for GCN inputs)
+- E3 HiPaS-aligned T2 confirmed (COPD→↓vein, ρ=−0.75/−0.51 across protocols); T1 direction opposite to HiPaS (PH has higher artery volume → central PA dilation signature, not distal pruning; needs skeleton length)
+- R3 W8 reproducibility package (REPRODUCE.md, environment.yml, requirements-local.txt)
+
+**Critical methodological insight from reviewer** (for Round 4):
+> Protocol AUC computed across full cohort lets the model shortcut via `label → protocol` (since all 170 PH are contrast). The honest test must run **within label=0 only** (27 contrast nonPH vs 85 plain-scan nonPH). Our Round 3 protocol AUCs are therefore not isolating protocol leakage — they conflate it with label signal.
+
+**Must fix before Round 4**: W1, W2, W3, W4, W6, W8
+
+**Minimum to reach 8/10** (reviewer-specified):
+1. Protocol-matched primary analysis (matching/weighting OR adequate n)
+2. Protocol decodability on exact GCN inputs WITHIN nonPH only + CIs
+3. Per-case val-prob dumps + paired DeLong on headline deltas
+4. Anatomical overlay gallery + TEASAR parameter sensitivity
+5. Exclusion sensitivity with placeholders included via degraded handling
+6. Locked reproducibility with embedded git SHA + kimimaro pin in cache metadata
+
+---
+
 ### Round 2 — 2026-04-23 15:45
 
 **Score**: 3/10 | **Verdict**: `reject` (hard-mode gpt-5.2, high-reasoning)

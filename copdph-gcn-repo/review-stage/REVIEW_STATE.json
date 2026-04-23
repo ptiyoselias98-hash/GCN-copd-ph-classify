@@ -1,59 +1,37 @@
 {
-  "round": 2,
-  "status": "round_2_complete_needs_fixes",
-  "max_rounds": 4,
-  "positive_threshold_score": 6.0,
+  "round": 3,
+  "status": "round_3_complete_needs_fixes",
+  "max_rounds": 6,
+  "positive_threshold_score": 8.0,
   "difficulty": "hard",
   "history": [
+    {"round": 1, "score": 2, "verdict": "reject"},
+    {"round": 2, "score": 3, "verdict": "reject"},
     {
-      "round": 1,
-      "timestamp": "2026-04-23T10:33:00",
-      "score": 2,
-      "verdict": "reject",
-      "reviewer": "codex-mcp gpt-5 high-reasoning",
-      "critical_weaknesses": [
-        {"id": "W1", "title": "Severe cohort/protocol confounding likely explains the high AUC", "severity": "critical"},
-        {"id": "W2", "title": "No independent validation / leakage-resistant splits", "severity": "critical"},
-        {"id": "W3", "title": "Graph construction insufficiently validated anatomically", "severity": "critical"},
-        {"id": "W4", "title": "Feature engineering defects (voxel-space, ct_density=0, Strahler-approx)", "severity": "major"},
-        {"id": "W5", "title": "QC and exclusions are ad hoc and potentially label-biased", "severity": "major"},
-        {"id": "W6", "title": "Statistics underpowered, multiplicity uncontrolled", "severity": "major"},
-        {"id": "W7", "title": "Airway claims unsupportable", "severity": "critical"},
-        {"id": "W8", "title": "Reproducibility package incomplete", "severity": "major"}
-      ],
-      "must_fix_before_next_round": ["W1", "W2", "W3", "W5", "W6", "W7", "W8"]
-    },
-    {
-      "round": 2,
-      "timestamp": "2026-04-23T15:45:00",
-      "score": 3,
+      "round": 3,
+      "timestamp": "2026-04-23T16:40:00",
+      "score": 4,
       "verdict": "reject",
       "reviewer": "codex-mcp gpt-5.2 high-reasoning",
-      "delta_since_round1": [
-        "W1 quantified (§13 contrast-only ablation + §14.3 protocol AUC=1.000)",
-        "W2 resolved (patient-level audit: 282 cases = 282 unique patients, 0 leakage)",
-        "W6 partial (fold-level paired bootstrap + Wilcoxon; case-level DeLong pending)",
-        "W7 scoped to appendix in §11.5"
+      "delta_since_round2": [
+        "data/case_protocol.csv explicit label↔protocol entanglement",
+        "cache-adjacent feature protocol decodability proxy",
+        "HiPaS T2 direction confirmed, T1 opposite (metric mismatch)",
+        "Reproducibility surface: REPRODUCE.md, environment.yml, requirements-local.txt"
       ],
-      "round2_verdict": {
-        "W1": {"severity": "critical", "addressed": "partial", "reason": "Protocol-matched eval has only 26 nonPH negatives; label/protocol near-perfectly entangled in data"},
-        "W2": {"severity": "minor", "addressed": "yes", "reason": "Audit confirms patient-disjoint; external validity still absent"},
-        "W3": {"severity": "critical", "addressed": "no", "reason": "TEASAR overlays + parameter sweep deferred"},
-        "W4": {"severity": "major", "addressed": "no", "reason": "mm-coords / ct_density / Strahler cycles still not fixed in v2 cache"},
-        "W5": {"severity": "major", "addressed": "no", "reason": "Exclusion-sensitivity not run"},
-        "W6": {"severity": "major", "addressed": "partial", "reason": "Fold-level tests only; case-level DeLong missing"},
-        "W7": {"severity": "minor", "addressed": "partial", "reason": "Scoped to appendix; QC still pending"},
-        "W8": {"severity": "major", "addressed": "no", "reason": "No env lockfile, no kimimaro pin, no one-command rebuild"}
-      },
-      "must_fix_before_next_round": ["W1", "W3", "W6", "W5", "W8", "W4"],
-      "strengths": [
-        "Inflated v1→v2 +0.17 AUC narrative retracted (§13.5)",
-        "Protocol is trivially decodable from scalar lung features (AUC=1.000); disease AUC drops 0.898→0.678 under protocol balancing (§14.3)",
-        "Patient-disjoint splits backed by explicit audit (zero leakage)"
+      "critical_new_insight": "Protocol AUC was computed across the full cohort where protocol is a proxy for label. Must be measured WITHIN nonPH only (27 contrast vs 85 plain-scan).",
+      "must_fix_before_round4": ["W1", "W2", "W3", "W4", "W6", "W8"],
+      "minimum_to_reach_8_of_10": [
+        "Protocol-matched primary analysis (contrast PH vs contrast nonPH with adequate power or propensity matching)",
+        "Protocol decodability on exact GCN/cache features WITHIN nonPH only + CIs",
+        "Per-case out-of-fold prob dumps + paired DeLong on headline deltas",
+        "Anatomical overlay gallery + TEASAR parameter sensitivity sweep",
+        "Exclusion sensitivity with placeholders retained via degraded-graph handling",
+        "Locked reproducibility: conda-lock, kimimaro pin from remote, git SHA in cache metadata"
       ],
-      "reviewer_notes_for_memory": "Round 2 confirms central Round 1 suspicion: the dataset is fundamentally acquisition-confounded (protocol nearly determines label per data/case_protocol.csv), and the main full-cohort AUCs are not clinically defensible. The contrast-only experiment is underpowered (26 negatives) and cannot rescue the claim. Next round must (i) make protocol-matched performance primary with adequate sample, (ii) run protocol-decodability on the *exact* GCN/cache features, (iii) deliver anatomical validation of graph construction (TEASAR/overlays), and (iv) upgrade inference to case-level paired AUC (DeLong/paired bootstrap) plus reproducibility artifacts."
+      "reviewer_notes_for_memory": "Round 3 improved documentation and added local proxy analyses, but did not break the central protocol/label confounding. The 'protocol decodability' experiment is not on true GCN inputs and is computed in a cohort where protocol is a surrogate for label, so it cannot certify leakage-free representations. No case-level DeLong, no anatomical validation, no exclusion sensitivity, and reproducibility remains short of a locked, provenance-complete build."
     }
   ],
-  "timestamp": "2026-04-23T15:45:00",
-  "notes": "Round 2 verdict: 3/10 reject. W1 partially addressed (quantified but not mitigated); W2 fully addressed. Round 3 priorities per reviewer: (a) protocol decodability from GCN-internal features, (b) TEASAR overlay QC, (c) case-level DeLong, (d) W8 reproducibility."
+  "timestamp": "2026-04-23T16:40:00",
+  "notes": "Round 4 priorities: (a) within-nonPH protocol decoder [CRITICAL FIX], (b) propensity-matched PH vs nonPH subset, (c) skimage skeleton length → HiPaS T1 retry, (d) overlay gallery, (e) exclusion sensitivity, (f) conda lockfile."
 }
