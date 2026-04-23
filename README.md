@@ -898,3 +898,73 @@ Scripts & artifacts:
 - local filtered re-analysis: [`copdph-gcn-repo/_remote_topology_evolution_filtered.py`](copdph-gcn-repo/_remote_topology_evolution_filtered.py)
 - figure driver: [`copdph-gcn-repo/outputs/_drivers_sprint6/make_topology_evolution_figs.py`](copdph-gcn-repo/outputs/_drivers_sprint6/make_topology_evolution_figs.py)
 - summaries: [`outputs/p_zeta_cluster_269/topology_evolution/topo_summary.json`](outputs/p_zeta_cluster_269/topology_evolution/topo_summary.json) · [`topo_summary_filtered.json`](outputs/p_zeta_cluster_269/topology_evolution/topo_summary_filtered.json)
+
+---
+
+## W1 protocol-confound ablation — is AUC ~0.95 disease, or acquisition protocol? (2026-04-23)
+
+The v2 cache (`cache_v2_tri_flat`) + tri-structure flat GCN pushed pooled AUC
+to ~0.95 on the 243-case cohort. A Round-1 hostile review (codex-mcp GPT-5,
+high-reasoning, hard-mode; score **2/10**) flagged the central threat:
+**all 170 PH cases are contrast-enhanced CT, while 85 of the 112 non-PH cases
+are plain-scan CT.** The AUC may therefore be acquisition-protocol classification,
+not PH biology.
+
+### Design — strip the protocol confounder
+
+Retrain `arm_b` (tri-flat vessels + airway) and `arm_c` (tri-flat + 4 lung-HU
+global scalars) on the **contrast-enhanced-only** subset: 197 cases with
+contrast → 189 cases after intersection with `cache_v2_tri_flat` (**163 PH +
+26 non-PH**). Identical training config to the full-cohort runs: 5-fold × 3
+repeats × 120 epochs, batch=16, `--keep_full_node_dim --skip_enhanced --augment edge_drop,feature_mask`.
+Fold splits preserved from the 282-cohort splits by filtering each
+`fold_*/{train,val}.txt` to the contrast subset (class imbalance: 3–7 non-PH per fold).
+
+### Results
+
+| Arm | full-cohort AUC | contrast-only AUC | Δ |
+|---|---:|---:|---:|
+| `arm_b` (tri-flat) | 0.920 ± 0.030 | **0.871 ± 0.092** | **−0.049** |
+| `arm_c` (tri-flat + lung globals) | 0.959 ± 0.033 | **0.877 ± 0.085** | **−0.082** |
+| `arm_c − arm_b` | +0.039 | **+0.006** | — |
+
+Contrast-only 189-case full metric panel:
+
+| Arm | AUC | Acc | Precision | Sensitivity | F1 | Specificity | pooled AUC |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `arm_b` | 0.871 ± 0.092 | 0.858 ± 0.047 | 0.978 ± 0.029 | 0.857 ± 0.050 | 0.912 ± 0.029 | 0.889 ± 0.145 | 0.821 |
+| `arm_c` | 0.877 ± 0.085 | 0.862 ± 0.043 | 0.984 ± 0.022 | 0.855 ± 0.042 | 0.914 ± 0.028 | 0.922 ± 0.103 | 0.862 |
+
+### Honest interpretation
+
+- **Partial confounding confirmed.** Both arms drop 0.05–0.08 absolute AUC
+  under protocol balancing → the full-cohort headline (AUC 0.92 → 0.96) was
+  inflated by acquisition cues.
+- **Residual signal is real but modest.** At AUC ~0.87 with 26 non-PH
+  negatives (3–7 per fold), `arm_b`/`arm_c` still discriminate above chance
+  — this is the **honest upper bound** under current methodology, not 0.95.
+- **The `arm_c` lung-feature advantage mostly disappears** on the balanced
+  cohort (+0.039 → +0.006 AUC). The lung HU/LAA global scalars were informative
+  because HU distributions differ between contrast-enhanced and plain-scan CT,
+  **not** because they encode disease beyond what the vessel graph already
+  captures. This retracts the `arm_c` lung-feature contribution claim as a
+  disease result.
+- **Variance is high** (±0.08–0.09 AUC) due to the small 26-nonPH arm.
+  Confidence intervals via DeLong / bootstrap on the Δ are queued for Round 2.
+
+### Round-2 experiments queued
+
+1. **Protocol-prediction control** — train `arm_b` to predict
+   `is_contrast_enhanced` from the graph directly. If that AUC → 1.0, protocol
+   is trivially decodable and the 0.87 above is a *lower* bound on confounding.
+2. **Patient-id leakage audit** on the contrast-only folds (multiple scans
+   per patient can cross folds silently).
+3. **Paired DeLong / bootstrap CIs** on every Δ comparison (v1 vs v2, full
+   vs contrast-only, `arm_c` vs `arm_b`).
+
+Full narrative + metric panel + round history:
+- report: [`copdph-gcn-repo/REPORT_v2.md`](copdph-gcn-repo/REPORT_v2.md) §13
+- audit trail: [`copdph-gcn-repo/review-stage/AUTO_REVIEW.md`](copdph-gcn-repo/review-stage/AUTO_REVIEW.md) · [`REVIEWER_MEMORY.md`](copdph-gcn-repo/review-stage/REVIEWER_MEMORY.md) · [`REVIEW_STATE.json`](copdph-gcn-repo/review-stage/REVIEW_STATE.json)
+- result JSONs: [`outputs/sprint6_arm_b_contrast_only_v2/sprint6_results.json`](copdph-gcn-repo/outputs/sprint6_arm_b_contrast_only_v2/sprint6_results.json) · [`sprint6_arm_c_contrast_only_v2`](copdph-gcn-repo/outputs/sprint6_arm_c_contrast_only_v2/sprint6_results.json)
+- full-cohort baseline JSONs: [`sprint6_arm_b_triflat_v2`](copdph-gcn-repo/outputs/sprint6_arm_b_triflat_v2/sprint6_results.json) · [`sprint6_arm_c_quad_v2`](copdph-gcn-repo/outputs/sprint6_arm_c_quad_v2/sprint6_results.json)
+- launcher: [`copdph-gcn-repo/_remote_launch_w1_ablation.py`](copdph-gcn-repo/_remote_launch_w1_ablation.py)
