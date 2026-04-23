@@ -968,3 +968,134 @@ Full narrative + metric panel + round history:
 - result JSONs: [`outputs/sprint6_arm_b_contrast_only_v2/sprint6_results.json`](copdph-gcn-repo/outputs/sprint6_arm_b_contrast_only_v2/sprint6_results.json) · [`sprint6_arm_c_contrast_only_v2`](copdph-gcn-repo/outputs/sprint6_arm_c_contrast_only_v2/sprint6_results.json)
 - full-cohort baseline JSONs: [`sprint6_arm_b_triflat_v2`](copdph-gcn-repo/outputs/sprint6_arm_b_triflat_v2/sprint6_results.json) · [`sprint6_arm_c_quad_v2`](copdph-gcn-repo/outputs/sprint6_arm_c_quad_v2/sprint6_results.json)
 - launcher: [`copdph-gcn-repo/_remote_launch_w1_ablation.py`](copdph-gcn-repo/_remote_launch_w1_ablation.py)
+
+## ARIS Round 2 — W2 / W6 resolved, protocol-robust lung v2 (2026-04-23)
+
+Codex gpt-5.2 hard-mode re-reviewed the Round-1 fixes and scored **3/10 reject**
+with W1 *quantified-but-not-mitigated* and W3/W5/W8 still open. Round 2 landed:
+
+### W2 — patient-level fold leakage (RESOLVED)
+
+`_audit_patient_leakage.py` → 282 cases = **282 unique patients** (one scan each),
+zero leakage possible across all 5 folds. External/temporal validation still open.
+
+### W6 — fold-level paired bootstrap + Wilcoxon (FIRST PASS)
+
+`_compute_ci_fold_level.py` on the 15 fold AUCs (5-fold × 3 repeats):
+
+| Pair | Δ mean | 95% CI | Wilcoxon p |
+|---|---|---|---|
+| `arm_c` − `arm_b` (full) | +0.039 | [+0.028, +0.052] | **0.0001** |
+| `arm_c` − `arm_b` (contrast-only) | +0.006 | [−0.004, +0.018] | 0.49 |
+| `arm_c` full − `arm_c` contrast-only | +0.082 | [+0.055, +0.109] | **0.0007** |
+
+The `arm_c` lung-feature gain is highly significant on the full cohort but
+**vanishes under protocol balancing** — direct statistical confirmation of W1.
+Case-level DeLong still requires a server rerun writing per-case val probs.
+
+### W1 — scalar lung features trivially decode protocol
+
+`_w1_protocol_classifier.py` on the v1 `lung_features_only.csv` (279 cases):
+
+| Target | Logistic Regression | Gradient Boosting |
+|---|---|---|
+| **Protocol** (contrast vs plain-scan) | **1.000 ± 0.000** | **1.000 ± 0.000** |
+| Disease (full cohort) | 0.871 | 0.898 |
+| Disease (contrast-only) | 0.677 | 0.678 |
+
+Any single feature in `{mean_HU, std_HU, HU_p5, HU_p25}` already hits AUC=1.000
+for protocol. Disease AUC on the same features drops 0.90 → 0.68 on the balanced
+subset. The v1 whole-lung feature gain was ~80% protocol leakage.
+
+### Graph-build difference between contrast & plain-scan (root cause diagnosed)
+
+- **Plain-scan** (`nii-unified-282/<case>/`): masks encode raw HU with `-2048`
+  background sentinel. HU read directly from the mask file.
+- **Contrast-enhanced** (`nii/<case>/` via `_source.txt` redirect): masks are
+  **binary 0/1**; HU must be read from a separate `ct.nii.gz`.
+- The v1 `lung_features_only.csv` pipeline applied the HU-sentinel rule to
+  both cohorts, so for the 197 contrast cases it read binary 0/1 values as HU,
+  giving degenerate `mean_HU ≈ 0.08`. That alone drove the v1 protocol-AUC=1.0
+  "perfect decoder" finding. Once v2 (`_extract_lung_v2.py`) honours the binary
+  convention and sources HU from `ct.nii.gz`, protocol-AUC drops from 1.00 → 0.86
+  and contrast-only disease-AUC climbs from 0.68 → 0.86.
+
+### Lung-phenotype v2 — protocol-robust parenchyma features
+
+[`_extract_lung_v2.py`](copdph-gcn-repo/_extract_lung_v2.py) produces 51 columns
+per case including `whole_*` (v1-equivalent), `paren_*` (lung minus
+artery+vein+airway), `apical_*`/`middle_*`/`basal_*` (Z-axis tertile LAA),
+`apical_basal_LAA950_gradient`, plus per-structure volumes and mean HU.
+
+5-fold stratified CV on the 186 contrast-only cases:
+
+| Feature set | n_feats | Protocol AUC (LR / GB) | Disease contrast-only (LR / GB) |
+|---|---|---|---|
+| whole_lung (v2 rebuild) | 11 | 0.900 / 0.889 | 0.824 / 0.734 |
+| **parenchyma_only** | 10 | 0.857 / 0.851 | **0.860 / 0.777** |
+| spatial_paren (apical/mid/basal LAA) | 10 | 0.808 / 0.853 | 0.732 / 0.654 |
+| vessel_lung_integration | 7 | 0.945 / 0.982 | 0.774 / 0.677 |
+| **paren + spatial (combined)** | 14 | 0.866 / 0.857 | **0.855 / 0.793** |
+
+Net gain over v1 whole-lung: **+0.18 disease AUC on balanced subset**
+with simultaneously **−0.14 protocol AUC**.
+
+### E2 — parenchyma phenotype cluster
+
+[`scripts/evolution/E2_parenchyma_cluster.py`](copdph-gcn-repo/scripts/evolution/E2_parenchyma_cluster.py) runs GMM k-selection
+(BIC) + UMAP on the 9 parenchyma+spatial features. BIC picks **k=5**.
+
+![E2 UMAP by label](copdph-gcn-repo/outputs/evolution/E2_paren_umap_label.png)
+
+![E2 UMAP by protocol](copdph-gcn-repo/outputs/evolution/E2_paren_umap_protocol.png)
+
+Cluster composition (252 valid cases, baseline PH rate 63.1%):
+
+| Cluster | Size | PH% | 95% CI | Protocol mix | Centroid signature |
+|---|---|---|---|---|---|
+| 0 | 46 | 80% | [67%, 89%] | 42c / 4p | +1.2 apical LAA-950 → **severe apical emphysema, PH-enriched** |
+| 1 | 96 | 70% | [60%, 78%] | 76c / 20p | −0.7 LAA-910 → low-LAA (mild) |
+| 2 | 19 |  0% | [0%, 17%] |  0c / 19p | +3.4 mean HU → high-HU plain-scan outliers |
+| 3 |  2 |  0% | [0%, 66%] |   1c / 1p | extreme LAA |
+| 4 | 89 | 62% | [51%, 71%] | 67c / 22p | +0.6 LAA-856 → moderate emphysema |
+
+**Within-contrast PH proportions are flat at 82–88%** across clusters 0/1/4
+(contrast-only baseline 86%) — parenchyma features separate **emphysema
+severity** but **not PH status** once protocol is held fixed. Scientific
+reading: parenchyma phenotype is a severity *modifier*, not a PH predictor;
+the PH signal must come from the vessel graph (queued as E1 for Round 3).
+
+### HiPaS-aligned disease-direction test (planned for Round 3)
+
+Chu et al., Nature Communications 2025 ("HiPaS", doi 10.1038/s41467-025-56505-4)
+achieved non-inferior artery-vein segmentation on non-contrast CT vs CTPA
+(DSC 89.95% vs 90.24%, paired p=0.633). On n=11,784 cases with lung-volume
+control they reported **PAH → lower artery skeleton length + branch count**
+and **COPD → lower vein skeleton length + branch count**. Adopting their
+abundance endpoints gives us a literature-aligned falsification test: if
+our v2 graphs reproduce both directions on the 189-case contrast-only subset,
+that is cross-validated evidence the residual signal is biological rather
+than protocol. Scripted as `scripts/evolution/E3_abundance_endpoints.py`
+(pending remote cache access).
+
+### Round-3 priorities (per Round-2 reviewer memory)
+
+1. **Protocol decodability on exact GCN/cache features** (not scalar lung
+   scalars) — train `arm_b` to predict `is_contrast_enhanced` from the
+   graph it actually sees.
+2. **Case-level DeLong** — rerun sprint6 with per-case val-prob dumps,
+   replace fold-level Wilcoxon.
+3. **TEASAR parameter sensitivity** + overlay QC on ~20 representative cases.
+4. **Reproducibility manifest** — `environment.yml`, kimimaro version pin,
+   cache-builder commit hash, one-command rebuild.
+5. **HiPaS-aligned E3** — artery/vein skeleton-length and branch-count
+   disease-direction test on contrast-only subset.
+
+Round 2 artifacts:
+- [`REPORT_v2.md §13–§15`](copdph-gcn-repo/REPORT_v2.md)
+- [`outputs/_patient_leakage_audit.md`](copdph-gcn-repo/outputs/_patient_leakage_audit.md)
+- [`outputs/_ci_fold_level.md`](copdph-gcn-repo/outputs/_ci_fold_level.md)
+- [`outputs/_w1_protocol_classifier.md`](copdph-gcn-repo/outputs/_w1_protocol_classifier.md) · [`v2.md`](copdph-gcn-repo/outputs/_w1_protocol_classifier_v2.md)
+- [`outputs/evolution/E2_paren_cluster.md`](copdph-gcn-repo/outputs/evolution/E2_paren_cluster.md)
+- [`data/case_protocol.csv`](copdph-gcn-repo/data/case_protocol.csv) — authoritative protocol labels
+- [`EVOLUTION_CLUSTERING_DESIGN.md`](copdph-gcn-repo/EVOLUTION_CLUSTERING_DESIGN.md) — E1–E5 design doc
