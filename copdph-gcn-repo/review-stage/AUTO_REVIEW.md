@@ -56,6 +56,44 @@
 
 ---
 
+### Round 2 — 2026-04-23 15:45
+
+**Score**: 3/10 | **Verdict**: `reject` (hard-mode gpt-5.2, high-reasoning)
+
+**Delta since Round 1**:
+- W1 quantified: §13 contrast-only ablation (AUC drops 0.05–0.08); §14.3 scalar-lung protocol AUC = 1.000
+- W2 resolved: 282 cases = 282 unique patients (one scan each); 0 leakage by construction
+- W6 partial: fold-level paired bootstrap + Wilcoxon + paired-t (case-level DeLong still missing)
+- W7 scoped: airway claims moved to §11.5 / appendix
+
+**Round 2 per-W disposition**:
+
+| W | Severity | Addressed | Note |
+|---|---|---|---|
+| W1 | critical | partial | Protocol-matched eval underpowered (26 nonPH negatives); label/protocol near-perfectly entangled |
+| W2 | minor | **yes** | Audit confirms patient-disjoint; external validity still absent |
+| W3 | critical | **no** | TEASAR overlays + parameter sweep deferred |
+| W4 | major | **no** | mm-coords / ct_density / Strahler cycles still not fixed in v2 cache |
+| W5 | major | **no** | Exclusion-sensitivity not run |
+| W6 | major | partial | Fold-level only; case-level DeLong missing |
+| W7 | minor | partial | Scoped to appendix; airway QC still pending |
+| W8 | major | **no** | No env lockfile, no kimimaro pin, no one-command rebuild |
+
+**Must fix before Round 3**: W1, W3, W6, W5, W8, W4
+
+**Round 3 reviewer priorities** (persisted to REVIEWER_MEMORY.md):
+1. Protocol decodability from **exact GCN/cache features** (not separate lung scalars)
+2. Anatomical validation of graph construction (TEASAR overlays, skeleton-to-mask coverage)
+3. Case-level paired AUC inference (DeLong) requiring per-case val-prob dump
+4. Reproducibility artifacts (env lockfile, kimimaro pin, one-command rebuild)
+
+**Strengths acknowledged this round**:
+- Inflated v1→v2 +0.17 AUC narrative explicitly retracted (§13.5)
+- Protocol AUC = 1.000 evidence is clear and falsifiable (§14.3)
+- Patient-disjoint splits backed by audit (zero leakage)
+
+---
+
 ### Post-Round-1 fixes applied (2026-04-23 ~11:35)
 
 **arm_b_triflat_v2 + arm_c_quad_v2 complete** (full 243-case cohort):

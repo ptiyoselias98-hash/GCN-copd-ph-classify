@@ -1,0 +1,84 @@
+{
+  "single": [
+    {
+      "arm": "arm_b_full",
+      "n_folds": 15,
+      "mean": 0.9199596454743514,
+      "ci_lo": 0.9051568194196871,
+      "ci_hi": 0.9343790478312537,
+      "sd": 0.030785717749847646
+    },
+    {
+      "arm": "arm_c_full",
+      "n_folds": 15,
+      "mean": 0.9592446524064171,
+      "ci_lo": 0.9414879060209944,
+      "ci_hi": 0.9746359056248762,
+      "sd": 0.03407598947144418
+    },
+    {
+      "arm": "arm_b_contrast_only",
+      "n_folds": 15,
+      "mean": 0.8709111952861953,
+      "ci_lo": 0.824219170875421,
+      "ci_hi": 0.9154930555555556,
+      "sd": 0.09483031801899415
+    },
+    {
+      "arm": "arm_c_contrast_only",
+      "n_folds": 15,
+      "mean": 0.877047558922559,
+      "ci_lo": 0.8322725694444445,
+      "ci_hi": 0.9183253367003368,
+      "sd": 0.08755269024704065
+    }
+  ],
+  "paired": [
+    {
+      "pair": "arm_c_full \u2212 arm_b_full",
+      "n_folds": 15,
+      "delta_mean": 0.03928500693206574,
+      "delta_ci_lo": 0.028064542483660134,
+      "delta_ci_hi": 0.05192502847098434,
+      "wilcoxon_stat": 0.0,
+      "wilcoxon_p": 6.103515625e-05,
+      "paired_t_stat": 6.210821719373938,
+      "paired_t_p": 2.2721727751735585e-05
+    },
+    {
+      "pair": "arm_c_contrast_only \u2212 arm_b_contrast_only",
+      "n_folds": 15,
+      "delta_mean": 0.0061363636363636585,
+      "delta_ci_lo": -0.0036873947811447644,
+      "delta_ci_hi": 0.01759259259259261,
+      "wilcoxon_stat": 46.5,
+      "wilcoxon_p": 0.49447470379114666,
+      "paired_t_stat": 1.0977114647225235,
+      "paired_t_p": 0.2908519574541571
+    },
+    {
+      "pair": "arm_b_full \u2212 arm_b_contrast_only",
+      "n_folds": 15,
+      "delta_mean": 0.049048450188156074,
+      "delta_ci_lo": 0.015619643122400466,
+      "delta_ci_hi": 0.08363006597841155,
+      "wilcoxon_stat": 27.0,
+      "wilcoxon_p": 0.063720703125,
+      "paired_t_stat": 2.7167261860961687,
+      "paired_t_p": 0.016700316320408703
+    },
+    {
+      "pair": "arm_c_full \u2212 arm_c_contrast_only",
+      "n_folds": 15,
+      "delta_mean": 0.08219709348385816,
+      "delta_ci_lo": 0.0554667694097841,
+      "delta_ci_hi": 0.1092863685878391,
+      "wilcoxon_stat": 0.0,
+      "wilcoxon_p": 0.0006533107814151377,
+      "paired_t_stat": 5.70677397352047,
+      "paired_t_p": 5.420718609876494e-05
+    }
+  ],
+  "n_boot": 10000,
+  "seed": 20260423
+}

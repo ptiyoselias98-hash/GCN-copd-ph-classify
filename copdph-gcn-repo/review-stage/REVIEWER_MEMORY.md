@@ -30,6 +30,33 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 2 key concerns (2026-04-23 15:45) — CARRY INTO ROUND 3
+
+**Score 3/10 reject.** Key new concerns beyond Round 1:
+
+1. **Protocol/label are near-perfectly entangled in the cohort.** 170 PH cases
+   are contrast, 85 nonPH plain-scan, only 27 nonPH are contrast (the only
+   "free variation" in protocol within a label). The contrast-only ablation
+   (26 nonPH negatives, 3–7 per fold) is underpowered. Contrast-only results
+   cannot rescue the claim. Primary endpoint must become protocol-matched.
+
+2. **Protocol decodability must be tested on the EXACT GCN/cache features,
+   not separate scalar lung features.** §14.3 proves scalars leak protocol
+   perfectly; Round 3 must prove whether the graph-node features do too,
+   using the same training pipeline, to know whether the residual 0.87 AUC
+   is disease or residual protocol.
+
+3. **Statistical inference is still not confirmatory-grade.** Fold-level
+   paired tests are not a substitute for case-level paired AUC (DeLong).
+   Per-case val-fold predictions must be persisted and paired DeLong reported.
+
+4. **TEASAR / graph construction remains unvalidated anatomically.** No
+   overlay audits, no skeleton-to-mask coverage metrics, no parameter
+   sensitivity sweep.
+
+5. **Reproducibility package is still text-only.** No env lockfile, no
+   kimimaro version pin, no cache-builder commit hash, no one-command rebuild.
+
 ## Verification checklist for subsequent rounds
 
 For each fix claimed in a new round, verify:

@@ -1,0 +1,59 @@
+{
+  "n_cases": 282,
+  "n_cases_parsed": 282,
+  "n_unparsed": 0,
+  "unparsed_examples": [],
+  "n_patients": 282,
+  "n_multi_scan_patients": 0,
+  "scan_counts": {
+    "1": 282
+  },
+  "total_leaked_patient_occurrences": 0,
+  "fold_reports": [
+    {
+      "fold": 1,
+      "train_cases": 225,
+      "val_cases": 57,
+      "train_patients": 225,
+      "val_patients": 57,
+      "leaked_patients": 0,
+      "leaked": []
+    },
+    {
+      "fold": 2,
+      "train_cases": 225,
+      "val_cases": 57,
+      "train_patients": 225,
+      "val_patients": 57,
+      "leaked_patients": 0,
+      "leaked": []
+    },
+    {
+      "fold": 3,
+      "train_cases": 226,
+      "val_cases": 56,
+      "train_patients": 226,
+      "val_patients": 56,
+      "leaked_patients": 0,
+      "leaked": []
+    },
+    {
+      "fold": 4,
+      "train_cases": 226,
+      "val_cases": 56,
+      "train_patients": 226,
+      "val_patients": 56,
+      "leaked_patients": 0,
+      "leaked": []
+    },
+    {
+      "fold": 5,
+      "train_cases": 226,
+      "val_cases": 56,
+      "train_patients": 226,
+      "val_patients": 56,
+      "leaked_patients": 0,
+      "leaked": []
+    }
+  ]
+}

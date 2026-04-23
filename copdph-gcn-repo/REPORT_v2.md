@@ -349,3 +349,141 @@ imbalance in val folds: 3–7 nonPH per fold.
 - Launcher: `_remote_launch_w1_ablation.py`
 - Contrast subset labels/splits: `data/labels_contrast_only.csv`,
   `data/splits_contrast_only/fold_{1..5}/{train,val}.txt` (pushed to remote).
+
+
+## 14. ARIS Round 2 — targeted fixes (2026-04-23)
+
+Addresses the reviewer memory from Round 1 beyond what §13 already covered.
+
+### 14.1 W2 — patient-level fold leakage audit (RESOLVED)
+
+Script: `_audit_patient_leakage.py`. Result
+(`outputs/_patient_leakage_audit.md`):
+
+- 282 cases → 282 unique patients (scan-count histogram `{1: 282}` — one scan
+  per patient).
+- Zero leakage possible across any of the 5 folds. Fold splits are already
+  patient-disjoint by construction because each patient contributes exactly
+  one case.
+- External/temporal validation remains an open limitation (§11.2).
+
+### 14.2 W6 — fold-level paired CIs on key AUC deltas (FIRST PASS)
+
+Script: `_compute_ci_fold_level.py`. Result
+(`outputs/_ci_fold_level.md`):
+
+| Arm | mean AUC (15 folds) | 95% percentile-bootstrap CI |
+|---|---|---|
+| arm_b full | 0.920 | [0.905, 0.934] |
+| arm_c full | 0.959 | [0.941, 0.975] |
+| arm_b contrast-only | 0.871 | [0.824, 0.915] |
+| arm_c contrast-only | 0.877 | [0.832, 0.918] |
+
+Paired deltas (15 matched folds, paired bootstrap Δ + Wilcoxon + paired-t):
+
+| Pair | Δ mean | 95% CI | Wilcoxon p | paired-t p |
+|---|---|---|---|---|
+| arm_c_full − arm_b_full | +0.039 | [+0.028, +0.052] | **0.0001** | **0.0000** |
+| arm_c_contrast-only − arm_b_contrast-only | +0.006 | [−0.004, +0.018] | 0.49 | 0.29 |
+| arm_b_full − arm_b_contrast-only | +0.049 | [+0.016, +0.084] | 0.064 | **0.017** |
+| arm_c_full − arm_c_contrast-only | +0.082 | [+0.055, +0.109] | **0.0007** | **0.0001** |
+
+Reading:
+
+- arm_c's lung-feature gain is **highly significant on the full cohort (p < 0.0001)
+  but vanishes under protocol balancing (p = 0.49)** — direct statistical
+  confirmation of the §13 interpretation.
+- arm_c drops ~2× more under protocol balancing than arm_b does
+  (0.082 vs 0.049; both 95% CIs exclude zero). Lung features are the most
+  protocol-confounded ingredient; vessel graph features retain more signal.
+
+**Caveat**: these are fold-level tests, not case-level DeLong. Sprint6 result
+JSONs do not persist per-case probabilities; a follow-up rerun writing
+val-fold probabilities is scheduled to replace these intervals with true
+DeLong CIs.
+
+### 14.3 W1 stress-test — trivial protocol decodability (NEW)
+
+Script: `_w1_protocol_classifier.py` (local, sklearn). Result
+(`outputs/_w1_protocol_classifier.md`):
+
+| Target | Logistic Regression | Gradient Boosting |
+|---|---|---|
+| **Protocol** (contrast vs plain-scan) | **1.000 ± 0.000** | **1.000 ± 0.000** |
+| Disease (full cohort) | 0.871 | 0.898 |
+| Disease (contrast-only) | 0.677 | 0.678 |
+
+Single-feature protocol decoders (5-fold CV AUC on 279 cases):
+`mean_HU` / `std_HU` / `HU_p5` / `HU_p25` — all AUC = **1.000 ± 0.000**.
+I.e., any single one of these features perfectly separates contrast from
+plain-scan CT.
+
+Reading:
+
+- Whole-lung scalar HU features contain **complete protocol information**.
+  Any classifier using them can decode protocol with zero error.
+- On the same features, disease AUC drops from **0.898 (full cohort) to
+  0.678 (contrast-only)** — a ~0.22 absolute gap that is entirely protocol
+  leakage under these features.
+- The implication for §13 is stronger than originally stated:
+  the ~0.87 contrast-only GCN AUC is an **upper bound** on disease signal
+  only if the graph is protocol-invariant; since v2 node features do NOT
+  carry HU (`ct_density` is hardcoded 0, coords are index-space),
+  the protocol cue in the graph can only come from segmentation-quality
+  differences. That is a narrower, testable channel for Round 3 follow-up.
+
+### 14.4 Protocol-robust lung phenotype v2 (IN PROGRESS)
+
+Script: `_extract_lung_v2.py`. Rationale: §14.3 shows whole-lung HU features
+are 100% protocol-decodable because the lung mask includes vessels, whose
+HU swings ~300 HU between contrast and plain-scan. Parenchyma-only features
+(lung − artery − vein − airway) should be much more protocol-robust.
+
+Features produced per case (~32 columns):
+
+- `whole_*` — legacy v1 features (for comparison).
+- `paren_*` — HU / LAA on lung ∩ ¬(vessels ∪ airway).
+- `apical_*`, `middle_*`, `basal_*` — parenchyma LAA_950/910 and mean_HU in
+  Z-axis thirds; `apical_basal_LAA950_gradient` captures the classic
+  upper-zone emphysema signature.
+- `artery_mean_HU`, `vein_mean_HU`, `airway_mean_HU`, `*_vol_mL`, `*_placeholder`
+  — vessel-lung integration + protocol indicators.
+
+Job launched 2026-04-23 at 10 workers × 282 cases. Expected ~10 min.
+Post-run: repeat W1 stress-test on `paren_*` features only — target is
+protocol AUC ≪ 1.0 with disease-on-contrast-only AUC preserved or improved
+relative to `whole_*`.
+
+### 14.5 Cohort protocol labels committed (NEW)
+
+`data/case_protocol.csv` (282 rows) is derived from the three original DCM
+folders on `H:/官方数据data/`:
+
+- `COPDPH_seg/` → 170 contrast PH,
+- `COPDnonPH_seg/` → 27 contrast nonPH,
+- `New folder-COPD（PH概率小）/` → 85 plain-scan nonPH.
+
+Cross-tab (label × protocol):
+
+| | contrast | plain-scan |
+|---|---|---|
+| label=0 (COPD) | 27 | 85 |
+| label=1 (COPD-PH) | 170 | 0 |
+
+Zero cases unmatched. This is the authoritative protocol label used by
+§13/§14 analyses; any future protocol-stratified experiment must load
+`case_protocol.csv` rather than re-infer from directory names.
+
+### 14.6 Open items heading into Round 3
+
+- **W3**: TEASAR parameter sensitivity (requires remote rebuild, not local).
+- **W5**: exclusion-sensitivity rerun keeping 27 placeholder nonPH with
+  degraded graphs.
+- **W6 upgrade**: per-case val-prob dump + proper DeLong paired test.
+- **W7**: airway QC (largest-component fraction, HU-sanity, placeholder-shape).
+- **W8**: publish `environment.yml`, pin kimimaro version, add one-command
+  rebuild script.
+- **Disease-focused clustering** (user-facing scientific question): repeat
+  §9 phenotype clustering on **parenchyma-only** + **vessel-graph stats**,
+  stratified by protocol, to separate emphysema severity from vascular
+  remodelling signatures during COPD → COPD-PH evolution.
