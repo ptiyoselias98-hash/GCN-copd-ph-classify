@@ -1,0 +1,57 @@
+{
+  "tests": [
+    {
+      "name": "T1_artery_frac_PH_vs_nonPH_contrast",
+      "hipas_prediction": "PH < nonPH (reduced artery abundance)",
+      "n_ph": 158,
+      "n_nonph": 27,
+      "median_ph": 0.08144515965757881,
+      "median_nph": 0.04726599646255051,
+      "U": 3279.0,
+      "p_two_sided": 8.400914958940004e-06,
+      "p_one_sided_less": 0.9999958750209638,
+      "cliffs_delta": 0.5372714486638537,
+      "direction_matches_hipas": false
+    },
+    {
+      "name": "T2_vein_frac_vs_LAA910_contrast",
+      "hipas_prediction": "Spearman(LAA_910, vein_frac) < 0 (more emphysema \u2192 less vein)",
+      "n": 185,
+      "spearman_rho": -0.7445737462567757,
+      "spearman_p": 5.9664592688877005e-34,
+      "direction_matches_hipas": true
+    },
+    {
+      "name": "T2_vein_frac_vs_LAA910_plain_scan",
+      "hipas_prediction": "Spearman(LAA_910, vein_frac) < 0 (more emphysema \u2192 less vein)",
+      "n": 46,
+      "spearman_rho": -0.5113166820844897,
+      "spearman_p": 0.00028178132550159567,
+      "direction_matches_hipas": true
+    },
+    {
+      "name": "T3_artery_frac_vs_LAA910_contrast",
+      "hipas_prediction": "weaker effect than vein (COPD-specific)",
+      "n": 185,
+      "spearman_rho": -0.6486353815245821,
+      "spearman_p": 1.8142937193936495e-23
+    },
+    {
+      "name": "T3_artery_frac_vs_LAA910_plain_scan",
+      "hipas_prediction": "weaker effect than vein (COPD-specific)",
+      "n": 46,
+      "spearman_rho": -0.44915201973481345,
+      "spearman_p": 0.0017412451877485877
+    },
+    {
+      "name": "T4_vein_frac_PH_vs_nonPH_contrast",
+      "hipas_prediction": "weaker than T1 (PH is artery-specific)",
+      "n_ph": 158,
+      "n_nonph": 27,
+      "median_ph": 0.060742071596170795,
+      "median_nph": 0.04559265338611872,
+      "p_two_sided": 0.06332015939013204,
+      "cliffs_delta": 0.22409751523675575
+    }
+  ]
+}

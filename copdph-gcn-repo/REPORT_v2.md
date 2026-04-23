@@ -585,6 +585,80 @@ triangulate the disease signal against a literature-validated metric.
 - `REPORT_v2.md §15` (this section) will be updated with measured
   SL / BC directions once E3 runs.
 
+## 16. ARIS Round 3 — W8 reproducibility + cache-feature protocol + HiPaS test
+
+### 16.1 E3 HiPaS-aligned disease-direction test (LOCAL PROXY)
+
+Script: `scripts/evolution/E3_abundance_disease_direction.py`.
+Proxy: volume fraction (artery_vol_mL / lung_vol_mL). True HiPaS comparison
+needs skeleton length + branch count; that requires the remote graph cache.
+
+Results (contrast-only subset + full cohort stratified by protocol):
+
+| Test | Direction | Measured | Matches HiPaS |
+|---|---|---|---|
+| T1 PH vs nonPH on `artery_frac` (contrast, n=158/27) | ↓artery for PH | **median PH 0.081 > nonPH 0.047**, p=8.4e-6, δ=+0.54 | **NO (opposite)** |
+| T2 Spearman(LAA_910, `vein_frac`) contrast (n=185) | negative | ρ = **−0.745**, p<1e-33 | **YES** |
+| T2 same plain_scan (n=46) | negative | ρ = **−0.511**, p=3e-4 | **YES** |
+| T3 Spearman(LAA_910, `artery_frac`) contrast | weaker than T2 | ρ = −0.649, p<1e-22 | partial (almost as strong as T2) |
+
+**Interpretation of T1 mismatch**: HiPaS predicts PAH → reduced distal
+artery *skeleton length* after lung-volume control. Our T1 shows PH has
+HIGHER artery *volume*. The classic PH pruning pattern is central PA
+dilation + distal branch loss. Volume conflates these: central dilation
+alone can increase total artery voxel count even when branches are lost.
+A true HiPaS-equivalent test requires replacing volume with skeleton
+length — this is the single most important Round 4 endpoint.
+
+T2 (COPD→↓vein abundance) is strongly confirmed even on our crude volume
+proxy, matching HiPaS. Both contrast and plain-scan cohorts show the
+same direction with consistent ρ magnitude, suggesting the COPD→vein
+signal is disease-specific and not a protocol artifact.
+
+### 16.2 Cache-feature protocol decodability (LOCAL PROXY)
+
+Script: `scripts/evolution/R3_cache_feature_protocol.py`.
+
+| Feature set | n_feats | Protocol (LR / GB) | Disease contrast (LR / GB) |
+|---|---|---|---|
+| A_per_structure_volumes | 4 | **0.524** / 0.910 | 0.756 / 0.660 |
+| B_volumes_plus_ratios | 7 | 0.885 / 0.854 | 0.770 / 0.706 |
+| C_spatial_only | 4 | 0.732 / 0.767 | 0.671 / 0.402 |
+| D_paren_LAA_only | 3 | **0.591** / 0.811 | 0.685 / 0.633 |
+| E_v2_ratio_combined_no_HU | 11 | 0.860 / 0.877 | 0.786 / 0.741 |
+
+**Key observation**: volumes alone are **linearly** protocol-invariant
+(LR AUC 0.52) but GB still finds a 0.91 non-linear protocol decoder.
+Any disease claim on GB features needs an adversarial debiasing step to
+avoid re-learning protocol through non-linear interactions.
+
+Linear-classifier protocol AUC is the honest "protocol leakage floor"
+for the paper's main endpoint: set D (paren LAA only, 3 features) has
+linear protocol AUC 0.591 which is the lowest protocol signal among
+disease-preserving sets (contrast-only disease 0.685 LR).
+
+### 16.3 W8 reproducibility manifest
+
+- `environment.yml` (remote training env: Python 3.9, PyTorch 2.2, PyG 2.5,
+  kimimaro 4.0.4 placeholder pending `pip show` on remote).
+- `requirements-local.txt` (local analysis env: numpy/pandas/sklearn/nibabel/umap).
+- `REPRODUCE.md` — single-file instructions covering (a) protocol labels,
+  (b) lung v2 extraction, (c) W1/W2/W6 stress tests, (d) E2/E3/R3 Round 3
+  analyses, (e) remote cache rebuild, (f) ARIS loop.
+- Each v2 pkl has `builder_version=v2_kimimaro`; future rebuilds will
+  additionally record git SHA.
+
+### 16.4 What Round 3 still does NOT have
+
+- **Per-case val-fold probs** → case-level DeLong (needs remote rerun of
+  sprint6 with prob dump; queued).
+- **True skeleton-length abundance** → HiPaS T1 rerun with proper metric
+  (needs local skimage skeletonize_3d or remote kimimaro access).
+- **TEASAR parameter sensitivity** + overlay QC (needs remote or local
+  mask visualization gallery).
+- **Domain-adversarial mitigation** (W1 → 0.5 protocol AUC target) —
+  new experimental arm.
+
 ### 14.5 Cohort protocol labels committed (NEW)
 
 `data/case_protocol.csv` (282 rows) is derived from the three original DCM
