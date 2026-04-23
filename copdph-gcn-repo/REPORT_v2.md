@@ -432,27 +432,158 @@ Reading:
   the protocol cue in the graph can only come from segmentation-quality
   differences. That is a narrower, testable channel for Round 3 follow-up.
 
-### 14.4 Protocol-robust lung phenotype v2 (IN PROGRESS)
+### 14.4 Protocol-robust lung phenotype v2 (COMPLETE)
 
-Script: `_extract_lung_v2.py`. Rationale: §14.3 shows whole-lung HU features
-are 100% protocol-decodable because the lung mask includes vessels, whose
-HU swings ~300 HU between contrast and plain-scan. Parenchyma-only features
-(lung − artery − vein − airway) should be much more protocol-robust.
+Script: `_extract_lung_v2.py`. Output: `outputs/lung_features_v2.csv`
+(282 cases × 51 features, 275 valid). Classifier comparison:
+`_w1_protocol_classifier_v2.py` → `outputs/_w1_protocol_classifier_v2.md`.
 
-Features produced per case (~32 columns):
+**Critical builder discovery**: the two cohorts use different mask
+conventions. Plain-scan cohort (`nii-unified-282/`) stores raw HU in the
+mask file with `-2048` background sentinel. Contrast cohort (`nii/`,
+reached via `_source.txt` redirects) uses binary 0/1 masks and the HU
+must be read from a separate `ct.nii.gz`. The extractor auto-detects
+both conventions (`mask_convention` column: `hu` or `binary`). The v1
+lung-feature pipeline did NOT honour the contrast convention — it
+read whole-lung HU from the mask file directly which for the contrast
+cohort returned {0, 1} values, causing the degenerate "mean_HU ≈ 0.08"
+numbers that drove the v1 protocol AUC to 1.000.
 
-- `whole_*` — legacy v1 features (for comparison).
-- `paren_*` — HU / LAA on lung ∩ ¬(vessels ∪ airway).
-- `apical_*`, `middle_*`, `basal_*` — parenchyma LAA_950/910 and mean_HU in
-  Z-axis thirds; `apical_basal_LAA950_gradient` captures the classic
-  upper-zone emphysema signature.
-- `artery_mean_HU`, `vein_mean_HU`, `airway_mean_HU`, `*_vol_mL`, `*_placeholder`
-  — vessel-lung integration + protocol indicators.
+**Protocol-robustness comparison (5-fold stratified CV on 252 valid cases)**:
 
-Job launched 2026-04-23 at 10 workers × 282 cases. Expected ~10 min.
-Post-run: repeat W1 stress-test on `paren_*` features only — target is
-protocol AUC ≪ 1.0 with disease-on-contrast-only AUC preserved or improved
-relative to `whole_*`.
+| Feature set | n_feats | Protocol AUC (LR / GB) | Disease full (LR / GB) | **Disease contrast-only (LR / GB)** |
+|---|---|---|---|---|
+| whole_lung (v2 rebuild) | 11 | 0.900 / 0.889 | 0.879 / 0.873 | 0.824 / 0.734 |
+| **parenchyma_only** | 10 | 0.857 / 0.851 | 0.870 / 0.841 | **0.860 / 0.777** |
+| spatial_paren (apical/mid/basal LAA) | 10 | 0.808 / 0.853 | 0.761 / 0.856 | 0.732 / 0.654 |
+| vessel_lung_integration | 7 | 0.945 / 0.982 | 0.861 / 0.890 | 0.774 / 0.677 |
+| **paren_plus_spatial (combined)** | 14 | 0.866 / 0.857 | 0.879 / 0.852 | **0.855 / 0.793** |
+
+For context, the v1 `lung_features_only.csv` whole-lung features (§14.3) gave
+protocol AUC = **1.000** and disease contrast-only = **0.678**.
+
+**Reading**:
+
+1. The v2 whole-lung rebuild with correct HU sourcing already drops protocol
+   AUC from 1.000 (v1 bug) → 0.900 (v2 correct) and raises disease
+   contrast-only AUC from 0.678 → 0.824 (LR). A large portion of the Round 1
+   protocol-confound finding was a v1 *implementation* bug, not an intrinsic
+   feature property.
+2. Subtracting vessels + airway before computing HU statistics (parenchyma_only)
+   drops protocol AUC further to 0.857/0.851, and disease contrast-only
+   reaches **0.860 (LR)** — a +0.036 absolute gain over whole-lung with
+   LESS protocol confounding. Net-net: parenchyma-only is the correct
+   whole-lung HU surrogate for disease analysis.
+3. Adding apical/middle/basal LAA spatial features yields the best combined
+   result: protocol 0.866, disease contrast-only **0.855 (LR)** —
+   a +0.18 absolute disease recovery vs the v1 baseline on the same
+   balanced 186-case subset.
+4. `vessel_lung_integration` features (artery / vein / airway volumes and
+   mean HU) have near-perfect protocol AUC 0.98, as expected — contrast
+   enhancement dominates vessel HU. These features should be avoided for
+   disease claims.
+
+**Implication for §13**: the protocol confound story needs revision. The
+§13 contrast-only arm_c AUC of 0.877 was on full graph+lung features;
+under the correctly-computed v2 lung features, scalar lung features alone
+already recover disease AUC ~0.855 on the same subset. The graph's
+contribution above that is the remaining open question for Round 3.
+
+### 14.7 E2 parenchyma phenotype cluster (v2 features, 252 cases)
+
+Script: `scripts/evolution/E2_parenchyma_cluster.py`. Output:
+`outputs/evolution/E2_paren_cluster.{md,json}` + 2 PCA figures.
+
+GMM k=5 (BIC-optimal). Cluster composition (baseline PH rate = 63.1%):
+
+| Cluster | Size | PH% | Wilson 95% CI | Protocol mix | Centroid signature |
+|---|---|---|---|---|---|
+| 0 | 46 | 80% | [67%, 89%] | 42 contrast / 4 plain | +1.2 apical LAA-950, +1.1 paren LAA-910 → "severe apical emphysema, PH-enriched" |
+| 1 | 96 | 70% | [60%, 78%] | 76 / 20 | −0.7 LAA-910 → "low-LAA" |
+| 2 | 19 |  0% | [0%, 17%]  | 0 / 19  | +3.4 mean HU, +3.2 std HU → "high-HU plain-scan outliers" |
+| 3 |  2 |  0% | [0%, 66%]  | 1 / 1   | extreme LAA, too small |
+| 4 | 89 | 62% | [51%, 71%] | 67 / 22 | +0.6 LAA-856 → "moderate emphysema" |
+
+**Within-contrast PH proportions** (163/189 ≈ 86% baseline): clusters 0/1/4
+sit at 82–88% — no cluster separates PH from non-PH within the contrast
+subset. Parenchyma-only features encode **emphysema severity**, not PH
+status, once protocol is held fixed.
+
+**Scientific reading**: parenchyma phenotype is a *modifier*, not a
+*predictor*, of PH in COPD. Clinical intuition is consistent — emphysema
+severity is a widespread COPD trait; PH is a specific secondary
+phenotype that requires vessel-remodeling evidence. Any disease signal
+beyond 0.85 AUC must therefore come from the vessel graph, which
+motivates E1 (vessel topology cluster on contrast-only subset) as the
+primary next analysis.
+
+## 15. HiPaS-aligned disease-direction sanity check (planned for Round 3)
+
+Chu et al., Nature Communications 2025 ("HiPaS") achieved non-inferior
+artery-vein segmentation on non-contrast CT vs CTPA (DSC 89.95% vs 90.24%,
+p=0.633 paired), trained on 875 multi-center CTs. On an anatomical study
+of n=11,784 participants with lung-volume control, they reported:
+
+- **PAH → negative correlation with artery abundance** (skeleton length
+  −192 ± 96 per unit, branch count −43 ± 20).
+- **COPD → negative correlation with vein abundance** (SL −170 ± 74,
+  BC −42 ± 20).
+
+Actionable implications for our work:
+
+### 15.1 Protocol unification is a solved problem
+
+The root cause of our W1 confound is that the 197 contrast and 85
+plain-scan cohorts received different segmentation models. HiPaS
+demonstrates a single unified model can do both. Round 3 plan:
+
+- If local retraining is infeasible, re-segment one cohort with the
+  other's segmenter as a consistency check. Minimum: run the plain-scan
+  segmenter on a sample of contrast cases and compare artery/vein
+  skeleton length + branch count to the original segmentation.
+- Medium-term: adopt a HiPaS-style unified pipeline for the v3 cache,
+  eliminating protocol confound at source. The `v3_mm` builder was
+  already planned to fix mm-coords + ct_density; adding a unified
+  segmenter makes v3 reviewer-defensible on W1.
+
+### 15.2 Falsifiable disease directions
+
+Extract from our `cache_v2_tri_flat` per-case pkls:
+
+- Artery skeleton length (SL_A) and branch count (BC_A).
+- Vein skeleton length (SL_V) and branch count (BC_V).
+
+Then, on the contrast-only 189-case subset (protocol-balanced):
+
+- Predicted by HiPaS (published): PH cases should show **lower SL_A
+  and BC_A** than non-PH matched for lung volume.
+- Predicted by HiPaS (published): COPD severity (LAA-910) should show
+  **lower SL_V and BC_V**.
+
+This is a literature-aligned falsification test. If our v2 graphs
+reproduce both directions on the contrast subset, it is strong evidence
+the residual signal above protocol is biological. If they do not, the
+v2 graph construction is suspect (W3 concerns vindicated).
+
+### 15.3 Benchmark endpoints we should add
+
+HiPaS uses simple abundance metrics that are much more stable than
+Strahler-order or tortuosity and that map 1:1 to published literature:
+
+- Artery / vein / airway **skeleton length** per lung volume
+- Artery / vein / airway **branch count** per lung volume
+
+These should appear in a supplementary table next to our GCN AUCs to
+triangulate the disease signal against a literature-validated metric.
+
+### 15.4 Artifacts for Round 3
+
+- `scripts/evolution/E1_vessel_cluster.py` — vessel-topology cluster on
+  contrast-only 189 cases (needs remote cache access).
+- `scripts/evolution/E3_abundance_endpoints.py` — per-case SL / BC
+  extraction + contrast-only disease-direction test vs HiPaS priors.
+- `REPORT_v2.md §15` (this section) will be updated with measured
+  SL / BC directions once E3 runs.
 
 ### 14.5 Cohort protocol labels committed (NEW)
 
