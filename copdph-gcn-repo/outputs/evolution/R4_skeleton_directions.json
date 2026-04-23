@@ -1,0 +1,31 @@
+{
+  "tests": [
+    {
+      "name": "T1_SL_artery_per_L_PH_vs_nonPH_contrast",
+      "hipas_prediction": "PH < nonPH",
+      "n_ph": 169,
+      "n_nonph": 27,
+      "median_ph": 5299.989744416752,
+      "median_nph": 3901.5419077371967,
+      "p_two_sided": 0.0031928732921578406,
+      "cliffs_delta": 0.35393381547227704,
+      "direction_matches_hipas": false
+    },
+    {
+      "name": "T2_SL_vein_per_L_vs_LAA910_contrast",
+      "hipas_prediction": "negative",
+      "n": 186,
+      "spearman_rho": -0.6542013809565991,
+      "spearman_p": 4.285807670796508e-24,
+      "direction_matches_hipas": true
+    },
+    {
+      "name": "T2_SL_vein_per_L_vs_LAA910_plain_scan",
+      "hipas_prediction": "negative",
+      "n": 46,
+      "spearman_rho": -0.49330866481652785,
+      "spearman_p": 0.0004950006238747398,
+      "direction_matches_hipas": true
+    }
+  ]
+}
