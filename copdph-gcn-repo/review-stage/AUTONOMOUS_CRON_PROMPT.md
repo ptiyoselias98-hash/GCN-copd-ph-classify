@@ -1,0 +1,73 @@
+# Autonomous cron prompt
+
+This file contains the exact prompt passed to each cron fire. Kept here so
+it survives across sessions and can be edited without re-running CronCreate.
+
+---
+
+You are continuing the ARIS autonomous review loop for the COPD-PH GCN
+v2 cache project. This is an UNATTENDED run. Do NOT ask the user for
+confirmation on anything. The user has granted full permission.
+
+**Safety rules** (to avoid the "Newline inside quoted argument" prompt):
+
+- Use the `Write` tool to create any shell scripts; then `scp` them and
+  `ssh imss@10.60.147.117 "bash /tmp/script.sh"` — never HEREDOC inside
+  ssh arguments.
+- For git commits, use `-m "single line message"` (no newlines, no HEREDOC).
+- For codex, always `approval-policy=never` and `sandbox=read-only`.
+
+**Your job this fire**:
+
+1. `cd E:/桌面文件/图卷积-肺小血管演化规律探索 && git pull --ff-only origin main`.
+2. Read `copdph-gcn-repo/review-stage/REVIEW_STATE.json`. If `target_reached`
+   is true, or `history[-1].score >= 8`, or `history[-1].round >= 20` — DO
+   NOTHING, delete the cron (via CronDelete if you remember the ID, else
+   CronList and delete), and exit.
+3. Otherwise `next_round = history[-1].round + 1`. Read
+   `copdph-gcn-repo/review-stage/AUTONOMOUS_LOOP_PLAN.md` and execute the
+   experiments listed for `next_round`. If some step fails, record the
+   failure in REPORT_v2.md §17.N "skipped this round" and continue —
+   do NOT block the whole round on one failure.
+4. Commit + push with a concise 1-line message describing what this round
+   added.
+5. Invoke codex via `mcp__codex__codex` with:
+   - `model`: `gpt-5.2`
+   - `approval-policy`: `never`
+   - `sandbox`: `read-only`
+   - `cwd`: `E:/桌面文件/图卷积-肺小血管演化规律探索/copdph-gcn-repo`
+   - `config`: `{"model_reasoning_effort":"high"}`
+   - `prompt`: "You are the ARIS hostile reviewer for Round {N}. Memory in
+     review-stage/REVIEWER_MEMORY.md. Read REPORT_v2.md §17 (Round 4) and
+     whatever new Round-{N} section exists. Score 1-10, return the same
+     JSON-like verdict format as prior rounds."
+6. Parse the verdict from codex output. Update `REVIEW_STATE.json` history
+   array, update `REVIEWER_MEMORY.md` with the new reviewer_notes_for_memory,
+   update `AUTO_REVIEW.md` with the Round section.
+7. Commit + push the state update.
+8. If `score >= 8`:
+   - Write `review-stage/TARGET_REACHED.md` with the round number + score.
+   - CronList → find the ARIS loop job → CronDelete.
+   - Commit + push.
+   - Stop.
+9. Else if `round >= 20`:
+   - Write `review-stage/FINAL_REPORT.md` summarizing all 20 rounds.
+   - CronDelete.
+   - Commit + push.
+   - Stop.
+10. Else: just exit. The cron will fire again later.
+
+**Model fallback chain for codex at-capacity**: gpt-5.2 (high) → gpt-5.2
+(default) → gpt-5.2-codex. If all fail, write a note and skip to next fire.
+
+**Experiment sub-plans**: see `copdph-gcn-repo/review-stage/AUTONOMOUS_LOOP_PLAN.md`
+for Round 5–12 specific actions. Round 13+ is open-ended: respond to the
+last codex `must_fix_before_next_round` list.
+
+**No user interaction**. If anything genuinely requires user input, write it
+to `review-stage/NEEDS_USER_INPUT_<timestamp>.md` and continue to next round.
+
+**Current state at cron setup**: Round 4 complete, score 5/10. GPU 1
+running arm_b + arm_c contrast-only with prob dumps (started 18:30).
+Round 5 will consume those dumps for paired DeLong. See REVIEW_STATE.json
+for the latest snapshot.

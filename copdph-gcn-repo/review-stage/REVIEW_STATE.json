@@ -1,37 +1,48 @@
 {
-  "round": 3,
-  "status": "round_3_complete_needs_fixes",
-  "max_rounds": 6,
+  "round": 4,
+  "status": "round_4_complete_needs_fixes",
+  "max_rounds": 20,
   "positive_threshold_score": 8.0,
   "difficulty": "hard",
+  "target_reached": false,
   "history": [
     {"round": 1, "score": 2, "verdict": "reject"},
     {"round": 2, "score": 3, "verdict": "reject"},
+    {"round": 3, "score": 4, "verdict": "reject"},
     {
-      "round": 3,
-      "timestamp": "2026-04-23T16:40:00",
-      "score": 4,
+      "round": 4,
+      "timestamp": "2026-04-23T18:45:00",
+      "score": 5,
       "verdict": "reject",
       "reviewer": "codex-mcp gpt-5.2 high-reasoning",
-      "delta_since_round2": [
-        "data/case_protocol.csv explicit label↔protocol entanglement",
-        "cache-adjacent feature protocol decodability proxy",
-        "HiPaS T2 direction confirmed, T1 opposite (metric mismatch)",
-        "Reproducibility surface: REPRODUCE.md, environment.yml, requirements-local.txt"
+      "delta_since_round3": [
+        "Within-nonPH protocol AUC with bootstrap CI (R4.1): v2 per-structure volumes LR=0.529 [0.43, 0.63], straddles chance",
+        "Exclusion sensitivity: |Δ| disease AUC = 0.004 (robust)",
+        "Overlay gallery (R4.3): 10-case anatomical spot-check PNG",
+        "Skeleton-length HiPaS retry (R4.2): T2 confirmed (ρ=-0.65 contrast), T1 still opposite (PH median 5300 > nonPH 3902)",
+        "Reproducibility surface: REPRODUCE.md, environment.yml, requirements-local.lock.txt, cache_provenance.py"
       ],
-      "critical_new_insight": "Protocol AUC was computed across the full cohort where protocol is a proxy for label. Must be measured WITHIN nonPH only (27 contrast vs 85 plain-scan).",
-      "must_fix_before_round4": ["W1", "W2", "W3", "W4", "W6", "W8"],
+      "must_fix_before_round5": [
+        "Per-case OOF probability dumps + paired DeLong on a declared primary endpoint",
+        "Protocol-decoding on EXACT GCN inputs + embeddings within nonPH only",
+        "TEASAR parameter sensitivity sweep + quantitative coverage metrics; diagnose T1 direction mismatch",
+        "GCN-level exclusion sensitivity with placeholder cases (degraded graphs)",
+        "Locked reproducibility: env lock + verified kimimaro version + git_sha + teasar_params in each pkl"
+      ],
       "minimum_to_reach_8_of_10": [
-        "Protocol-matched primary analysis (contrast PH vs contrast nonPH with adequate power or propensity matching)",
-        "Protocol decodability on exact GCN/cache features WITHIN nonPH only + CIs",
-        "Per-case out-of-fold prob dumps + paired DeLong on headline deltas",
-        "Anatomical overlay gallery + TEASAR parameter sensitivity sweep",
-        "Exclusion sensitivity with placeholders retained via degraded-graph handling",
-        "Locked reproducibility: conda-lock, kimimaro pin from remote, git SHA in cache metadata"
+        "Single declared protocol-matched primary endpoint (contrast-only arm_b disease AUC)",
+        "Per-case OOF dumps + paired DeLong for that primary delta",
+        "Within-nonPH protocol decoding on actual GCN features + embeddings, with CIs",
+        "TEASAR sensitivity + QC metrics + T1 mismatch diagnosis",
+        "GCN-level exclusion sensitivity",
+        "Locked reproducibility (env + kimimaro + pkl provenance)"
       ],
-      "reviewer_notes_for_memory": "Round 3 improved documentation and added local proxy analyses, but did not break the central protocol/label confounding. The 'protocol decodability' experiment is not on true GCN inputs and is computed in a cohort where protocol is a surrogate for label, so it cannot certify leakage-free representations. No case-level DeLong, no anatomical validation, no exclusion sensitivity, and reproducibility remains short of a locked, provenance-complete build."
+      "reviewer_notes_for_memory": "Round 4 defined the right confound test (within-nonPH protocol decoding with CIs) and added robustness artifacts, but central top-venue blockers remain: no case-level paired DeLong, no within-nonPH protocol-decoding on actual GCN inputs/embeddings, no TEASAR sensitivity, T1 skeleton-length direction still opposite HiPaS."
     }
   ],
-  "timestamp": "2026-04-23T16:40:00",
-  "notes": "Round 4 priorities: (a) within-nonPH protocol decoder [CRITICAL FIX], (b) propensity-matched PH vs nonPH subset, (c) skimage skeleton length → HiPaS T1 retry, (d) overlay gallery, (e) exclusion sensitivity, (f) conda lockfile."
+  "timestamp": "2026-04-23T18:45:00",
+  "running_gpu_jobs": [
+    {"gpu": 1, "pid": "see /tmp/gpu1_probs.log", "task": "arm_b + arm_c contrast-only with per-case prob dump", "started": "2026-04-23T18:30:00", "eta_hours": 2}
+  ],
+  "next_round_plan": "Round 5 will consume the GPU1 prob dumps to compute paired DeLong on arm_c − arm_b contrast-only (primary endpoint). Additionally: TEASAR sensitivity sweep (scale in {0.8,1.0,1.5}, const in {2,5,10}) on 20 cases via remote; GCN-level exclusion sensitivity (include 27 placeholders with zeroed vessel graphs); env lock via `conda env export --no-builds > environment.lock.yml` on remote."
 }
