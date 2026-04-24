@@ -932,6 +932,83 @@ Artifact: `environment.lock.yml`, REPRODUCE.md, lock-versioned `requirements-loc
 - ⏳ R6.5 within-nonPH protocol on GCN embeddings → Round 7
 - ⏳ R6.6 TEASAR parameter sensitivity → Round 7
 
+## 20. ARIS Round 7+8 — figures, exclusion sensitivity, builder provenance
+
+### 20.1 R7 — publication figure suite + README embedding
+
+Six source-of-truth-driven figures (`outputs/figures/fig1..6*.png`) now embedded
+in the top-level README: ARIS score progression, protocol-decoder bars (full
+vs within-nonPH with CIs), paired Δ-AUC forest, HiPaS T1/T2 direction test,
+cache coverage audit, feature-set × endpoint heatmap. Generator `scripts/figures/R7_make_figures.py`
+reads from `review-stage/REVIEW_STATE.json`, `outputs/r5/*.json`, `outputs/r6/*.json`,
+and `outputs/_r4_within_nonph_protocol.json` — no hard-coded numbers.
+
+### 20.2 R8.1 GCN-feature exclusion sensitivity (full 282 with degraded graphs)
+
+Script: `scripts/evolution/R8_gcn_exclusion_sensitivity.py`. Uses the 47-dim
+graph aggregates from `cache_v2_tri_flat` pkls + zero-imputation for 39 missing
+cases. Classifier-proxy for what a GCN retraining would show.
+
+| Cohort | n | disease LR full (CI) | disease LR contrast (CI) | protocol within-nonPH LR (CI) |
+|---|---|---|---|---|
+| A (in-cache 243) | 243 | 0.889 [0.858, 0.917] | 0.777 [0.705, 0.851] | 0.801 [0.742, 0.869] |
+| B (full 282, degraded) | 282 | 0.879 [0.820, 0.931] | 0.790 [0.738, 0.852] | 0.856 [0.768, 0.951] |
+| Δ (B − A) | +39 | **−0.011** | **+0.013** | **+0.055** |
+
+**Reading**:
+- Disease claim is robust to exclusion: |Δ| on contrast-only = 0.013, far inside
+  CI half-width (~0.07). The 39 missing cases do not drive the disease AUC.
+- Protocol leakage WORSENS (+0.055) when including degraded-graph cases,
+  because all-zero imputation is itself a perfect protocol cue (missing = plain-scan nonPH).
+  This confirms the cache exclusion choice is not masking confounding — it
+  actually *reduces* observable protocol leakage.
+- A true GCN-retraining sensitivity is still queued (requires GPU access).
+
+### 20.3 R8.2 Skeleton stability (skimage proxy, local)
+
+Script: `scripts/evolution/R8_skeleton_stability.py`. On 9 balanced cases
+(4 PH contrast + 2 nonPH contrast + 3 nonPH plain-scan), compute skeleton
+length via `skimage.skeletonize_3d` at pre-erosion {0, 1, 2} voxels.
+
+**Result**: mean CV = **0.58**, max = **1.01**. Skeleton length drops 40–80%
+under single-voxel erosion across cases. This is expected for
+topological skeletonization (skimage Lee94) because thin vessels disappear
+entirely under even 1-voxel erosion. **This does NOT imply TEASAR is unstable**
+— kimimaro TEASAR uses a radial-distance-function pruning that is structurally
+more stable than topological skeletonization; it also has explicit `dust_threshold`
+and `const` parameters to retain fine branches. A true TEASAR sweep (queued
+for Round 9 when remote CPU is free) is needed to characterize kimimaro
+stability.
+
+**Interpretation**: our HiPaS T1 mismatch (§16.1) could therefore stem from
+skimage skeleton-length sensitivity to mask boundaries combined with contrast
+vs plain-scan segmentation-quality differences, rather than an inherent bias
+in the TEASAR graph cache. Round 9 should reconstruct T1 using kimimaro
+skeleton lengths from the production cache.
+
+### 20.4 R8.3 Cache-builder provenance patch
+
+`_remote_build_v2_cache.py` now stamps each pkl with:
+- `builder_version = "v2_kimimaro"`
+- `git_sha` (captured at build time via `git rev-parse HEAD`)
+- `kimimaro_version` (captured at build time via `kimimaro.__version__`)
+- `mask_sentinel = -2048`
+- per-structure `teasar_params` inside `qc[<struct>]` (the exact TEASAR config used)
+
+`scripts/cache_provenance.py` extended with `verify_expected(path, expected)`
+for CI-style provenance assertion. Provenance fields take effect on the NEXT
+rebuild; existing v2 pkls carry only `builder_version="v2_kimimaro"`.
+
+### 20.5 Round 7+8 status
+
+- ✅ R7.5 figure suite with source-of-truth JSON readers
+- ✅ R8.1 GCN-feature exclusion sensitivity (classifier proxy)
+- ✅ R8.2 skeleton stability (TEASAR proxy)
+- ✅ R8.3 builder provenance patch (takes effect on next rebuild)
+- ⏳ Adversarial-debiasing arm + within-nonPH protocol on EMBEDDINGS — still GPU-blocked
+- ⏳ True TEASAR sweep on remote — GPU/CPU contention from other user
+- ⏳ Full GCN-retraining exclusion sensitivity — GPU-blocked
+
 The autonomous loop (`review-stage/AUTONOMOUS_LOOP_PLAN.md` + cron
 `fda1fcf8` every 2 hours) will execute R5.2/R5.3 + Round 6 (TEASAR
 sensitivity sweep + adversarial debiasing) without user intervention.

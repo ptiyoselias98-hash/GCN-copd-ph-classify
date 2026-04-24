@@ -19,16 +19,31 @@ def inspect(path: Path) -> dict:
         "builder_version",
         "git_sha",
         "kimimaro_version",
-        "teasar_params",
-        "dust_threshold",
         "mask_sentinel",
-        "case_id",
+        "patient_id",
         "label",
     ):
         if key in d:
             out[key] = d[key]
+    # Per-structure TEASAR params live under qc[struct]
+    qc = d.get("qc", {})
+    for struct in ("artery", "vein", "airway"):
+        s = qc.get(struct, {})
+        if isinstance(s, dict) and "teasar_params" in s:
+            out[f"{struct}_teasar_params"] = s["teasar_params"]
     out["top_level_keys"] = list(d.keys())
     return out
+
+
+def verify_expected(path: Path, expected: dict) -> tuple[bool, list[str]]:
+    """Compare pkl provenance fields against expected dict; return (ok, mismatches)."""
+    info = inspect(path)
+    issues = []
+    for k, v in expected.items():
+        got = info.get(k)
+        if got != v:
+            issues.append(f"{k}: expected {v!r}, got {got!r}")
+    return (len(issues) == 0), issues
 
 
 def main() -> None:
