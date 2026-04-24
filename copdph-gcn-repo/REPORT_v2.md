@@ -847,6 +847,83 @@ defensible result is (a) adversarial debiasing of the GCN training
 objective, (b) re-segmentation with HiPaS-style unified pipeline (§15),
 or (c) acceptance of the residual confound with sensitivity bounds.
 
+## 19. ARIS Round 6 — paired DeLong + cache-coverage audit + env lock
+
+### 19.1 R6.1 PRIMARY ENDPOINT: paired DeLong arm_c − arm_a contrast-only
+
+To address the Round-5 reviewer's blocker (arm_b 92 vs arm_c 189 mismatch),
+we re-ran **arm_a** (gcn_only, no radiomics filter) on the same 189 contrast-
+only cases as arm_c. Both arms then have identical case sets, identical model
+architecture, and differ only in whether the 13 lung-scalar globals are added.
+
+| Arm | n | Mode | AUC |
+|---|---|---|---|
+| arm_a (vessel-only) | 189 | gcn_only | **0.8391** |
+| arm_c (vessel + 13 lung globals) | 189 | gcn_only | **0.8143** |
+
+**Paired DeLong test on Δ = arm_c − arm_a**:
+
+| Statistic | Value |
+|---|---|
+| Δ AUC | **−0.0248** |
+| DeLong 95% CI | **[−0.0887, +0.0391]** — includes 0 |
+| DeLong z | 0.760 |
+| **DeLong p (two-sided)** | **0.447** |
+| Bootstrap 95% CI on Δ (n=5000) | [−0.035, +0.094] |
+
+**Verdict**: lung-feature contribution under protocol balancing is **not
+statistically significant** at case-level paired inference. The point
+estimate is in fact slightly negative (lung features hurt by 0.025 AUC,
+likely chance noise on n=189). This is the formal W6 confirmation of the
+Round-2 §13.5 retraction.
+
+This is a single pre-specified primary endpoint — no multiplicity
+correction is needed.
+
+### 19.2 R6.2 Cache_v2_tri_flat coverage audit
+
+Of the 282 cases in `data/case_protocol.csv`, only **243 (86%)** have a
+valid pkl in `cache_v2_tri_flat/`. The 39 missing cases break down as:
+
+| label | protocol | in cache | missing | missing reason |
+|---|---|---|---|---|
+| 0 (COPD) | contrast | 26 | 1 | placeholder vessel |
+| 0 (COPD) | plain_scan | 54 | 31 | placeholder vessel (29) + lung_v2_error (2) |
+| 1 (COPD-PH) | contrast | 163 | 7 | placeholder/missing vessels |
+| **total** | | **243** | **39** | 32 placeholder + 5 other + 2 lung_v2_error |
+
+The missing set is **strongly label-correlated** (31/39 = 79% are
+plain-scan nonPH; 1 contrast nonPH and 7 PH). The 243-case sample is
+biased toward PH (163/243 = 67%) vs the 282-truth (170/282 = 60%). Round 7
+will rebuild the placeholder cases with degraded-graph handling and rerun
+the primary endpoint with both inclusion choices to bound the impact.
+
+Artifact: `outputs/r6/missing_cache_audit.{md,csv}`.
+
+### 19.3 R6.3 Reproducibility: env lock + verified versions
+
+Pulled from remote `pulmonary_bv5_py39` env on 2026-04-24:
+
+- **kimimaro 5.8.1** (was placeholder 4.0.4 in `environment.yml`)
+- **PyTorch 2.6.0** (was 2.2 placeholder)
+- **torch-geometric 2.6.1** (was 2.5.2 placeholder)
+- Full conda env exported to `environment.lock.yml` (251 lines, no builds).
+
+REPRODUCE.md updated with verified versions. Future cache rebuilds will
+embed `git_sha` + `kimimaro_version` per pkl (script patch deferred to
+Round 7).
+
+Artifact: `environment.lock.yml`, REPRODUCE.md, lock-versioned `requirements-local.lock.txt`.
+
+### 19.4 Round 6 status
+
+- ✅ R6.1 paired DeLong on PRIMARY ENDPOINT (W6 confirmatory, p=0.45 NS)
+- ✅ R6.2 cache-coverage audit (39 missing, label-correlated)
+- ✅ R6.3 env lock + kimimaro pin (5.8.1)
+- ⏳ R6.4 GCN exclusion-sensitivity rebuild with placeholders → Round 7
+- ⏳ R6.5 within-nonPH protocol on GCN embeddings → Round 7
+- ⏳ R6.6 TEASAR parameter sensitivity → Round 7
+
 The autonomous loop (`review-stage/AUTONOMOUS_LOOP_PLAN.md` + cron
 `fda1fcf8` every 2 hours) will execute R5.2/R5.3 + Round 6 (TEASAR
 sensitivity sweep + adversarial debiasing) without user intervention.

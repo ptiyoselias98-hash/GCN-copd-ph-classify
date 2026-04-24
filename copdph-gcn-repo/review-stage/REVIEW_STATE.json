@@ -1,6 +1,6 @@
 {
-  "round": 4,
-  "status": "round_4_complete_needs_fixes",
+  "round": 5,
+  "status": "round_5_complete_needs_fixes",
   "max_rounds": 20,
   "positive_threshold_score": 8.0,
   "difficulty": "hard",
@@ -9,47 +9,36 @@
     {"round": 1, "score": 2, "verdict": "reject"},
     {"round": 2, "score": 3, "verdict": "reject"},
     {"round": 3, "score": 4, "verdict": "reject"},
+    {"round": 4, "score": 5, "verdict": "reject"},
     {
       "round": 5,
-      "timestamp": "2026-04-24T10:05:00",
-      "status": "partial_pre_review",
-      "experiments": ["R5.1 single-arm DeLong CI on contrast-only AUCs"],
-      "note": "arm_c contrast-only AUC = 0.8391 [0.7527, 0.9255] (DeLong CI excludes 0.5). Paired DeLong vs arm_b deferred to Round 6 due to radiomics filter mismatch (arm_b 92 cases vs arm_c 189). Codex review pending — will fire on next cron tick."
-    },
-    {
-      "round": 4,
-      "timestamp": "2026-04-23T18:45:00",
-      "score": 5,
+      "timestamp": "2026-04-24T10:30:00",
+      "score": 6,
       "verdict": "reject",
       "reviewer": "codex-mcp gpt-5.2 high-reasoning",
-      "delta_since_round3": [
-        "Within-nonPH protocol AUC with bootstrap CI (R4.1): v2 per-structure volumes LR=0.529 [0.43, 0.63], straddles chance",
-        "Exclusion sensitivity: |Δ| disease AUC = 0.004 (robust)",
-        "Overlay gallery (R4.3): 10-case anatomical spot-check PNG",
-        "Skeleton-length HiPaS retry (R4.2): T2 confirmed (ρ=-0.65 contrast), T1 still opposite (PH median 5300 > nonPH 3902)",
-        "Reproducibility surface: REPRODUCE.md, environment.yml, requirements-local.lock.txt, cache_provenance.py"
+      "experiments": [
+        "R5.1 single-arm DeLong CI on arm_b/arm_c contrast-only: arm_c AUC=0.8391 [0.7527, 0.9255]",
+        "R5.2 within-nonPH protocol on GCN-input graph aggregates: LR AUC=0.853 [0.722, 0.942] (DAMNING — protocol IS leakable)"
       ],
-      "must_fix_before_round5": [
-        "Per-case OOF probability dumps + paired DeLong on a declared primary endpoint",
-        "Protocol-decoding on EXACT GCN inputs + embeddings within nonPH only",
-        "TEASAR parameter sensitivity sweep + quantitative coverage metrics; diagnose T1 direction mismatch",
-        "GCN-level exclusion sensitivity with placeholder cases (degraded graphs)",
-        "Locked reproducibility: env lock + verified kimimaro version + git_sha + teasar_params in each pkl"
+      "must_fix_before_round6": [
+        "Same-case-set paired DeLong arm_c − arm_b (drop radiomics filter on arm_b)",
+        "Per-case OOF dumps with case_id (not just arrays)",
+        "Within-nonPH protocol on GCN EMBEDDINGS (not just input aggregates)",
+        "TEASAR parameter sensitivity sweep + anatomical QC",
+        "GCN-level exclusion sensitivity (placeholders retained)",
+        "Remote env lock + verified kimimaro version + git SHA in pkls"
       ],
       "minimum_to_reach_8_of_10": [
-        "Single declared protocol-matched primary endpoint (contrast-only arm_b disease AUC)",
-        "Per-case OOF dumps + paired DeLong for that primary delta",
-        "Within-nonPH protocol decoding on actual GCN features + embeddings, with CIs",
-        "TEASAR sensitivity + QC metrics + T1 mismatch diagnosis",
-        "GCN-level exclusion sensitivity",
-        "Locked reproducibility (env + kimimaro + pkl provenance)"
+        "Pre-registered primary endpoint: paired arm_c − arm_b contrast-only gcn_only, same case set",
+        "Paired DeLong on primary delta with case_id auditable",
+        "Embedding-level within-nonPH protocol AUC + mitigation showing it can be reduced without losing disease",
+        "TEASAR sweep + anatomical QC + T1 mismatch resolution",
+        "GCN placeholder sensitivity",
+        "Locked reproducibility verified by inspection script"
       ],
-      "reviewer_notes_for_memory": "Round 4 defined the right confound test (within-nonPH protocol decoding with CIs) and added robustness artifacts, but central top-venue blockers remain: no case-level paired DeLong, no within-nonPH protocol-decoding on actual GCN inputs/embeddings, no TEASAR sensitivity, T1 skeleton-length direction still opposite HiPaS."
+      "reviewer_notes_for_memory": "R5 added single-arm DeLong CIs (arm_c contrast-only AUC 0.8391 [0.7527, 0.9255]) but paired DeLong is blocked by radiomics-filter mismatch (arm_b n=92 vs arm_c n=189). R5.2 honest within-nonPH protocol decoding on EXACT GCN-input graph aggregates: LR AUC 0.853 [0.722, 0.942] — significant protocol leakage on the actual GCN inputs. Disease AUC also strong (0.858 on contrast-only). Path forward: domain-adversarial debiasing + same-case-set rebuild of arm_b. Graph-stats coverage 243/282 = 39 cases missing must be audited."
     }
   ],
-  "timestamp": "2026-04-23T18:45:00",
-  "running_gpu_jobs": [
-    {"gpu": 1, "pid": "see /tmp/gpu1_probs.log", "task": "arm_b + arm_c contrast-only with per-case prob dump", "started": "2026-04-23T18:30:00", "eta_hours": 2}
-  ],
-  "next_round_plan": "Round 5 will consume the GPU1 prob dumps to compute paired DeLong on arm_c − arm_b contrast-only (primary endpoint). Additionally: TEASAR sensitivity sweep (scale in {0.8,1.0,1.5}, const in {2,5,10}) on 20 cases via remote; GCN-level exclusion sensitivity (include 27 placeholders with zeroed vessel graphs); env lock via `conda env export --no-builds > environment.lock.yml` on remote."
+  "timestamp": "2026-04-24T10:30:00",
+  "next_round_plan": "Round 6 priorities (per Round 5 reviewer): (a) rerun arm_b contrast-only on GPU 1 WITHOUT radiomics filter + per-case case_id dump → enables true paired DeLong; (b) audit the 39 missing-from-graph-stats cases vs 282 protocol table; (c) GCN-level exclusion sensitivity rebuild; (d) remote conda env lock + kimimaro pin; defer (e) TEASAR sweep + (f) embedding-level protocol to Round 7."
 }

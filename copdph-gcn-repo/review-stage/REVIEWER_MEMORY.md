@@ -30,6 +30,31 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 5 key concerns (2026-04-24 10:30) — CARRY INTO ROUND 6
+
+**Score 6/10 reject.** Two new important findings:
+
+1. **GCN-input within-nonPH protocol AUC = 0.853 [0.722, 0.942]** on the
+   EXACT cache_v2_tri_flat graph aggregates (47 features, 80 nonPH cases).
+   The R4.1 finding that "v2 per-structure volumes" had LR AUC 0.529
+   does NOT generalize — the richer features the GCN sees DO leak protocol.
+   Disease AUC on the same features is also strong (0.858 within-contrast).
+   Domain-adversarial debiasing is the principled mitigation path.
+
+2. **Paired DeLong is BLOCKED** by arm_b dataset construction. arm_b uses
+   `require_radiomics=True` → 92 cases on contrast-only, while arm_c uses
+   189. The fix is to rerun arm_b without the radiomics filter (or use
+   arm_a equivalent on contrast-only) to get same-case-set comparison.
+
+3. **Graph-stats coverage is 243/282 (87%)**: 39 cases missing from
+   `cache_v2_tri_flat`. Must audit which/why for the W6 exclusion-sensitivity
+   demand.
+
+Round 6 minimum:
+- Same-case-set arm_b vs arm_c paired DeLong with case_id-anchored OOF dumps
+- 39-case audit + GCN exclusion-sensitivity
+- Remote env lock + kimimaro version pinned
+
 ## Round 3 key concerns (2026-04-23 16:40) — CARRY INTO ROUND 4
 
 **Score 4/10 reject.** Main new insight over Round 2:
