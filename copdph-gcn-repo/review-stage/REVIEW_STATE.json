@@ -1,8 +1,8 @@
 {
   "round": 6,
   "status": "round_6_complete_needs_fixes",
-  "max_rounds": 20,
-  "positive_threshold_score": 8.0,
+  "max_rounds": 40,
+  "positive_threshold_score": 9.5,
   "difficulty": "hard",
   "target_reached": false,
   "history": [

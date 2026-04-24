@@ -1,6 +1,7 @@
-# ARIS Autonomous Loop Plan (Rounds 5–20)
+# ARIS Autonomous Loop Plan (Rounds 5–40)
 
-**Target**: score ≥ 8/10. If not reached by Round 20, stop and report.
+**Target** (updated 2026-04-24): score ≥ **9.5/10**. If not reached by
+Round **40**, stop and report. Earlier target of 8/10 was raised by user.
 
 Each cron fire does ONE round. The Claude instance MUST:
 
@@ -100,8 +101,23 @@ and stop at Round 20 with a full FINAL_REPORT.md.
 - **Git push conflict**: `git pull --rebase origin main` and retry. If still conflict, abort and write a `MANUAL_MERGE_NEEDED.md` marker.
 - **SSH unreachable**: skip remote work this round, do local-only tasks, and note in REPORT_v2.
 
-## Stop conditions
+## Stop conditions (updated 2026-04-24)
 
-- `score >= 8`: delete cron, commit `review-stage/TARGET_REACHED.md` with round + score.
-- `round >= 20` and `score < 8`: delete cron, commit `review-stage/FINAL_REPORT.md` with honest limitations.
-- `score == 10`: same as ≥8 stop.
+- `score >= 9.5`: delete cron, commit `review-stage/TARGET_REACHED.md` with round + score.
+- `round >= 40` and `score < 9.5`: delete cron, commit `review-stage/FINAL_REPORT.md` with honest limitations.
+- `score == 10`: same as ≥9.5 stop.
+
+## Pre-approved operations (user confirmed 2026-04-24)
+
+See `AUTONOMOUS_CRON_PROMPT.md` for the definitive list. Summary:
+- SSH/scp + launch training on GPU 0 AND GPU 1 anytime
+- git commit/push (never force, never amend)
+- codex MCP (gpt-5.2 high, approval-policy=never)
+- CronDelete on stop condition
+- Multi-hour remote jobs (kimimaro rebuilds, TEASAR sweeps, adversarial arms)
+
+## Blocker policy
+
+Auto-try all plausible alternatives silently. Do NOT write
+NEEDS_USER_INPUT markers. If a round can't deliver one fix, commit an
+honest-negative sub-section in REPORT_v2 and let the next cron pick up.

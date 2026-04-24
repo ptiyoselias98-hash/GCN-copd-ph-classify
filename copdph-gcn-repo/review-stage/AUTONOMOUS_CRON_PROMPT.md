@@ -3,6 +3,31 @@
 This file contains the exact prompt passed to each cron fire. Kept here so
 it survives across sessions and can be edited without re-running CronCreate.
 
+## PRE-APPROVED OPERATIONS (user confirmed 2026-04-24)
+
+The user has explicitly pre-authorised ALL of the following. Do not ask,
+just do:
+
+1. **SSH / scp to imss@10.60.147.117** — write scripts locally, scp to
+   `/tmp/`, `ssh bash /tmp/X.sh`. Never use HEREDOC inside ssh quoted args.
+2. **Launch training on GPU 0 AND GPU 1** — use either/both whenever
+   idle (0% utilization), regardless of other users' prior jobs.
+3. **git add + git commit -m "single-line" + git push origin main** —
+   single-line messages, never `--force`, never `--amend`.
+4. **codex MCP** with `model=gpt-5.2`, `approval-policy=never`,
+   `sandbox=read-only`, `config={"model_reasoning_effort":"high"}`.
+   Each round auto-fires codex review.
+5. **CronDelete the loop** when `score ≥ 9.5` OR `round ≥ 40` (user raised targets 2026-04-24).
+6. **Multi-hour remote jobs** allowed: kimimaro cache rebuilds,
+   TEASAR sensitivity sweeps, domain-adversarial arms, cohort re-ingestion.
+
+## BLOCKER POLICY
+
+User chose "auto-try all plausible alternatives silently, no marker".
+Do NOT write `NEEDS_USER_INPUT_*.md` files. If one approach fails, try
+the next; if all fail in this round, commit what you have with an
+honest-negative REPORT_v2 section and let the next cron pick up.
+
 ---
 
 You are continuing the ARIS autonomous review loop for the COPD-PH GCN
