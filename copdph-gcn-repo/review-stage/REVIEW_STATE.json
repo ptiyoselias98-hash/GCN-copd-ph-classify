@@ -12,6 +12,33 @@
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
     {
+      "round": 9,
+      "timestamp": "2026-04-24T15:30:00",
+      "score": 6,
+      "verdict": "reject",
+      "reviewer": "codex-mcp gpt-5.2 high-reasoning",
+      "experiments": [
+        "R9.1 Embedding-dump patch (run_sprint6_v2_emb.py); retrained arm_a on FULL 282 cohort",
+        "R9.2 Within-nonPH protocol on GCN EMBEDDINGS: LR AUC=0.834 [0.738, 0.901] (n=80) vs R5.2 input-aggregate 0.853 — Δ=-0.019 (embeddings basically match inputs, adversarial arm MANDATORY)",
+        "R10.1 New-data catalog: 100 plain-scan nonPH cases (24 refill + 76 new) pending pipeline ingestion",
+        "R9.3 Reproducibility fixes: committed run_sprint6_v2_{emb,probs}.py locally, fixed environment.yml with verified kimimaro 5.8.1, corrected R9 report path/training-set text"
+      ],
+      "must_fix_before_round10": [
+        "Adversarial arm (GRL): embedding-level within-nonPH protocol AUC ≤0.6 while disease preserved",
+        "Case-level bootstrap CI for R9 protocol endpoint (currently bootstraps 5 fold means)",
+        "True kimimaro TEASAR sweep on a balanced mini-panel",
+        "Rebuilt cache with actual stamped provenance + verification output",
+        "Ingest 100 new plain-scan nonPH cases"
+      ],
+      "minimum_to_reach_8_of_10": [
+        "Working GRL arm with embedding within-nonPH AUC ≤0.6",
+        "True GCN missingness sensitivity with non-trivial handling",
+        "Real kimimaro TEASAR sweep + anatomical QC overlays",
+        "Rebuilt cache with git_sha/kimimaro_version verified; single coherent env lock"
+      ],
+      "reviewer_notes_for_memory": "R9 confirms GCN embeddings carry basically the same protocol signal as inputs (0.834 vs 0.853 within-nonPH LR). The GCN is neither amplifying nor compressing protocol — adversarial training is the only path to break this. Reproducibility red flags fixed post-review (script committed, env.yml synced to actual kimimaro 5.8.1)."
+    },
+    {
       "round": 8,
       "timestamp": "2026-04-24T14:45:00",
       "score": 6,
