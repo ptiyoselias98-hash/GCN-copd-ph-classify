@@ -12,6 +12,33 @@
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
     {
+      "round": 7,
+      "timestamp": "2026-04-24T11:50:00",
+      "score": 5,
+      "verdict": "reject",
+      "reviewer": "codex-mcp gpt-5.2 high-reasoning (gpt-5.5 not on ChatGPT plan)",
+      "experiments": [
+        "R7.5 6-figure publication suite with source-of-truth JSON readers (after reviewer flag)",
+        "R7.6 README-embedded figures (fig1 score progression, fig2 protocol bars with CI, fig3 forest, fig4 HiPaS T1/T2, fig5 cache coverage, fig6 heatmap)",
+        "R7.7 fixed fig4 statistical labeling bug (Spearman not Pearson r)",
+        "R7.deferred adversarial arm + GCN exclusion sensitivity + TEASAR sweep — both GPUs busy with imss dinomaly job (other user)"
+      ],
+      "regressions": [],
+      "must_fix_before_round8": [
+        "Adversarial-debiasing arm + within-nonPH protocol AUC on GCN EMBEDDINGS (target ≤0.6)",
+        "GCN-level placeholder/exclusion sensitivity on full 282 with paired inference",
+        "TEASAR parameter sensitivity sweep + anatomical QC + overlay gallery",
+        "Cache pkl provenance stamping (git_sha + kimimaro_version + TEASAR params) + verification script"
+      ],
+      "minimum_to_reach_8_of_10": [
+        "Embedding-level protocol invariance demonstrated via GRL adversarial arm (≤0.6 within-nonPH AUC, disease preserved)",
+        "Exclusion-sensitivity bounded on full 282",
+        "TEASAR robustness + radiology-grade QC",
+        "Pkl provenance with git_sha + kimimaro_version + verification script that fails CI on mismatch"
+      ],
+      "reviewer_notes_for_memory": "R7 added a 6-figure suite (now source-of-truth driven) and locked remote env, but the core Round 6 must-fixes remain blocked by GPU contention (other user's dinomaly job on both GPUs). Score stays at 5/10. Same primary delta finding (lung globals NS, p=0.45). Path to 8/10 requires GPU access for adversarial debiasing + GCN exclusion sensitivity + builder rebuild."
+    }
+    {
       "round": 6,
       "timestamp": "2026-04-24T11:15:00",
       "score": 5,

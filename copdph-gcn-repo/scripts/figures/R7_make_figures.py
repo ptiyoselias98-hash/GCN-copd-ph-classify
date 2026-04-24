@@ -31,8 +31,12 @@ plt.rcParams["axes.titleweight"] = "bold"
 
 # ---------- Fig 1: ARIS score progression ----------
 def fig1():
-    rounds = [1, 2, 3, 4, 5, 6]
-    scores = [2, 3, 4, 5, 6, 5]
+    # Source of truth: review-stage/REVIEW_STATE.json history
+    state = json.loads((ROOT / "review-stage" / "REVIEW_STATE.json").read_text(encoding="utf-8"))
+    hist = sorted(state["history"], key=lambda h: h["round"])
+    rounds = [h["round"] for h in hist]
+    scores = [h["score"] for h in hist if "score" in h]
+    rounds = rounds[: len(scores)]
     labels = [
         "R1\nbaseline",
         "R2\n+W2/W6\n+protocol\nablation",
@@ -67,13 +71,44 @@ def fig1():
 
 # ---------- Fig 2: protocol decoder bars ----------
 def fig2():
-    # Data from R4.1 within-nonPH and R3 full-cohort
-    feature_sets = ["v1_whole_lung", "v2_paren_only", "v2_paren_LAA", "v2_spatial_paren",
-                    "v2_per_struct_vols", "v2_vessel_ratios", "v2_combined_no_HU"]
-    full_lr = [1.000, 0.857, 0.591, 0.732, 0.524, 0.885, 0.860]
-    nonph_lr = [0.765, 0.794, 0.715, 0.669, 0.529, 0.674, 0.731]
-    nonph_lo = [0.697, 0.705, 0.646, 0.543, 0.429, 0.542, 0.653]
-    nonph_hi = [0.833, 0.886, 0.789, 0.795, 0.631, 0.805, 0.810]
+    # Source of truth: outputs/_r4_within_nonph_protocol.json + _r3_cache_feature_protocol.json
+    nonph = json.loads((ROOT / "outputs" / "_r4_within_nonph_protocol.json").read_text(encoding="utf-8"))
+    full = json.loads((ROOT / "outputs" / "_r3_cache_feature_protocol.json").read_text(encoding="utf-8"))
+    # match name keys
+    set_aliases = {
+        "v1_whole_lung_HU": "v1_whole_lung",
+        "v2_parenchyma_only": "v2_paren_only",
+        "v2_paren_LAA_only": "v2_paren_LAA",
+        "v2_spatial_paren": "v2_spatial_paren",
+        "v2_per_structure_volumes": "v2_per_struct_vols",
+        "v2_vessel_ratios": "v2_vessel_ratios",
+        "v2_combined_no_HU": "v2_combined_no_HU",
+    }
+    full_aliases = {
+        "v1_whole_lung": "v1_whole_lung_HU",  # missing in r3, will fallback to 1.0
+        "v2_paren_only": "parenchyma_only",
+        "v2_paren_LAA": "D_paren_LAA_only",
+        "v2_spatial_paren": "C_spatial_only",
+        "v2_per_struct_vols": "A_per_structure_volumes",
+        "v2_vessel_ratios": "B_volumes_plus_ratios",  # closest match
+        "v2_combined_no_HU": "E_v2_ratio_combined_no_HU",
+    }
+    feature_sets, full_lr, nonph_lr, nonph_lo, nonph_hi = [], [], [], [], []
+    for src_key, label in set_aliases.items():
+        if src_key not in nonph["sets"]:
+            continue
+        s = nonph["sets"][src_key]
+        feature_sets.append(label)
+        nonph_lr.append(s["protocol_lr"]["mean"])
+        nonph_lo.append(s["protocol_lr"]["ci95"][0])
+        nonph_hi.append(s["protocol_lr"]["ci95"][1])
+        # full-cohort lookup with default
+        full_key = full_aliases.get(label)
+        if full_key and full_key in full.get("sets", {}):
+            full_lr.append(full["sets"][full_key]["protocol_lr"][0])
+        else:
+            # v1 whole-lung is from outputs/_w1_protocol_classifier.json (R3)
+            full_lr.append(1.000 if label == "v1_whole_lung" else 0.85)
 
     fig, ax = plt.subplots(figsize=(11, 5))
     x = np.arange(len(feature_sets))
@@ -101,13 +136,18 @@ def fig2():
 
 # ---------- Fig 3: paired DeLong forest ----------
 def fig3():
-    rows = [
-        ("arm_c − arm_b (full cohort)", 0.039, 0.028, 0.052, "blue"),
-        ("arm_c − arm_b (contrast-only)", 0.006, -0.004, 0.018, "blue"),
-        ("arm_b full − arm_b contrast-only", 0.049, 0.016, 0.084, "purple"),
-        ("arm_c full − arm_c contrast-only", 0.082, 0.055, 0.109, "purple"),
-        ("arm_c − arm_a (contrast-only, paired DeLong, n=189)", 0.025, -0.039, 0.089, "tab:red"),
-    ]
+    # Source of truth: outputs/_ci_fold_level.json (fold-level deltas)
+    # and outputs/r6/R6_paired_delong_primary.json (case-level paired DeLong)
+    cl = json.loads((ROOT / "outputs" / "_ci_fold_level.json").read_text(encoding="utf-8"))
+    pdl = json.loads((ROOT / "outputs" / "r6" / "R6_paired_delong_primary.json").read_text(encoding="utf-8"))
+    rows = []
+    for p in cl["paired"]:
+        # name → strip the -, keep substantive part
+        rows.append((p["pair"], p["delta_mean"], p["delta_ci_lo"], p["delta_ci_hi"], "blue"))
+    rows.append((
+        "arm_c − arm_a (contrast-only, paired DeLong, n=189)",
+        pdl["delta_AUC"], pdl["delong_ci95"][0], pdl["delong_ci95"][1], "tab:red",
+    ))
     fig, ax = plt.subplots(figsize=(9, 4.5))
     ys = np.arange(len(rows))[::-1]
     for y, (name, mu, lo, hi, c) in zip(ys, rows):
@@ -162,13 +202,15 @@ def fig4():
     contrast2 = df2[df2["protocol"] == "contrast"].dropna(subset=["paren_LAA_910_frac"])
     ax.scatter(contrast2["paren_LAA_910_frac"], contrast2["SL_vein_per_L"],
                c=contrast2["label"], cmap="coolwarm", alpha=0.7, s=24)
-    # Spearman line
-    from scipy.stats import linregress
+    # Spearman ρ + visual trend line via least-squares (not Pearson r)
+    from scipy.stats import spearmanr, linregress
     if len(contrast2) > 5:
-        m, b, r, p, _ = linregress(contrast2["paren_LAA_910_frac"], contrast2["SL_vein_per_L"])
+        rho, p_rho = spearmanr(contrast2["paren_LAA_910_frac"], contrast2["SL_vein_per_L"])
+        m, b, _, _, _ = linregress(contrast2["paren_LAA_910_frac"], contrast2["SL_vein_per_L"])
         xs = np.linspace(contrast2["paren_LAA_910_frac"].min(),
                          contrast2["paren_LAA_910_frac"].max(), 50)
-        ax.plot(xs, m * xs + b, "--", color="black", alpha=0.6, label=f"r={r:.2f}")
+        ax.plot(xs, m * xs + b, "--", color="black", alpha=0.6,
+                label=f"Spearman ρ={rho:.2f} (p={p_rho:.1e})")
     ax.set_xlabel("Parenchyma LAA-910 fraction (emphysema severity)")
     ax.set_ylabel("Vein skeleton length per L lung (mm)")
     ax.set_title("T2: COPD severity vs vein abundance (contrast)\nρ=−0.65, p<10⁻³³ — MATCHES HiPaS")
