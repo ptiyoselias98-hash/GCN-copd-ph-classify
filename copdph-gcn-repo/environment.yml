@@ -11,23 +11,21 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  # VERIFIED 2026-04-24 via `pip show` on remote pulmonary_bv5_py39
   - python=3.9
   - pip
-  - pytorch=2.2.*
-  - torchvision=0.17.*
-  - pytorch-cuda=11.8
-  - numpy=1.24.*
-  - scipy=1.11.*
-  - scikit-learn=1.3.*
-  - pandas=2.0.*
-  - nibabel=5.1.*
-  - matplotlib=3.7.*
+  - numpy
+  - scipy
+  - pandas
   - tqdm
-  - networkx=3.1.*
+  - networkx
   - pip:
-      - torch-geometric==2.5.2
-      - torch-scatter==2.1.2
-      - torch-sparse==0.6.18
-      - kimimaro==4.0.4           # cache builder — exact version TBD from remote pip show
-      - connected-components-3d==3.14.*
-      - cloud-volume==10.1.*
+      # verified from requirements-remote.lock.txt (full pip freeze is in that file)
+      - torch==2.6.0
+      - torchvision==0.16.0
+      - torch-geometric==2.6.1
+      - kimimaro==5.8.1
+      - connected-components-3d==3.26.1
+      - nibabel==5.4.2
+      - scikit-learn==1.5.2
+      - matplotlib==3.9.1

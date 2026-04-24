@@ -1,8 +1,9 @@
 # R9 — Within-nonPH protocol decoding on GCN EMBEDDINGS
 
-Embedding source: `outputs/r9/embeddings/emb_gcn_only_rep1_fold{1..5}.npz`
+Embedding source: `outputs/r9/embeddings_full/emb_gcn_only_rep1_fold{1..5}.npz`
 (penultimate z_proj from the trained arm_a attention-pooling head,
-189-case contrast-only training run with --dump_embeddings).
+full 282-case training run with --dump_embeddings; val embeddings
+span contrast + plain-scan cases across all 5 folds).
 
 Total val embeddings: 243 (shape=(243, 64))
 Protocol split in val set: 189 contrast / 54 plain-scan
