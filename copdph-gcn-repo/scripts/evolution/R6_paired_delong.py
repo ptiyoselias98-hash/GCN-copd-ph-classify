@@ -31,8 +31,13 @@ def main() -> None:
     assert len(yt_a) == len(yt_c) == 189, f"{len(yt_a)} vs {len(yt_c)}"
     assert (yt_a == yt_c).all(), "label vector mismatch — case order differs"
 
-    auc_a, auc_c, var_a, var_c, cov, z, p = fast_delong(ys_c, ys_a, yt_a)
+    # fast_delong(probs1, probs2, labels) returns AUCs in (probs1, probs2) order.
+    # Pass arm_a first so first return = arm_a, second = arm_c, so z corresponds to (arm_a - arm_c).
+    # We want Δ = arm_c - arm_a, so flip sign on z and Δ.
+    auc_a, auc_c, var_a, var_c, cov, z_ac_minus_a, _ = fast_delong(ys_a, ys_c, yt_a)
+    z = -z_ac_minus_a
     diff = auc_c - auc_a
+    p = float(2.0 * (1.0 - stats.norm.cdf(abs(z))))
     se = np.sqrt(var_a + var_c - 2 * cov) if (var_a + var_c - 2 * cov) > 0 else 0.0
     ci_lo, ci_hi = diff - 1.96 * se, diff + 1.96 * se
 

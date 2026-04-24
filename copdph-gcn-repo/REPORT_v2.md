@@ -858,23 +858,31 @@ architecture, and differ only in whether the 13 lung-scalar globals are added.
 
 | Arm | n | Mode | AUC |
 |---|---|---|---|
-| arm_a (vessel-only) | 189 | gcn_only | **0.8391** |
-| arm_c (vessel + 13 lung globals) | 189 | gcn_only | **0.8143** |
+| arm_a (vessel-only) | 189 | gcn_only | **0.8143** |
+| arm_c (vessel + 13 lung globals) | 189 | gcn_only | **0.8391** |
 
-**Paired DeLong test on Δ = arm_c − arm_a**:
+**Paired DeLong test on Δ = arm_c − arm_a** (corrected sign 2026-04-24
+after Round-6 reviewer flag):
 
 | Statistic | Value |
 |---|---|
-| Δ AUC | **−0.0248** |
-| DeLong 95% CI | **[−0.0887, +0.0391]** — includes 0 |
-| DeLong z | 0.760 |
+| Δ AUC | **+0.0248** |
+| DeLong 95% CI | **[−0.0391, +0.0887]** — includes 0 |
+| DeLong \|z\| | 0.760 |
 | **DeLong p (two-sided)** | **0.447** |
 | Bootstrap 95% CI on Δ (n=5000) | [−0.035, +0.094] |
 
-**Verdict**: lung-feature contribution under protocol balancing is **not
-statistically significant** at case-level paired inference. The point
-estimate is in fact slightly negative (lung features hurt by 0.025 AUC,
-likely chance noise on n=189). This is the formal W6 confirmation of the
+**Per-case OOF table** (Round-6 reviewer demand): `outputs/r6/primary_endpoint_oof.csv`
+with columns `case_id, fold, label, protocol, p_arm_a, p_arm_c` (189 rows).
+Reconstructed by reading `data/splits_contrast_only/fold_K/val.txt` in
+fold order and intersecting with `cache_v2_tri_flat` (8 cases dropped:
+197 raw → 189 cached). The DeLong p-value above is now reproducible
+from this CSV by anyone.
+
+**Verdict**: lung-feature contribution under protocol balancing has a
+**point estimate of +0.025 AUC** but the **DeLong 95% CI [−0.039, +0.089]
+includes zero (p=0.45)**. The contribution is not statistically significant
+at case-level paired inference. This is the formal W6 confirmation of the
 Round-2 §13.5 retraction.
 
 This is a single pre-specified primary endpoint — no multiplicity

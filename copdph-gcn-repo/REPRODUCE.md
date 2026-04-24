@@ -120,10 +120,13 @@ python scripts/cache_provenance.py cache_v2_tri_flat/<case>.pkl
 
 - `requirements-local.lock.txt` — exact local analysis-env versions
   (pip freeze on the Windows Python 3.14 analysis machine, 2026-04-23).
-- `environment.yml` — remote training-env spec; kimimaro version is a
-  placeholder (pinned as 4.0.4) to be **replaced with the exact output of
-  `pip show kimimaro` from the `pulmonary_bv5_py39` env** on next remote
-  SSH session.
-- The next remote build should `git rev-parse HEAD` and include the SHA
-  plus `kimimaro.__version__` in the pkl. `_remote_build_v2_cache.py`
-  needs a one-liner patch to do this (tracked as a Round 4 TODO).
+- `requirements-remote.lock.txt` — full pip freeze (204 packages) from
+  the remote `pulmonary_bv5_py39` env captured 2026-04-24. Includes
+  **`kimimaro==5.8.1`**, **`torch==2.6.0`**, **`torch-geometric==2.6.1`**,
+  **`connected-components-3d==3.26.1`**.
+- `environment.lock.yml` — `conda env export --no-builds` from the same
+  remote env (251 lines, conda-installed packages only — pip-installed
+  packages live in `requirements-remote.lock.txt`).
+- The next remote cache rebuild will `git rev-parse HEAD` and include
+  the SHA plus `kimimaro.__version__` in each pkl. `_remote_build_v2_cache.py`
+  needs a one-liner patch to do this (tracked as a Round 7 TODO).

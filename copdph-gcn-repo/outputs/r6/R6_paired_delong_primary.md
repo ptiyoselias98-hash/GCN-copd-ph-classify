@@ -2,10 +2,10 @@
 
 Same 189 contrast-only cases (163 PH + 26 nonPH), gcn_only mode, ensembled across 5 folds × 3 repeats.
 
-- AUC arm_a (vessel-only): **0.8391**
-- AUC arm_c (vessel + 13 lung scalar globals): **0.8143**
-- Δ AUC (arm_c − arm_a): **-0.0248**
-- DeLong 95% CI on Δ: **[-0.0887, +0.0391]**  (INCLUDES 0 — NOT significant)
+- AUC arm_a (vessel-only): **0.8143**
+- AUC arm_c (vessel + 13 lung scalar globals): **0.8391**
+- Δ AUC (arm_c − arm_a): **+0.0248**
+- DeLong 95% CI on Δ: **[-0.0391, +0.0887]**  (INCLUDES 0 — NOT significant)
 - DeLong z = 0.760, **p two-sided = 0.4474**
 - Bootstrap 95% CI on Δ (n=5000): **[-0.0354, +0.0935]**
 

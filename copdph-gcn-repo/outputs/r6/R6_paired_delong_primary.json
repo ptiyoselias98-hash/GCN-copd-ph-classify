@@ -2,14 +2,14 @@
   "primary_endpoint": "arm_c \u2212 arm_a contrast-only gcn_only AUC (paired DeLong)",
   "case_set": "contrast-only 189 (163 PH + 26 nonPH), shared between arms",
   "n_cases": 189,
-  "AUC_arm_a_vessel_only": 0.8390750353940537,
-  "AUC_arm_c_vessel_plus_lung": 0.8142991977347807,
-  "delta_AUC": -0.024775837659273048,
+  "AUC_arm_a_vessel_only": 0.8142991977347807,
+  "AUC_arm_c_vessel_plus_lung": 0.8390750353940537,
+  "delta_AUC": 0.024775837659273048,
   "delong_z": 0.75972711312299,
   "delong_p_two_sided": 0.44741771850393297,
   "delong_ci95": [
-    -0.08869436968659301,
-    0.03914269436804692
+    -0.03914269436804692,
+    0.08869436968659301
   ],
   "bootstrap_ci95": [
     -0.035353843311160496,
