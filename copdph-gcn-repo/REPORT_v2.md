@@ -4,10 +4,25 @@ _Auto-generated 2026-04-23 01:17:10_
 
 ## 1. Cohort & Mask Encoding
 
-- **Total cases**: 282 (112 nonPH / 170 PH)
-- **Two source cohorts**:
-  - Contrast-enhanced CT: 197 cases (170 PH + 27 nonPH), masks live at `nii/<case>/`
-  - **Plain-scan CT: 85 nonPH cases**, masks live at `nii-unified-282/<case>/`
+### 1.1 Current (2026-04-24) 345-case cohort
+
+- **Total cases (corrected 2026-04-24)**: **345** (185 nonPH / 160 PH)
+- **Five source folders on H:** (user inventory):
+  - `COPDPH_seg（160例增强性CT)` — 160 contrast PH
+  - `COPDnonPH_seg（27例增强性CT)` — 27 contrast nonPH
+  - `New folder-COPDNOPH 58例平扫性` — 58 plain-scan nonPH (revised from earlier 85)
+  - `4月24号-新增24个copdnoph平扫性\（24个完整）` — 24 plain-scan nonPH refills (were placeholder, now complete)
+  - `4月24号-新增76个copdnoph平扫性` — 76 brand-new plain-scan nonPH
+- User caveat: "可能其中有分割不正常的，使用时请甄别" — segmentation QC required.
+
+### 1.2 Legacy 282-case cohort (reported throughout this report)
+
+All analyses in §2–§20 were run on the older 282-case cohort
+(112 nonPH / 170 PH). Re-ingestion to the 345-cohort is Round 11 work:
+DCM→NIfTI→segmentation QC→v2 cache rebuild→rerun all endpoints.
+
+- Contrast-enhanced CT: 197 cases (170 PH + 27 nonPH), masks live at `nii/<case>/`
+- **Plain-scan CT: 85 nonPH cases**, masks live at `nii-unified-282/<case>/`
 - All NIfTI masks use HU sentinel **`-2048` for background**; structure interior carries raw HU.
   - Vessels (contrast-enhanced): positive HU
   - **Airway in plain-scan CT: lumen air ≈ -1024 to -800 HU**
