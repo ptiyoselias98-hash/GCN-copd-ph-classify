@@ -10,6 +10,13 @@
     {"round": 2, "score": 3, "verdict": "reject"},
     {"round": 3, "score": 4, "verdict": "reject"},
     {
+      "round": 5,
+      "timestamp": "2026-04-24T10:05:00",
+      "status": "partial_pre_review",
+      "experiments": ["R5.1 single-arm DeLong CI on contrast-only AUCs"],
+      "note": "arm_c contrast-only AUC = 0.8391 [0.7527, 0.9255] (DeLong CI excludes 0.5). Paired DeLong vs arm_b deferred to Round 6 due to radiomics filter mismatch (arm_b 92 cases vs arm_c 189). Codex review pending — will fire on next cron tick."
+    },
+    {
       "round": 4,
       "timestamp": "2026-04-23T18:45:00",
       "score": 5,

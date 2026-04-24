@@ -1,0 +1,22 @@
+{
+  "primary_endpoint": "arm_c gcn_only contrast-only AUC (single-arm DeLong CI)",
+  "case_set_mismatch": true,
+  "n_arm_b": 92,
+  "n_arm_c": 189,
+  "best_mode_arm_b": "gcn_only",
+  "best_mode_arm_c": "gcn_only",
+  "AUC_arm_b": 0.8462009803921569,
+  "AUC_arm_b_ci95": [
+    0.733979273965023,
+    0.9584226868192907
+  ],
+  "AUC_arm_c": 0.8390750353940537,
+  "AUC_arm_c_ci95": [
+    0.7526643137495235,
+    0.9254857570385839
+  ],
+  "delta_AUC_unpaired": -0.007125944998103151,
+  "delta_z_unpaired": -0.09861146219500512,
+  "delta_p_unpaired": 0.9214467688670644,
+  "note": "Paired DeLong unavailable: arm_b dataset is filtered by radiomics requirement to 92 cases vs arm_c's 189. Round 6 will rebuild arm_b without radiomics filter for a true paired comparison."
+}

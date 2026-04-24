@@ -774,6 +774,47 @@ priors. Results will land in `outputs/evolution/R4_skeleton_directions.md`.
   low-component airways need radiologist inspection before any airway
   inclusion in main claims.
 
+## 18. ARIS Round 5 — case-level DeLong CIs (PARTIAL — paired pending)
+
+**Pipeline**: patched `run_sprint6_v2_probs.py` on remote dumps per-case
+val-fold probabilities (`ensemble_y_true`, `ensemble_y_score`); these are
+fetched via `scp` and consumed by `scripts/evolution/R5_delong.py`.
+
+**Result on contrast-only 189-case subset** (gcn_only mode, ensembled
+across 3 repeats × 5 folds):
+
+| Arm | n | AUC | DeLong 95% CI |
+|---|---|---|---|
+| arm_b (vessel-only, radiomics-filtered subset) | 92 | 0.8462 | [0.7340, 0.9584] |
+| **arm_c (vessel + 13 lung globals)** | **189** | **0.8391** | **[0.7527, 0.9255]** |
+
+**Headline**: arm_c contrast-only AUC = **0.8391 [0.7527, 0.9255]** —
+DeLong 95% CI excludes 0.50, so disease signal on the protocol-balanced
+subset is significant under case-level inference. This is the W6
+case-level confirmatory result the Round 4 reviewer required.
+
+**Caveat — paired DeLong unavailable in Round 5**: arm_b's training
+dataset is restricted to 92 cases by the radiomics-feature requirement
+(`require_radiomics=True` in dataset construction); arm_c uses the
+unfiltered 189. The two arms are not on a matched case set so a paired
+DeLong on `arm_c − arm_b` is not meaningful. Round 6 will rebuild arm_b
+with the radiomics filter disabled to enable the paired comparison.
+
+**Unpaired approximation** (for completeness): Δ = −0.0071, z = −0.10,
+p = 0.92 — adding lung features yields no measurable benefit over the
+vessel-only baseline once protocol is balanced. Consistent with §13.5
+retraction of the lung-feature contribution claim.
+
+### Round 5 status
+
+- ✅ R5.1 case-level DeLong CIs on arm_b and arm_c (single-arm)
+- ⏳ R5.2 GCN-feature within-nonPH protocol classifier (deferred to Round 6)
+- ⏳ R5.3 paired DeLong arm_c − arm_b (needs arm_b rebuild in Round 6)
+
+The autonomous loop (`review-stage/AUTONOMOUS_LOOP_PLAN.md` + cron
+`fda1fcf8` every 2 hours) will execute R5.2/R5.3 + Round 6 (TEASAR
+sensitivity sweep + adversarial debiasing) without user intervention.
+
 ### 14.5 Cohort protocol labels committed (NEW)
 
 `data/case_protocol.csv` (282 rows) is derived from the three original DCM
