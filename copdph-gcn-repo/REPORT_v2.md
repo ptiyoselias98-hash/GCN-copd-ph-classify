@@ -808,8 +808,44 @@ retraction of the lung-feature contribution claim.
 ### Round 5 status
 
 - ✅ R5.1 case-level DeLong CIs on arm_b and arm_c (single-arm)
-- ⏳ R5.2 GCN-feature within-nonPH protocol classifier (deferred to Round 6)
+- ✅ R5.2 GCN-feature within-nonPH protocol classifier — see §18.2
 - ⏳ R5.3 paired DeLong arm_c − arm_b (needs arm_b rebuild in Round 6)
+
+### 18.2 R5.2 — Protocol decoder on EXACT GCN inputs WITHIN nonPH (HONEST W1)
+
+Per-case graph statistics (47 features per case: `n_nodes`, `mean_degree`,
+`x0_mean`…`x12_p90`, edge-attr aggregates) extracted from
+`cache_v2_tri_flat/*.pkl` via remote `extract_graph_stats.py`. Local
+sklearn LR/GB classifiers, 5-fold stratified CV, bootstrap CI.
+
+| Subset | n | Endpoint | LR AUC (95% CI) | GB AUC (95% CI) |
+|---|---|---|---|---|
+| **within-nonPH** | 80 (26c + 54p) | protocol | **0.853 [0.722, 0.942]** | **0.774 [0.596, 0.908]** |
+| within-contrast | 189 | disease | 0.858 [0.789, 0.923] | 0.782 [0.715, 0.849] |
+| full cohort | 243 | protocol | 0.936 | 0.929 |
+
+**Reading** — this is the W1 endpoint the Round-4 reviewer specifically
+demanded (protocol AUC on the actual GCN inputs, within label=0):
+
+1. Protocol AUC LR **0.853** (95% CI excludes 0.7 below) — GCN inputs DO
+   carry significant protocol signal even within nonPH. The R4.1 finding
+   that v2 per-structure volumes (4 lung-feature scalars) had LR
+   protocol AUC 0.529 within-nonPH does NOT generalize: the richer
+   47-feature graph aggregate (which includes per-node feature
+   distributions) recovers protocol decodability.
+2. The same features deliver disease AUC 0.858 within contrast — disease
+   signal is real and comparable in magnitude to the protocol signal.
+3. The two signals are entangled but not identical (protocol within-nonPH
+   0.85 vs disease within-contrast 0.86). A domain-adversarial GCN that
+   penalizes protocol decodability while preserving disease decodability
+   is the principled mitigation, scheduled as Round 6's primary new arm.
+
+**Implication for v2 cache validity**: the cache itself is not "broken"
+(disease signal is preserved) but it does carry segmentation-quality
+artifacts that correlate with protocol. The path to a Nature-Medicine-
+defensible result is (a) adversarial debiasing of the GCN training
+objective, (b) re-segmentation with HiPaS-style unified pipeline (§15),
+or (c) acceptance of the residual confound with sensitivity bounds.
 
 The autonomous loop (`review-stage/AUTONOMOUS_LOOP_PLAN.md` + cron
 `fda1fcf8` every 2 hours) will execute R5.2/R5.3 + Round 6 (TEASAR
