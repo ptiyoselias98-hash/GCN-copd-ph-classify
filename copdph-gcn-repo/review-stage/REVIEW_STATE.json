@@ -12,6 +12,31 @@
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
     {
+      "round": 8,
+      "timestamp": "2026-04-24T14:45:00",
+      "score": 6,
+      "verdict": "reject",
+      "reviewer": "codex-mcp gpt-5.2 high-reasoning",
+      "experiments": [
+        "R8.1 GCN-feature exclusion sensitivity (classifier proxy): A(243) vs B(full 282 degraded) disease contrast Δ=+0.013 (ROBUST); protocol-nonPH Δ=+0.055 (all-zero imputation itself a protocol cue)",
+        "R8.2 skimage skeleton stability: mean CV=0.58 max=1.01 — ceiling proxy, NOT TEASAR sweep",
+        "R8.3 Builder provenance patch: git_sha + kimimaro_version + teasar_params stamped on next rebuild; cache_provenance.py verify_expected() helper added"
+      ],
+      "must_fix_before_round9": [
+        "Adversarial-debiasing arm + embedding-level within-nonPH protocol AUC (target ≤0.6) — HARD BLOCKER on GPU contention",
+        "GCN-level exclusion sensitivity with principled missingness handling (NOT all-zero) — GPU",
+        "True kimimaro TEASAR sweep (scale/const/pdrf) on protocol-balanced mini-panel + overlay QC — remote CPU, currently saturated",
+        "Rebuilt cache snapshot with verified provenance + locked env"
+      ],
+      "minimum_to_reach_8_of_10": [
+        "Embedding-level protocol invariance (GRL/adversarial) proof: within-nonPH AUC ≤0.6, disease AUC preserved within -0.03",
+        "Real GCN exclusion sensitivity on full 282 with paired OOF",
+        "kimimaro TEASAR sweep + anatomical QC overlays + stability table",
+        "Rebuilt cache with git_sha+kimimaro_version verified, env-locked"
+      ],
+      "reviewer_notes_for_memory": "R8 added legitimate proxy exclusion-sensitivity and builder provenance hooks, but core threats unchanged: within-nonPH protocol still 0.80+ on GCN-input proxy; TEASAR sweep and adversarial arm still blocked by GPU contention. Target remains: break the protocol-decodability at the embedding level, then re-score."
+    },
+    {
       "round": 7,
       "timestamp": "2026-04-24T11:50:00",
       "score": 5,
