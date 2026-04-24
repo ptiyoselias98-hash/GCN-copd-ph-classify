@@ -29,6 +29,8 @@ SETTINGS = {
     "λ=1.0": ROOT / "outputs" / "r10" / "embeddings_adv_l1.0",
     "λ=2.0": ROOT / "outputs" / "r10" / "embeddings_adv_l2.0",
     "λ=5.0": ROOT / "outputs" / "r10" / "embeddings_adv_l5.0",
+    "λ=10.0": ROOT / "outputs" / "r10" / "embeddings_adv_l10.0",
+    "λ=20.0": ROOT / "outputs" / "r10" / "embeddings_adv_l20.0",
 }
 
 SEED = 20260424

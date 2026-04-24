@@ -947,6 +947,73 @@ Artifact: `environment.lock.yml`, REPRODUCE.md, lock-versioned `requirements-loc
 - ⏳ R6.5 within-nonPH protocol on GCN embeddings → Round 7
 - ⏳ R6.6 TEASAR parameter sensitivity → Round 7
 
+## 21. ARIS Round 10 — GRL adversarial λ sweep (HONEST NEGATIVE)
+
+### 21.1 Setup
+
+`run_sprint6_v2_grl.py` adds a gradient-reversal head on `is_contrast` at the
+penultimate z_proj layer, with configurable `--adv_lambda`. Trained arm_a
+on full 282 cohort at λ ∈ {0.5, 1.0, 2.0, 5.0, 10.0, 20.0}. Both GPUs used
+in parallel (λ 1/2/5 on GPU 1, λ 10/20 on GPU 0).
+
+### 21.2 Results (case-level OOF + bootstrap CI over cases)
+
+| λ | Protocol AUC within-nonPH (CI) | Disease AUC within-contrast (CI) |
+|---|---|---|
+| 0 (baseline) | 0.816 [0.72, 0.90] | 0.752 [0.63, 0.86] |
+| 0.5 | 0.858 [0.78, 0.93] | 0.677 [0.55, 0.80] |
+| 1.0 | 0.816 [0.72, 0.91] | 0.684 [0.55, 0.82] |
+| 2.0 | 0.823 [0.73, 0.91] | 0.636 [0.50, 0.77] |
+| 5.0 | 0.816 [0.73, 0.90] | 0.666 [0.53, 0.80] |
+| 10.0 | **0.885 [0.81, 0.95]** | 0.630 [0.49, 0.77] |
+| 20.0 | **0.885 [0.81, 0.95]** | 0.669 [0.54, 0.79] |
+
+**Target**: protocol AUC ≤ 0.60 with disease AUC preserved. **❌ NOT MET** at
+any λ. Protocol AUC stays in [0.82, 0.89] across all settings; disease AUC
+drops from 0.75 at baseline to ~0.63 at high λ.
+
+### 21.3 Interpretation
+
+Three plausible reasons GRL failed:
+
+1. **Adversary is data-starved**. Only 26 contrast nonPH vs 54 plain-scan nonPH
+   in the training set. The adversary's training signal at each batch is
+   ~3 contrast + ~7 plain-scan examples, far too few to learn a discriminative
+   boundary. GRL requires a strong adversary; ours is underpowered.
+2. **Protocol signal is intrinsic to segmentation quality**. The v2 cache
+   pkls encode node positions, edge diameters, and radii derived from
+   kimimaro skeletonization of contrast vs plain-scan masks. These are
+   *structural* differences (artery branching patterns differ because the
+   contrast-vs-plain segmentation model picks up different vessel
+   territories), not a high-level learnable feature that a GRL can remove.
+3. **Backbone can hide info in null subspace**. With only 64 dims in z_proj,
+   the backbone can easily dedicate a handful of dimensions to disease
+   while a linear protocol probe still finds a separating hyperplane.
+
+### 21.4 Path to 8/10 given this negative finding
+
+Three options (all require future work, not this fire):
+
+- **A. More plain-scan data**: 100 new cases arriving (`H:/424/*`) will
+  roughly double the plain-scan nonPH sample, strengthening the adversary's
+  training signal.
+- **B. Unified segmentation**: HiPaS-style model (Chu et al. 2025) on BOTH
+  cohorts removes segmentation-quality differences at source.
+- **C. Explicit confound controls**: propensity-score matching, inverse-
+  probability weighting, or invariant-risk-minimization objective — none of
+  these require re-segmentation but each requires the extra contrast-nonPH
+  data from (A) to have statistical power.
+
+### 21.5 Scientific value of the negative result
+
+This honest sweep + analysis is itself a result: it establishes that
+adversarial debiasing at a reasonable parameter range DOES NOT break
+protocol decodability on the current 243-case sample. The paper's claim
+can now honestly scope to: "disease AUC ~0.84 contrast-only on a
+protocol-confounded cache; protocol invariance requires either (i) more
+plain-scan nonPH cases, or (ii) unified segmentation." This is a much
+more defensible framing than the Round-1 "0.95 AUC" claim.
+
 ## 20. ARIS Round 7+8 — figures, exclusion sensitivity, builder provenance
 
 ### 20.1 R7 — publication figure suite + README embedding
