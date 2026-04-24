@@ -1163,3 +1163,63 @@ Round 4 artifacts:
 - [`REPRODUCE.md`](copdph-gcn-repo/REPRODUCE.md) · [`requirements-local.lock.txt`](copdph-gcn-repo/requirements-local.lock.txt) · [`environment.yml`](copdph-gcn-repo/environment.yml)
 
 Round history: [`review-stage/AUTO_REVIEW.md`](copdph-gcn-repo/review-stage/AUTO_REVIEW.md).
+
+## ARIS Rounds 5 + 6 + figure suite (2026-04-24)
+
+ARIS rounds 5–6 added case-level paired DeLong on the W6 primary endpoint and
+hard-locked reproducibility. Score: R5 6/10, R6 5/10 (regressed because the
+primary delta is null — see fig 3 below).
+
+### Score progression
+![ARIS score progression](copdph-gcn-repo/outputs/figures/fig1_aris_score_progression.png)
+
+### Honest protocol leakage — within-nonPH vs full-cohort
+![Protocol decoder bars](copdph-gcn-repo/outputs/figures/fig2_protocol_decoder_bars.png)
+
+R4.1 finding: v2 per-structure volumes have within-nonPH LR protocol AUC
+**0.529 [0.43, 0.63]** (CI straddles random). v1 whole-lung HU drops from
+1.000 (full cohort) to 0.765 within-nonPH — 75% of the v1 "perfect protocol
+decoder" was label-shortcut. R5.2 added the GCN-input-aggregate row at the
+bottom: 0.853 [0.72, 0.94] within-nonPH — actual GCN inputs DO carry
+decodable protocol signal, motivating the Round-7 adversarial-debiasing arm.
+
+### Paired Δ-AUC forest plot
+![Forest plot](copdph-gcn-repo/outputs/figures/fig3_paired_delong_forest.png)
+
+R6.1 PRIMARY ENDPOINT (red row): paired DeLong on the SAME 189 contrast-only
+cases for arm_c (vessel + 13 lung globals) − arm_a (vessel-only) gives
+**Δ AUC = +0.025 [-0.039, +0.089], p=0.45 NS**. Lung-feature contribution
+under protocol balancing is not significant at case-level paired inference.
+This formally confirms the Round-2 §13.5 retraction.
+
+### HiPaS-aligned disease-direction test
+![HiPaS direction test](copdph-gcn-repo/outputs/figures/fig4_hipas_directions.png)
+
+T1 (left): PH artery skeleton-length per L lung is HIGHER than nonPH —
+opposite to HiPaS's general-population finding. Likely central PA dilation
+masks distal pruning in our COPD-PH cohort. T2 (right): vein abundance
+declines monotonically with parenchyma emphysema severity (ρ=−0.65, p<10⁻³³)
+— direction MATCHES HiPaS. The difference between T1 and T2 is informative,
+not a defect.
+
+### Cache coverage audit
+![Cache coverage](copdph-gcn-repo/outputs/figures/fig5_cache_coverage.png)
+
+R6.2: 39 of 282 cases missing from `cache_v2_tri_flat`, 79% of which are
+plain-scan nonPH (placeholder vessel segmentations). Round 7 will retrain
+with degraded-graph imputation to bound the exclusion impact.
+
+### Feature-set × endpoint matrix
+![Heatmap](copdph-gcn-repo/outputs/figures/fig6_classifier_heatmap.png)
+
+Reading: green = low protocol leakage / high disease signal. v2 per-structure
+volumes are the most protocol-robust set (within-nonPH AUC 0.53), but
+parenchyma+spatial features achieve the best disease AUC on the contrast-only
+honest endpoint (0.86 LR).
+
+Round 6/7 artifacts:
+- [`outputs/r6/R6_paired_delong_primary.md`](copdph-gcn-repo/outputs/r6/R6_paired_delong_primary.md) · [`primary_endpoint_oof.csv`](copdph-gcn-repo/outputs/r6/primary_endpoint_oof.csv) (case_id-anchored OOF probs for Δ reproduction)
+- [`outputs/r6/missing_cache_audit.md`](copdph-gcn-repo/outputs/r6/missing_cache_audit.md)
+- [`environment.lock.yml`](copdph-gcn-repo/environment.lock.yml) · [`requirements-remote.lock.txt`](copdph-gcn-repo/requirements-remote.lock.txt) (kimimaro 5.8.1, torch 2.6.0, PyG 2.6.1)
+- [`outputs/r5/R5_gcn_feature_within_nonph.md`](copdph-gcn-repo/outputs/r5/R5_gcn_feature_within_nonph.md)
+- [`outputs/r5/R5_delong_primary.md`](copdph-gcn-repo/outputs/r5/R5_delong_primary.md)
