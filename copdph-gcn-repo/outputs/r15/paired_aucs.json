@@ -1,0 +1,91 @@
+{
+  "lung_vs_graph": {
+    "n": 184,
+    "lung_minus_graph": {
+      "auc_a": 0.8444498539435248,
+      "auc_b": 0.7818889970788704,
+      "delta_mean": 0.06229970788704966,
+      "delta_ci95": [
+        -0.0306718597857838,
+        0.16042478091528714
+      ],
+      "p_two_sided_approx": 0.1888,
+      "n_bootstraps_kept": 5000
+    },
+    "both_minus_graph": {
+      "auc_a": 0.8668451801363194,
+      "auc_b": 0.7818889970788704,
+      "delta_mean": 0.0848051606621227,
+      "delta_ci95": [
+        0.029211295034079928,
+        0.1484907497565725
+      ],
+      "p_two_sided_approx": 0.0008,
+      "n_bootstraps_kept": 5000
+    },
+    "both_minus_lung": {
+      "auc_a": 0.8668451801363194,
+      "auc_b": 0.8444498539435248,
+      "delta_mean": 0.022505452775073025,
+      "delta_ci95": [
+        -0.04186952288218104,
+        0.08837025316455696
+      ],
+      "p_two_sided_approx": 0.5008,
+      "n_bootstraps_kept": 5000
+    }
+  },
+  "coral_vs_grl_per_seed": {
+    "seed_42": {
+      "n": 68,
+      "lam_coral": 1.0,
+      "lam_grl": 10.0,
+      "seed": 42,
+      "coral_minus_grl": {
+        "auc_a": 0.7967032967032968,
+        "auc_b": 0.7271062271062271,
+        "delta_mean": 0.06758021978021977,
+        "delta_ci95": [
+          -0.0608974358974359,
+          0.19688644688644696
+        ],
+        "p_two_sided_approx": 0.3096,
+        "n_bootstraps_kept": 5000
+      }
+    },
+    "seed_1042": {
+      "n": 68,
+      "lam_coral": 1.0,
+      "lam_grl": 10.0,
+      "seed": 1042,
+      "coral_minus_grl": {
+        "auc_a": 0.739010989010989,
+        "auc_b": 0.7536630036630036,
+        "delta_mean": -0.014753663003663,
+        "delta_ci95": [
+          -0.16575091575091572,
+          0.1355311355311355
+        ],
+        "p_two_sided_approx": 0.8496,
+        "n_bootstraps_kept": 5000
+      }
+    },
+    "seed_2042": {
+      "n": 68,
+      "lam_coral": 1.0,
+      "lam_grl": 10.0,
+      "seed": 2042,
+      "coral_minus_grl": {
+        "auc_a": 0.61996336996337,
+        "auc_b": 0.815018315018315,
+        "delta_mean": -0.1953,
+        "delta_ci95": [
+          -0.3415750915750916,
+          -0.0576923076923076
+        ],
+        "p_two_sided_approx": 0.0072,
+        "n_bootstraps_kept": 5000
+      }
+    }
+  }
+}

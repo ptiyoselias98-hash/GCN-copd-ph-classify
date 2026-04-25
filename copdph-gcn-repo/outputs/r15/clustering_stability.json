@@ -1,0 +1,234 @@
+{
+  "n": 184,
+  "n_features": 99,
+  "baseline_ph_frac": 0.8586956521739131,
+  "k_sweep": {
+    "k=2": {
+      "silhouette": 0.19891861950496478,
+      "calinski_harabasz": 48.4985023945789,
+      "davies_bouldin": 1.7406989245752766,
+      "consensus_ari_30seeds": 0.9433275927112926,
+      "cluster_enrichment": [
+        {
+          "cluster": 0,
+          "n": 58,
+          "n_ph": 41,
+          "ph_frac": 0.7068965517241379,
+          "binomial_p_vs_baseline": 0.0022823267628745533,
+          "enriched": false,
+          "depleted": true
+        },
+        {
+          "cluster": 1,
+          "n": 126,
+          "n_ph": 117,
+          "ph_frac": 0.9285714285714286,
+          "binomial_p_vs_baseline": 0.021003644049672546,
+          "enriched": true,
+          "depleted": false
+        }
+      ]
+    },
+    "k=3": {
+      "silhouette": 0.13298546966784078,
+      "calinski_harabasz": 36.947403690597724,
+      "davies_bouldin": 1.9964068590039243,
+      "consensus_ari_30seeds": 0.8270198806332996,
+      "cluster_enrichment": [
+        {
+          "cluster": 0,
+          "n": 37,
+          "n_ph": 34,
+          "ph_frac": 0.918918918918919,
+          "binomial_p_vs_baseline": 0.4752830265189413,
+          "enriched": false,
+          "depleted": false
+        },
+        {
+          "cluster": 1,
+          "n": 45,
+          "n_ph": 32,
+          "ph_frac": 0.7111111111111111,
+          "binomial_p_vs_baseline": 0.00883204090482677,
+          "enriched": false,
+          "depleted": true
+        },
+        {
+          "cluster": 2,
+          "n": 102,
+          "n_ph": 92,
+          "ph_frac": 0.9019607843137255,
+          "binomial_p_vs_baseline": 0.2550785860473439,
+          "enriched": false,
+          "depleted": false
+        }
+      ]
+    },
+    "k=4": {
+      "silhouette": 0.14228415399883992,
+      "calinski_harabasz": 31.126642837758318,
+      "davies_bouldin": 1.7272204685311867,
+      "consensus_ari_30seeds": 0.6747980748333628,
+      "cluster_enrichment": [
+        {
+          "cluster": 0,
+          "n": 101,
+          "n_ph": 92,
+          "ph_frac": 0.9108910891089109,
+          "binomial_p_vs_baseline": 0.15292011381764,
+          "enriched": false,
+          "depleted": false
+        },
+        {
+          "cluster": 1,
+          "n": 4,
+          "n_ph": 1,
+          "ph_frac": 0.25,
+          "binomial_p_vs_baseline": 0.010089616179366132,
+          "enriched": false,
+          "depleted": true
+        },
+        {
+          "cluster": 2,
+          "n": 46,
+          "n_ph": 35,
+          "ph_frac": 0.7608695652173914,
+          "binomial_p_vs_baseline": 0.0853903152785622,
+          "enriched": false,
+          "depleted": false
+        },
+        {
+          "cluster": 3,
+          "n": 33,
+          "n_ph": 30,
+          "ph_frac": 0.9090909090909091,
+          "binomial_p_vs_baseline": 0.6154820803455567,
+          "enriched": false,
+          "depleted": false
+        }
+      ]
+    },
+    "k=5": {
+      "silhouette": 0.13316829087961643,
+      "calinski_harabasz": 28.413685178903226,
+      "davies_bouldin": 1.9043219813995218,
+      "consensus_ari_30seeds": 0.632006370701512,
+      "cluster_enrichment": [
+        {
+          "cluster": 0,
+          "n": 30,
+          "n_ph": 27,
+          "ph_frac": 0.9,
+          "binomial_p_vs_baseline": 0.7918996700404869,
+          "enriched": false,
+          "depleted": false
+        },
+        {
+          "cluster": 1,
+          "n": 42,
+          "n_ph": 41,
+          "ph_frac": 0.9761904761904762,
+          "binomial_p_vs_baseline": 0.0245134540432532,
+          "enriched": true,
+          "depleted": false
+        },
+        {
+          "cluster": 2,
+          "n": 4,
+          "n_ph": 1,
+          "ph_frac": 0.25,
+          "binomial_p_vs_baseline": 0.010089616179366132,
+          "enriched": false,
+          "depleted": true
+        },
+        {
+          "cluster": 3,
+          "n": 71,
+          "n_ph": 62,
+          "ph_frac": 0.8732394366197183,
+          "binomial_p_vs_baseline": 0.8650583496328865,
+          "enriched": false,
+          "depleted": false
+        },
+        {
+          "cluster": 4,
+          "n": 37,
+          "n_ph": 27,
+          "ph_frac": 0.7297297297297297,
+          "binomial_p_vs_baseline": 0.03268354286178543,
+          "enriched": false,
+          "depleted": true
+        }
+      ]
+    },
+    "k=6": {
+      "silhouette": 0.12007627757436612,
+      "calinski_harabasz": 26.24324943191595,
+      "davies_bouldin": 1.8484638716046902,
+      "consensus_ari_30seeds": 0.7210469148762064,
+      "cluster_enrichment": [
+        {
+          "cluster": 0,
+          "n": 29,
+          "n_ph": 29,
+          "ph_frac": 1.0,
+          "binomial_p_vs_baseline": 0.02757478919821485,
+          "enriched": true,
+          "depleted": false
+        },
+        {
+          "cluster": 1,
+          "n": 37,
+          "n_ph": 26,
+          "ph_frac": 0.7027027027027027,
+          "binomial_p_vs_baseline": 0.014603209840773158,
+          "enriched": false,
+          "depleted": true
+        },
+        {
+          "cluster": 2,
+          "n": 38,
+          "n_ph": 37,
+          "ph_frac": 0.9736842105263158,
+          "binomial_p_vs_baseline": 0.03579649903496301,
+          "enriched": true,
+          "depleted": false
+        },
+        {
+          "cluster": 3,
+          "n": 27,
+          "n_ph": 24,
+          "ph_frac": 0.8888888888888888,
+          "binomial_p_vs_baseline": 1.0,
+          "enriched": false,
+          "depleted": false
+        },
+        {
+          "cluster": 4,
+          "n": 4,
+          "n_ph": 1,
+          "ph_frac": 0.25,
+          "binomial_p_vs_baseline": 0.010089616179366132,
+          "enriched": false,
+          "depleted": true
+        },
+        {
+          "cluster": 5,
+          "n": 49,
+          "n_ph": 41,
+          "ph_frac": 0.8367346938775511,
+          "binomial_p_vs_baseline": 0.6800907068790496,
+          "enriched": false,
+          "depleted": false
+        }
+      ]
+    }
+  },
+  "best_k_by_ari": {
+    "k": 2,
+    "silhouette": 0.19891861950496478,
+    "ari": 0.9433275927112926,
+    "db": 1.7406989245752766,
+    "n_significant_clusters": 2
+  }
+}
