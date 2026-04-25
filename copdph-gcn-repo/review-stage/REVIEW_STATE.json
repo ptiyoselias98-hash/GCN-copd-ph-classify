@@ -5,6 +5,7 @@
     "pipeline_unification_savseg": {
       "status": "RUNNING on remote GPU 1 — closes R18 must-fix #2/#4 (and unblocks #3/#5)",
       "progress_check_2026_04_26_T04_34": "38/201 cases done (19%) at +10 min from launch; rate ~3.8 cases/min; ETA ~42 min remaining",
+      "progress_check_2026_04_26_T05_34": "153/201 cases done (76%) at +70 min from launch with 2-worker (GPU 1 only). Rate accelerated to 3.15 cases/min after worker-2 tolerant restart. ~16 min ETA. Worker-2 hit 1 BadGzipFile CRC error on ph_zhangzongqi (corrupted legacy CT.nii.gz upstream); will be flagged in unified-cohort manifest as exclusion. GPU 0 free now but per shared-infra policy avoiding to not preempt other user's potential resumption",
       "unified_cohort_post_savseg": "201 contrast (174 PH + 27 nonPH, this run) + 100 new-plain-scan (R15) = 301 unified-pipeline cases. 85 legacy plain-scan nonPH excluded (CTs not on remote) — will be flagged in design-decision artifact",
       "launched_at": "2026-04-26T04:24",
       "remote_path": "/home/imss/cw/Claude_COPDnonPH_COPD-PH_CT_nii/nii/ (201 cases: 174 PH + 27 nonPH contrast)",
