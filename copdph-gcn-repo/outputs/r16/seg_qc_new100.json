@@ -1,0 +1,37 @@
+{
+  "n_total": 100,
+  "n_flagged": 81,
+  "n_severe_flagged": 0,
+  "rule_hits": {
+    "lung_vol_implausible_low": 0,
+    "lung_vol_implausible_high": 79,
+    "paren_HU_implausible_high": 0,
+    "paren_HU_implausible_low": 4,
+    "vessel_lung_ratio_too_high": 0,
+    "vessel_lung_ratio_too_low": 0,
+    "paren_too_few_voxels": 0,
+    "av_ratio_extreme_high": 0,
+    "av_ratio_extreme_low": 0
+  },
+  "lung_vol_mL_summary": {
+    "min": 3692.845224934221,
+    "p5": 5852.722366333008,
+    "median": 10839.24417734146,
+    "p95": 16881.549693536188,
+    "max": 18901.01427268982
+  },
+  "paren_mean_HU_summary": {
+    "min": -1282.54833984375,
+    "p5": -900.3992889404296,
+    "median": -873.5159606933594,
+    "p95": -827.53271484375,
+    "max": -787.5255126953125
+  },
+  "vessel_lung_ratio_summary": {
+    "min": 0.0051186245896796,
+    "p5": 0.006913296757543745,
+    "median": 0.0132223751814876,
+    "p95": 0.027762423400452086,
+    "max": 0.0340984465451372
+  }
+}
