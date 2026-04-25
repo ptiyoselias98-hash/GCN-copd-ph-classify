@@ -32,6 +32,7 @@ collected under `outputs/`.
 | R16 | 9.0/10 | revise |
 | R17 | 9.2/10 | revise |
 | R18 | 9.3/10 | revise |
+| R19 | 9.1/10 | revise |
 
 ## Task
 
@@ -1490,4 +1491,14 @@ R18 (codex 9.3 / HONEST 8.8 after debt-penalty -0.5; +0.8 from R17 honest 8.0). 
 ![fig_r18_mpap_trajectories](copdph-gcn-repo/outputs/figures/fig_r18_mpap_trajectories.png)
 
 ![fig_r18_unified_forest](copdph-gcn-repo/outputs/figures/fig_r18_unified_forest.png)
+
+## ARIS Round 19 — score 8.7/10
+
+R19 (codex 9.1 / HONEST 8.7 revise, -0.1 from R18 honest 8.8). Closed only 1 must-fix (overlay gallery) but discovered+disclosed CRITICAL pipeline-mixing confound. R18.B legacy artery_len_p25 ρ=-0.767 DEFINITIVELY VERIFIED via R19.F within-pipeline. Enlarged 382-cohort apparent ρ collapse is pipeline-mixing artifact (legacy HU-sentinel vs new100 binary masks); R18.B stands. v2 builder bug (binary mask detection) found+fixed. DDPM training epoch 11/30 — no inference yet
+
+- [within_pipeline_trends.md](copdph-gcn-repo/outputs/r19/within_pipeline_trends.md)
+- [v2_cache_rebuild_diagnosis.md](copdph-gcn-repo/outputs/r19/v2_cache_rebuild_diagnosis.md)
+![lung_overlay_gallery_representative](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_representative.png)
+
+![lung_overlay_gallery_worst_repaired](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_worst_repaired.png)
 

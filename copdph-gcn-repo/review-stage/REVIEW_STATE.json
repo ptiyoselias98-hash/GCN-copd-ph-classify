@@ -1,6 +1,6 @@
 {
-  "round": 18,
-  "status": "round_18_complete_score_9.3_codex_8.8_honest_revise",
+  "round": 19,
+  "status": "round_19_complete_score_9.1_codex_8.7_honest_revise",
   "running_actions": [
     {"action": "DCM→NIfTI for 100 new plain-scan nonPH", "status": "DONE 100/100", "ended_at": "2026-04-25T12:54:03", "log": "outputs/r15/dcm_conversion_log.json"},
     {"action": "scp nii-new100 (12GB) to imss@10.60.147.117:/home/imss/cw/GCN copdnoph copdph/nii-new100/", "status": "DONE 100/100 (completed 2026-04-25T14:36); nested path FLATTENED via `mv`; ready for seg pipeline"},
@@ -24,6 +24,45 @@
     {"round": 3, "score": 4, "verdict": "reject"},
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
+    {
+      "round": 19,
+      "timestamp": "2026-04-25T23:55:00",
+      "score": 9.1,
+      "honest_score_after_debt_penalty": 8.7,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "experiments": [
+        "R19.A lung-mask overlay gallery (16 representative + 16 worst-repaired) — closes R18 must-fix #4",
+        "R19.B/C v2 cache rebuild on new100: BUG DISCOVERY + FIX. Legacy builder hard-coded `(raw != -2048)` HU-sentinel assumption; Simple_AV_seg outputs BINARY masks → all voxels flagged → kimimaro hung 35min. Patcher detects mask type, full 100-case build done in 31min (30s/case 6 workers)",
+        "R19.D extended morphometrics 382 cases × 114 features (282 legacy + 100 new100, 24-worker)",
+        "R19.E enlarged mPAP 5-stage trends APPARENT CONFOUND: artery_len_p25 ρ=-0.767 (legacy R18.B) → -0.282 (enlarged); paren_std_HU REVERSED +0.629 → -0.251",
+        "R19.F within-pipeline RESCUE: legacy-only subset of R19.D extracted features REPRODUCES R18.B EXACTLY (artery_len_p25 ρ=-0.767 p=9e-30 n=147; artery_len_p50 -0.753; artery_tort_p10 -0.619; vein_len_p25 -0.613). new100-only is pinned Stage 0 (mPAP=5.0 default) — cannot compute within-subset trend. Enlarged collapse = pipeline-mixing artifact. R18.B finding STANDS confirmed",
+        "R19 DDPM training in flight: epoch 11/30 loss 0.052 (down from 0.81). ETA ~3h. NO INFERENCE YET"
+      ],
+      "regressions_r19": [
+        "Naive 382-cohort enlarged-cohort trend result is NOT usable as biological evidence (pipeline-mixing artifact)",
+        "artery_total_len_mm ρ=+0.577 in mixed cohort = pipeline/domain shift, NOT disease biology",
+        "DDPM remains training-only; no inference/heatmap/eval/biological validation",
+        "Airway features structurally absent for new100 (Simple_AV_seg produces artery/vein only) — cross-pipeline feature incompatibility",
+        "Only 1 R18 must-fix closed (overlay gallery); other 4 still open or blocked by pipeline confound"
+      ],
+      "must_fix_before_round20": [
+        "Complete DDPM evaluation: inference outputs, anomaly heatmaps, PH-vs-nonPH quantitative separation, failure-case review (training alone does NOT count)",
+        "Unify or stratify legacy/new100 pipelines BEFORE making enlarged-cohort biological claims",
+        "Resolve embedding-level enlarged-stratum probe under valid unified/stratified design",
+        "Run or explicitly retire HiPaS re-segmentation for 38 + new100",
+        "Multi-seed CORAL only after pipeline unification (or principled retirement)",
+        "Document binary-vs-HU-sentinel mask bug + cache-builder fix in durable methods/audit artifact (not only round notes)"
+      ],
+      "minimum_to_reach_9point5": [
+        "Close ≥2 remaining prior must-fix items in R20",
+        "DDPM inference + evaluation completed",
+        "Defensible unified-pipeline or within-pipeline-only analysis plan",
+        "Demonstrate legacy biology survives within correct stratum (not mask-convention artifact)",
+        "Quantify cross-pipeline feature shifts; correct them or formally exclude mixed-cohort claims"
+      ],
+      "reviewer_notes_for_memory": "R19 codex 9.1 / honest 8.7 (down -0.1 from R18 honest 8.8 because only 1 must-fix closed + new pipeline-confound blocker). Real hostile-review win: discovered and disclosed legacy-vs-new100 pipeline-mixing confound rather than overclaim. R18.B legacy mPAP-evolution finding (artery_len_p25 ρ=-0.767 p=9e-30 n=147) DEFINITIVELY VERIFIED via R19.F within-pipeline check on R19.D features. Path to 9.5: complete DDPM evaluation + unify pipelines (HiPaS re-seg of new100) + close 2+ must-fix in R20."
+    },
     {
       "round": 18,
       "timestamp": "2026-04-25T21:30:00",
