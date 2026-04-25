@@ -60,7 +60,20 @@ def main():
         cid = lr["case_id"]; label = int(lr["label"])
         cd = NII_LOCAL / cid
         if not cd.is_dir(): continue
+        # Follow _source.txt redirect if direct files absent (PH cases use this)
         ct_p = cd / "ct.nii.gz"; lung_p = cd / "lung.nii.gz"
+        if not (ct_p.exists() and lung_p.exists()):
+            src = cd / "_source.txt"
+            if src.exists():
+                raw = src.read_bytes()
+                for enc in ("gbk", "utf-8", "cp936"):
+                    try:
+                        src_path = Path(raw.decode(enc).strip())
+                        if src_path.is_dir():
+                            ct_p = src_path / "ct.nii.gz"; lung_p = src_path / "lung.nii.gz"
+                            break
+                    except UnicodeDecodeError:
+                        continue
         if not (ct_p.exists() and lung_p.exists()): continue
         try:
             t0 = time.time()
