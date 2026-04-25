@@ -1,0 +1,59 @@
+{
+  "config": {
+    "epochs": 80,
+    "batch_size": 16,
+    "lr": 0.001,
+    "lambda_endo": 0.1,
+    "lambda_adv": 0.5,
+    "seed": 42,
+    "within_contrast": true
+  },
+  "n_total": 100,
+  "feature_dims": {
+    "artery": 47,
+    "vein": 47,
+    "airway": 46,
+    "paren": 22
+  },
+  "fold_aucs": [
+    0.8214285714285715,
+    1.0,
+    0.9866666666666667,
+    0.8800000000000001,
+    0.6066666666666667
+  ],
+  "mean_auc": 0.8589523809523809,
+  "std_auc": 0.15945570685610344,
+  "fold_results": [
+    {
+      "fold": 1,
+      "best_auc": 0.8214285714285715,
+      "n_train": 80,
+      "n_val": 20
+    },
+    {
+      "fold": 2,
+      "best_auc": 1.0,
+      "n_train": 80,
+      "n_val": 20
+    },
+    {
+      "fold": 3,
+      "best_auc": 0.9866666666666667,
+      "n_train": 80,
+      "n_val": 20
+    },
+    {
+      "fold": 4,
+      "best_auc": 0.8800000000000001,
+      "n_train": 80,
+      "n_val": 20
+    },
+    {
+      "fold": 5,
+      "best_auc": 0.6066666666666667,
+      "n_train": 80,
+      "n_val": 20
+    }
+  ]
+}
