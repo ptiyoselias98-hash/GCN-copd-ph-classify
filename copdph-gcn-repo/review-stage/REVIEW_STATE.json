@@ -2,6 +2,18 @@
   "round": 20,
   "status": "round_20_in_progress_ddpm_eval_closed_with_honest_negative",
   "round_20_progress": {
+    "tda_robustness_audit": {
+      "status": "DONE — closes R18 must-fix #8 with POSITIVE verdict",
+      "target_feature": "vein_persH1_total",
+      "base_cohen_d": -1.214,
+      "p_holm_18_panel": 2.98e-6,
+      "leave_one_out_range": [-1.335, -1.127],
+      "bootstrap_d_ci95": [-1.723, -0.794],
+      "sign_stability_pct": 100.0,
+      "additional_holm_significant_in_panel": ["vein_persH0_total (d=-1.04, p_holm=2.6e-5)", "artery_persH0_total (d=-0.72, p_holm=1.0e-2)"],
+      "verdict": "vein_persH1_total robust under Holm-Bonferroni 18-feature TDA panel AND 1000-iter bootstrap (100% sign-stable). LOO d range tight [-1.335, -1.127]. Effect direction reproducibly negative — PH veins lose H1-loop topology persistence. Two additional TDA features Holm-pass (vein_persH0_total, artery_persH0_total). Closes R18 must-fix #8.",
+      "artifacts": ["outputs/r20/tda_robustness_audit.{json,md}"]
+    },
     "r17_artifact_audit": {
       "status": "DONE — closes R18 must-fix #7",
       "n_artifact_features_excluded": 8,

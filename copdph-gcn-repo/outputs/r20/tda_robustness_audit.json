@@ -1,0 +1,242 @@
+{
+  "cohort_size_after_exclusion": 244,
+  "feature_count": 18,
+  "distribution_audit": {
+    "airway_persH0_max": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 73.88504305904253,
+      "max": 188.09837851507388
+    },
+    "airway_persH0_n_pairs": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 185.0,
+      "max": 499.0
+    },
+    "airway_persH0_total": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 3922.9122894440825,
+      "max": 14845.99765665151
+    },
+    "airway_persH1_max": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 19.1354801432487,
+      "max": 137.58608390079232
+    },
+    "airway_persH1_n_loops": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 47.5,
+      "max": 186.0
+    },
+    "airway_persH1_total": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 243.5122336970037,
+      "max": 1359.1702207659987
+    },
+    "artery_persH0_max": {
+      "n_total": 244,
+      "n_zero": 6,
+      "frac_zero": 0.02459016393442623,
+      "median": 54.13871073455665,
+      "max": 96.33794683301072
+    },
+    "artery_persH0_n_pairs": {
+      "n_total": 244,
+      "n_zero": 6,
+      "frac_zero": 0.02459016393442623,
+      "median": 499.0,
+      "max": 499.0
+    },
+    "artery_persH0_total": {
+      "n_total": 244,
+      "n_zero": 6,
+      "frac_zero": 0.02459016393442623,
+      "median": 8282.9937914597,
+      "max": 13583.246737614518
+    },
+    "artery_persH1_max": {
+      "n_total": 244,
+      "n_zero": 6,
+      "frac_zero": 0.02459016393442623,
+      "median": 26.56293171146745,
+      "max": 60.86156204378765
+    },
+    "artery_persH1_n_loops": {
+      "n_total": 244,
+      "n_zero": 6,
+      "frac_zero": 0.02459016393442623,
+      "median": 171.0,
+      "max": 217.0
+    },
+    "artery_persH1_total": {
+      "n_total": 244,
+      "n_zero": 6,
+      "frac_zero": 0.02459016393442623,
+      "median": 863.7565946464572,
+      "max": 1890.988849238523
+    },
+    "vein_persH0_max": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 47.09564735726647,
+      "max": 137.5099996363901
+    },
+    "vein_persH0_n_pairs": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 499.0,
+      "max": 499.0
+    },
+    "vein_persH0_total": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 7983.350033148505,
+      "max": 16977.93033057418
+    },
+    "vein_persH1_max": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 30.89811726502235,
+      "max": 94.25389648189226
+    },
+    "vein_persH1_n_loops": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 160.0,
+      "max": 206.0
+    },
+    "vein_persH1_total": {
+      "n_total": 244,
+      "n_zero": 11,
+      "frac_zero": 0.045081967213114756,
+      "median": 827.2472915147371,
+      "max": 1782.3758379413064
+    }
+  },
+  "within_contrast_holm": {
+    "features_tested": 18,
+    "holm_significant": [
+      {
+        "feature": "artery_persH0_total",
+        "p_raw": 0.0007313611925703328,
+        "p_holm": 0.010239056695984659,
+        "cohen_d": -0.7153528145041695,
+        "n_ph": 170,
+        "n_nonph": 27,
+        "significant_holm_005": true
+      },
+      {
+        "feature": "artery_persH1_total",
+        "p_raw": 0.0005235916154480394,
+        "p_holm": 0.007853874231720591,
+        "cohen_d": -0.6262551603653618,
+        "n_ph": 170,
+        "n_nonph": 27,
+        "significant_holm_005": true
+      },
+      {
+        "feature": "vein_persH0_total",
+        "p_raw": 1.5146204412051308e-06,
+        "p_holm": 2.5748547500487226e-05,
+        "cohen_d": -1.0436352293896054,
+        "n_ph": 170,
+        "n_nonph": 27,
+        "significant_holm_005": true
+      },
+      {
+        "feature": "vein_persH1_n_loops",
+        "p_raw": 9.38822975831914e-06,
+        "p_holm": 0.00015021167613310624,
+        "cohen_d": -0.6393882416165805,
+        "n_ph": 170,
+        "n_nonph": 27,
+        "significant_holm_005": true
+      },
+      {
+        "feature": "vein_persH1_total",
+        "p_raw": 1.6547840357926892e-07,
+        "p_holm": 2.9786112644268406e-06,
+        "cohen_d": -1.2139785557179203,
+        "n_ph": 170,
+        "n_nonph": 27,
+        "significant_holm_005": true
+      }
+    ],
+    "top5_by_effect": [
+      {
+        "feature": "vein_persH1_total",
+        "p_raw": 1.6547840357926892e-07,
+        "p_holm": 2.9786112644268406e-06,
+        "cohen_d": -1.2139785557179203,
+        "n_ph": 170,
+        "n_nonph": 27
+      },
+      {
+        "feature": "vein_persH0_total",
+        "p_raw": 1.5146204412051308e-06,
+        "p_holm": 2.5748547500487226e-05,
+        "cohen_d": -1.0436352293896054,
+        "n_ph": 170,
+        "n_nonph": 27
+      },
+      {
+        "feature": "airway_persH0_total",
+        "p_raw": 0.011494710531311413,
+        "p_holm": 0.12644181584442554,
+        "cohen_d": -0.7772393254470584,
+        "n_ph": 170,
+        "n_nonph": 27
+      },
+      {
+        "feature": "airway_persH1_total",
+        "p_raw": 0.027278004852571862,
+        "p_holm": 0.19094603396800303,
+        "cohen_d": -0.7160162412811306,
+        "n_ph": 170,
+        "n_nonph": 27
+      },
+      {
+        "feature": "artery_persH0_total",
+        "p_raw": 0.0007313611925703328,
+        "p_holm": 0.010239056695984659,
+        "cohen_d": -0.7153528145041695,
+        "n_ph": 170,
+        "n_nonph": 27
+      }
+    ]
+  },
+  "leave_one_out_stability": {
+    "target": "vein_persH1_total",
+    "base_cohen_d": -1.2139785557179203,
+    "loo_d_mean": -1.2140143542705641,
+    "loo_d_min": -1.3345386231190666,
+    "loo_d_max": -1.1267354861598233,
+    "loo_d_range": 0.20780313695924324,
+    "all_same_sign": true
+  },
+  "bootstrap_stability": {
+    "target": "vein_persH1_total",
+    "n_iters": 1000,
+    "d_mean": -1.2284288934907845,
+    "d_ci95_lo": -1.7233328673086072,
+    "d_ci95_hi": -0.7936776523321818,
+    "frac_same_sign_as_base": 1.0,
+    "sign_stable_99pct": true
+  }
+}
