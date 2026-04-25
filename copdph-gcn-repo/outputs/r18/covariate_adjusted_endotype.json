@@ -1,0 +1,105 @@
+{
+  "cohort_n": 197,
+  "n_ph": 170,
+  "n_nonph": 27,
+  "target_features": [
+    "artery_tort_p10",
+    "artery_len_p25",
+    "artery_len_p50",
+    "vein_len_p25",
+    "vein_tort_p10",
+    "paren_std_HU",
+    "paren_mean_HU",
+    "lung_vol_mL"
+  ],
+  "results": {
+    "artery_tort_p10": {
+      "n": 196,
+      "raw_d": -1.424929849938137,
+      "raw_p_mwu": 2.002644356802302e-09,
+      "adjusted_d": -1.4007246206563297,
+      "adjusted_p_mwu": 1.2419278979970335e-07,
+      "year_correlation_rho": -0.11441799434195885,
+      "year_correlation_p": 0.11029813274564292,
+      "covariate_lr_r2": 0.024613764790230253,
+      "delta_d_raw_minus_adjusted": -0.02420522928180735
+    },
+    "artery_len_p25": {
+      "n": 196,
+      "raw_d": -1.2484946323585304,
+      "raw_p_mwu": 1.0283803630865041e-07,
+      "adjusted_d": -1.2237481876253764,
+      "adjusted_p_mwu": 1.5637784544473946e-07,
+      "year_correlation_rho": -0.15143426166375817,
+      "year_correlation_p": 0.03411131427731427,
+      "covariate_lr_r2": 0.024917222825423413,
+      "delta_d_raw_minus_adjusted": -0.024746444733154016
+    },
+    "artery_len_p50": {
+      "n": 196,
+      "raw_d": -1.2323078608708065,
+      "raw_p_mwu": 1.018267296464646e-07,
+      "adjusted_d": -1.2074052245290163,
+      "adjusted_p_mwu": 1.9241994826212924e-07,
+      "year_correlation_rho": -0.14871902126930817,
+      "year_correlation_p": 0.03749512976731466,
+      "covariate_lr_r2": 0.025709373271966318,
+      "delta_d_raw_minus_adjusted": -0.02490263634179013
+    },
+    "vein_len_p25": {
+      "n": 191,
+      "raw_d": -1.1882564992192939,
+      "raw_p_mwu": 2.2036568515261557e-06,
+      "adjusted_d": -1.1631075088139307,
+      "adjusted_p_mwu": 2.674956055654204e-06,
+      "year_correlation_rho": -0.15136138121044687,
+      "year_correlation_p": 0.03660142799348034,
+      "covariate_lr_r2": 0.03179737156907447,
+      "delta_d_raw_minus_adjusted": -0.025148990405363225
+    },
+    "vein_tort_p10": {
+      "n": 191,
+      "raw_d": -1.1524147061651244,
+      "raw_p_mwu": 5.666219451470972e-08,
+      "adjusted_d": -1.1367565196867768,
+      "adjusted_p_mwu": 0.002714764763039206,
+      "year_correlation_rho": -0.21595996428812736,
+      "year_correlation_p": 0.0026951638317697832,
+      "covariate_lr_r2": 0.00547784889475067,
+      "delta_d_raw_minus_adjusted": -0.015658186478347602
+    },
+    "paren_std_HU": {
+      "n": 186,
+      "raw_d": 1.0993339909381377,
+      "raw_p_mwu": 1.2338715091058423e-08,
+      "adjusted_d": 1.0759621311511436,
+      "adjusted_p_mwu": 8.386206064744006e-08,
+      "year_correlation_rho": 0.13932925297078802,
+      "year_correlation_p": 0.05787422152884934,
+      "covariate_lr_r2": 0.020220115185740406,
+      "delta_d_raw_minus_adjusted": 0.023371859786994076
+    },
+    "paren_mean_HU": {
+      "n": 186,
+      "raw_d": 0.6619090764211508,
+      "raw_p_mwu": 0.001262156174430707,
+      "adjusted_d": 0.6527726874244428,
+      "adjusted_p_mwu": 0.0016271822554303314,
+      "year_correlation_rho": -0.0029443297566828924,
+      "year_correlation_p": 0.9681850563189104,
+      "covariate_lr_r2": 0.001945412208496311,
+      "delta_d_raw_minus_adjusted": 0.00913638899670799
+    },
+    "lung_vol_mL": {
+      "n": 192,
+      "raw_d": -0.642753082308181,
+      "raw_p_mwu": 0.004469482356736132,
+      "adjusted_d": -0.6087356537469469,
+      "adjusted_p_mwu": 0.005382564529308043,
+      "year_correlation_rho": -0.1913625822811859,
+      "year_correlation_p": 0.007839605297893189,
+      "covariate_lr_r2": 0.04456224963705746,
+      "delta_d_raw_minus_adjusted": -0.03401742856123402
+    }
+  }
+}
