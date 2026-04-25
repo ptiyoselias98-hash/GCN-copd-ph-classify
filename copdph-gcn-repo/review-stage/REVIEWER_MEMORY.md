@@ -30,6 +30,47 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 13 key concerns (2026-04-25 12:10) — CARRY INTO ROUND 14
+
+**Score 8.0/10 revise** (up from R12=7.0). R13 closed several R12 must_fix
+items but CORAL evidence is single-seed and overclaim language was caught:
+
+1. **345-cohort reconciliation closed**: case_id-level diff against
+   legacy 282 yields exactly 15 only-legacy = 10 PH + 5 nonph_plain,
+   matching the user's manual DCM-count-prune narrative (170→160 PH;
+   85→58 plain). PH count discrepancy explained.
+
+2. **38 seg-failure cases identified** (34 REAL EMPTY-mask + 4 lung
+   anomalies) in the legacy nii-unified-282 masks. 12 of these were in
+   the 80-case within-nonPH stratum used by R1-R12. Effective n drops
+   to 68 after interim exclusion. **Final cohort policy must re-segment
+   via HiPaS, not exclude permanently** — exclusion is protocol/skew-
+   structured (mostly nonph_plain).
+
+3. **CORAL λ=1 single-seed pilot wins Pareto**: protocol LR 0.772
+   (vs GRL 0.790; Δ=0.018 with wide overlapping CIs), AND disease AUC
+   preserved at ~0.93 (vs GRL crash to 0.64 at λ=10). MUCH better Pareto
+   but NOT a confirmed deconfounder win. Multi-seed expansion required.
+
+4. **Don't say "Path B exhausted"** from a single-seed pilot. Reviewer
+   flagged §24.6 overclaim; softened. Path B continues with multi-seed
+   CORAL + MMD evidence; HSIC/IRM still unattempted.
+
+5. **MMD scaffolded but not evidenced**: `run_sprint6_v2_coral.py --use_mmd`
+   exists but no runs. Treat as R14 deliverable.
+
+6. **CORAL alignment-loss printed as 0.00000** every batch — likely
+   numeric underflow from /4d² with d=64. Need higher-precision logging
+   to confirm CORAL gradient actually flows.
+
+Round 14 minimum:
+- Multi-seed CORAL at seeds {1042, 2042} × 4 λ on n=68 corrected
+- Hierarchical seed × case bootstrap CIs + paired GRL comparison
+- MMD pilot at λ ∈ {1, 5}, seed=42
+- Disease AUC + CI in coral_probe.json (not only narrative)
+- DCM→NIfTI pipeline launch for 100 new plain-scan nonPH cases
+- Re-segmentation outcomes for 38 failure cases via HiPaS
+
 ## Round 12 key concerns (2026-04-25 11:30) — CARRY INTO ROUND 13
 
 **Score 7/10 revise** (up from R11=5.0). R12 added auditable artifacts and a

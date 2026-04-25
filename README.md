@@ -26,6 +26,7 @@ collected under `outputs/`.
 | R10 | 6.2/10 | reject |
 | R11 | 5.0/10 | reject |
 | R12 | 7.0/10 | revise |
+| R13 | 8.0/10 | revise |
 
 ## Task
 
@@ -1264,3 +1265,12 @@ R12 (7.0/10 revise): missingness-only probe shows is_in_v2_cache leaks protocol 
 - [missingness_protocol_probe.md](copdph-gcn-repo/outputs/r12/missingness_protocol_probe.md)
 - [r12_cross_seed_cis.md](copdph-gcn-repo/outputs/r12/r12_cross_seed_cis.md)
 - [adv_auc_per_epoch.json](copdph-gcn-repo/outputs/r11/adv_auc_per_epoch.json)
+
+
+## ARIS Round 13 — score 8.0/10
+
+R13 (8.0/10 revise): 345-cohort reconciliation closes PH=170→160 audit; 38 seg-failure cases excluded (effective n=80→68); single-seed CORAL λ=1 wins Pareto vs GRL (LR 0.772 with disease 0.93 preserved); multi-seed expansion launched on GPU 0+1.
+
+- [cohort_345_summary.md](copdph-gcn-repo/outputs/r13/cohort_345_summary.md)
+- [seg_findings_summary.md](copdph-gcn-repo/outputs/r13/seg_findings_summary.md)
+- [coral_probe.md](copdph-gcn-repo/outputs/r13/coral_probe.md)

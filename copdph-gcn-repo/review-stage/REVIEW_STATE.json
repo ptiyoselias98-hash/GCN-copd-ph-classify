@@ -1,6 +1,6 @@
 {
   "round": 13,
-  "status": "round_13_in_progress_coral_pilot_running",
+  "status": "round_13_complete_score_8.0_revise",
   "running_gpu_jobs": [
     {"host": "imss@10.60.147.117", "script": "run_sprint6_v2_coral.py", "args": "lam in [0,1,5,10] seed=42 (4-job pilot, 1 per GPU sequentially)", "started": "2026-04-25T11:25:00", "expected_done": "2026-04-25T13:00:00", "logs": "/tmp/r13_logs/coral_l*_s42_gpu*.log", "outputs": "outputs/sprint6_arm_a_coral_l*_s42/sprint6_results.json + embeddings/"}
   ],
@@ -16,22 +16,39 @@
     {"round": 5, "score": 6, "verdict": "reject"},
     {
       "round": 13,
-      "timestamp": "2026-04-25T11:45:00",
-      "score": null,
-      "verdict": "in_progress",
-      "reviewer": "(pending — codex review after CORAL pilot completes ~13:00)",
+      "timestamp": "2026-04-25T12:10:00",
+      "score": 8.0,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
       "experiments": [
         "R13.1 cohort reconciliation (R13_cohort_reconciliation.py): walked 5 source folders on H:, audited 00000001..5 DCM-count consistency. Counts match user's authoritative inventory: 160 PH contrast + 27 nonPH contrast + 58 nonPH plain (post-prune) + 24 refill + 76 new = 345. Two quarantine subfolders (`有缺失病例`, `有缺失数据`) detected and skipped. Diff vs legacy 282-cohort: common=267, only_legacy=15 (10 PH + 5 nonPH-plain — exactly matches user's manual prune narrative), only_new=78 (24+76 fully new + 52 plain-scan re-ingested under new naming). PH=170→160 reconciliation EXPLAINED.",
         "R13.2 segmentation-quality audit framework (R13_seg_quality_audit.py): scaffold for nibabel-based audit (EMPTY/ALL_FILLED/TOO_SMALL/TOO_FRAGMENTED/LUNG_COMPONENT_ANOMALY checks). All 345 source folders are DCM-only (no NIfTI masks in source); legacy 282 masks live at E:\\桌面文件\\nii格式图\\nii-unified-282\\. Path-lookup needs unicode fix for nii-unified-282 case_id resolution (deferred to next fire). 100 new cases (24 refill + 76 new) need segmentation pipeline run before quality QC.",
         "R13.3 CORAL/MMD non-GRL deconfounder (run_sprint6_v2_coral.py): drop-in alternative to GRL — adds CORAL feature-distribution alignment penalty between nonPH-contrast and nonPH-plain encoder embeddings within each batch (or multi-kernel MMD via --use_mmd). Pilot launched on remote: 4 lambdas {0,1,5,10} × seed 42, 1 job per GPU sequentially. Expected ~1.5h wall time. GPU 0+1 at 42-44% util, 2GB each (healthy).",
         "R13.4 PH=170→160 reconciliation: user explained 2026-04-25 — original COPDPH_seg had 170+ subfolders but 10+ had inconsistent 00000001-5 DCM counts (missing slices) and were manually excluded as unusable. Same DCM-count audit pruned New folder-COPDNOPH 85→58. New 24+76 plain-scan all pass DCM-count audit but still need segmentation-quality QC."
       ],
-      "must_fix_in_next_cron_fire": [
-        "After CORAL pilot completes: run R12_aggregate_seed_CIs.py-style analysis on coral embeddings; report within-nonPH protocol LR + MLP AUC vs disease AUC across λ ∈ {0,1,5,10}",
-        "If CORAL shows promise (protocol AUC drops below GRL's 0.80 floor), launch multi-seed expansion (seeds 1042, 2042) for 8 more runs",
-        "Fix R13_seg_quality_audit.py path lookup for nii-unified-282 (Unicode-on-Windows issue)",
-        "Begin DCM→NIfTI conversion pipeline for 100 new plain-scan nonPH cases on remote"
-      ]
+      "regressions_r13": [
+        "Reviewer flagged §24.6 'two deconfounder families exhausted' overclaim — softened to 'single-seed CORAL pilot improves Pareto but remains far above target'",
+        "MMD scaffolded but not evidenced; need to run MMD λ=1,5 seed=42 to back the scaffold claim",
+        "CORAL λ=1 vs GRL gap (0.018) has wide overlapping CIs at single seed — multi-seed required"
+      ],
+      "must_fix_before_round14": [
+        "Multi-seed CORAL at seeds {1042, 2042} × λ ∈ {0,1,5,10} on n=68 corrected (8 more runs)",
+        "Hierarchical seed × case bootstrap CIs + paired same-case comparison vs corrected-GRL",
+        "Disease AUC + CI into coral_probe.json/md (currently only in REPORT_v2 narrative)",
+        "MMD pilot λ ∈ {1,5} seed=42 to evidence the scaffold",
+        "Machine-readable 345 reconciliation artifact: full only_legacy + only_345 lists with label/protocol/group + dup flags",
+        "Re-segment the 34 REAL FAILURE cases via HiPaS (separate from interim exclusion); document outcomes",
+        "Begin DCM→NIfTI pipeline for 100 new plain-scan nonPH cases",
+        "Fix R13_seg_quality_audit.py path lookup for nii-unified-282 (Unicode-on-Windows issue)"
+      ],
+      "minimum_to_reach_9point5": [
+        "345-cohort ingestion with unified segmentation/QC, including the 100 queued plain nonPH cases",
+        "Re-segmentation outcome table for 34 real failures + 4 lung anomalies",
+        "Multi-seed CORAL/MMD/HSIC with hierarchical CIs hitting protocol target ≤0.60 OR rigorously framed negative",
+        "All headline disease/protocol claims on the same case set with bootstrap/paired uncertainty",
+        "No blanket impossibility language unless multiple non-GRL families + corrected 345-cohort support it"
+      ],
+      "reviewer_notes_for_memory": "R13 8.0/10 (up from R12 7.0). Cohort reconciliation closed at case_id level — exact 10 PH + 5 nonph_plain only-legacy match user's DCM-count-prune narrative. 38 seg-failure cases identified (34 EMPTY-mask real fails + 4 lung anomalies) — interim exclusion shrinks within-nonPH from n=80 to n=68. CORAL λ=1 single-seed shows protocol LR 0.772 vs GRL 0.790 (Δ=0.018 with overlapping CIs) and preserves disease AUC ~0.93 (vs GRL crash to 0.64) — better Pareto but NOT confirmed win. Reviewer flagged 'CORAL/MMD exhausted' overclaim from §24.6, softened. R14 must do multi-seed CORAL + paired GRL comparison + machine-readable cohort manifest + re-segmentation pipeline."
     },
     {
       "round": 12,

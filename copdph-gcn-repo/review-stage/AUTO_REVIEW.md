@@ -163,3 +163,26 @@ Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R11=5.0 (+2.0).
 **Must fix before R13**: cohort reconciliation, ≥1 non-GRL deconfounder, narrow §23.4 framing, report disease AUC alongside protocol-AUC under any control.
 
 **Path to ≥9.5**: ingest 158 plain-scan nonPH → unified 345 cohort with QC, freeze single manifest, achieve protocol AUC ≤0.60 with upper-CI ≤0.65 while preserving disease AUC within −0.03, demonstrate robustness across multiple deconfounder families.
+
+---
+
+## Round 13 (2026-04-25 12:10) — score 8.0 / verdict revise
+
+Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R12=7.0 (+1.0).
+
+**R13 deliverables**:
+- `R13_cohort_reconciliation.py` → 345 manifest = 160 PH + 27 nonPH-contrast + 58 + 24 + 76; only-legacy=15 (10 PH + 5 nonph_plain) exactly matches user DCM-count-prune narrative
+- `R13_seg_quality_audit.py` + `R13_seg_categorize.py` → 34 REAL EMPTY-mask + 4 lung anomalies (38 exclusion list); 42 vessel-only false-positives of 100-comp threshold
+- `run_sprint6_v2_coral.py` (CORAL/MMD non-GRL) + 4-job pilot → CORAL λ=1 single-seed: protocol LR 0.772 (vs GRL 0.790), disease AUC 0.93 (vs GRL 0.64@λ=10) — better Pareto, NOT confirmed win
+- `R13_coral_probe.py` → seg-corrected n=68: protocol LR 0.791 [0.690, 0.875] @λ=1
+- REPORT_v2.md §24 (added) + §24.6 softened post-review
+
+**Reviewer regressions**:
+- §24.6 "Path B exhausted" overclaim from single-seed CORAL — softened to "single-seed pilot improves Pareto, far above target"
+- MMD scaffolded but not evidenced — R14 must run
+- CORAL Δ vs GRL only 0.018 with overlapping CIs at single seed
+- Seg-failure exclusion is interim only; final cohort needs HiPaS re-segmentation
+
+**Must fix before R14**: multi-seed CORAL {1042, 2042} (8 runs) + paired GRL comparison + hierarchical CIs; MMD pilot; disease AUC into JSON artifact; full machine-readable 345 manifest; HiPaS re-segmentation outcomes; DCM→NIfTI for 100 new cases.
+
+**Path to ≥9.5**: 345-cohort ingestion + multi-seed multi-family deconfounder evidence (CORAL/MMD/HSIC) + paired uncertainty on same case set + no impossibility language without 345 evidence.

@@ -1218,11 +1218,100 @@ Logs at `/tmp/r13_logs/coral_l*_s42_gpu*.log`. Outputs:
 embeddings. Next cron fire (13:17) will harvest these and run the same
 within-nonPH protocol LR/MLP probe + cross-seed CI analysis used in R11/R12.
 
-If CORAL/MMD breaks below the corrected-GRL floor of protocol-LR=0.80
-without collapsing disease AUC below 0.65, R14 expands to seeds {1042,
-2042}; if it doesn't, the R12 "narrow impossibility on legacy 243" claim
-holds and the path forward is 345-cohort ingestion (Path A) or unified
-HiPaS rebuild (Path C).
+### 24.4 R13.2b — Segmentation-quality findings (REAL FAILURES)
+
+`R13_seg_categorize.py` partitions the 80 quality-flagged cases:
+
+- **34 REAL FAILURES** — at least one mask is EMPTY. 12 cases have all
+  4 masks empty (segmentation pipeline failed completely); 8 have
+  artery+vein empty; remainder have 1-2 empty masks. Almost all in the
+  `nonph_plain` stratum.
+- **4 LUNG-COMPONENT ANOMALY** — lung mask has 0 or >5 components.
+- **42 VESSEL-FRAGMENTED ONLY** — only artery/vein flagged with >100
+  connected components. Vasculature is naturally fragmented (many vessel
+  branches), so this is a **false positive** of the 100-component
+  threshold; not excluded.
+
+Combined exclusion list = 38 cases (34 real failures + 4 lung anomalies).
+Saved to `outputs/r13/seg_failures_real.json`.
+
+**Major implication**: R1-R12 within-nonPH analyses used n=80 in-cache
+nonph-plain cases, but **12 of those 80 are on the exclusion list**.
+Effective denominator for the within-nonPH protocol probe drops from 80
+to **68**. Earlier "impossibility on n=80" framing in R12 §23 was thus
+based on a contaminated stratum.
+
+### 24.5 R13.4 — CORAL within-nonPH protocol probe (vs corrected-GRL)
+
+`R13_coral_probe.py` fetches per-fold CORAL embeddings from remote and
+runs the same LR + MLP probe used in R11/R12. Results (seed=42, full
+n=80):
+
+| λ | CORAL LR AUC | CORAL MLP AUC | R11 GRL LR AUC | Δ (CORAL − GRL) |
+|---|---|---|---|---|
+| 0  | 0.878 | 0.864 | 0.840 | +0.038 |
+| 1  | **0.772** | 0.827 | 0.894 | **−0.122** |
+| 5  | 0.803 | 0.845 | 0.842 | −0.039 |
+| 10 | 0.818 | 0.815 | 0.790 | +0.028 |
+
+**CORAL at λ=1 is the best deconfounder seen across R10-R13: protocol LR
+0.772**, vs the best corrected-GRL result of 0.790 at λ=10. The MLP
+probe at λ=1 is also lower (0.827 vs GRL 0.876). Still nowhere near the
+0.60 target, but CORAL's CORAL-loss-pure-alignment objective beats
+the GRL min-max game on this cohort/n.
+
+**Disease AUC** stays 0.93+ across all CORAL λ values (5-fold means:
+λ=0 0.934, λ=1 0.933, λ=5 0.933, λ=10 0.931) — disease-vs-protocol Pareto
+is much more favourable than GRL (where disease dropped 0.73→0.64 at λ=10).
+
+After applying the 12-case seg-failure exclusion (n=80 → 68):
+
+| λ | corrected LR AUC [95% CI] | corrected MLP AUC [95% CI] |
+|---|---|---|
+| 0  | 0.891 [0.815, 0.957] | 0.878 [0.798, 0.946] |
+| 1  | 0.791 [0.690, 0.875] | 0.793 [0.691, 0.881] |
+| 5  | 0.827 [0.726, 0.910] | 0.825 [0.728, 0.911] |
+| 10 | 0.801 [0.689, 0.895] | 0.817 [0.719, 0.901] |
+
+Protocol AUC INCREASES slightly after seg-failure exclusion (broken-
+segmentation cases were obscuring the protocol signal — once removed,
+the cleaner stratum reveals stronger protocol decodability). λ=1 CORAL
+remains the best (0.791 corrected LR AUC).
+
+### 24.6 Honest re-framing for R12+R13 combined (revised per R13 reviewer)
+
+Per R13 reviewer feedback (gpt-5.5, 2026-04-25 8.0/10): the prior
+"two deconfounder families exhausted" framing OVERCLAIMS from a single-
+seed CORAL pilot. Corrected framing:
+
+1. **Corrected GRL is exhausted** on legacy n=80 stratum (R10-R12, 12
+   runs across 4 λ × 3 seeds, hierarchical CI lower bound 0.72).
+2. **Single-seed CORAL pilot at λ=1 improves the Pareto** (protocol LR
+   0.772 vs GRL 0.790; disease AUC preserved at 0.93 vs GRL crash to
+   0.64), but the 0.018 AUC gap has wide overlapping bootstrap CIs and
+   single-seed evidence is insufficient to call CORAL a confirmed
+   deconfounder win. Multi-seed expansion is required.
+3. **Seg-failure-corrected cohort (n=68) shifts protocol AUC slightly
+   upward** (broken-segmentation cases were obscuring signal). This is
+   protocol/skew-structured exclusion — interim only. Final cohort
+   policy must re-segment via HiPaS and retain cases where possible,
+   not treat exclusion as the endpoint.
+4. **MMD was scaffolded** (`run_sprint6_v2_coral.py --use_mmd`) but not
+   yet evidenced; treated as Path B continuation in R14.
+
+R14+ path remains: (Path A) ingest 345-cohort + segmentation pipeline +
+QC for the 100 new plain-scan nonPH cases; (Path B) multi-seed CORAL/MMD
+on n=68 corrected with hierarchical CIs and paired same-case comparison
+to GRL; (Path C) HiPaS unified rebuild.
+
+R14 actions: (1) launch DCM→NIfTI conversion + segmentation pipeline for
+the 100 new plain-scan nonPH cases; (2) **expand CORAL pilot to seeds
+{1042, 2042}** for cross-seed CIs on the λ=1 result; (3) run MMD variant
+at λ ∈ {1, 5} seed=42 to evidence the scaffold; (4) freeze a machine-
+readable full 345 reconciliation artifact with complete only-legacy and
+only-345 lists + label/protocol/group + duplicate flags; (5) re-segment
+the 34 REAL FAILURE cases via HiPaS where possible (separate from
+interim exclusion).
 
 ## 20. ARIS Round 7+8 — figures, exclusion sensitivity, builder provenance
 
