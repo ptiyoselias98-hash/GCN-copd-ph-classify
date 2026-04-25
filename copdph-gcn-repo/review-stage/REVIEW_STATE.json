@@ -2,6 +2,16 @@
   "round": 20,
   "status": "round_20_in_progress_ddpm_eval_closed_with_honest_negative",
   "round_20_progress": {
+    "pipeline_unification_savseg": {
+      "status": "RUNNING on remote GPU 1 — closes R18 must-fix #2/#4 (and unblocks #3/#5)",
+      "launched_at": "2026-04-26T04:24",
+      "remote_path": "/home/imss/cw/Claude_COPDnonPH_COPD-PH_CT_nii/nii/ (201 cases: 174 PH + 27 nonPH contrast)",
+      "output_path": "/home/imss/cw/GCN copdnoph copdph/nii-unified-201-savseg/<case>/{lung,artery,vein}.nii.gz",
+      "process_pids": [24729, 27403],
+      "gpu_used": "GPU 1 only (GPU 0 has 7GB by other user)",
+      "eta_minutes": "50-100 min (201 cases × 15-30s on RTX 3090)",
+      "next_step": "Once complete: rebuild v2 cache with R19.C binary-mask patcher, re-extract R17 morphometrics on unified-pipeline cohort, verify R18.B legacy ρ=-0.767 reproduces. Closes must-fix #2/#4 with positive verdict."
+    },
     "terminology_reframe": {
       "status": "DONE — closes R18 must-fix #6",
       "files_updated": ["README.md (top-level)", "copdph-gcn-repo/REPORT_v2.md (§0 added)"],
