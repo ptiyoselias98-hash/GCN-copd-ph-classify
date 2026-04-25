@@ -41,14 +41,15 @@ LABELS = ROOT / "data" / "labels_expanded_282.csv"
 SEG_FAILS = OUT / "seg_failures_real.json"
 
 LAMBDAS = [0.0, 1.0, 5.0, 10.0]
-SEEDS = [42]
+SEEDS = [42, 1042, 2042]
+MMD_CONFIGS = [(1.0, 42), (5.0, 42)]
 
 
-def fetch_coral_emb(lam: float, seed: int) -> Path | None:
-    """Pull all 5 fold embeddings for one (lambda, seed) config."""
-    out_dir = CORAL_LOCAL / f"l{lam}_s{seed}"
+def fetch_emb(lam: float, seed: int, method: str = "coral") -> Path | None:
+    """Pull all 5 fold embeddings for one (lambda, seed, method) config."""
+    out_dir = CORAL_LOCAL / f"{method}_l{lam}_s{seed}"
     out_dir.mkdir(parents=True, exist_ok=True)
-    remote_dir = f"{REMOTE_BASE}/sprint6_arm_a_coral_l{lam}_s{seed}/embeddings"
+    remote_dir = f"{REMOTE_BASE}/sprint6_arm_a_{method}_l{lam}_s{seed}/embeddings"
     for k in range(1, 6):
         local_f = out_dir / f"emb_gcn_only_rep1_fold{k}.npz"
         if local_f.exists():
@@ -57,9 +58,30 @@ def fetch_coral_emb(lam: float, seed: int) -> Path | None:
                str(local_f)]
         r = subprocess.run(cmd, capture_output=True, text=True)
         if r.returncode != 0:
-            print(f"[skip] l{lam}_s{seed} fold{k}: {r.stderr.strip()[:100]}")
+            print(f"[skip] {method} l{lam}_s{seed} fold{k}: {r.stderr.strip()[:100]}")
             return None
     return out_dir
+
+
+def fetch_disease_auc(lam: float, seed: int, method: str = "coral") -> dict | None:
+    """Fetch disease AUC summary from sprint6_results.json on remote."""
+    cmd = ["ssh", REMOTE, f"cat '{REMOTE_BASE}/sprint6_arm_a_{method}_l{lam}_s{seed}/sprint6_results.json'"]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode != 0:
+        return None
+    try:
+        d = json.loads(r.stdout)
+        if "fold_metrics" in d:
+            aucs = [m.get("AUC") for m in d["fold_metrics"] if m.get("AUC") is not None]
+        else:
+            # _grl_fix returns nested baseline.gcn_only.folds[].AUC
+            aucs = [f.get("AUC") for f in d.get("baseline", {}).get("gcn_only", {}).get("folds", [])
+                    if f.get("AUC") is not None]
+        if not aucs:
+            return None
+        return {"per_fold_auc": aucs, "mean": float(np.mean(aucs)), "std": float(np.std(aucs, ddof=1)) if len(aucs) > 1 else 0.0}
+    except Exception:
+        return None
 
 
 def load_emb_with_ids(emb_dir: Path) -> tuple[np.ndarray, np.ndarray, list[str]] | None:
@@ -135,10 +157,14 @@ def main():
             seg_fail_ids.add(r["case_id"])
     print(f"[exclusion] {len(seg_fail_ids)} cases on seg-failure list")
 
-    summary: dict = {"per_lambda": {}, "n_excluded_seg_fails": len(seg_fail_ids)}
+    summary: dict = {"per_lambda": {}, "per_seed": {}, "mmd": {}, "n_excluded_seg_fails": len(seg_fail_ids)}
+    # Multi-seed CORAL aggregation
+    pooled_lr_per_lam = {lam: [] for lam in LAMBDAS}  # list of per-seed AUCs
+    pooled_mlp_per_lam = {lam: [] for lam in LAMBDAS}
+    disease_per_lam = {lam: [] for lam in LAMBDAS}
     for lam in LAMBDAS:
         for seed in SEEDS:
-            emb_dir = fetch_coral_emb(lam, seed)
+            emb_dir = fetch_emb(lam, seed, method="coral")
             if emb_dir is None:
                 continue
             res = load_emb_with_ids(emb_dir)
@@ -171,7 +197,8 @@ def main():
             f_lr, f_mlp, f_lr_oof, f_mlp_oof = full
             c_lr, c_mlp, c_lr_oof, c_mlp_oof = corr
 
-            summary["per_lambda"][f"lambda_{lam}"] = {
+            disease = fetch_disease_auc(lam, seed, method="coral")
+            entry = {
                 "n_full": n_before,
                 "n_corrected": n_after,
                 "n_excluded_seg_fail": n_excluded,
@@ -187,10 +214,72 @@ def main():
                     "mlp_auc": c_mlp,
                     "mlp_ci95": boot_ci(y_corr, c_mlp_oof),
                 },
+                "disease_auc_5fold": disease,
             }
-            print(f"l{lam}_s{seed}: n_full={n_before} n_corr={n_after} excl={n_excluded}")
-            print(f"  full     LR={f_lr:.3f} MLP={f_mlp:.3f}")
-            print(f"  corrected LR={c_lr:.3f} MLP={c_mlp:.3f}")
+            summary["per_seed"][f"coral_l{lam}_s{seed}"] = entry
+            pooled_lr_per_lam[lam].append(c_lr)
+            pooled_mlp_per_lam[lam].append(c_mlp)
+            if disease and disease.get("mean") is not None:
+                disease_per_lam[lam].append(disease["mean"])
+            print(f"coral l{lam}_s{seed}: n_corr={n_after} LR={c_lr:.3f} MLP={c_mlp:.3f} disease={disease.get('mean') if disease else None}")
+
+    # Aggregate per-λ across seeds
+    for lam in LAMBDAS:
+        lr_arr = pooled_lr_per_lam[lam]
+        mlp_arr = pooled_mlp_per_lam[lam]
+        d_arr = disease_per_lam[lam]
+        if not lr_arr:
+            continue
+        summary["per_lambda"][f"lambda_{lam}"] = {
+            "n_seeds": len(lr_arr),
+            "protocol_lr_corrected": {
+                "values": lr_arr,
+                "mean": float(np.mean(lr_arr)),
+                "sd": float(np.std(lr_arr, ddof=1)) if len(lr_arr) > 1 else 0.0,
+            },
+            "protocol_mlp_corrected": {
+                "values": mlp_arr,
+                "mean": float(np.mean(mlp_arr)),
+                "sd": float(np.std(mlp_arr, ddof=1)) if len(mlp_arr) > 1 else 0.0,
+            },
+            "disease_auc_meta": {
+                "values": d_arr,
+                "mean": float(np.mean(d_arr)) if d_arr else None,
+                "sd": float(np.std(d_arr, ddof=1)) if len(d_arr) > 1 else 0.0,
+            },
+        }
+
+    # MMD
+    for lam, seed in MMD_CONFIGS:
+        emb_dir = fetch_emb(lam, seed, method="mmd")
+        if emb_dir is None:
+            continue
+        res = load_emb_with_ids(emb_dir)
+        if res is None:
+            continue
+        X_all, y_all, ids_all = res
+        nonph_mask = np.array([lbl_lookup.get(c, 1) == 0 for c in ids_all])
+        X = X_all[nonph_mask]
+        ids = [c for c, m in zip(ids_all, nonph_mask) if m]
+        y_proto = np.array([proto_lookup.get(c, -1) for c in ids], int)
+        keep = y_proto >= 0
+        X = X[keep]; y_proto = y_proto[keep]
+        ids = [c for c, k in zip(ids, keep) if k]
+        keep_mask = np.array([c not in seg_fail_ids for c in ids])
+        X_corr = X[keep_mask]; y_corr = y_proto[keep_mask]
+        corr = oof_lr_mlp(X_corr, y_corr, seed=seed)
+        if corr is None: continue
+        c_lr, c_mlp, c_lr_oof, c_mlp_oof = corr
+        disease = fetch_disease_auc(lam, seed, method="mmd")
+        summary["mmd"][f"mmd_l{lam}_s{seed}"] = {
+            "n_corrected": int(keep_mask.sum()),
+            "lr_auc": c_lr,
+            "lr_ci95": boot_ci(y_corr, c_lr_oof),
+            "mlp_auc": c_mlp,
+            "mlp_ci95": boot_ci(y_corr, c_mlp_oof),
+            "disease_auc_5fold": disease,
+        }
+        print(f"mmd l{lam}_s{seed}: n_corr={keep_mask.sum()} LR={c_lr:.3f} MLP={c_mlp:.3f} disease={disease.get('mean') if disease else None}")
 
     out_json = OUT / "coral_probe.json"
     out_json.write_text(json.dumps(summary, indent=2), encoding="utf-8")
