@@ -1,0 +1,131 @@
+{
+  "n_total": 231,
+  "stage_counts": {
+    "0": 125,
+    "1": 27,
+    "2": 8,
+    "3": 44,
+    "4": 27
+  },
+  "trend_tests": {
+    "artery_tort_p10": {
+      "n": 225,
+      "spearman_rho": -0.1592166419013528,
+      "spearman_p": 0.01683852524283189,
+      "jonckheere_z": -2.3280410332303734,
+      "jonckheere_p": 0.0199099249179
+    },
+    "artery_len_p10": {
+      "n": 225,
+      "spearman_rho": -0.3012808815604802,
+      "spearman_p": 4.196463149191149e-06,
+      "jonckheere_z": -4.963193596853601,
+      "jonckheere_p": 6.93433996890036e-07
+    },
+    "artery_len_p25": {
+      "n": 225,
+      "spearman_rho": -0.28177067039337056,
+      "spearman_p": 1.784576015361836e-05,
+      "jonckheere_z": -4.686115055237335,
+      "jonckheere_p": 2.78439774281658e-06
+    },
+    "artery_len_p50": {
+      "n": 225,
+      "spearman_rho": -0.32022247725447484,
+      "spearman_p": 9.276623234922007e-07,
+      "jonckheere_z": -5.229615271484626,
+      "jonckheere_p": 1.6986316153655423e-07
+    },
+    "artery_len_p75": {
+      "n": 225,
+      "spearman_rho": -0.446161276136616,
+      "spearman_p": 2.0978028717621633e-12,
+      "jonckheere_z": -7.190478796768968,
+      "jonckheere_p": 6.45705711121991e-13
+    },
+    "artery_len_p90": {
+      "n": 225,
+      "spearman_rho": -0.5576840396011237,
+      "spearman_p": 8.65708886875173e-20,
+      "jonckheere_z": -8.918828860557143,
+      "jonckheere_p": 0.0
+    },
+    "artery_len_mean": {
+      "n": 225,
+      "spearman_rho": -0.5350154822444753,
+      "spearman_p": 4.626061660678175e-18,
+      "jonckheere_z": -8.591372402283374,
+      "jonckheere_p": 0.0
+    },
+    "artery_total_len_mm": {
+      "n": 225,
+      "spearman_rho": 0.5774118951439156,
+      "spearman_p": 2.1022898528326744e-21,
+      "jonckheere_z": 8.637875094582608,
+      "jonckheere_p": 0.0
+    },
+    "vein_tort_p10": {
+      "n": 223,
+      "spearman_rho": -0.12713811327295865,
+      "spearman_p": 0.058012081190743796,
+      "jonckheere_z": -1.499674847291832,
+      "jonckheere_p": 0.1336986490732759
+    },
+    "vein_len_p25": {
+      "n": 223,
+      "spearman_rho": -0.13898435058801448,
+      "spearman_p": 0.038089440481762056,
+      "jonckheere_z": -2.5171707738664737,
+      "jonckheere_p": 0.011830147333722119
+    },
+    "vein_len_p50": {
+      "n": 223,
+      "spearman_rho": -0.12425054670925016,
+      "spearman_p": 0.06399528063881645,
+      "jonckheere_z": -2.406958449131116,
+      "jonckheere_p": 0.016085999930812722
+    },
+    "vein_total_len_mm": {
+      "n": 223,
+      "spearman_rho": 0.43046950721886856,
+      "spearman_p": 1.787074066410267e-11,
+      "jonckheere_z": 5.950481497095608,
+      "jonckheere_p": 2.6735480496142827e-09
+    },
+    "paren_std_HU": {
+      "n": 225,
+      "spearman_rho": -0.2509265081198116,
+      "spearman_p": 0.00014239372608875432,
+      "jonckheere_z": -2.769978466433251,
+      "jonckheere_p": 0.005605999877907664
+    },
+    "paren_mean_HU": {
+      "n": 225,
+      "spearman_rho": 0.3765824860722825,
+      "spearman_p": 5.429496515156767e-09,
+      "jonckheere_z": 5.65427350449708,
+      "jonckheere_p": 1.565068274977932e-08
+    },
+    "paren_LAA_950_frac": {
+      "n": 225,
+      "spearman_rho": -0.2577580289731928,
+      "spearman_p": 9.186569003073449e-05,
+      "jonckheere_z": -3.803712934682415,
+      "jonckheere_p": 0.0001425433554074207
+    },
+    "lung_vol_mL": {
+      "n": 229,
+      "spearman_rho": -0.6216459371305698,
+      "spearman_p": 7.05380829749341e-26,
+      "jonckheere_z": -9.694584909691034,
+      "jonckheere_p": 0.0
+    },
+    "apical_basal_LAA950_gradient": {
+      "n": 225,
+      "spearman_rho": 0.10969936711732643,
+      "spearman_p": 0.10073878700739601,
+      "jonckheere_z": 1.6434228502789165,
+      "jonckheere_p": 0.10029547558840068
+    }
+  }
+}
