@@ -43,20 +43,22 @@ def safe_skew_kurt(x):
     return float((z**3).mean()), float((z**4).mean() - 3.0)
 
 
-def laplacian_eigs(ei, n, k=5):
-    """Top-k smallest eigenvalues of unnormalized graph Laplacian (spectral fingerprint)."""
-    if n < 3 or ei.size == 0: return [0.0]*k
+def laplacian_eigs(ei, n, k=5, n_max=2000):
+    """Top-k smallest eigenvalues of unnormalized graph Laplacian (spectral fingerprint).
+    Skip on graphs > n_max nodes (eigsh becomes too slow); return zeros."""
+    if n < 3 or ei.size == 0 or n > n_max: return [0.0]*k
     try:
-        from scipy.sparse import csr_matrix
+        from scipy.sparse import csr_matrix, diags
         from scipy.sparse.linalg import eigsh
         A = csr_matrix((np.ones(ei.shape[1]), (ei[0], ei[1])), shape=(n, n))
         A = A + A.T
         A.data = np.minimum(A.data, 1)
         deg_diag = np.array(A.sum(axis=1)).flatten()
-        L = csr_matrix(np.diag(deg_diag)) - A
+        L = diags(deg_diag) - A
         kk = min(k, n - 2)
         if kk <= 0: return [0.0]*k
-        vals = eigsh(L, k=kk, which="SM", return_eigenvectors=False)
+        # sigma=0 + which='LM' is much faster shift-invert for smallest eigenvalues
+        vals = eigsh(L, k=kk, sigma=0, which="LM", return_eigenvectors=False, maxiter=200, tol=1e-3)
         vals = sorted([float(v) for v in vals])
         while len(vals) < k: vals.append(0.0)
         return vals
