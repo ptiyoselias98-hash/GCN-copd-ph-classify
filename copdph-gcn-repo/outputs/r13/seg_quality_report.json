@@ -1,0 +1,3117 @@
+{
+  "summary": {
+    "total_audited": 345,
+    "no_masks_in_source": 345,
+    "quality_issues": 0,
+    "ok": 0,
+    "have_nibabel": true,
+    "have_cc_label": true
+  },
+  "cases": [
+    {
+      "case_id": "ph_caisuliang_9001315895_friday_may_24_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "CaiSuLiang__9001315895__Friday, May 24, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_caohujie_9001710072_friday_september_18_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "CaoHuJie__9001710072__Friday, September 18, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_caojiaoyun_9002360442_monday_october_24_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "CaoJiaoYun__9002360442__Monday, October 24, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_cengjinlong_0800185641_wednesday_may_19_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "CengJinLong__0800185641__Wednesday, May 19, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_changchuanhai_9001052574_monday_july_17_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "ChangChuanHai__9001052574__Monday, July 17, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_changqing_j02417860_saturday_august_31_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "ChangQing__J02417860__Saturday, August 31, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_changyongshan_k5064b626_thursday_december_24_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "ChangYongShan__K5064B626__Thursday, December 24, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_chenglaifu_9001619565_thursday_june_4_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "ChengLaiFu__9001619565__Thursday, June 4, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_chenguanbao_0800161376_friday_september_14_2012_000",
+      "group": "ph_contrast",
+      "src_dir": "ChenGuanBao__0800161376__Friday, September 14, 2012_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_chenguohua_7100199552_friday_august_21_2015_000",
+      "group": "ph_contrast",
+      "src_dir": "ChenGuoHua__7100199552__Friday, August 21, 2015_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_chenhuiliang_f0309710x_saturday_february_20_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "ChenHuiLiang__F0309710X__Saturday, February 20, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_chenmeizhen_9001615013_friday_may_7_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "ChenMeiZhen__9001615013__Friday, May 7, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_chenshunhe_9002254177_monday_august_1_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "ChenShunHe__9002254177__Monday, August 1, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_chenwei_9002296787_monday_february_27_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "ChenWei__9002296787__Monday, February 27, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_cuishouxian_0800129626_friday_april_27_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "CuiShouXian__0800129626__Friday, April 27, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_daiguifang_9002227328_friday_july_1_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "DaiGuiFang__9002227328__Friday, July 1, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_daijianxiang_9002624140_friday_april_28_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "DaiJianXiang__9002624140__Friday, April 28, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_douhuaming_9001874814_saturday_april_10_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "DouHuaMing__9001874814__Saturday, April 10, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_douxiaojuan_9001130716_friday_january_12_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "DouXiaoJuan__9001130716__Friday, January 12, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_duanxiaolong_7100080874_saturday_march_30_2013_000",
+      "group": "ph_contrast",
+      "src_dir": "DuanXiaoLong__7100080874__Saturday, March 30, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_fancaihong_m00243088_friday_march_10_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "FanCaiHong__M00243088__Friday, March 10, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_fangjunfei_0800212639_tuesday_july_16_2013_000",
+      "group": "ph_contrast",
+      "src_dir": "FangJunFei__0800212639__Tuesday, July 16, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_fangmin_9001584683_thursday_april_2_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "FangMin__9001584683__Thursday, April 2, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_fanhailong_j03617717_wednesday_may_12_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "FanHaiLong__J03617717__Wednesday, May 12, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_fanpinxiang_9001034201_friday_july_14_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "FanPinXiang__9001034201__Friday, July 14, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_fengaizhi_9001615515_friday_june_12_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "FengAiZhi__9001615515__Friday, June 12, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_fengqin_9001627600_sunday_june_28_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "FengQin__9001627600__Sunday, June 28, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_fengyueqin_9002263183_friday_august_5_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "FengYueQin__9002263183__Friday, August 5, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_gaozhongxiang_9001532337_thursday_november_28_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "GaoZhongXiang__9001532337__Thursday, November 28, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_gengxinyi_9001466552_tuesday_august_27_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "GengXinYi__9001466552__Tuesday, August 27, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_gerenfu_9001890663_monday_april_26_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "GeRenFu__9001890663__Monday, April 26, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_gongmeidi_9002706836_monday_june_26_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "GongMeiDi__9002706836__Monday, June 26, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_gongyinlian_0800147788_friday_january_8_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "GongYinLian__0800147788__Friday, January 8, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_guanhuanzhao_9001290151_friday_december_7_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "GuanHuanZhao__9001290151__Friday, December 7, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_guochunying_k02529106_friday_september_15_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "GuoChunYing__K02529106__Friday, September 15, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_guojianying_0800255784_thursday_february_27_2014_000",
+      "group": "ph_contrast",
+      "src_dir": "GuoJianYing__0800255784__Thursday, February 27, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_gupinfang_v00059278_saturday_october_20_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "gupinfang__V00059278__Saturday, October 20, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_guwenzhong_9002654032_tuesday_may_23_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "GuWenZhong__9002654032__Tuesday, May 23, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_haliba_ahengbieke_9001193667_friday_june_1_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "Haliba·ahengbieke__9001193667__Friday, June 1, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_hanbuchun_0800204721_thursday_june_13_2013_000",
+      "group": "ph_contrast",
+      "src_dir": "HanBuChun__0800204721__Thursday, June 13, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_hanlingen_9001080084_thursday_september_21_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "HanLinGen__9001080084__Thursday, September 21, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_hebichang_0800206737_thursday_june_20_2013_000",
+      "group": "ph_contrast",
+      "src_dir": "HeBiChang__0800206737__Thursday, June 20, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_hechuanjiang_7100216490_wednesday_april_10_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "HeChuanJiang__7100216490__Wednesday, April 10, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_helongbao_q0615857x_saturday_july_29_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "HeLongBao__Q0615857X__Saturday, July 29, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_hexihang_9001724362_monday_november_2_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "HeXiHang__9001724362__Monday, November 2, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_hongwenhu_9001812460_thursday_january_14_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "HongWenHu__9001812460__Thursday, January 14, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_huanggenquan_p29711588_saturday_march_15_2014_000",
+      "group": "ph_contrast",
+      "src_dir": "HuangGenQuan__P29711588__Saturday, March 15, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_huangjianguo_b00818793_friday_july_26_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "HuangJianGuo__B00818793__Friday, July 26, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_huangxiuying_9001333504_saturday_april_20_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "HuangXiuYing__9001333504__Saturday, April 20, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_huhongfa_9001948153_monday_june_28_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "HuHongFa__9001948153__Monday, June 28, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_jiangkefang_9002512620_wednesday_february_15_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "JiangKeFang__9002512620__Wednesday, February 15, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_jinheping_9001152251_friday_march_30_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "JinHePing__9001152251__Friday, March 30, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lichengfang_k0097808x_friday_december_16_2016_000",
+      "group": "ph_contrast",
+      "src_dir": "LiChengFang__K0097808X__Friday, December 16, 2016_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_licuilan_9001042942_friday_june_30_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "LiCuiLan__9001042942__Friday, June 30, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lijiaming_n14467987_monday_july_24_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "LiJiaMing__N14467987__Monday, July 24, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_limaocai_l01147541_thursday_april_13_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "LiMaoCai__L01147541__Thursday, April 13, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_linchaoyu_9001599201_thursday_july_16_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "LinChaoYu__9001599201__Thursday, July 16, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lingguohua_5002157927_saturday_march_23_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "LingGuoHua__5002157927__Saturday, March 23, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lingquanying_9001029494_monday_may_22_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "LingQuanYing__9001029494__Monday, May 22, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lingxueyong_9001115979_friday_june_18_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "LingXueYong__9001115979__Friday, June 18, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_linzhenghuan_t11844357_tuesday_may_8_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "LinZhengHuan__T11844357__Tuesday, May 8, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liqilan_9001745826_tuesday_november_17_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "LiQiLan__9001745826__Tuesday, November 17, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lirubao_0800220805_thursday_august_29_2013_000",
+      "group": "ph_contrast",
+      "src_dir": "LiRuBao__0800220805__Thursday, August 29, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liucaiyun_9002784353_friday_august_25_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "LiuCaiYun__9002784353__Friday, August 25, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liuminggang_9002419298_monday_april_10_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "LiuMingGang__9002419298__Monday, April 10, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liuyunfeng_9002284531_wednesday_august_31_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "LiuYunFeng__9002284531__Wednesday, August 31, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liuzhiquan_9001715564_thursday_september_24_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "LiuZhiQuan__9001715564__Thursday, September 24, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liuzhongping_9001930939_tuesday_june_15_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "LiuZhongPing__9001930939__Tuesday, June 15, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liweixin_9001174157_saturday_april_28_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "LiWeiXin__9001174157__Saturday, April 28, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liwengan_j03474736_tuesday_december_8_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "LiWenGan__J03474736__Tuesday, December 8, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lixiangzhen_9002255526_friday_july_29_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "LiXiangZhen__9002255526__Friday, July 29, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liyan_9001217879_thursday_july_19_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "LiYan__9001217879__Thursday, July 19, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_liyibing_9001307506_wednesday_april_28_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "LiYiBing__9001307506__Wednesday, April 28, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lizhaodi_9001520410_saturday_november_23_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "LiZhaoDi__9001520410__Saturday, November 23, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_ludimei_0800393727_monday_november_9_2015_000",
+      "group": "ph_contrast",
+      "src_dir": "LuDiMei__0800393727__Monday, November 9, 2015_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_luwanhai_9001941408_friday_june_25_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "LuWanHai__9001941408__Friday, June 25, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_luyoufa_9001673515_wednesday_august_5_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "LuYouFa__9001673515__Wednesday, August 5, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_lvyuntang_9001145670_wednesday_november_21_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "LvYunTang__9001145670__Wednesday, November 21, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_maoxinmin_0800429547_friday_may_24_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "MaoXinMin__0800429547__Friday, May 24, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_nijiankang_9001848210_friday_march_26_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "NiJianKang__9001848210__Friday, March 26, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_niuyongshou_7100232810_friday_december_28_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "NiuYongShou__7100232810__Friday, December 28, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_pengying_k00487440_wednesday_april_24_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "PengYing__K00487440__Wednesday, April 24, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_qiancunying_9001515419_wednesday_november_20_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "QianCunYing__9001515419__Wednesday, November 20, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_qianjufang_r14595451_saturday_july_15_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "QianJuFang__R14595451__Saturday, July 15, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_qianzuxian_t14230967_tuesday_september_10_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "QianZuXian__T14230967__Tuesday, September 10, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_qiukaixin_0800256351_wednesday_march_5_2014_000",
+      "group": "ph_contrast",
+      "src_dir": "QiuKaiXin__0800256351__Wednesday, March 5, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_sangchuanhao_0800462088_thursday_august_4_2016_000",
+      "group": "ph_contrast",
+      "src_dir": "SangChuanHao__0800462088__Thursday, August 4, 2016_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_shijinlan_k02855681_thursday_august_13_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "ShiJinLan__K02855681__Thursday, August 13, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_shiqin_9001889461_saturday_april_24_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "ShiQin__9001889461__Saturday, April 24, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_shisinv_9001742055_thursday_october_29_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "ShiSiNv__9001742055__Thursday, October 29, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_shitaohua_0800461763_tuesday_march_2_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "ShiTaoHua__0800461763__Tuesday, March 2, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_shixiaolan_9002504475_thursday_february_16_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "ShiXiaoLan__9002504475__Thursday, February 16, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_sunxugang_m02583131_tuesday_august_23_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "SunXuGang__M02583131__Tuesday, August 23, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_sunyuzhen_9001901206_saturday_may_29_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "SunYuZhen__9001901206__Saturday, May 29, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_tangdaoqun_9002344547_saturday_march_11_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "TangDaoQun__9002344547__Saturday, March 11, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_tanglaikou_9001748361_monday_november_2_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "TangLaiKou__9001748361__Monday, November 2, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_tangshiqi_k03067011_tuesday_october_25_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "TangShiQi__K03067011__Tuesday, October 25, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wangchangyun_9001945395_tuesday_august_16_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "WangChangYun__9001945395__Tuesday, August 16, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wangfulan_9002502365_thursday_february_9_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "WangFuLan__9002502365__Thursday, February 9, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wangxiuyun_n00435079_thursday_june_30_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "WangXiuYun__N00435079__Thursday, June 30, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wangzhenfu_9002245118_friday_july_29_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "WangZhenFu__9002245118__Friday, July 29, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wenbufang_9002357263_thursday_october_20_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "WenBuFang__9002357263__Thursday, October 20, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wenhaibo_9002847466_monday_september_25_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "WenHaiBo__9002847466__Monday, September 25, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wucaiya_9001292249_saturday_december_15_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "WuCaiYa__9001292249__Saturday, December 15, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wudongqing_9001097753_saturday_november_4_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "WuDongQing__9001097753__Saturday, November 4, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wugengxiang_9001369225_tuesday_april_30_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "WuGengXiang__9001369225__Tuesday, April 30, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wumaosheng_9002492157_thursday_february_2_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "WuMaoSheng__9002492157__Thursday, February 2, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wupengnian_p04004991_friday_october_24_2014_000",
+      "group": "ph_contrast",
+      "src_dir": "WuPengNian__P04004991__Friday, October 24, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wushuike_9002636449_thursday_may_11_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "WuShuiKe__9002636449__Thursday, May 11, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_wuyunlong_9001201453_saturday_july_16_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "WuYunLong__9001201453__Saturday, July 16, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xiachunmei_9002709120_monday_july_24_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "XiaChunMei__9002709120__Monday, July 24, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xiajiamei_9001252009_thursday_november_19_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "XiaJiaMei__9001252009__Thursday, November 19, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xibaodi_p08383853_monday_july_10_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "XiBaoDi__P08383853__Monday, July 10, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xiechunhe_9001925253_thursday_january_19_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "XieChunHe__9001925253__Thursday, January 19, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xieweijun_j05113790_saturday_december_19_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "XieWeiJun__J05113790__Saturday, December 19, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xingkeming_k02641464_wednesday_february_10_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "XingKeMing__K02641464__Wednesday, February 10, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xirenming_q16014254_thursday_july_19_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "XiRenMing__Q16014254__Thursday, July 19, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xuchuanfa_0800146778_monday_may_19_2014_000",
+      "group": "ph_contrast",
+      "src_dir": "XuChuanFa__0800146778__Monday, May 19, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xueguigen_k04990406_thursday_june_30_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "XueGuiGen__K04990406__Thursday, June 30, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xuexiangtian_9002323494_thursday_september_7_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "XueXiangTian__9002323494__Thursday, September 7, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xuguorong_9002523294_friday_april_21_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "XuGuoRong__9002523294__Friday, April 21, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xujinzhi_9002656148_tuesday_may_30_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "XuJinZhi__9002656148__Tuesday, May 30, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xulingbao_p00925013_friday_july_1_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "XuLingBao__P00925013__Friday, July 1, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xuwei_9001302194_wednesday_january_2_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "XuWei__9001302194__Wednesday, January 2, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xuwenhua_p04348436_friday_september_15_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "XuWenHua__P04348436__Friday, September 15, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xuyanyun_0800300968_monday_october_6_2014_000",
+      "group": "ph_contrast",
+      "src_dir": "XuYanYun__0800300968__Monday, October 6, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_xuyuemei_m00100300_tuesday_november_28_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "XuYueMei__M00100300__Tuesday, November 28, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yangeryu_9001880895_tuesday_april_27_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "YangErYu__9001880895__Tuesday, April 27, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yangrujuan_9001272816_wednesday_november_7_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "YangRuJuan__9001272816__Wednesday, November 7, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yaoguixiang_9001193514_thursday_september_3_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "YaoGuiXiang__9001193514__Thursday, September 3, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yuanaizhu_0800444469_tuesday_may_24_2016_000",
+      "group": "ph_contrast",
+      "src_dir": "YuanAiZhu__0800444469__Tuesday, May 24, 2016_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yuanhezhu_0800270233_monday_may_12_2014_000",
+      "group": "ph_contrast",
+      "src_dir": "YuanHeZhu__0800270233__Monday, May 12, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yuanweizhong_9002624739_friday_april_28_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "YuanWeiZhong__9002624739__Friday, April 28, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yufuquan_n01295290_wednesday_march_20_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "yufuquan__N01295290__Wednesday, March 20, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yujian_9001656915_wednesday_july_22_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "YuJian__9001656915__Wednesday, July 22, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yuyiming_9002771055_friday_august_4_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "YuYiMing__9002771055__Friday, August 4, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yuzhengfu_m0400376x_friday_august_18_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "YuZhengFu__M0400376X__Friday, August 18, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_yuzhifang_h01154881_saturday_october_14_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "YuZhiFang__H01154881__Saturday, October 14, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangbangfeng_9002255052_wednesday_july_27_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangBangFeng__9002255052__Wednesday, July 27, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangdeming_9002397455_monday_november_21_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangDeMing__9002397455__Monday, November 21, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangguihua_0800466690_wednesday_august_17_2016_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangGuiHua__0800466690__Wednesday, August 17, 2016_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangling_7100028761_wednesday_june_7_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangLing__7100028761__Wednesday, June 7, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangshengxiang_9001813755_tuesday_january_19_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangShengXiang__9001813755__Tuesday, January 19, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangxuelin_r01231034_saturday_july_30_2016_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangXueLin__R01231034__Saturday, July 30, 2016_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangyongfang_9001826430_saturday_february_20_2021_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangYongFang__9001826430__Saturday, February 20, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangyongquan_0800137176_wednesday_october_16_2013_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangYongQuan__0800137176__Wednesday, October 16, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangzhigao_9001218518_thursday_august_9_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangZhiGao__9001218518__Thursday, August 9, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangzihong_0800511565_friday_february_3_2017_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangZiHong__0800511565__Friday, February 3, 2017_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhangzongqi_9001787068_thursday_december_17_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhangZongQi__9001787068__Thursday, December 17, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhanxiuyu_9002225451_thursday_june_30_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhanXiuYu__9002225451__Thursday, June 30, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhaoguoping_p02540627_thursday_february_16_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhaoGuoPing__P02540627__Thursday, February 16, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhengcaimei_9002408336_friday_november_25_2022_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhengCaiMei__9002408336__Friday, November 25, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhengsuiyue_9001656441_thursday_july_16_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhengSuiYue__9001656441__Thursday, July 16, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhengzhongbao_9002648649_tuesday_may_16_2023_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhengZhongBao__9002648649__Tuesday, May 16, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhoujian_9001498601_friday_october_18_2019_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhouJian__9001498601__Friday, October 18, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhoulixiang_9001056183_thursday_august_9_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhouLiXiang__9001056183__Thursday, August 9, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhujianying_9001557175_thursday_july_2_2020_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhuJianYing__9001557175__Thursday, July 2, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhulanyu_j01207562_saturday_april_21_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhuLanYu__J01207562__Saturday, April 21, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhuwanguo_0800235821_thursday_november_14_2013_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhuWanGuo__0800235821__Thursday, November 14, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "ph_zhuzhengxia_9001183184_monday_may_14_2018_000",
+      "group": "ph_contrast",
+      "src_dir": "ZhuZhengXia__9001183184__Monday, May 14, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_caochenglin_g02017953_thursday_july_9_2020_000",
+      "group": "nonph_contrast",
+      "src_dir": "CaoChengLin__G02017953__Thursday, July 9, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenxijun_j01076013_wednesday_november_23_2016_000",
+      "group": "nonph_contrast",
+      "src_dir": "ChenXiJun__J01076013__Wednesday, November 23, 2016_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenzhanghu_5002094379_wednesday_november_20_2019_000",
+      "group": "nonph_contrast",
+      "src_dir": "ChenZhangHu__5002094379__Wednesday, November 20, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenzhixing_n11110528_saturday_december_7_2019_000",
+      "group": "nonph_contrast",
+      "src_dir": "ChenZhiXing__N11110528__Saturday, December 7, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_cuiyuanjing_9001642864_thursday_july_2_2020_000",
+      "group": "nonph_contrast",
+      "src_dir": "CuiYuanJing__9001642864__Thursday, July 2, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_dinghuiyan_9002758757_tuesday_december_26_2023_000",
+      "group": "nonph_contrast",
+      "src_dir": "DingHuiYan__9002758757__Tuesday, December 26, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_fengjianhong_9002916926_friday_november_10_2023_000",
+      "group": "nonph_contrast",
+      "src_dir": "FengJianHong__9002916926__Friday, November 10, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_gushenggui_9001770270_tuesday_april_6_2021_000",
+      "group": "nonph_contrast",
+      "src_dir": "GuShengGui__9001770270__Tuesday, April 6, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_heyude_c00242568_saturday_october_11_2014_000",
+      "group": "nonph_contrast",
+      "src_dir": "HeYuDe__C00242568__Saturday, October 11, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huangkunquan_9001148669_saturday_march_24_2018_000",
+      "group": "nonph_contrast",
+      "src_dir": "HuangKunQuan__9001148669__Saturday, March 24, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huangzutian_9002735639_monday_july_24_2023_000",
+      "group": "nonph_contrast",
+      "src_dir": "HuangZuTian__9002735639__Monday, July 24, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huichunyi_0800212702_tuesday_july_16_2013_000",
+      "group": "nonph_contrast",
+      "src_dir": "HuiChunYi__0800212702__Tuesday, July 16, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_lilele_0800247111_tuesday_september_6_2022_000",
+      "group": "nonph_contrast",
+      "src_dir": "LiLeLe__0800247111__Tuesday, September 6, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_liufanggao_0800044115_thursday_september_29_2016_000",
+      "group": "nonph_contrast",
+      "src_dir": "LiuFangGao__0800044115__Thursday, September 29, 2016_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_liuzhusheng_0800410895_saturday_january_23_2016_000",
+      "group": "nonph_contrast",
+      "src_dir": "LiuZhuSheng__0800410895__Saturday, January 23, 2016_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_lixiangqing_9002785345_thursday_august_31_2023_001",
+      "group": "nonph_contrast",
+      "src_dir": "LiXiangQing__9002785345__Thursday, August 31, 2023_001",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_lixingbo_p06685241_saturday_november_21_2015_000",
+      "group": "nonph_contrast",
+      "src_dir": "LiXingBo__P06685241__Saturday, November 21, 2015_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_lujianlan_9002629358_monday_may_8_2023_000",
+      "group": "nonph_contrast",
+      "src_dir": "LuJianLan__9002629358__Monday, May 8, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_shenjuhua_u13807530_thursday_november_1_2018_000",
+      "group": "nonph_contrast",
+      "src_dir": "ShenJuHua__U13807530__Thursday, November 1, 2018_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wenjincun_9002777736_tuesday_august_22_2023_000",
+      "group": "nonph_contrast",
+      "src_dir": "WenJinCun__9002777736__Tuesday, August 22, 2023_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wentaomei_9002233843_friday_july_15_2022_000",
+      "group": "nonph_contrast",
+      "src_dir": "WenTaoMei__9002233843__Friday, July 15, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xugaofeng_0800392509_monday_october_26_2015_001",
+      "group": "nonph_contrast",
+      "src_dir": "XuGaoFeng__0800392509__Monday, October 26, 2015_001",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xuguozhong_p02313459_wednesday_november_11_2015_001",
+      "group": "nonph_contrast",
+      "src_dir": "XuGuoZhong__P02313459__Wednesday, November 11, 2015_001",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yangjicai_9001716005_sunday_september_27_2020_001",
+      "group": "nonph_contrast",
+      "src_dir": "YangJiCai__9001716005__Sunday, September 27, 2020_001",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangchengguo_9001294653_wednesday_december_19_2018_001",
+      "group": "nonph_contrast",
+      "src_dir": "ZhangChengGuo__9001294653__Wednesday, December 19, 2018_001",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangjinsheng_0800410017_sunday_january_3_2016_001",
+      "group": "nonph_contrast",
+      "src_dir": "ZhangJinSheng__0800410017__Sunday, January 3, 2016_001",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhouxufang_h02447862_saturday_march_23_2019_001",
+      "group": "nonph_contrast",
+      "src_dir": "ZhouXuFang__H02447862__Saturday, March 23, 2019_001",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_baoxiaoping_9001193765_thursday_january_2_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "BaoXiaoPing__9001193765__Thursday, January 2, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_baozhiding_k00748487_tuesday_june_18_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "BaoZhiDing__K00748487__Tuesday, June 18, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_caizhenzhang_d00133633_saturday_january_10_2015_000",
+      "group": "nonph_plain",
+      "src_dir": "CaiZhenZhang__D00133633__Saturday, January 10, 2015_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_cenyufeng_7100333962_monday_april_12_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "CenYuFeng__7100333962__Monday, April 12, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chaiguofeng_j00685132_monday_november_10_2014_000",
+      "group": "nonph_plain",
+      "src_dir": "ChaiGuoFeng__J00685132__Monday, November 10, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_changhairong_e01744812_wednesday_january_19_2022_000",
+      "group": "nonph_plain",
+      "src_dir": "ChangHaiRong__E01744812__Wednesday, January 19, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenfuming_j05104579_friday_january_22_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "ChenFuMing__J05104579__Friday, January 22, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenjinzhi_9001551084_friday_january_3_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "ChenJinZhi__9001551084__Friday, January 3, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenqilong_j05095158_tuesday_december_3_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "ChenQiLong__J05095158__Tuesday, December 3, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenyun_p10610293_tuesday_january_19_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "ChenYun__P10610293__Tuesday, January 19, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenyunhua_9001865098_tuesday_july_27_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "ChenYunHua__9001865098__Tuesday, July 27, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_daijianmin_k01032552_monday_january_25_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "DaiJianMin__K01032552__Monday, January 25, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_dangshizhong_m0411251x_friday_november_6_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "DangShiZhong__M0411251X__Friday, November 6, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_dingzhengde_s01699961_wednesday_december_9_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "DingZhengDe__S01699961__Wednesday, December 9, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_fanhongsheng_k01700477_friday_march_5_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "FanHongSheng__K01700477__Friday, March 5, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_fengxiaoguo_g03354804_monday_april_13_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "FengXiaoGuo__G03354804__Monday, April 13, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_ganxiufang_l00829997_friday_august_16_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "GanXiuFang__L00829997__Friday, August 16, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_gaodaxiang_9001646216_thursday_july_2_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "GaoDaXiang__9001646216__Thursday, July 2, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_gejianping_m03069169_monday_may_20_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "GeJianPing__M03069169__Monday, May 20, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_guqunhua_9001612339_wednesday_may_20_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "GuQunHua__9001612339__Wednesday, May 20, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_guyewu_9001534605_monday_december_9_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "GuYeWu__9001534605__Monday, December 9, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_hanguangyin_9001531946_thursday_november_28_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "HanGuangYin__9001531946__Thursday, November 28, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_hepeigen_9001122928_monday_april_1_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "HePeiGen__9001122928__Monday, April 1, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_hezubian_9002016743_tuesday_october_19_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "HeZuBian__9002016743__Tuesday, October 19, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huangbingxing_p22647296_friday_december_27_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "HuangBingXing__P22647296__Friday, December 27, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huanglaifu_s08608794_monday_september_23_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "HuangLaiFu__S08608794__Monday, September 23, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huangweixiong_p07189688_friday_march_6_2015_000",
+      "group": "nonph_plain",
+      "src_dir": "HuangWeiXiong__P07189688__Friday, March 6, 2015_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_hujuzhong_j02952601_monday_october_19_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "HuJuZhong__J02952601__Monday, October 19, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huyuzhong_h03327950_thursday_august_27_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "HuYuZhong__H03327950__Thursday, August 27, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_jiangyuzhong_0800247938_thursday_april_10_2014_000",
+      "group": "nonph_plain",
+      "src_dir": "JiangYuZhong__0800247938__Thursday, April 10, 2014_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_jixiaodong_9002047961_friday_august_5_2022_000",
+      "group": "nonph_plain",
+      "src_dir": "JiXiaoDong__9002047961__Friday, August 5, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_jizhensheng_v00496339_monday_june_24_2013_000",
+      "group": "nonph_plain",
+      "src_dir": "JiZhenSheng__V00496339__Monday, June 24, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_kuaidafeng_k03781354_monday_april_1_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "KuaiDaFeng__K03781354__Monday, April 1, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_liujianqiu_m508f6eb3_friday_march_19_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "LiuJianQiu__M508F6EB3__Friday, March 19, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_liwenbao_h02744058_thursday_may_14_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "LiWenBao__H02744058__Thursday, May 14, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_luolianping_k04909604_tuesday_july_13_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "LuoLianPing__K04909604__Tuesday, July 13, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_lutaoxing_m17696948_tuesday_january_29_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "LuTaoXing__M17696948__Tuesday, January 29, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_macaiqin_9002054354_tuesday_july_19_2022_000",
+      "group": "nonph_plain",
+      "src_dir": "MaCaiQin__9002054354__Tuesday, July 19, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_mawei_9002005614_friday_september_17_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "MaWei__9002005614__Friday, September 17, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_shiruifang_9002328043_friday_september_23_2022_000",
+      "group": "nonph_plain",
+      "src_dir": "ShiRuiFang__9002328043__Friday, September 23, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_tanzhangping_9001069198_monday_october_14_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "TanZhangPing__9001069198__Monday, October 14, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wanggenyou_m03338605_thursday_january_9_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "WangGenYou__M03338605__Thursday, January 9, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wanglianxi_g03297360_tuesday_august_18_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "WangLianXi__G03297360__Tuesday, August 18, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yangguie_0800162433_saturday_september_15_2012_000",
+      "group": "nonph_plain",
+      "src_dir": "YangGuiE__0800162433__Saturday, September 15, 2012_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yangxinfang_m01931704_wednesday_march_31_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "yangxinfang__m01931704__Wednesday, March 31, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yaoyixin_v00303373_thursday_may_20_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "YaoYiXin__V00303373__Thursday, May 20, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yuliming_m04381891_monday_july_18_2022_000",
+      "group": "nonph_plain",
+      "src_dir": "YuLiMing__M04381891__Monday, July 18, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhanglirong_9001737585_saturday_october_24_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhangLiRong__9001737585__Saturday, October 24, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangyayuan_9001487912_monday_september_14_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhangYaYuan__9001487912__Monday, September 14, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhaoliang_p07004874_monday_january_25_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhaoLiang__P07004874__Monday, January 25, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhaominhua_m02606428_thursday_january_7_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhaoMinHua__M02606428__Thursday, January 7, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhaozhufeng_m01964143_friday_october_16_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhaoZhuFeng__M01964143__Friday, October 16, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhengbaosheng_k06448872_wednesday_september_25_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhengBaoSheng__K06448872__Wednesday, September 25, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhouminggen_9002272740_wednesday_august_10_2022_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhouMingGen__9002272740__Wednesday, August 10, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhuguixiang_k07652613_wednesday_july_29_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhuGuiXiang__K07652613__Wednesday, July 29, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhuhuijun_m00044484_tuesday_august_13_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhuHuiJun__M00044484__Tuesday, August 13, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhuhuiting_9001481772_tuesday_september_17_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhuHuiTing__9001481772__Tuesday, September 17, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_ziyongqi_e03671020_monday_october_14_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "ZiYongQi__E03671020__Monday, October 14, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_gaoyuguo_9002006243_sunday_september_26_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "GaoYuGuo__9002006243__Sunday, September 26, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_guruping_f01898499_monday_october_14_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "GuRuPing__F01898499__Monday, October 14, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huangjianxin_9001535968_monday_december_2_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "HuangJianXin__9001535968__Monday, December 2, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_huangxiaokang_9001277040_thursday_october_17_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "HuangXiaoKang__9001277040__Thursday, October 17, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_hujiaru_9001749049_thursday_november_19_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "HuJiaRu__9001749049__Thursday, November 19, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_jiangyouxin_9001477095_tuesday_september_10_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "JiangYouXin__9001477095__Tuesday, September 10, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_liuzhaowen_9001757218_tuesday_november_17_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "LiuZhaoWen__9001757218__Tuesday, November 17, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_liuzhishu_7100378918_saturday_april_24_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "LiuZhiShu__7100378918__Saturday, April 24, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_mawenhu_g0265125x_wednesday_october_27_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "MaWenHu__G0265125X__Wednesday, October 27, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_renchao_9001721397_tuesday_april_20_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "RenChao__9001721397__Tuesday, April 20, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_ruanwenshang_9001311226_wednesday_april_3_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "RuanWenShang__9001311226__Wednesday, April 3, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_shenchengrong_9001646591_monday_july_20_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "ShenChengRong__9001646591__Monday, July 20, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_sunzegang_9001412676_monday_june_29_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "SunZeGang__9001412676__Monday, June 29, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_tengchunhai_h0372768x_friday_december_11_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "TengChunHai__H0372768X__Friday, December 11, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wangyaoting_j01120061_wednesday_december_11_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "WangYaoTing__J01120061__Wednesday, December 11, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xiaannian_b02866262_friday_july_26_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "XiaAnNian__B02866262__Friday, July 26, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yangxindong_k01065776_monday_september_7_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "YangXinDong__K01065776__Monday, September 7, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yangyong_9002255348_wednesday_july_27_2022_000",
+      "group": "nonph_refill",
+      "src_dir": "YangYong__9002255348__Wednesday, July 27, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yuanqiurong_e03727573_monday_october_26_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "YuanQiuRong__E03727573__Monday, October 26, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yumingjun_9001629493_wednesday_june_10_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "YuMingJun__9001629493__Wednesday, June 10, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangshuisong_9001803404_tuesday_january_19_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "ZhangShuiSong__9001803404__Tuesday, January 19, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangzengjian_k03290133_wednesday_june_26_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "ZhangZengJian__K03290133__Wednesday, June 26, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangzhenqi_5002270975_tuesday_june_16_2015_000",
+      "group": "nonph_refill",
+      "src_dir": "ZhangZhenQi__5002270975__Tuesday, June 16, 2015_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhengyaqin_m00763825_tuesday_december_3_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "ZhengYaQin__M00763825__Tuesday, December 3, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_baozuxian_l01210416_saturday_june_8_2019_000",
+      "group": "nonph_new",
+      "src_dir": "BaoZuXian__L01210416__Saturday, June 8, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_boqikang_g02801414_tuesday_july_26_2022_000",
+      "group": "nonph_new",
+      "src_dir": "BoQiKang__G02801414__Tuesday, July 26, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chengangli_k06651686_saturday_july_3_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ChenGangLi__K06651686__Saturday, July 3, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chengshanju_9001559972_thursday_april_9_2020_000",
+      "group": "nonph_new",
+      "src_dir": "ChengShanJu__9001559972__Thursday, April 9, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenhonglian_9001350786_thursday_april_4_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ChenHongLian__9001350786__Thursday, April 4, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenlaidong_9001959127_sunday_july_25_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ChenLaiDong__9001959127__Sunday, July 25, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenxuebin_m05271600_monday_july_15_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ChenXueBin__M05271600__Monday, July 15, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenyaoming_j06712779_thursday_november_7_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ChenYaoMing__J06712779__Thursday, November 7, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_chenyonghou_k03665679_monday_november_11_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ChenYongHou__K03665679__Monday, November 11, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_fengtianjun_0800201773_monday_may_27_2013_000",
+      "group": "nonph_new",
+      "src_dir": "FengTianJun__0800201773__Monday, May 27, 2013_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_heyuanzhu_7100176769_friday_june_14_2019_000",
+      "group": "nonph_new",
+      "src_dir": "HeYuanZhu__7100176769__Friday, June 14, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_jianghaihong_p05493088_monday_april_27_2020_000",
+      "group": "nonph_new",
+      "src_dir": "JiangHaiHong__P05493088__Monday, April 27, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_jiasuqin_e00082896_monday_march_18_2019_000",
+      "group": "nonph_new",
+      "src_dir": "JiaSuQin__E00082896__Monday, March 18, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_kongderong_0800108397_monday_may_6_2019_000",
+      "group": "nonph_new",
+      "src_dir": "KongDeRong__0800108397__Monday, May 6, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_liujianbing_m06195806_friday_april_12_2019_000",
+      "group": "nonph_new",
+      "src_dir": "LiuJianBing__M06195806__Friday, April 12, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_lushande_p10515253_wednesday_february_24_2021_000",
+      "group": "nonph_new",
+      "src_dir": "LuShanDe__P10515253__Wednesday, February 24, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_luyukang_p09392540_tuesday_april_21_2020_000",
+      "group": "nonph_new",
+      "src_dir": "LuYuKang__P09392540__Tuesday, April 21, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_mawenjuan_j06837395_saturday_january_30_2021_000",
+      "group": "nonph_new",
+      "src_dir": "MaWenJuan__J06837395__Saturday, January 30, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_panzhonghua_m03257581_tuesday_february_2_2021_000",
+      "group": "nonph_new",
+      "src_dir": "PanZhongHua__M03257581__Tuesday, February 2, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_qianrenye_m02629128_saturday_july_30_2022_000",
+      "group": "nonph_new",
+      "src_dir": "QianRenYe__M02629128__Saturday, July 30, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_qiuchongqing_9001699338_wednesday_january_6_2021_000",
+      "group": "nonph_new",
+      "src_dir": "QiuChongQing__9001699338__Wednesday, January 6, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_quanpufen_k01722430_monday_june_10_2019_000",
+      "group": "nonph_new",
+      "src_dir": "QuanPuFen__K01722430__Monday, June 10, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_shaoronghua_9001214172_wednesday_august_12_2020_000",
+      "group": "nonph_new",
+      "src_dir": "ShaoRongHua__9001214172__Wednesday, August 12, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_shengjingen_k04979223_saturday_september_26_2020_000",
+      "group": "nonph_new",
+      "src_dir": "ShengJinGen__K04979223__Saturday, September 26, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_shimingying_h02310639_tuesday_february_23_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ShiMingYing__H02310639__Tuesday, February 23, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_sunye_j03752185_wednesday_april_1_2020_000",
+      "group": "nonph_new",
+      "src_dir": "SunYe__J03752185__Wednesday, April 1, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_tangjianping_q15418839_tuesday_february_25_2020_000",
+      "group": "nonph_new",
+      "src_dir": "TangJianPing__Q15418839__Tuesday, February 25, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_tangjieliang_9001252248_saturday_september_5_2020_000",
+      "group": "nonph_new",
+      "src_dir": "TangJieLiang__9001252248__Saturday, September 5, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_tangjinbao_b01917216_friday_march_12_2021_000",
+      "group": "nonph_new",
+      "src_dir": "TangJinBao__B01917216__Friday, March 12, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_tangliming_n04335446_monday_june_24_2019_000",
+      "group": "nonph_new",
+      "src_dir": "TangLiMing__N04335446__Monday, June 24, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_tangmingfang_t1372018x_tuesday_october_25_2022_000",
+      "group": "nonph_new",
+      "src_dir": "TangMingFang__T1372018X__Tuesday, October 25, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wanggensong_j02396721_wednesday_january_20_2021_000",
+      "group": "nonph_new",
+      "src_dir": "WangGenSong__J02396721__Wednesday, January 20, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wangguorong_f02419525_wednesday_january_13_2021_000",
+      "group": "nonph_new",
+      "src_dir": "WangGuoRong__F02419525__Wednesday, January 13, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wangjinhuo_9001714083_thursday_march_4_2021_000",
+      "group": "nonph_new",
+      "src_dir": "WangJinHuo__9001714083__Thursday, March 4, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wangyixin_b01936265_wednesday_january_20_2021_000",
+      "group": "nonph_new",
+      "src_dir": "WangYiXin__B01936265__Wednesday, January 20, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wangzhenyuan_9001827819_thursday_february_18_2021_000",
+      "group": "nonph_new",
+      "src_dir": "WangZhenYuan__9001827819__Thursday, February 18, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wangzhiguang_g02204513_friday_february_25_2022_000",
+      "group": "nonph_new",
+      "src_dir": "WangZhiGuang__G02204513__Friday, February 25, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wengwenquan_t06534119_sunday_may_9_2021_000",
+      "group": "nonph_new",
+      "src_dir": "WengWenQuan__T06534119__Sunday, May 9, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wuxinlai_h01672427_thursday_january_14_2021_000",
+      "group": "nonph_new",
+      "src_dir": "WuXinLai__H01672427__Thursday, January 14, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_wuzhuxing_p10335519_friday_may_24_2019_000",
+      "group": "nonph_new",
+      "src_dir": "WuZhuXing__P10335519__Friday, May 24, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xiechangshou_9001761706_tuesday_january_12_2021_000",
+      "group": "nonph_new",
+      "src_dir": "XieChangShou__9001761706__Tuesday, January 12, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xiguoliang_l02078840_saturday_june_20_2020_000",
+      "group": "nonph_new",
+      "src_dir": "XiGuoLiang__L02078840__Saturday, June 20, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xuhanming_9001668916_monday_august_3_2020_000",
+      "group": "nonph_new",
+      "src_dir": "XuHanMing__9001668916__Monday, August 3, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xujinhong_j02306765_friday_july_2_2021_000",
+      "group": "nonph_new",
+      "src_dir": "XuJinHong__J02306765__Friday, July 2, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xujinlong_j05425786_thursday_october_24_2019_000",
+      "group": "nonph_new",
+      "src_dir": "XuJinLong__J05425786__Thursday, October 24, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xumingao_9001294412_monday_july_8_2019_000",
+      "group": "nonph_new",
+      "src_dir": "XuMinGao__9001294412__Monday, July 8, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xupeiyu_s00504587_wednesday_february_16_2022_000",
+      "group": "nonph_new",
+      "src_dir": "XuPeiYu__S00504587__Wednesday, February 16, 2022_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_xurongqi_m02060453_friday_may_10_2019_000",
+      "group": "nonph_new",
+      "src_dir": "XuRongQi__M02060453__Friday, May 10, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yangguoqiang_b03360853_tuesday_september_22_2020_000",
+      "group": "nonph_new",
+      "src_dir": "YangGuoQiang__B03360853__Tuesday, September 22, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yanghaohua_d00225976_monday_july_19_2021_000",
+      "group": "nonph_new",
+      "src_dir": "YangHaoHua__D00225976__Monday, July 19, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yangjianguo_k06692541_monday_march_18_2019_000",
+      "group": "nonph_new",
+      "src_dir": "YangJianGuo__K06692541__Monday, March 18, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yangzhengguo_v14583759_tuesday_march_9_2021_000",
+      "group": "nonph_new",
+      "src_dir": "YangZhengGuo__V14583759__Tuesday, March 9, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yaofuming_h01819468_monday_february_8_2021_000",
+      "group": "nonph_new",
+      "src_dir": "YaoFuMing__H01819468__Monday, February 8, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yaojianguo_t14085456_wednesday_november_25_2020_000",
+      "group": "nonph_new",
+      "src_dir": "YaoJianGuo__T14085456__Wednesday, November 25, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yaoyiqin_k00196643_tuesday_october_8_2019_000",
+      "group": "nonph_new",
+      "src_dir": "YaoYiQin__K00196643__Tuesday, October 8, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yerenyi_v00974759_tuesday_april_6_2021_000",
+      "group": "nonph_new",
+      "src_dir": "YeRenYi__V00974759__Tuesday, April 6, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yinjianguo_9001412881_friday_june_21_2019_000",
+      "group": "nonph_new",
+      "src_dir": "YinJianGuo__9001412881__Friday, June 21, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yuguilin_r14640996_monday_october_14_2019_000",
+      "group": "nonph_new",
+      "src_dir": "YuGuiLin__R14640996__Monday, October 14, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_yushiliang_f01491728_tuesday_june_29_2021_000",
+      "group": "nonph_new",
+      "src_dir": "YuShiLiang__F01491728__Tuesday, June 29, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangfengxia_9001830149_friday_february_5_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ZhangFengXia__9001830149__Friday, February 5, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangjianmin_f01675455_thursday_june_17_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ZhangJianMin__F01675455__Thursday, June 17, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangxianguo_m01638612_wednesday_august_21_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ZhangXianGuo__M01638612__Wednesday, August 21, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangxiuqin_t12334543_thursday_february_25_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ZhangXiuQin__T12334543__Thursday, February 25, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhangxueliang_t00317375_wednesday_february_10_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ZhangXueLiang__T00317375__Wednesday, February 10, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhanhongfa_b02453337_friday_january_15_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ZhanHongFa__B02453337__Friday, January 15, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhaoguoxiang_j06129794_tuesday_march_19_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ZhaoGuoXiang__J06129794__Tuesday, March 19, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhengyaorong_k01848113_monday_august_12_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ZhengYaoRong__K01848113__Monday, August 12, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhoujianhua_p29127429_wednesday_august_14_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ZhouJianHua__P29127429__Wednesday, August 14, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhucaiguan_q03449689_tuesday_january_26_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ZhuCaiGuan__Q03449689__Tuesday, January 26, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhudeming_6000365916_thursday_april_25_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ZhuDeMing__6000365916__Thursday, April 25, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhuguanfa_m02277206_monday_november_2_2020_000",
+      "group": "nonph_new",
+      "src_dir": "ZhuGuanFa__M02277206__Monday, November 2, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhuhuayong_9001419922_wednesday_june_26_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ZhuHuaYong__9001419922__Wednesday, June 26, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhujian_u01422414_friday_october_11_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ZhuJian__U01422414__Friday, October 11, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhujieming_9001476476_monday_october_14_2019_000",
+      "group": "nonph_new",
+      "src_dir": "ZhuJieMing__9001476476__Monday, October 14, 2019_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhuliang_9001581280_friday_april_10_2020_000",
+      "group": "nonph_new",
+      "src_dir": "ZhuLiang__9001581280__Friday, April 10, 2020_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    },
+    {
+      "case_id": "nonph_zhuyezhong_p06234811_monday_march_8_2021_000",
+      "group": "nonph_new",
+      "src_dir": "ZhuYeZhong__P06234811__Monday, March 8, 2021_000",
+      "n_masks_found": 0,
+      "masks": {},
+      "status": "no_masks_in_source",
+      "note": "DCM only — segmentation pipeline pending"
+    }
+  ]
+}

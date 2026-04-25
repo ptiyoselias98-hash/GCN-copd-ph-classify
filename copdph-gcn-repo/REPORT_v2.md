@@ -1144,6 +1144,86 @@ Artifacts: `outputs/r12/missingness_protocol_probe.{json,md}`,
 `outputs/r12/r12_cross_seed_cis.{json,md}`,
 `outputs/r11/adv_auc_per_epoch.json`.
 
+## 24. ARIS Round 13 — 345-cohort reconciliation + CORAL non-GRL deconfounder (in progress)
+
+### 24.1 R13.1 — Case_id reconciliation against authoritative 345-cohort
+
+User clarified 2026-04-25: original `H:/官方数据data/COPDPH_seg` had 170+
+contrast-PH subfolders but ~10 had inconsistent `00000001/`-`00000005/`
+DCM child-directory counts (missing slices); the user manually excluded
+those as unusable. Same DCM-count audit pruned `New folder-COPDNOPH`
+from 85 to 58 plain-scan nonPH. The new 24-refill + 76-new plain-scan
+folders all pass DCM-count consistency but require segmentation-quality
+QC after pipeline ingestion.
+
+`scripts/evolution/R13_cohort_reconciliation.py` walks all 5 source
+folders, audits DCM-counts, and writes `outputs/r13/cohort_345_manifest.csv`
++ summary + diff vs legacy 282. Result:
+
+| group | n_ok | source root |
+|---|---|---|
+| ph_contrast | 160 | `COPDPH_seg（160例增强性CT)` |
+| nonph_contrast | 27 | `COPDnonPH_seg（27例增强性CT)` |
+| nonph_plain | 58 | `New folder-COPDNOPH 58例平扫性` |
+| nonph_refill | 24 | `4月24号-新增24个copdnoph平扫性\（24个完整）` |
+| nonph_new | 76 | `4月24号-新增76个copdnoph平扫性` |
+| **total** | **345** | |
+
+**Diff vs legacy 282** (`data/labels_expanded_282.csv`): common=267,
+only_legacy=15, only_new=78. The 15 only-legacy break down as:
+
+- **10 PH cases** (e.g. `ph_chenlinsheng_…`, `ph_wanghaitao_…`,
+  `ph_zhaohongxia_…`) — exactly the 170→160 PH overcount; these are
+  the cases the user pruned for DCM-count mismatch.
+- **5 nonPH plain-scan cases** (e.g. `nonph_mawenhu_…`, `nonph_sunzegang_…`)
+  — part of the 85→58 plain-scan prune.
+
+This **closes the legacy-282 vs authoritative-345 gap**. R13+ analyses
+should migrate to the 345 manifest; legacy artifacts are retained for
+auditability but flagged as superseded.
+
+### 24.2 R13.2 — Segmentation-quality audit framework
+
+`scripts/evolution/R13_seg_quality_audit.py` scaffolds the per-mask
+checks the user requested (detect "visibly broken segmentations even
+when DCM counts match"): EMPTY / ALL_FILLED / TOO_SMALL / TOO_FRAGMENTED /
+LUNG_COMPONENT_ANOMALY via `nibabel` + `scipy.ndimage.label`. Initial
+scan finds 0/345 source folders contain NIfTI masks — segmentations live
+under `E:\桌面文件\nii格式图\nii-unified-282\<case_id>\` for the legacy
+282 cases; the 100 new plain-scan nonPH cases haven't been segmented yet.
+Path-lookup for `nii-unified-282` needs a Unicode-on-Windows fix (deferred
+to next cron fire). Once fixed, the audit will run against:
+
+1. **Existing 282 unified NIfTI** — flag any visibly broken existing masks
+2. **100 new cases after segmentation pipeline** — gating QC for ingestion
+
+### 24.3 R13.3 — CORAL / MMD non-GRL deconfounder (running)
+
+`run_sprint6_v2_coral.py` is a drop-in alternative to `run_sprint6_v2_grl_fix.py`.
+Replaces the gradient-reversal adversarial head with a Deep-CORAL feature-
+distribution alignment penalty:
+
+  L_CORAL = (1 / (4 d²)) · ‖Cov(z|c=0) − Cov(z|c=1)‖²_F
+
+computed on encoder embeddings z within `label==0` (nonPH) per batch.
+`--use_mmd` toggles to multi-kernel RBF MMD as an alternative kernel-
+independence penalty. Both are direct deconfounding without an
+adversary-encoder min-max game, sidestepping the GRL convergence
+issues flagged in R10/R11.
+
+**Pilot launched on remote** (GPU 0+1 sequential queue, 1 job per GPU
+at a time): λ ∈ {0, 1, 5, 10} × seed=42, 4 jobs total, ~1.5h wall time.
+Logs at `/tmp/r13_logs/coral_l*_s42_gpu*.log`. Outputs:
+`outputs/sprint6_arm_a_coral_l*_s42/sprint6_results.json` + per-fold
+embeddings. Next cron fire (13:17) will harvest these and run the same
+within-nonPH protocol LR/MLP probe + cross-seed CI analysis used in R11/R12.
+
+If CORAL/MMD breaks below the corrected-GRL floor of protocol-LR=0.80
+without collapsing disease AUC below 0.65, R14 expands to seeds {1042,
+2042}; if it doesn't, the R12 "narrow impossibility on legacy 243" claim
+holds and the path forward is 345-cohort ingestion (Path A) or unified
+HiPaS rebuild (Path C).
+
 ## 20. ARIS Round 7+8 — figures, exclusion sensitivity, builder provenance
 
 ### 20.1 R7 — publication figure suite + README embedding
