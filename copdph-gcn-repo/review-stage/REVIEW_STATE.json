@@ -3,7 +3,8 @@
   "status": "round_15_in_progress_scp_RUNNING_seg_launcher_READY",
   "running_actions": [
     {"action": "DCM→NIfTI for 100 new plain-scan nonPH", "status": "DONE 100/100", "ended_at": "2026-04-25T12:54:03", "log": "outputs/r15/dcm_conversion_log.json"},
-    {"action": "scp nii-new100 (12GB) to imss@10.60.147.117:/home/imss/cw/GCN copdnoph copdph/nii-new100/", "status": "RUNNING (started 2026-04-25T13:08, ~50Mbps observed → ETA ~30min)", "task_id": "b6xf9jh31"},
+    {"action": "scp nii-new100 (12GB) to imss@10.60.147.117:/home/imss/cw/GCN copdnoph copdph/nii-new100/", "status": "RUNNING ~40/100 done (4.8GB transferred at 13:48); NESTED-PATH BUG: data lands at .../nii-new100/nii-new100/<case_id>/ — must `mv ../nii-new100/* ../` after scp completes before launching seg pipeline", "task_id": "b6xf9jh31"},
+    {"action": "R15.C lung-confound audit", "status": "DONE — Test1 year-effect p=0.25 NS, Test3 HU-cluster-vs-year p=0.84 NS, Test2 HU-vs-disease ρ=+0.237 p=0.001. Lung-only AUC is genuine disease signal, NOT scanner confound. PH-contrast +37 HU denser than nonPH-contrast (consistent with C2 dense-lung endotype)."},
     {"action": "Simple_AV_seg launcher for 100 new cases", "status": "READY (launcher at outputs/r15/launch_seg_new100.sh; uses /home/imss/cw/pulmonary_pipeline/code/Simple_AV_seg/{lung,main_AV}.pth; 2-GPU parallel queues)", "next_cron_must": "scp launcher to /tmp/, ssh nohup bash /tmp/launch_seg_new100.sh after scp completes (verify nii-new100 on remote = 100 dirs, 12GB)"},
     {"action": "v2 cache rebuild + within-nonPH probe on enlarged stratum", "status": "QUEUED after segmentation completes (~2-4 hours)"}
   ],
