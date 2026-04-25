@@ -17,7 +17,8 @@
       "segmentation_outcome": "DONE 199/201 (1 corrupted gzip excluded: ph_zhangzongqi; 1 other case skipped). Output: nii-unified-201-savseg/ binary uint8 lung+artery+vein masks per case",
       "post_segmentation_chain_2026_04_26_T05_50": "R20.G v3 chain LAUNCHED: building cache_tri_v2_unified301 with _R19C_build_v2_patched.py 6-worker on 360 labels (effective ~299 with data dirs); 41 nonPH cases done at +13 min, 0 PH yet (alphabetical ordering); ETA ~80-120 min total",
       "post_segmentation_progress_2026_04_26_T06_22": "92/299 (31%) at +32 min: 43 PH + 49 nonPH cached. Rate steady at 2.7 cases/min. ETA ~77 min remaining for full cache; then morphometrics extraction + R20.H verification (artery_len_p25 ρ vs mPAP) → closes R18 must-fix #2",
-      "post_segmentation_progress_2026_04_26_T06_50": "146/299 (49%) at +60 min: 97 PH + 49 nonPH cached. Rate steady. ETA ~57 min remaining"
+      "post_segmentation_progress_2026_04_26_T06_50": "146/299 (49%) at +60 min: 97 PH + 49 nonPH cached. Rate steady. ETA ~57 min remaining",
+      "post_segmentation_progress_2026_04_26_T07_20": "198/299 (66%) at +90 min: 149 PH + 49 nonPH cached. Rate slowed to 1.3/min (largest PH cases late-alphabetical). ETA ~78 min remaining"
     },
     "terminology_reframe": {
       "status": "DONE — closes R18 must-fix #6",
