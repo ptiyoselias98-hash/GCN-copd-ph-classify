@@ -24,6 +24,7 @@ collected under `outputs/`.
 | R8 | 6/10 | reject |
 | R9 | 6/10 | reject |
 | R10 | 6.2/10 | reject |
+| R11 | 5.0/10 | reject |
 
 ## Task
 
@@ -1245,5 +1246,13 @@ Round 6/7 artifacts:
 GRL adversarial λ sweep {0.5..20} fails to reduce within-nonPH protocol AUC below 0.82. Reviewer caught a λ double-scaling bug (grads scale ~λ²) and an objective mismatch (adversary trained on full cohort where PH≈contrast instead of nonPH-only). Honest negative with actionable Round 11 fixes.
 
 - [R10_adv_sweep.md](copdph-gcn-repo/outputs/r10/R10_adv_sweep.md)
+![fig1_aris_score_progression](copdph-gcn-repo/outputs/figures/fig1_aris_score_progression.png)
+
+## ARIS Round 11 — score 5.0/10
+
+Fixed-GRL multi-seed sweep (λ∈{0,1,5,10} × 3 seeds): best protocol_lr 0.80 (target 0.60); MLP 0.88. Disease 0.73→0.64 at high λ. Reviewer downgraded to 5.0 because run_sprint6_v2_grl_fix.py wasn't in local repo at review (now committed). GRL path exhausted on n=80 within-nonPH; path to 9.5 requires more plain-scan data OR principled missingness handling.
+
+- [R11_grlfix_summary.md](copdph-gcn-repo/outputs/r11/R11_grlfix_summary.md)
+- [cohort_reconciliation.md](copdph-gcn-repo/outputs/r11/cohort_reconciliation.md)
 ![fig1_aris_score_progression](copdph-gcn-repo/outputs/figures/fig1_aris_score_progression.png)
 

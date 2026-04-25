@@ -117,8 +117,12 @@ python scripts/figures/update_readme_round.py {N} {score} \
 It regenerates `fig1_aris_score_progression.png` from REVIEW_STATE.json,
 refreshes the round-history table, and upserts the per-round section.
 
-**Model fallback chain for codex at-capacity**: gpt-5.2 (high) → gpt-5.2
-(default) → gpt-5.2-codex. If all fail, write a note and skip to next fire.
+**Model fallback chain for codex at-capacity** (updated 2026-04-25):
+gpt-5.5 (high) → gpt-5.5-thinking → gpt-5.2 (high) → gpt-5.2 (default).
+gpt-5.5 needs Codex MCP upgrade (requires Claude Code restart); if the
+ChatGPT account/MCP version doesn't support it yet you'll get a 400
+"requires a newer version of Codex" error — fall back automatically.
+If all fail, just skip codex this fire and let the next cron retry.
 
 **Experiment sub-plans**: see `copdph-gcn-repo/review-stage/AUTONOMOUS_LOOP_PLAN.md`
 for Round 5–12 specific actions. Round 13+ is open-ended: respond to the

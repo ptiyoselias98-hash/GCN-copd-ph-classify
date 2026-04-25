@@ -12,6 +12,38 @@
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
     {
+      "round": 11,
+      "timestamp": "2026-04-25T10:30:00",
+      "score": 5.0,
+      "verdict": "reject",
+      "reviewer": "codex-mcp gpt-5.2 high-reasoning",
+      "experiments": [
+        "R11.1 Fixed GRL implementation (run_sprint6_v2_grl_fix.py): GRL coef=1.0, λ * adv_loss only, adversary on nonPH-only mask y==0",
+        "R11.2 Per-epoch adversary AUC diagnostics logged",
+        "R11.3 Multi-seed sweep: 4 λ × 3 seeds = 12 runs on GPU0+GPU1 parallel",
+        "R11.4 LR + MLP probes (worst-case leakage check)",
+        "R11.5 Cohort reconciliation table (cohort_reconciliation.md)",
+        "R11.6 MULTI-SEED RESULTS: best λ=10 protocol_lr 0.802±0.055 (target 0.60); MLP 0.881±0.032; disease 0.644±0.023. EXHAUSTED-ATTACK NEGATIVE."
+      ],
+      "regressions": [
+        "Reviewer DOWNGRADED to 5.0 (from R10=6.2) because: run_sprint6_v2_grl_fix.py was on remote but NOT in local repo at review time; the in-repo run_sprint6_v2_grl.py still had R10 buggy version → claim 'bugs fixed' was unauditable from repo state."
+      ],
+      "must_fix_before_round12": [
+        "Commit the actual training code (run_sprint6_v2_grl_fix.py) locally — DONE post-review 2026-04-25",
+        "Save per-epoch adversary AUC + run logs as artifacts under outputs/r11/embeddings/",
+        "Rebuild full 282 cohort with degraded graphs OR principled missingness (cache currently drops 39 cases protocol-correlated)",
+        "Aggregate CIs across seeds (currently only per-run CIs)",
+        "EITHER meet protocol target with new method, OR produce convincing impossibility-style negative with ablations"
+      ],
+      "minimum_to_reach_9point5": [
+        "Reproducibility integrity: training code matches stated fixes, in-repo, with logs+configs+checksums",
+        "Cohort correctness: full 282 (or principled missingness) for within-nonPH evaluation",
+        "Either meet ≤0.60 protocol target OR produce convincing impossibility result with ablations on probe strength + adversary schedule + augmentation",
+        "Aligned objective↔measurement↔claim across context_round{N}.md, code, artifacts"
+      ],
+      "reviewer_notes_for_memory": "R11 has the right meta-science (multi-seed + bootstrap + MLP probe) but the asserted bug-fix code wasn't in the local repo at review time — reviewer caught this and downgraded to 5.0. The fix script is now committed (run_sprint6_v2_grl_fix.py). Substantive finding: even with corrected GRL + nonPH-only adversary + multi-seed, best protocol AUC is 0.80 (target 0.60). MLP probe shows 0.88 (non-linear leakage worse). Disease drops 0.73→0.64 at high λ. The GRL path is exhausted on n=80 within-nonPH stratum. Path forward requires either (a) more plain-scan nonPH data (100 new cases queued for ingestion), (b) full 282 cohort with degraded graphs, or (c) different deconfounding objective (CORAL/MMD/IRM)."
+    },
+    {
       "round": 10,
       "timestamp": "2026-04-24T17:00:00",
       "score": 6.2,
