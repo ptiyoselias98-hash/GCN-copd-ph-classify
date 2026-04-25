@@ -49,10 +49,12 @@ def main():
 
     if merged["label"].nunique() == 2:
         from sklearn.metrics import roc_auc_score
-        from scipy.stats import mannwhitneyu, bootstrap
-        y = merged["label"].values; nll = merged["mean_nll"].values
+        from scipy.stats import mannwhitneyu
+        y = merged["label"].astype(int).values
+        nll = merged["mean_nll"].astype(float).values
         auc = float(roc_auc_score(y, nll))
         out["anomaly_auc"] = auc
+        out["anomaly_auc_inverted"] = float(1.0 - auc)
         # Bootstrap CI
         rng = np.random.default_rng(0)
         boots = []
@@ -65,13 +67,14 @@ def main():
         if len(boots) > 100:
             out["auc_ci95_lo"] = float(np.percentile(boots, 2.5))
             out["auc_ci95_hi"] = float(np.percentile(boots, 97.5))
-        ph_nll = merged.loc[merged["label"] == 1, "mean_nll"].values
-        np_nll = merged.loc[merged["label"] == 0, "mean_nll"].values
-        try:
-            u, p = mannwhitneyu(ph_nll, np_nll, alternative="greater")
-            out["mwu_ph_gt_nonph_p"] = float(p)
-        except Exception:
-            out["mwu_ph_gt_nonph_p"] = None
+        ph_nll = merged.loc[merged["label"] == 1, "mean_nll"].astype(float).values
+        np_nll = merged.loc[merged["label"] == 0, "mean_nll"].astype(float).values
+        u_g, p_g = mannwhitneyu(ph_nll, np_nll, alternative="greater")
+        u_l, p_l = mannwhitneyu(ph_nll, np_nll, alternative="less")
+        u_t, p_t = mannwhitneyu(ph_nll, np_nll, alternative="two-sided")
+        out["mwu_ph_gt_nonph_p"] = float(p_g)
+        out["mwu_ph_lt_nonph_p"] = float(p_l)
+        out["mwu_two_sided_p"] = float(p_t)
         out["ph_mean_nll"] = float(ph_nll.mean())
         out["nonph_mean_nll"] = float(np_nll.mean())
         out["delta_nll"] = float(ph_nll.mean() - np_nll.mean())
@@ -91,25 +94,36 @@ def main():
           f"nonPH={out.get('n_nonph',0)})",
           ""]
     if "anomaly_auc" in out:
-        md += [f"## Anomaly AUC (PH > nonPH)",
+        ci_str = ""
+        if "auc_ci95_lo" in out:
+            ci_str = (f" [95% boot CI {out['auc_ci95_lo']:.3f}, "
+                      f"{out['auc_ci95_hi']:.3f}]")
+        md += [f"## Anomaly AUC",
                "",
-               f"- AUC = **{out['anomaly_auc']:.3f}** "
-               f"[95% boot CI {out.get('auc_ci95_lo','NA'):.3f}, "
-               f"{out.get('auc_ci95_hi','NA'):.3f}]"
-               if 'auc_ci95_lo' in out else
-               f"- AUC = **{out['anomaly_auc']:.3f}**",
+               f"- AUC (PH > nonPH direction) = **{out['anomaly_auc']:.3f}**{ci_str}",
+               f"- AUC inverted (nonPH > PH) = **{out['anomaly_auc_inverted']:.3f}**",
                f"- PH mean NLL = {out['ph_mean_nll']:.4f}, "
                f"nonPH mean NLL = {out['nonph_mean_nll']:.4f}",
                f"- PH median NLL = {out['ph_median_nll']:.4f}, "
                f"nonPH median NLL = {out['nonph_median_nll']:.4f}",
                f"- Δ (PH−nonPH) = {out['delta_nll']:+.4f}",
-               f"- MWU one-sided p = "
+               f"- MWU one-sided p (PH > nonPH) = "
                f"{out.get('mwu_ph_gt_nonph_p', 'NA')}",
                "",
-               "Higher NLL = more 'unusual' under the nonPH-learned distribution.",
-               "AUC > 0.6 with PH>nonPH NLL means the model captures",
-               "PH-specific parenchyma anomalies independent of label-supervised",
-               "training (label-free anomaly detection).",
+               "## Honest interpretation",
+               "",
+               "DDPM was trained on **plain-scan** nonPH (R19 new100, n=100).",
+               "Inference here is on **legacy CTPA** cohort (contrast protocol).",
+               "Both PH and nonPH cases in inference are **out-of-distribution**",
+               "relative to the plain-scan training set — different protocol,",
+               "different image statistics. Whichever class happens to be closer",
+               "to plain-scan in pixel statistics dominates the AUC.",
+               "",
+               "If AUC > 0.6 in EITHER direction with no obvious protocol",
+               "explanation, the result may reflect biology. Otherwise, the",
+               "result is dominated by **protocol shift, not disease**, and",
+               "this evaluation should not be cited as evidence of label-free",
+               "PH detection. Closing R18 must-fix #1 with this honest negative.",
                ""]
     (OUT / "ddpm_anomaly_merged_eval.md").write_text(
         "\n".join(md), encoding="utf-8")

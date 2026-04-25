@@ -1,0 +1,17 @@
+{
+  "n_total": 247,
+  "n_ph": 163,
+  "n_nonph": 84,
+  "anomaly_auc": 0.12949167397020156,
+  "anomaly_auc_inverted": 0.8705083260297984,
+  "auc_ci95_lo": 0.08728578650873897,
+  "auc_ci95_hi": 0.1777916666666666,
+  "mwu_ph_gt_nonph_p": 1.0,
+  "mwu_ph_lt_nonph_p": 7.442605796501096e-22,
+  "mwu_two_sided_p": 1.4885211593002191e-21,
+  "ph_mean_nll": 0.006646241002110428,
+  "nonph_mean_nll": 0.00867694622034568,
+  "delta_nll": -0.0020307052182352526,
+  "ph_median_nll": 0.0066099161049351,
+  "nonph_median_nll": 0.0086426934576593
+}

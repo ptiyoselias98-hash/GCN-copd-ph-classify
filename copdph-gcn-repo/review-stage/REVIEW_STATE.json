@@ -1,6 +1,26 @@
 {
-  "round": 19,
-  "status": "round_19_complete_score_9.1_codex_8.7_honest_revise",
+  "round": 20,
+  "status": "round_20_in_progress_ddpm_eval_closed_with_honest_negative",
+  "round_20_progress": {
+    "ddpm_eval": {
+      "status": "DONE — closes R18 must-fix #1 with HONEST NEGATIVE",
+      "n_total": 247,
+      "n_ph": 163,
+      "n_nonph": 84,
+      "anomaly_auc_ph_gt_nonph": 0.129,
+      "anomaly_auc_inverted_nonph_gt_ph": 0.871,
+      "auc_ci95": "[0.087, 0.178]",
+      "mwu_two_sided_p": 1.49e-21,
+      "ph_mean_nll": 0.0066,
+      "nonph_mean_nll": 0.0087,
+      "interpretation": "DDPM trained on plain-scan nonPH (R19 new100); inference on legacy CTPA cohort. PH cases reconstruct BETTER than nonPH (lower NLL) — opposite direction of expected anomaly detection. Result is dominated by protocol shift (training-plain-scan vs test-CTPA), not by PH-vs-nonPH biology. Honest negative: this DDPM does NOT generalize as a label-free PH detector across protocols. R18 must-fix #1 closed.",
+      "artifacts": [
+        "outputs/r20/ddpm_anomaly_merged.csv (247 rows)",
+        "outputs/r20/ddpm_anomaly_merged_eval.{json,md}",
+        "outputs/r20/r20a_ph.log (170 PH inference; 7 cases failed: 1 OOM 7GiB, 1 OOM 8GiB, 4 5D-array padding mismatch, 1 misc → 163 usable)"
+      ]
+    }
+  },
   "running_actions": [
     {"action": "DCM→NIfTI for 100 new plain-scan nonPH", "status": "DONE 100/100", "ended_at": "2026-04-25T12:54:03", "log": "outputs/r15/dcm_conversion_log.json"},
     {"action": "scp nii-new100 (12GB) to imss@10.60.147.117:/home/imss/cw/GCN copdnoph copdph/nii-new100/", "status": "DONE 100/100 (completed 2026-04-25T14:36); nested path FLATTENED via `mv`; ready for seg pipeline"},

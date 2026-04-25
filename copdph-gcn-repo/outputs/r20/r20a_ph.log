@@ -1,0 +1,44 @@
+loaded model from E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\outputs\r19\ddpm_state_dict.pt; device=cpu
+iterating 170 labels (filter=ph_only)
+  ...5/5 | last case wall=6.3s
+  ...10/10 | last case wall=6.5s
+  ...15/15 | last case wall=9.1s
+  [fail] ph_cuishouxian_0800129626_friday_april_27_2018_000: Unable to allocate 7.00 GiB for an array with shape (3, 313262080) and data type int64
+  ...19/20 | last case wall=8.8s
+  ...24/25 | last case wall=5.8s
+  ...29/30 | last case wall=5.7s
+  ...34/35 | last case wall=8.0s
+  ...39/40 | last case wall=5.8s
+  ...43/45 | last case wall=7.4s
+  ...48/50 | last case wall=7.9s
+  ...53/55 | last case wall=7.8s
+  ...58/60 | last case wall=7.5s
+  ...63/65 | last case wall=7.2s
+  ...68/70 | last case wall=6.9s
+  ...73/75 | last case wall=7.5s
+  ...78/80 | last case wall=6.7s
+  ...83/85 | last case wall=8.3s
+  ...88/90 | last case wall=7.4s
+  ...93/95 | last case wall=10.5s
+  ...98/100 | last case wall=9.0s
+  [fail] ph_wanghaitao_9001792097_wednesday_january_13_2021_000: operands could not be broadcast together with remapped shapes [original->remapped]: (3,2)  and requested shape (5,2)
+  [fail] ph_wangjunfei_9001172063_tuesday_june_29_2021_000: operands could not be broadcast together with remapped shapes [original->remapped]: (3,2)  and requested shape (5,2)
+  [fail] ph_wangliuzhen_9001211738_saturday_january_23_2021_000: operands could not be broadcast together with remapped shapes [original->remapped]: (3,2)  and requested shape (5,2)
+  [fail] ph_wangwei_9001044006_saturday_july_15_2017_000: operands could not be broadcast together with remapped shapes [original->remapped]: (3,2)  and requested shape (5,2)
+  ...104/110 | last case wall=7.6s
+  ...109/115 | last case wall=6.1s
+  ...114/120 | last case wall=6.6s
+  ...119/125 | last case wall=10.3s
+  ...124/130 | last case wall=6.7s
+  ...129/135 | last case wall=6.1s
+  ...134/140 | last case wall=5.8s
+  ...139/145 | last case wall=7.5s
+  ...144/150 | last case wall=5.5s
+  [fail] ph_zhangxuelin_r01231034_saturday_july_30_2016_000: Unable to allocate 8.01 GiB for an array with shape (3, 358350848) and data type int64
+  ...148/155 | last case wall=5.9s
+  ...153/160 | last case wall=8.8s
+  ...158/165 | last case wall=7.4s
+  ...163/170 | last case wall=6.7s
+
+saved 163 rows → E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\outputs\r20\ddpm_anomaly_legacy_ph.csv
+saved → E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\outputs\r20/ddpm_anomaly_legacy_eval.{json,md}
