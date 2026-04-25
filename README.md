@@ -1379,11 +1379,78 @@ protocol AUC (0.64) but loses disease to ~0.85.
 
 ## ARIS Round 15 — score 8.8/10
 
-R15 (8.8/10 revise, +0.4): 100-case ingestion COMPLETE (cohort 282→360, plain-scan nonPH 85→163); enlarged within-nonPH protocol probe LR=0.908 at n=151 (HIGHER than R12 0.853 at n=80 — confound more pronounced on larger stratum); within-contrast disease AUC 0.847 replicates R14; endotype replicates with all p<0.01: PH +37HU denser, +58mL artery, -972mL lung, apical-basal LAA gradient SIGN FLIP
+**100-case ingestion + paired-CI corrections + enlarged-stratum analyses.**
+The DCM→NIfTI→Simple_AV_seg→lung-features pipeline ingested 100 new plain-scan
+nonPH cases (cohort 282→360, plain-scan nonPH 85→163, total nonPH 112→190).
+Three R14 marginal-CI claims are reversed via paired bootstrap; enlarged stratum
+analyses reveal protocol confound is MORE pronounced at scale; the within-contrast
+disease signal replicates and endotype features survive multiplicity correction.
 
-- [enlarged_lung_results.md](copdph-gcn-repo/outputs/r15/enlarged_lung_results.md)
-- [paired_aucs.md](copdph-gcn-repo/outputs/r15/paired_aucs.md)
-- [clustering_stability.md](copdph-gcn-repo/outputs/r15/clustering_stability.md)
-- [lung_confound_audit.md](copdph-gcn-repo/outputs/r15/lung_confound_audit.md)
-- [vascular_morphometrics_v2.csv](copdph-gcn-repo/outputs/r14/vascular_morphometrics_v2.csv)
+### R15.G figure 1 — enlarged within-nonPH protocol probe
+
+![enlarged protocol probe](copdph-gcn-repo/outputs/figures/fig_r15_enlarged_protocol.png)
+
+At the larger n=151 within-nonPH stratum (vs R12's n=80), the lung-feature
+protocol-LR AUC rises to **0.908 [0.819, 0.968]** (MLP **0.914 [0.820, 0.978]**).
+Protocol confound is *more* decodable, not less, on the larger stratum — the
+implication is that current CORAL/GRL deconfounder evidence on the legacy 80-case
+stratum does NOT generalize. R16+ must re-evaluate deconfounding on the enlarged
+embeddings.
+
+### R15.G figure 2 — within-contrast disease AUC replicates R14
+
+![disease replication](copdph-gcn-repo/outputs/figures/fig_r15_disease_replication.png)
+
+R14 lung-only disease AUC (n=184): **0.844 [0.754, 0.917]**.
+R15.G lung-only disease AUC (n=186): **0.847 [0.755, 0.923]**.
+Replicates within bootstrap CI — the lung-only disease signal is genuine,
+not overfit to R14's specific 184-case sample.
+
+### R16.B figure — Holm-Bonferroni-corrected endotype effect sizes
+
+![endotype forest](copdph-gcn-repo/outputs/figures/fig_r15_endotype_forest.png)
+
+Forest plot of Cohen's d for 14 candidate features (PH vs nonPH within contrast,
+n=197). 9/14 features survive Holm-Bonferroni at α=0.05 (red = significantly
+elevated in PH; blue = significantly reduced; grey = NS).
+
+| feature | Cohen's d [95% CI] | p_holm | direction |
+|---|---|---|---|
+| **paren_std_HU** | **+1.10 [+0.80, +1.48]** | 1.7e-7 | PH lungs +15.7 HU more **heterogeneous** (LARGEST effect) |
+| whole_std_HU | +0.62 [+0.46, +1.17] | 5.6e-7 | replicates at whole-lung |
+| paren_mean_HU | +0.66 [+0.26, +1.10] | 0.013 | PH +37 HU denser |
+| whole_mean_HU | +0.41 [+0.18, +0.84] | 0.019 | replicates |
+| lung_vol_mL | -0.64 [-1.12, -0.21] | 0.036 | PH -996 mL **smaller lungs** |
+| apical_basal_LAA950_gradient | -0.50 [-0.92, -0.14] | 0.038 | **sign flip**: PH basal>apical emphysema |
+| paren_LAA_856_frac | -0.62 [-1.10, -0.18] | 0.041 | PH actually **less** emphysema |
+| **paren_LAA_950_frac** | **−0.32 [-0.86, +0.24]** | NS | total LAA-950 NOT differential |
+
+**Key scientific finding** (first defensible quantitative answer to "肺血管影像
+表型如何演化"): PH-vs-nonPH within contrast is dominated by lung-tissue
+**heterogeneity** (paren_std_HU d=+1.10, the largest effect) and **density
+distribution** (mean HU + apical-basal gradient SIGN FLIP), NOT by total
+emphysema fraction. PH lungs are smaller and more heterogeneous than nonPH;
+the emphysema redistributes basal-ward instead of remaining apical-dominant.
+This is consistent with the C2 "dense-lung PH" endotype identified in R14.B.
+
+### R16.A figure — Simple_AV_seg lung-mask oversegmentation on plain-scan CT
+
+![seg QC volumes](copdph-gcn-repo/outputs/figures/fig_r16_segqc_volumes.png)
+
+Reviewer-flagged domain-transfer concern is real: Simple_AV_seg's `lung.pth`
+(trained on CTPA) produces lung masks with median volume **10.8 L** on plain-scan
+CT (vs adult plausible range 1.5-8.5 L). 79/100 new cases oversize. R16.C
+post-hoc repair (HU<-300 gate + top-2-connected-components filter) is running on
+remote and will produce a sanitized `lung_features_new100_repaired.csv` for
+re-running R15.G probes; the repaired-mask result is the authoritative version.
+
+### Per-round artefacts
+
+- [enlarged_lung_results.md](copdph-gcn-repo/outputs/r15/enlarged_lung_results.md) — within-nonPH probe + within-contrast disease + endotype replication at n=360
+- [paired_aucs.md](copdph-gcn-repo/outputs/r15/paired_aucs.md) — paired bootstrap CIs for lung-vs-graph and CORAL-vs-GRL
+- [clustering_stability.md](copdph-gcn-repo/outputs/r15/clustering_stability.md) — k-sweep + consensus ARI (k=2 winner)
+- [lung_confound_audit.md](copdph-gcn-repo/outputs/r15/lung_confound_audit.md) — scanner-era confound NOT detected
+- [vascular_morphometrics_v2.csv](copdph-gcn-repo/outputs/r14/vascular_morphometrics_v2.csv) — explicit graph morphometrics (243 cases × 12 cols)
+- [endotype_corrected.md](copdph-gcn-repo/outputs/r16/endotype_corrected.md) — Holm-Bonferroni corrected endotype effect sizes (R16.B)
+- [seg_qc_new100.md](copdph-gcn-repo/outputs/r16/seg_qc_new100.md) — independent segmentation QC for the 100 new cases (R16.A)
 
