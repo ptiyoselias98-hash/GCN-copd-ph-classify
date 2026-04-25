@@ -15,7 +15,8 @@
       "eta_minutes": "50-100 min (201 cases × 15-30s on RTX 3090)",
       "next_step": "Once complete: rebuild v2 cache with R19.C binary-mask patcher, re-extract R17 morphometrics on unified-pipeline cohort, verify R18.B legacy ρ=-0.767 reproduces. Closes must-fix #2/#4 with positive verdict.",
       "segmentation_outcome": "DONE 199/201 (1 corrupted gzip excluded: ph_zhangzongqi; 1 other case skipped). Output: nii-unified-201-savseg/ binary uint8 lung+artery+vein masks per case",
-      "post_segmentation_chain_2026_04_26_T05_50": "R20.G v3 chain LAUNCHED: building cache_tri_v2_unified301 with _R19C_build_v2_patched.py 6-worker on 360 labels (effective ~299 with data dirs); 41 nonPH cases done at +13 min, 0 PH yet (alphabetical ordering); ETA ~80-120 min total"
+      "post_segmentation_chain_2026_04_26_T05_50": "R20.G v3 chain LAUNCHED: building cache_tri_v2_unified301 with _R19C_build_v2_patched.py 6-worker on 360 labels (effective ~299 with data dirs); 41 nonPH cases done at +13 min, 0 PH yet (alphabetical ordering); ETA ~80-120 min total",
+      "post_segmentation_progress_2026_04_26_T06_22": "92/299 (31%) at +32 min: 43 PH + 49 nonPH cached. Rate steady at 2.7 cases/min. ETA ~77 min remaining for full cache; then morphometrics extraction + R20.H verification (artery_len_p25 ρ vs mPAP) → closes R18 must-fix #2"
     },
     "terminology_reframe": {
       "status": "DONE — closes R18 must-fix #6",
