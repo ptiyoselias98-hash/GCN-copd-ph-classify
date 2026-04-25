@@ -1,0 +1,422 @@
+{
+  "summary": {
+    "n_real_fails": 34,
+    "n_lung_anomaly": 4,
+    "n_vessel_fragmented_only": 42
+  },
+  "real_fails": [
+    {
+      "case_id": "nonph_chenfuming_j05104579_friday_january_22_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "ChenFuMing__J05104579__Friday, January 22, 2021_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_daijianmin_k01032552_monday_january_25_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "DaiJianMin__K01032552__Monday, January 25, 2021_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_fanhongsheng_k01700477_friday_march_5_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "FanHongSheng__K01700477__Friday, March 5, 2021_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_ganxiufang_l00829997_friday_august_16_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "GanXiuFang__L00829997__Friday, August 16, 2019_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_hepeigen_9001122928_monday_april_1_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "HePeiGen__9001122928__Monday, April 1, 2019_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_hezubian_9002016743_tuesday_october_19_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "HeZuBian__9002016743__Tuesday, October 19, 2021_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_huanglaifu_s08608794_monday_september_23_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "HuangLaiFu__S08608794__Monday, September 23, 2019_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_hujuzhong_j02952601_monday_october_19_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "HuJuZhong__J02952601__Monday, October 19, 2020_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_yangxinfang_m01931704_wednesday_march_31_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "yangxinfang__m01931704__Wednesday, March 31, 2021_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_zhaominhua_m02606428_thursday_january_7_2021_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhaoMinHua__M02606428__Thursday, January 7, 2021_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_zhaozhufeng_m01964143_friday_october_16_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhaoZhuFeng__M01964143__Friday, October 16, 2020_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_zhouminggen_9002272740_wednesday_august_10_2022_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhouMingGen__9002272740__Wednesday, August 10, 2022_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "TOO_SMALL",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_gaoyuguo_9002006243_sunday_september_26_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "GaoYuGuo__9002006243__Sunday, September 26, 2021_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_guruping_f01898499_monday_october_14_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "GuRuPing__F01898499__Monday, October 14, 2019_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_huangjianxin_9001535968_monday_december_2_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "HuangJianXin__9001535968__Monday, December 2, 2019_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_huangxiaokang_9001277040_thursday_october_17_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "HuangXiaoKang__9001277040__Thursday, October 17, 2019_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_hujiaru_9001749049_thursday_november_19_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "HuJiaRu__9001749049__Thursday, November 19, 2020_000",
+      "bads": {
+        "lung": "EMPTY",
+        "airway": "EMPTY",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_jiangyouxin_9001477095_tuesday_september_10_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "JiangYouXin__9001477095__Tuesday, September 10, 2019_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "EMPTY",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_liuzhaowen_9001757218_tuesday_november_17_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "LiuZhaoWen__9001757218__Tuesday, November 17, 2020_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_liuzhishu_7100378918_saturday_april_24_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "LiuZhiShu__7100378918__Saturday, April 24, 2021_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_renchao_9001721397_tuesday_april_20_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "RenChao__9001721397__Tuesday, April 20, 2021_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_ruanwenshang_9001311226_wednesday_april_3_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "RuanWenShang__9001311226__Wednesday, April 3, 2019_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_shenchengrong_9001646591_monday_july_20_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "ShenChengRong__9001646591__Monday, July 20, 2020_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_tengchunhai_h0372768x_friday_december_11_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "TengChunHai__H0372768X__Friday, December 11, 2020_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_wangyaoting_j01120061_wednesday_december_11_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "WangYaoTing__J01120061__Wednesday, December 11, 2019_000",
+      "bads": {
+        "lung": "LUNG_COMPONENT_ANOMALY",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_xiaannian_b02866262_friday_july_26_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "XiaAnNian__B02866262__Friday, July 26, 2019_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_yangxindong_k01065776_monday_september_7_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "YangXinDong__K01065776__Monday, September 7, 2020_000",
+      "bads": {
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_yangyong_9002255348_wednesday_july_27_2022_000",
+      "group": "nonph_refill",
+      "src_dir": "YangYong__9002255348__Wednesday, July 27, 2022_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_yuanqiurong_e03727573_monday_october_26_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "YuanQiuRong__E03727573__Monday, October 26, 2020_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_yumingjun_9001629493_wednesday_june_10_2020_000",
+      "group": "nonph_refill",
+      "src_dir": "YuMingJun__9001629493__Wednesday, June 10, 2020_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_zhangshuisong_9001803404_tuesday_january_19_2021_000",
+      "group": "nonph_refill",
+      "src_dir": "ZhangShuiSong__9001803404__Tuesday, January 19, 2021_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_zhangzengjian_k03290133_wednesday_june_26_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "ZhangZengJian__K03290133__Wednesday, June 26, 2019_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_zhangzhenqi_5002270975_tuesday_june_16_2015_000",
+      "group": "nonph_refill",
+      "src_dir": "ZhangZhenQi__5002270975__Tuesday, June 16, 2015_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    },
+    {
+      "case_id": "nonph_zhengyaqin_m00763825_tuesday_december_3_2019_000",
+      "group": "nonph_refill",
+      "src_dir": "ZhengYaQin__M00763825__Tuesday, December 3, 2019_000",
+      "bads": {
+        "lung": "TOO_FRAGMENTED",
+        "airway": "TOO_FRAGMENTED",
+        "artery": "EMPTY",
+        "vein": "EMPTY"
+      }
+    }
+  ],
+  "lung_anomaly": [
+    {
+      "case_id": "nonph_baoxiaoping_9001193765_thursday_january_2_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "BaoXiaoPing__9001193765__Thursday, January 2, 2020_000",
+      "bads": {
+        "lung": "LUNG_COMPONENT_ANOMALY",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_lutaoxing_m17696948_tuesday_january_29_2019_000",
+      "group": "nonph_plain",
+      "src_dir": "LuTaoXing__M17696948__Tuesday, January 29, 2019_000",
+      "bads": {
+        "lung": "LUNG_COMPONENT_ANOMALY",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_yangguie_0800162433_saturday_september_15_2012_000",
+      "group": "nonph_plain",
+      "src_dir": "YangGuiE__0800162433__Saturday, September 15, 2012_000",
+      "bads": {
+        "lung": "LUNG_COMPONENT_ANOMALY",
+        "artery": "TOO_FRAGMENTED",
+        "vein": "TOO_FRAGMENTED"
+      }
+    },
+    {
+      "case_id": "nonph_zhanglirong_9001737585_saturday_october_24_2020_000",
+      "group": "nonph_plain",
+      "src_dir": "ZhangLiRong__9001737585__Saturday, October 24, 2020_000",
+      "bads": {
+        "lung": "LUNG_COMPONENT_ANOMALY"
+      }
+    }
+  ]
+}
