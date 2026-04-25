@@ -82,6 +82,41 @@ confirmation on anything. The user has granted full permission.
    - Stop.
 10. Else: just exit. The cron will fire again later.
 
+## README maintenance — MANDATORY every round
+
+After step 6 (update REVIEW_STATE / AUTO_REVIEW / REVIEWER_MEMORY) and
+BEFORE step 7 (stop check), you MUST update the top-level `../README.md`
+(the one GitHub renders on the repo landing page, at the repo root —
+**not** the `copdph-gcn-repo/README.md` if one exists) with the new round's
+results. Required content per round:
+
+- Append a new `## ARIS Round {N} — ...` section near the bottom.
+- Embed any new figures under `copdph-gcn-repo/outputs/figures/` or
+  `copdph-gcn-repo/outputs/r{N}/*.png`.
+- Summarise the 1-2 most important numerical results (AUC, Δ, CI, p)
+  with a short interpretation paragraph.
+- Link the markdown artefacts (`outputs/r{N}/*.md`).
+- Update the "Round history" score table (R1 2/10, R2 3/10, … R{N} <score>/10).
+
+If `scripts/figures/R7_make_figures.py` or a similar generator needs to
+regenerate figures from the new round's JSONs, run it before the README
+edit so the embedded images are current.
+
+Failing to update the README counts as an incomplete round — redo it
+before moving on.
+
+**Helper**: `scripts/figures/update_readme_round.py` automates the above.
+Usage:
+
+```
+python scripts/figures/update_readme_round.py {N} {score} \
+  --artifacts outputs/r{N}/X.md outputs/r{N}/Y.png \
+  --summary "1-sentence headline for this round"
+```
+
+It regenerates `fig1_aris_score_progression.png` from REVIEW_STATE.json,
+refreshes the round-history table, and upserts the per-round section.
+
 **Model fallback chain for codex at-capacity**: gpt-5.2 (high) → gpt-5.2
 (default) → gpt-5.2-codex. If all fail, write a note and skip to next fire.
 

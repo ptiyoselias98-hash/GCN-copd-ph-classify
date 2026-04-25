@@ -12,6 +12,40 @@
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
     {
+      "round": 10,
+      "timestamp": "2026-04-24T17:00:00",
+      "score": 6.2,
+      "verdict": "reject",
+      "reviewer": "codex-mcp gpt-5.2 high-reasoning",
+      "experiments": [
+        "R10.1 GRL adversarial arm (run_sprint6_v2_grl.py) trained arm_a on full 282",
+        "R10.2 λ sweep {0.5, 1, 2, 5, 10, 20} on GPU0+GPU1 parallel",
+        "R10.3 All λ fail to reduce within-nonPH protocol AUC below 0.82; disease 0.75→0.63 at high λ. HONEST NEGATIVE",
+        "R10.4 Case-level OOF + case-bootstrap CI (fixes R9 fold-level flag)",
+        "R10.5 Automation: user pre-approved ops, target raised 9.5/10 max 40 rounds, README auto-updater added"
+      ],
+      "reviewer_bugs_flagged": [
+        "λ DOUBLE-SCALING: GradReverse.backward uses lambd AND loss multiplies by λ → encoder gradients scale ~λ². Must fix: either GRL=λ with unweighted CE, OR GRL=1 with λ*CE (not both).",
+        "OBJECTIVE MISMATCH: adversary trained on full cohort where PH≈contrast. Should be trained on nonPH-only OR class-conditional, to match the within-nonPH evaluation target."
+      ],
+      "must_fix_before_round11": [
+        "Fix λ double-scaling, rerun baseline + 1-2 λ values",
+        "Train adversary on nonPH-only OR class-conditional domain adversarial",
+        "Report adversary-head protocol AUC during training (diagnostics)",
+        "Multi-seed repeats (≥3) at corrected setup",
+        "Reconcile effective N (243 vs 282) with explicit missingness-by-protocol table",
+        "Stronger protocol probe (small MLP, not just LR) as worst-case leakage check"
+      ],
+      "minimum_to_reach_9point5": [
+        "Within-nonPH protocol AUC ≤0.60 with upper CI bound ≤0.65 on n significantly larger than 80",
+        "Disease AUC preserved or improved under protocol control",
+        "Complete cohort definition with missingness-by-protocol proven non-leaking",
+        "Confound-aware objective with adversary diagnostics proving optimization",
+        "External-validity check on protocol-balanced holdout (new plain-scan nonPH)"
+      ],
+      "reviewer_notes_for_memory": "R10 GRL sweep is an honest negative but flagged implementation bugs (λ² grad scaling + objective mismatch trained on full cohort). Real protocol AUC within-nonPH stays 0.82-0.89 across all λ; disease drops 0.75→0.63 at high λ. Before claiming GRL fails, fix bugs + condition adversary on nonPH + multi-seed + adversary diagnostics."
+    },
+    {
       "round": 9,
       "timestamp": "2026-04-24T15:30:00",
       "score": 6,
@@ -89,7 +123,7 @@
         "Pkl provenance with git_sha + kimimaro_version + verification script that fails CI on mismatch"
       ],
       "reviewer_notes_for_memory": "R7 added a 6-figure suite (now source-of-truth driven) and locked remote env, but the core Round 6 must-fixes remain blocked by GPU contention (other user's dinomaly job on both GPUs). Score stays at 5/10. Same primary delta finding (lung globals NS, p=0.45). Path to 8/10 requires GPU access for adversarial debiasing + GCN exclusion sensitivity + builder rebuild."
-    }
+    },
     {
       "round": 6,
       "timestamp": "2026-04-24T11:15:00",

@@ -10,6 +10,21 @@ Active code lives in `copdph-gcn-repo/`. Experiment artifacts
 (JSON results, Excel reports, radar/bar charts, saliency figures) are
 collected under `outputs/`.
 
+## ARIS round history (auto-generated)
+
+| Round | Score | Verdict |
+|---|---|---|
+| R1 | 2/10 | reject |
+| R2 | 3/10 | reject |
+| R3 | 4/10 | reject |
+| R4 | 5/10 | reject |
+| R5 | 6/10 | reject |
+| R6 | 5/10 | reject |
+| R7 | 5/10 | reject |
+| R8 | 6/10 | reject |
+| R9 | 6/10 | reject |
+| R10 | 6.2/10 | reject |
+
 ## Task
 
 Binary classification — **COPD-PH vs COPD-nonPH** — from:
@@ -1223,3 +1238,12 @@ Round 6/7 artifacts:
 - [`environment.lock.yml`](copdph-gcn-repo/environment.lock.yml) · [`requirements-remote.lock.txt`](copdph-gcn-repo/requirements-remote.lock.txt) (kimimaro 5.8.1, torch 2.6.0, PyG 2.6.1)
 - [`outputs/r5/R5_gcn_feature_within_nonph.md`](copdph-gcn-repo/outputs/r5/R5_gcn_feature_within_nonph.md)
 - [`outputs/r5/R5_delong_primary.md`](copdph-gcn-repo/outputs/r5/R5_delong_primary.md)
+
+
+## ARIS Round 10 — score 6.2/10
+
+GRL adversarial λ sweep {0.5..20} fails to reduce within-nonPH protocol AUC below 0.82. Reviewer caught a λ double-scaling bug (grads scale ~λ²) and an objective mismatch (adversary trained on full cohort where PH≈contrast instead of nonPH-only). Honest negative with actionable Round 11 fixes.
+
+- [R10_adv_sweep.md](copdph-gcn-repo/outputs/r10/R10_adv_sweep.md)
+![fig1_aris_score_progression](copdph-gcn-repo/outputs/figures/fig1_aris_score_progression.png)
+
