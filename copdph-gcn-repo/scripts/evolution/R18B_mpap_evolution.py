@@ -77,17 +77,25 @@ def main():
         fails = {r["case_id"] for r in sf.get("real_fails", []) + sf.get("lung_anomaly", [])}
     df = df[~df["case_id"].isin(fails)].copy()
 
-    # Stage assignment
-    rng = np.random.default_rng(42)
+    # Stage assignment — REAL mPAP-based binning (was random proxy in R18.B v1)
+    mpap_gold_path = ROOT / "data" / "mpap_lookup_gold.json"
+    if not mpap_gold_path.exists():
+        raise SystemExit(f"missing {mpap_gold_path} — fetch from remote first")
+    mpap_lookup = json.loads(mpap_gold_path.read_text(encoding="utf-8"))
+    df["mpap"] = df["case_id"].map(mpap_lookup)
     df["stage"] = -1
+    # Stage 0: plain-scan nonPH (mPAP 0-10 default per user 2026-04-25)
     df.loc[(df["label"] == 0) & (df["protocol"].str.lower() == "plain_scan"), "stage"] = 0
+    df.loc[(df["label"] == 0) & (df["protocol"].str.lower() == "plain_scan"), "mpap"] = 5.0
+    # Stage 1: contrast nonPH (mPAP 10-20 borderline default)
     df.loc[(df["label"] == 0) & (df["protocol"].str.lower() == "contrast"), "stage"] = 1
-    # PH cases: 3-stage uniform random split (proxy until mPAP xlsx resolved)
-    ph_idx = df.index[df["label"] == 1].tolist()
-    rng.shuffle(ph_idx)
-    n_ph = len(ph_idx); a = n_ph // 3; b = 2 * n_ph // 3
-    for i, idx in enumerate(ph_idx):
-        df.loc[idx, "stage"] = 2 if i < a else (3 if i < b else 4)
+    df.loc[(df["label"] == 0) & (df["protocol"].str.lower() == "contrast"), "mpap"] = 15.0
+    # Stage 2/3/4: PH cases binned by REAL mPAP from mpap_lookup_gold
+    df.loc[(df["label"] == 1) & (df["mpap"] < 25), "stage"] = 2
+    df.loc[(df["label"] == 1) & (df["mpap"] >= 25) & (df["mpap"] < 35), "stage"] = 3
+    df.loc[(df["label"] == 1) & (df["mpap"] >= 35), "stage"] = 4
+    # PH without resolved mPAP → drop from analysis
+    df.loc[(df["label"] == 1) & (df["mpap"].isna()), "stage"] = -1
 
     print(f"stage counts:")
     print(df["stage"].value_counts().sort_index().to_string())
@@ -108,12 +116,12 @@ def main():
     out = {"stage_counts": {int(k): int(v) for k, v in
                               df["stage"].value_counts().sort_index().items()},
            "stage_definition": {
-               "0": "plain-scan nonPH (mPAP 0-10 default per user 2026-04-25)",
-               "1": "contrast nonPH (borderline 10-20; n=27)",
-               "2": "PH early (mPAP 25-35; proxy by random 1/3 split of PH)",
-               "3": "PH moderate (mPAP 35-45; proxy)",
-               "4": "PH severe (mPAP >45; proxy)",
-               "note": "Stages 2-4 use random PH split as PROXY until mpap_lookup.json resolved to case_ids via xlsx. R19 will redo with true mPAP.",
+               "0": "plain-scan nonPH (mPAP 0-10 default per user 2026-04-25, assigned 5.0)",
+               "1": "contrast nonPH (mPAP 10-20 borderline default, assigned 15.0)",
+               "2": "PH borderline (real mPAP <25 from mpap_lookup_gold)",
+               "3": "PH early-moderate (real mPAP 25-35)",
+               "4": "PH moderate-severe (real mPAP >=35)",
+               "note": "Stages 2-4 use REAL mPAP from mpap_lookup_gold.json (R18.C resolved 106/113 PH cases). 7 PH without mPAP excluded.",
            },
            "trend_tests": {}}
 
@@ -151,17 +159,19 @@ def main():
         json.dumps(out, indent=2), encoding="utf-8")
 
     # MD report
-    md = ["# R18.B — mPAP 5-stage evolution analysis (PROXY, mPAP-xlsx-resolution PENDING)",
+    md = ["# R18.B — mPAP 5-stage evolution analysis (REAL mPAP, R18.C resolved)",
           "",
           "**User clinical input 2026-04-25**: plain-scan COPDNOPH ≈ no PH = mPAP 0-10.",
+          "**R18.C resolution**: mpap_lookup_gold.json provides case_id-keyed mPAP for 106 PH cases.",
           "",
-          "Stages: 0=plain-scan nonPH (n="
-          + str(out["stage_counts"].get(0, 0)) + "), 1=contrast nonPH (n="
-          + str(out["stage_counts"].get(1, 0)) + "), 2/3/4=PH split (proxy: random 1/3).",
+          "Stages:",
+          f"- 0=plain-scan nonPH (mPAP 0-10 default, n={out['stage_counts'].get(0,0)})",
+          f"- 1=contrast nonPH (mPAP 10-20 borderline, n={out['stage_counts'].get(1,0)})",
+          f"- 2=PH borderline (real mPAP <25, n={out['stage_counts'].get(2,0)})",
+          f"- 3=PH early-moderate (real mPAP 25-35, n={out['stage_counts'].get(3,0)})",
+          f"- 4=PH moderate-severe (real mPAP ≥35, n={out['stage_counts'].get(4,0)})",
           "",
-          "**CAVEAT**: stages 2-4 use random 1/3 split of PH cases as proxy until "
-          "`mpap_lookup.json` resolved to case_ids via `copd-ph患者113例0331.xlsx`. "
-          "R19 will redo with true mPAP per case.",
+          "Excluded: PH cases without resolved mPAP (typically because patient_sn not in mpap_lookup_gold).",
           "",
           "## Trend tests across 5 ordered stages",
           "",
@@ -186,12 +196,13 @@ def main():
 
     md += ["## Caveats",
            "",
-           "1. PH stages 2-4 are RANDOM 1/3 splits, not true mPAP. Real evolution "
-           "trends require resolving `mpap_lookup.json` → case_ids (R19 task).",
+           "1. PH cases without resolved mPAP (in xlsx 113 cases minus 106 resolved + "
+           "those not in extended cohort) are EXCLUDED from analysis.",
            "2. Stage 1 (contrast nonPH n=27) is small.",
-           "3. Spearman/Jonckheere on ordinal stages with random PH binning can "
-           "still detect Stage 0/1 → PH structure shifts (the major within-cohort "
-           "evolution signal), but cannot separate early/moderate/severe PH.",
+           "3. Stage 2 (PH borderline mPAP<25, n="
+           + str(out['stage_counts'].get(2,0)) + ") is the smallest PH bin.",
+           "4. Spearman/Jonckheere are NON-PARAMETRIC trend tests for ordered "
+           "alternatives — robust to non-normal distributions.",
            ""]
     (OUT / "mpap_evolution.md").write_text("\n".join(md), encoding="utf-8")
 
