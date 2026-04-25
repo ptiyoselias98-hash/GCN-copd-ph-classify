@@ -15,7 +15,7 @@ Output: outputs/r20/ddpm_anomaly_legacy.csv (282 rows) +
         outputs/r20/ddpm_anomaly_legacy_eval.{json,md}
 """
 from __future__ import annotations
-import argparse, json, sys, time
+import argparse, gc, json, sys, time
 from pathlib import Path
 import numpy as np
 
@@ -31,6 +31,8 @@ def main():
     p.add_argument("--checkpoint", default=str(ROOT / "outputs" / "r19" / "ddpm_state_dict.pt"))
     p.add_argument("--n_eval_patches", type=int, default=8)
     p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--filter", default="", choices=["", "ph_only", "nonph_only"])
+    p.add_argument("--out_suffix", default="")
     args = p.parse_args()
 
     import torch
@@ -54,6 +56,11 @@ def main():
     alphas = 1 - betas; alpha_bars = torch.cumprod(alphas, dim=0)
 
     labels_df = pd.read_csv(LABELS)
+    if args.filter == "ph_only":
+        labels_df = labels_df[labels_df["label"] == 1].reset_index(drop=True)
+    elif args.filter == "nonph_only":
+        labels_df = labels_df[labels_df["label"] == 0].reset_index(drop=True)
+    print(f"iterating {len(labels_df)} labels (filter={args.filter or 'none'})", flush=True)
     rows = []
     for i, lr in enumerate(labels_df.iterrows()):
         _, lr = lr
@@ -110,15 +117,18 @@ def main():
             mean_nll = float(np.mean(nlls))
             rows.append({"case_id": cid, "label": label, "mean_nll": mean_nll,
                          "n_patches": len(nlls), "wall_seconds": round(time.time()-t0, 2)})
-            if (i + 1) % 25 == 0:
-                print(f"  ...{len(rows)}/{i+1} | last case wall={time.time()-t0:.1f}s")
+            del ct, lung, coords; gc.collect()
+            if (i + 1) % 5 == 0:
+                print(f"  ...{len(rows)}/{i+1} | last case wall={time.time()-t0:.1f}s",
+                      flush=True)
         except Exception as e:
-            print(f"  [fail] {cid}: {str(e)[:120]}")
+            print(f"  [fail] {cid}: {str(e)[:120]}", flush=True)
         if args.limit > 0 and len(rows) >= args.limit:
             break
 
     df = pd.DataFrame(rows)
-    out_csv = OUT / "ddpm_anomaly_legacy.csv"
+    suffix = f"_{args.out_suffix}" if args.out_suffix else ""
+    out_csv = OUT / f"ddpm_anomaly_legacy{suffix}.csv"
     df.to_csv(out_csv, index=False)
     print(f"\nsaved {len(df)} rows → {out_csv}")
 
@@ -139,8 +149,8 @@ def main():
         except Exception: out["mwu_ph_gt_nonph_p"] = None
         out["ph_mean_nll"] = float(ph_nll.mean())
         out["nonph_mean_nll"] = float(np_nll.mean())
-    (OUT / "ddpm_anomaly_legacy_eval.json").write_text(json.dumps(out, indent=2),
-                                                         encoding="utf-8")
+    (OUT / f"ddpm_anomaly_legacy_eval{suffix}.json").write_text(
+        json.dumps(out, indent=2), encoding="utf-8")
     md = ["# R20.A — DDPM anomaly evaluation on legacy 282 cohort (CPU)",
           "",
           f"Trained: R19 DDPM (nonPH-only on new100 plain-scan).",
@@ -155,7 +165,8 @@ def main():
                f"- PH mean NLL = {out['ph_mean_nll']:.4f}, nonPH mean NLL = {out['nonph_mean_nll']:.4f}",
                f"- Δ = {out['ph_mean_nll'] - out['nonph_mean_nll']:+.4f}",
                f"- MWU one-sided p = {out.get('mwu_ph_gt_nonph_p', 'NA')}"]
-    (OUT / "ddpm_anomaly_legacy_eval.md").write_text("\n".join(md), encoding="utf-8")
+    (OUT / f"ddpm_anomaly_legacy_eval{suffix}.md").write_text(
+        "\n".join(md), encoding="utf-8")
     print(f"saved → {OUT}/ddpm_anomaly_legacy_eval.{{json,md}}")
     if "anomaly_auc" in out:
         print(f"\nAnomaly AUC = {out['anomaly_auc']:.3f}")
