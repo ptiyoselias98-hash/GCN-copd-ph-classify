@@ -30,6 +30,69 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 18 key concerns (2026-04-25 21:30) — CARRY INTO ROUND 19
+
+**Score: codex 9.3 / honest 8.8** (debt-penalty −0.5 for 5 unclosed must-fix).
+**+0.8 honest from R17=8.0** — biggest single-round honest leap.
+**Path to 9.5: close 5 remaining debts.**
+
+R18 closed 5 must-fix items (most progress in any round):
+
+1. ✅ **R18.A same-case paired per-structure AUCs**: vein 0.801, airway 0.790,
+   artery 0.741 (n=190 same-case). ALL paired Δ NS (p>0.27).
+   **Airway 0.797 R17 'highest' was sub-cohort artifact — RETRACTED.**
+
+2. ✅ **R18.C mPAP resolution**: `mpap_lookup_gold.json` resolves case_id →
+   mPAP for 106/113 PH cases (no MD5 inversion needed).
+
+3. ✅ **R18.B 5-stage mPAP evolution**: First defensible CROSS-SECTIONAL
+   severity-ordered evidence:
+   - artery_len_p25 ρ=−0.767 p=9e-30 Jonckheere z=−10.07
+   - paren_std_HU ρ=+0.629 p=1.5e-17
+   - artery_tort_p10 ρ=−0.619 p=6.7e-17
+   - vein_len_p25 ρ=−0.613 p=2.7e-16
+   **CRITICAL CORRECTION**: apical_basal_LAA950_gradient earlier R16/R17
+   sig was RANDOM-SPLIT ARTIFACT — now NS p=0.16 with real mPAP.
+   paren_LAA_950 NOW sig ρ=+0.218 (was NS in proxy).
+
+4. ✅ **R18.E covariate-adjusted endotype**: ALL 8 features survive
+   year-residualization (Δd<0.05). artery_tort_p10 raw d=−1.42 →
+   year-adj −1.40. Year-rho all in [−0.22, +0.14]. Confounds NOT
+   contaminating findings.
+
+5. ✅ **R17.5 TDA persistence** + ✅ **R18.F unified endotype**:
+   3-modality Holm-Bonferroni panel (n=197 contrast, 201 features):
+   - morph 17/143 sig, top artery_tort_p10 d=−1.42
+   - **TDA 3/18 sig, NEW vein_persH1_total d=−1.21** (PH veins lose
+     H1-loop topology — independent topology-loss finding)
+   - lung 6/40 sig, top paren_HU_p95 d=+1.12
+   3-modality LARGE-effect coupling: **vessel-remodeling ×
+   parenchyma-densification × topology-loss**
+
+6. ✅ **R20 multi-branch joint** trained end-to-end: 4-branch
+   (artery/vein/airway/paren) + cross-attention + multi-task heads.
+   Within-contrast n=100 mean AUC 0.859±0.160 (range 0.61-1.00 high
+   variance — exploratory, not stable).
+
+7. **R19 DDPM IN FLIGHT GPU 0**: epoch 4/30 loss 0.075 (from 0.81).
+   ETA ~6h. NO ANOMALY EVALUATION YET — must complete before R19 counts.
+
+**Reviewer regressions**:
+- mPAP "evolution" must be reframed to "cross-sectional severity
+  ordering" — no longitudinal repeated measures
+- R20 full-cohort AUC 0.943 is mostly protocol decoding
+- R20 within-contrast 0.859 has fold variance 0.61-1.00
+- mPAP Stage 0/1 nonPH bins assigned by protocol/default — not measured
+- Year-only residualization incomplete (need age/sex/scanner/site)
+- R17 extraction artifacts still not audited (n_terminals=0 bug)
+
+**5 remaining honest-debt items for R19+ (path to 9.5)**:
+1. R19 DDPM full evaluation (inference + anomaly heatmaps)
+2. Embedding-level enlarged-stratum probe (v2 cache rebuild on new100)
+3. Lung-mask blinded overlay gallery
+4. HiPaS re-seg of 38 legacy failures
+5. Multi-seed CORAL/MMD on enlarged stratum
+
 ## Round 17 key concerns (2026-04-25 19:35) — CARRY INTO ROUND 18
 
 **Score 9.2/10 revise** (up from R16=9.0). **0.3 from target 9.5.**

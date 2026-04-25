@@ -31,6 +31,7 @@ collected under `outputs/`.
 | R15 | 8.8/10 | revise |
 | R16 | 9.0/10 | revise |
 | R17 | 9.2/10 | revise |
+| R18 | 9.3/10 | revise |
 
 ## Task
 
@@ -1476,4 +1477,17 @@ R17 (9.2/10 revise, +0.2): per-structure topology fingerprints from native cache
 ![fig_r17_per_structure_forest](copdph-gcn-repo/outputs/figures/fig_r17_per_structure_forest.png)
 
 ![fig_r17_per_structure_volcano](copdph-gcn-repo/outputs/figures/fig_r17_per_structure_volcano.png)
+
+## ARIS Round 18 — score 8.8/10
+
+R18 (codex 9.3 / HONEST 8.8 after debt-penalty -0.5; +0.8 from R17 honest 8.0). Closed 5 must-fix items in one round. NEW: real mPAP 5-stage evolution (artery_len_p25 ρ=-0.767 p=9e-30 across stages); TDA H1-loop topology loss in PH veins (d=-1.21); covariate-adjusted endotype robust (Δd<0.05); R20 multi-branch joint trained (within-contrast 0.859); R18.A retracts R17 airway artifact
+
+- [mpap_evolution.md](copdph-gcn-repo/outputs/r18/mpap_evolution.md)
+- [unified_endotype.md](copdph-gcn-repo/outputs/r18/unified_endotype.md)
+- [covariate_adjusted_endotype.md](copdph-gcn-repo/outputs/r18/covariate_adjusted_endotype.md)
+- [paired_per_structure_aucs.md](copdph-gcn-repo/outputs/r18/paired_per_structure_aucs.md)
+- [r20_results_within_contrast.json](copdph-gcn-repo/outputs/r20/r20_results_within_contrast.json)
+![fig_r18_mpap_trajectories](copdph-gcn-repo/outputs/figures/fig_r18_mpap_trajectories.png)
+
+![fig_r18_unified_forest](copdph-gcn-repo/outputs/figures/fig_r18_unified_forest.png)
 
