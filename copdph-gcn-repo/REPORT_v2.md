@@ -2,6 +2,16 @@
 
 _Auto-generated 2026-04-23 01:17:10_
 
+## 0. Terminology — "evolution" is cross-sectional severity ordering
+
+This report uses "evolution" / "演化" / "trajectory" language throughout
+sections §17–§20. **None of this is longitudinal**: there are no paired
+same-patient scans over time. All such phrasing refers to **cross-sectional
+severity ordering** — different patients arranged by mPAP from low (plain-scan
+nonPH default 0–10) through high (PH severe ≥35) and analyzed via Spearman
+ρ + Jonckheere-Terpstra monotonic trends. (R18 reviewer must-fix #6 closed
+at R20.)
+
 ## 1. Cohort & Mask Encoding
 
 ### 1.1 Current (2026-04-24) 345-case cohort

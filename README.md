@@ -34,6 +34,16 @@ collected under `outputs/`.
 | R18 | 9.3/10 | revise |
 | R19 | 9.1/10 | revise |
 
+## Terminology — "evolution" vs "cross-sectional severity ordering"
+
+This project does **not** include paired longitudinal scans of the same patient
+over time. All "evolution" / "trajectory" / "演化" language in this README,
+REPORT_v2, FINAL_FINDINGS, and per-round artifacts refers to **cross-sectional
+severity ordering** — different patients sampled at different mPAP levels,
+arranged from low (plain-scan nonPH) to high (PH ≥35 mmHg) and analyzed for
+monotonic Spearman/Jonckheere trends. It is **not** a within-patient time
+series. (R18 reviewer must-fix #6 closed at R20.)
+
 ## Task
 
 Binary classification — **COPD-PH vs COPD-nonPH** — from:

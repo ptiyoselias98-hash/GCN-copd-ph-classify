@@ -2,6 +2,11 @@
   "round": 20,
   "status": "round_20_in_progress_ddpm_eval_closed_with_honest_negative",
   "round_20_progress": {
+    "terminology_reframe": {
+      "status": "DONE — closes R18 must-fix #6",
+      "files_updated": ["README.md (top-level)", "copdph-gcn-repo/REPORT_v2.md (§0 added)"],
+      "verdict": "Added explicit disclaimer at top of both docs that 'evolution' / 'trajectory' / '演化' language refers to CROSS-SECTIONAL severity ordering across patients arranged by mPAP, NOT longitudinal time-series within patients (no paired same-patient scans). Closes R18 must-fix #6."
+    },
     "tda_robustness_audit": {
       "status": "DONE — closes R18 must-fix #8 with POSITIVE verdict",
       "target_feature": "vein_persH1_total",
