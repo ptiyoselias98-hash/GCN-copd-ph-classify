@@ -1,7 +1,7 @@
 #!/bin/bash
 # R20.F parallel worker — picks up cases not yet done.
 # Launch alongside primary worker for 2x throughput on GPU 1 (RTX 3090 24GB).
-set -e
+# NO `set -e` — tolerate per-case failures (corrupted gz, OOM); loop continues.
 source /home/imss/miniconda3/etc/profile.d/conda.sh
 conda activate pulmonary_bv5_py39 || conda activate HiPaS
 
@@ -38,7 +38,8 @@ save(artery, 'artery.nii.gz'); save(vein, 'vein.nii.gz'); save(lung, 'lung.nii.g
 " > /tmp/r20f_seg_logs/${case_id}_w2.log 2>&1
 }
 
-# Process cases in REVERSE order so we don't collide with worker 1 (which goes forward)
+# Process cases in REVERSE order so we don't collide with worker 1 (forward).
+# `|| true` ensures one bad case doesn't kill the loop.
 CASES=( $(ls "$LEGACY_NII" | tac) )
-for c in "${CASES[@]}"; do run_one "$c"; done
+for c in "${CASES[@]}"; do run_one "$c" || true; done
 echo "[w2 done]"
