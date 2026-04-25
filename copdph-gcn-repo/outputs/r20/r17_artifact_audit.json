@@ -1,0 +1,119 @@
+{
+  "shape": [
+    282,
+    134
+  ],
+  "structures": {
+    "artery": {
+      "n_terminals": {
+        "min": 0,
+        "max": 0,
+        "mean": 0.0,
+        "median": 0.0,
+        "n_zero": 282,
+        "n_total": 282,
+        "verdict": "BUG: all 0 \u2014 needs degree-counting fix"
+      },
+      "lap_eig0": {
+        "min": -1.040369634856236e-18,
+        "max": 5.657187386625057e-18,
+        "mean": 1.2109219808949048e-18,
+        "median": 0.0,
+        "n_below_1e-9": 282,
+        "n_total": 282,
+        "verdict": "DEGENERATE: numerical zero (drop)"
+      },
+      "edge_branch_ratio": {
+        "median": 4.036231884057971,
+        "mean": 4.038022681169702,
+        "verdict": "edges = 2*branches (doubled \u2014 direction bug?)"
+      }
+    },
+    "vein": {
+      "n_terminals": {
+        "min": 0,
+        "max": 0,
+        "mean": 0.0,
+        "median": 0.0,
+        "n_zero": 282,
+        "n_total": 282,
+        "verdict": "BUG: all 0 \u2014 needs degree-counting fix"
+      },
+      "lap_eig0": {
+        "min": 0.0,
+        "max": 8.051958796344133e-18,
+        "mean": 1.3605422697745333e-18,
+        "median": 0.0,
+        "n_below_1e-9": 282,
+        "n_total": 282,
+        "verdict": "DEGENERATE: numerical zero (drop)"
+      },
+      "edge_branch_ratio": {
+        "median": 4.040998217468806,
+        "mean": 4.040993597829479,
+        "verdict": "edges = 2*branches (doubled \u2014 direction bug?)"
+      }
+    },
+    "airway": {
+      "n_terminals": {
+        "min": 0,
+        "max": 0,
+        "mean": 0.0,
+        "median": 0.0,
+        "n_zero": 282,
+        "n_total": 282,
+        "verdict": "BUG: all 0 \u2014 needs degree-counting fix"
+      },
+      "lap_eig0": {
+        "min": -0.1231309125177372,
+        "max": 1.0408340855860841e-17,
+        "mean": -0.0023422614327217304,
+        "median": 2.4201226540593507e-18,
+        "n_below_1e-9": 246,
+        "n_total": 282,
+        "verdict": "OK: finite"
+      },
+      "edge_branch_ratio": {
+        "median": 4.029411764705882,
+        "mean": 4.0361220526127735,
+        "verdict": "edges = 2*branches (doubled \u2014 direction bug?)"
+      }
+    }
+  },
+  "near_zero_sd_features": {
+    "n": 8,
+    "list": [
+      "airway_n_terminals",
+      "airway_term_per_node",
+      "artery_lap_eig0",
+      "artery_n_terminals",
+      "artery_term_per_node",
+      "vein_lap_eig0",
+      "vein_n_terminals",
+      "vein_term_per_node"
+    ],
+    "verdict": "EXCLUDE from downstream: zero-variance (no information signal)"
+  },
+  "nonconstant_features": {
+    "n": 115
+  },
+  "artifact_columns_to_drop": [
+    "airway_n_terminals",
+    "airway_term_per_node",
+    "artery_lap_eig0",
+    "artery_n_terminals",
+    "artery_term_per_node",
+    "vein_lap_eig0",
+    "vein_n_terminals",
+    "vein_term_per_node"
+  ],
+  "n_artifact_columns": 8,
+  "flagship_features_not_artifact": {
+    "artery_len_p25": true,
+    "artery_len_p50": true,
+    "artery_tort_p10": true,
+    "vein_len_p25": true,
+    "vein_persH1_total": "ABSENT",
+    "paren_std_HU": "ABSENT"
+  }
+}

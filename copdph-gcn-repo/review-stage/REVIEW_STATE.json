@@ -2,6 +2,17 @@
   "round": 20,
   "status": "round_20_in_progress_ddpm_eval_closed_with_honest_negative",
   "round_20_progress": {
+    "r17_artifact_audit": {
+      "status": "DONE — closes R18 must-fix #7",
+      "n_artifact_features_excluded": 8,
+      "list": [
+        "airway_n_terminals", "airway_term_per_node",
+        "artery_lap_eig0", "artery_n_terminals", "artery_term_per_node",
+        "vein_lap_eig0", "vein_n_terminals", "vein_term_per_node"
+      ],
+      "verdict": "n_terminals=0 across 282/282 cases for all 3 structures (degree-counting bug); lap_eig0 numerical zero (~1e-18) for artery+vein; edges/branches ratio ~4.0 (multi-voxel-per-branch; not a bug, just different granularity). Flagship findings (artery_len_p25, artery_len_p50, artery_tort_p10, vein_len_p25) are NOT in artifact set. paren_std_HU + vein_persH1_total live in different feature tables, not affected. R18 must-fix #7 closed.",
+      "artifacts": ["outputs/r20/r17_artifact_audit.{json,md}"]
+    },
     "ddpm_eval": {
       "status": "DONE — closes R18 must-fix #1 with HONEST NEGATIVE",
       "n_total": 247,
