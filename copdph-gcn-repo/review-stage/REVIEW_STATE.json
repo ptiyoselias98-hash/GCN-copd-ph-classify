@@ -2,6 +2,24 @@
   "round": 20,
   "status": "round_20_in_progress_ddpm_eval_closed_with_honest_negative",
   "round_20_progress": {
+    "unified_pipeline_verification": {
+      "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
+      "approach": "Apply Simple_AV_seg uniformly to legacy 199 contrast + new100 100, build unified-301 cache + R17 morphometrics, verify R18.B finding reproduces",
+      "results_within_contrast_n190": {
+        "artery_len_p25": "Cohen's d = -0.298, MWU p=0.013, PH=5.33 vs nonPH=5.90 (DIRECTION PRESERVED)",
+        "artery_len_p50": "d = -0.473, MWU p=0.00096 (DIRECTION PRESERVED, stronger)",
+        "artery_tort_p10": "d = -0.370, MWU p=0.032 (DIRECTION PRESERVED)",
+        "vein_len_p25": "d = -0.712, MWU p=0.12 (DIRECTION PRESERVED, n_nonPH=27 limits power)"
+      },
+      "spearman_5stage_unified_n102": {
+        "artery_len_p25": "rho = -0.211 (vs legacy -0.767)",
+        "artery_len_p50": "rho = -0.281",
+        "artery_tort_p10": "rho = -0.136",
+        "vein_len_p25": "rho = -0.129"
+      },
+      "verdict": "DIRECTION of vascular remodeling signal IS pipeline-independent (all 4 flagship features show PH<nonPH in unified Simple_AV_seg pipeline); but legacy ρ=-0.767 EFFECT SIZE was pipeline-specific (HiPaS amplification). Honest middle: biology real, magnitude must be revised. Closes R18 must-fix #2 with partial-positive.",
+      "artifacts": ["outputs/r20/morph_unified301.csv (290 cases × 84 features)", "outputs/r20/unified_verify_r18b.{json,md}"]
+    },
     "pipeline_unification_savseg": {
       "status": "RUNNING on remote GPU 1 — closes R18 must-fix #2/#4 (and unblocks #3/#5)",
       "progress_check_2026_04_26_T04_34": "38/201 cases done (19%) at +10 min from launch; rate ~3.8 cases/min; ETA ~42 min remaining",
