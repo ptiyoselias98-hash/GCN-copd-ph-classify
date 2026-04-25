@@ -30,6 +30,67 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 15 key concerns (2026-04-25 16:30) — CARRY INTO ROUND 16
+
+**Score 8.8/10 revise** (up from R14=8.4). Major progress on enlarged
+cohort + R14 must-fix items, but new questions raised:
+
+1. **R14 must-fix paired-CI ✅**: lung_only > graph_only is NOT significant
+   (paired Δ=+0.062 [-0.031, +0.160] p=0.19). The defensible read is
+   COMBINED (lung+graph) > graph alone (Δ=+0.085 p=0.0008) — lung adds
+   complementary signal, but neither modality dominates standalone.
+
+2. **CORAL is seed-unstable** ✅: paired vs corrected-GRL only sig at
+   seed=2042 (p=0.007); ties at 1042; loses at 42. Reframe to "exploratory
+   non-GRL deconfounder", NOT confirmed Path-B win.
+
+3. **Clustering k=2 winner** ✅: consensus ARI 0.943 at k=2, R14 k=3
+   unstable (0.827). 3+ subdivisions are seed-dependent.
+
+4. **Lung scanner-era confound NOT detected** ✅: year-effect on
+   paren_mean_HU p=0.25, HU-cluster vs year p=0.84. Lung-only disease
+   AUC is genuine.
+
+5. **100-case ingestion ✅**: DCM→NIfTI→Simple_AV_seg→lung-features
+   pipeline complete. Cohort 282→360, plain-scan nonPH 85→163, total
+   nonPH 112→190. 22 of 100 were refills of legacy placeholders.
+
+6. **KEY new finding (concerning)**: enlarged within-nonPH protocol
+   probe at n=151 yields LR AUC **0.908 [0.819, 0.968]** vs R12 baseline
+   **0.853 [0.722, 0.942]** at n=80. **Protocol confound is MORE
+   pronounced on the larger stratum**, not less — current CORAL/GRL
+   evidence on legacy 80-case stratum does NOT generalize to the 151
+   stratum. R16 must redo deconfounding on enlarged embeddings.
+
+7. **Endotype replication ✅** (within-contrast n=186):
+   - paren_mean_HU PH −807.7 vs nonPH −844.7, Δ=+37 (p=0.001)
+   - apical_basal_LAA950_gradient PH −0.027 vs nonPH +0.041 (p=0.005;
+     SIGN FLIP — PH has basal>apical emphysema)
+   - lung_vol_mL PH 3380 vs nonPH 4353, Δ=−972 (p=0.005)
+   - artery_vol_mL PH 261 vs nonPH 203, Δ=+58 (p=0.0009)
+   - paren_LAA_950_frac NS (p=0.59) — total emphysema unchanged; the
+     difference is in DISTRIBUTION (apical-basal gradient) not amount.
+   First quantitative answer fragment to "vascular phenotypes evolve
+   in COPD→COPD-PH": denser+smaller lungs, more artery volume, basal-
+   emphysema redistribution.
+
+8. **Outstanding R15 reviewer flags for R16**:
+   - Simple_AV_seg trained on CTPA, applied to plain-scan — domain
+     transfer QC missing (Dice/coverage/overlay gallery)
+   - Vascular morphometrics CSV lacks longest_path_hops (BFS condition
+     never satisfied); per-structure artery/vein split incomplete
+   - 38 legacy HiPaS re-segmentation pending
+   - Endotype p-values not multiplicity-corrected; covariate-adjusted
+     analyses (age/sex/scanner) missing
+
+Round 16 minimum:
+- Embedding-level enlarged-stratum protocol probe (n=151)
+- Multi-seed CORAL/MMD on enlarged cohort with hierarchical CIs
+- Independent Simple_AV_seg QC on plain-scan masks (lung volume/range,
+  vessel volume sanity, blinded spot QC)
+- HiPaS re-seg outcomes for 38 legacy failures
+- Multiplicity-corrected endotype effect sizes + covariate adjustment
+
 ## Round 14 key concerns (2026-04-25 12:30) — CARRY INTO ROUND 15
 
 **Score 8.4/10 revise** (up from R13=8.0). R14 added multi-seed CORAL +

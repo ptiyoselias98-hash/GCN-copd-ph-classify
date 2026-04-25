@@ -215,3 +215,35 @@ Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R13=8.0 (+0.4).
 **Must fix R15**: hierarchical paired CIs; AUC-diff CIs; lung confound audit; cluster stability; 345-cohort ingestion pipeline launch; HiPaS re-seg status; vascular morphometrics on remote.
 
 **Path to ≥9.5**: 345-cohort ingestion + paired CIs across deconfounder families + endotype clinical correlation (mPAP/FEV1/6MWT) + ideally longitudinal/external validation.
+
+---
+
+## Round 15 (2026-04-25 16:30) — score 8.8 / verdict revise
+
+Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R14=8.4 (+0.4).
+
+**R15 deliverables (closing R14 must-fix list)**:
+- ✅ Paired AUC-diff CIs (R15.A): lung_only > graph_only NOT significant (Δ=+0.062 p=0.19); combined > graph IS significant (p=0.0008)
+- ✅ Clustering stability (R15.B): k=2 most stable (ARI=0.943)
+- ✅ Lung confound audit (R15.C): scanner/era confound NOT detected
+- ✅ Vascular morphometrics (R14.C): 243 cases × 12 explicit cols (per-structure split deferred)
+- ✅ 100-case ingestion (R15.0/.1/.D): DCM→NIfTI→Simple_AV_seg→lung-features pipeline complete
+- ✅ Extended cohort manifest (R15.E): 282→360 cases
+- ✅ Enlarged-stratum analyses (R15.G):
+  - within-nonPH protocol probe n=151: LR 0.908 [0.819, 0.968] (HIGHER than R12 0.853 at n=80)
+  - within-contrast disease n=186: LR 0.847 [0.755, 0.923] (replicates R14 0.844)
+  - Endotype replicates all p<0.01: PH +37HU denser, +58mL artery, -972mL lung, basal-emphysema gradient flip
+  - Total LAA-950 NS (p=0.59) — difference in DISTRIBUTION not amount
+
+**Key new finding — concerning**: enlarged-stratum protocol confound is MORE pronounced (LR 0.91 vs 0.85), so current CORAL/GRL evidence on legacy 80-case stratum does NOT generalize to the n=151 stratum.
+
+**Reviewer regressions**:
+- CORAL not confirmed deconfounder win (paired test seed-dependent)
+- Simple_AV_seg domain transfer to plain-scan needs QC
+- Vascular morphometrics CSV missing longest_path_hops; per-structure split incomplete
+- Endotype p-values uncorrected for multiplicity
+- 38 legacy HiPaS re-seg pending
+
+**Must fix R16**: embedding-level enlarged probe; Simple_AV_seg plain-scan QC; HiPaS re-seg of 38; per-structure morphometrics; multiplicity-corrected endotype tests.
+
+**Path to ≥9.5**: final unified 360-case cohort with frozen QC manifest + enlarged deconfounding + endotype-clinical correlation + external/temporal validation.

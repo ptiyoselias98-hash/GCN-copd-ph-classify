@@ -1,6 +1,6 @@
 {
   "round": 15,
-  "status": "round_15_in_progress_scp_RUNNING_seg_launcher_READY",
+  "status": "round_15_complete_score_8.8_revise",
   "running_actions": [
     {"action": "DCM→NIfTI for 100 new plain-scan nonPH", "status": "DONE 100/100", "ended_at": "2026-04-25T12:54:03", "log": "outputs/r15/dcm_conversion_log.json"},
     {"action": "scp nii-new100 (12GB) to imss@10.60.147.117:/home/imss/cw/GCN copdnoph copdph/nii-new100/", "status": "DONE 100/100 (completed 2026-04-25T14:36); nested path FLATTENED via `mv`; ready for seg pipeline"},
@@ -24,6 +24,47 @@
     {"round": 3, "score": 4, "verdict": "reject"},
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
+    {
+      "round": 15,
+      "timestamp": "2026-04-25T16:30:00",
+      "score": 8.8,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "experiments": [
+        "R15.A paired AUC-diff CIs: lung_only > graph_only NOT significant (Δ=+0.062 [-0.031,+0.160] p=0.19); (lung+graph) > graph significant (Δ=+0.085 [+0.029,+0.148] p=0.0008); CORAL-vs-GRL paired seed-dependent (only sig at seed=2042 p=0.007)",
+        "R15.B clustering stability sweep: k=2 most stable (consensus ARI 0.943), R14 k=3 unstable (0.827)",
+        "R15.C lung-confound audit: scanner/era confound NOT detected (year p=0.25, HU-cluster vs year p=0.84); lung-only AUC genuine disease signal",
+        "R14.C vascular morphometrics: 243 cases × 12 explicit cols (n_branches, tortuosity_proxy, radius_*); per-structure split deferred",
+        "R15.0/.1 100-case ingestion: DCM→NIfTI 100/100; scp 12GB to remote; Simple_AV_seg lung+artery+vein 100/100 (~13min on 2-GPU); R15.D lung-feature extraction 100/100 (after odd-z shape-fix)",
+        "R15.E extended cohort manifest 282→360 (78 new + 22 refilled placeholders); plain-scan nonPH 85→163; total nonPH 112→190",
+        "R15.G enlarged-stratum analyses: within-nonPH protocol LR 0.908 [0.819, 0.968] at n=151 (vs 0.853 at R12 n=80) — confound STRONGER; within-contrast disease 0.847 [0.755, 0.923] replicates R14 0.844; endotype features replicate (PH +37 HU denser p=0.001, +58mL artery p=0.001, -972mL lung p=0.005, basal-emphysema gradient flip p=0.005, total LAA-950 NS p=0.59)"
+      ],
+      "regressions_r15": [
+        "Reviewer flagged: paired CORAL-vs-GRL is seed-dependent — CORAL is exploratory, not confirmed deconfounder win",
+        "Enlarged within-nonPH protocol probe HIGHER (0.908 vs R12 0.853) — current CORAL/GRL haven't solved leakage on final cohort",
+        "Simple_AV_seg trained on CTPA but applied to plain-scan; domain-transfer QC missing",
+        "Vascular morphometrics header lacks longest_path_hops (likely no case satisfied the BFS condition); per-structure split incomplete",
+        "Endotype effect-sizes uncorrected for multiplicity; nonPH-contrast n=27 small",
+        "38 legacy HiPaS re-segmentation failures still pending"
+      ],
+      "must_fix_before_round16": [
+        "Run enlarged n=151 within-nonPH protocol probe on FINAL embeddings/deconfounded representations (not just lung features), with case/bootstrap CIs",
+        "Stop calling CORAL confirmed deconfounder win — reframe as seed-unstable unless seed×case hierarchical paired CI on identical cases supports it",
+        "Add independent segmentation QC for 100 new plain-scan: lung mask volume/range, artery/vein outlier review, overlay gallery, blinded spot QC",
+        "Resolve Simple_AV_seg domain-transfer concern: CTPA-trained on plain CT needs Dice/coverage validation OR exclude plain-scan vascular outputs from vascular claims",
+        "Fix vascular morphometrics: include longest_path_hops or drop the claim; verify terminal/branch metrics; add per-structure artery/vein outputs; link to PH vs nonPH and clusters",
+        "Complete the 38 legacy HiPaS re-segmentation outcomes",
+        "Endotype claims with multiplicity correction (Bonferroni/Holm/FDR) and covariate adjustment for age/sex/year/scanner if metadata exist"
+      ],
+      "minimum_to_reach_9point5": [
+        "Final unified 360-case cohort with explicit exclusions, segmentation QC pass/fail table, frozen manifest",
+        "Protocol deconfounding evaluated on enlarged corrected stratum with LR/MLP probe near target OR honestly framed negative with preserved disease AUC",
+        "Paper-grade anatomical validation: overlay QC, skeleton-to-mask coverage, TEASAR sensitivity, validated artery/vein morphometrics",
+        "Endotype validation beyond cross-sectional PH/nonPH: cluster stability + mPAP/FEV1/6MWD/COPD severity correlation + temporal/stage evidence",
+        "External or temporal validation, or at minimum a locked held-out cohort never used during feature/model iteration"
+      ],
+      "reviewer_notes_for_memory": "R15 8.8/10 (up from R14 8.4). Major closures: paired-CI lung-vs-graph reversed (p=0.19 NS — combined > graph p=0.0008); clustering k=2 winner; lung scanner-era confound NOT detected; lung-only disease AUC replicates 0.844→0.847 at n=186; 100 new cases ingested DCM→NIfTI→Simple_AV_seg→lung-features (cohort 282→360, plain-scan nonPH 85→163, total nonPH 112→190). KEY new finding: enlarged within-nonPH protocol probe HIGHER 0.908 [0.819, 0.968] at n=151 vs R12 0.853 at n=80 — confound is more pronounced not less. Endotype replicates: PH +37 HU denser, +58mL artery, -972mL lung, basal-emphysema gradient flip (all p<0.01); total LAA-950 NS — difference is in distribution not amount. R16 must add (1) embedding-level enlarged probe (not just lung features), (2) Simple_AV_seg plain-scan QC + domain-transfer validation, (3) HiPaS re-seg of 38 failures, (4) per-structure morphometrics, (5) multiplicity-corrected endotype effect sizes."
+    },
     {
       "round": 14,
       "timestamp": "2026-04-25T12:30:00",
