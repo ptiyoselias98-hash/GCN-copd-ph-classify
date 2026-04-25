@@ -1,6 +1,10 @@
 {
-  "round": 14,
-  "status": "round_14_complete_score_8.4_revise",
+  "round": 15,
+  "status": "round_15_in_progress_dcm_conv_DONE_segmentation_NEXT",
+  "running_actions": [
+    {"action": "DCM→NIfTI for 100 new plain-scan nonPH", "status": "DONE 100/100", "ended_at": "2026-04-25T12:54:03", "output_dir": "E:/桌面文件/nii格式图/nii-new100/", "log": "outputs/r15/dcm_conversion_log.json"},
+    {"action": "segmentation pipeline (lung+airway+artery+vein) for nii-new100", "status": "QUEUED — next cron must scp NIfTIs to imss@10.60.147.117 and run remote seg pipeline; then v2 cache rebuild; then re-run within-nonPH protocol probe on enlarged stratum"}
+  ],
   "running_gpu_jobs": [
     {"host": "imss@10.60.147.117", "script": "run_sprint6_v2_coral.py", "args": "lam in [0,1,5,10] seed=42 (4-job pilot, 1 per GPU sequentially)", "started": "2026-04-25T11:25:00", "expected_done": "2026-04-25T13:00:00", "logs": "/tmp/r13_logs/coral_l*_s42_gpu*.log", "outputs": "outputs/sprint6_arm_a_coral_l*_s42/sprint6_results.json + embeddings/"}
   ],

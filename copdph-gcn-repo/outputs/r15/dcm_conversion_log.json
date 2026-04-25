@@ -1,0 +1,1718 @@
+{
+  "started_at": "2026-04-25T12:26:13",
+  "sources": [
+    "H:\\4月24号-新增24个copdnoph平扫性\\（24个完整）copdnoph平扫性",
+    "H:\\4月24号-新增76个copdnoph平扫性"
+  ],
+  "target_root": "E:\\桌面文件\\nii格式图\\nii-new100",
+  "cases": [
+    {
+      "status": "ok",
+      "n_slices": 537,
+      "shape": [
+        512,
+        512,
+        537
+      ],
+      "spacing": [
+        0.818359,
+        0.818359,
+        0.625
+      ],
+      "src": "GaoYuGuo__9002006243__Sunday, September 26, 2021_000",
+      "case_id": "nonph_gaoyuguo_9002006243_sunday_september_26_2021_000",
+      "wall_seconds": 39.02
+    },
+    {
+      "status": "ok",
+      "n_slices": 395,
+      "shape": [
+        512,
+        512,
+        395
+      ],
+      "spacing": [
+        0.7734375,
+        0.7734375,
+        1.0
+      ],
+      "src": "GuRuPing__F01898499__Monday, October 14, 2019_000",
+      "case_id": "nonph_guruping_f01898499_monday_october_14_2019_000",
+      "wall_seconds": 29.44
+    },
+    {
+      "status": "ok",
+      "n_slices": 589,
+      "shape": [
+        512,
+        512,
+        589
+      ],
+      "spacing": [
+        0.73828125,
+        0.73828125,
+        0.7000000000000001
+      ],
+      "src": "HuangJianXin__9001535968__Monday, December 2, 2019_000",
+      "case_id": "nonph_huangjianxin_9001535968_monday_december_2_2019_000",
+      "wall_seconds": 44.23
+    },
+    {
+      "status": "ok",
+      "n_slices": 380,
+      "shape": [
+        512,
+        512,
+        380
+      ],
+      "spacing": [
+        0.7890625,
+        0.7890625,
+        1.0
+      ],
+      "src": "HuangXiaoKang__9001277040__Thursday, October 17, 2019_000",
+      "case_id": "nonph_huangxiaokang_9001277040_thursday_october_17_2019_000",
+      "wall_seconds": 28.5
+    },
+    {
+      "status": "ok",
+      "n_slices": 360,
+      "shape": [
+        512,
+        512,
+        360
+      ],
+      "spacing": [
+        0.748046875,
+        0.748046875,
+        1.0
+      ],
+      "src": "HuJiaRu__9001749049__Thursday, November 19, 2020_000",
+      "case_id": "nonph_hujiaru_9001749049_thursday_november_19_2020_000",
+      "wall_seconds": 28.09
+    },
+    {
+      "status": "ok",
+      "n_slices": 355,
+      "shape": [
+        512,
+        512,
+        355
+      ],
+      "spacing": [
+        0.8125,
+        0.8125,
+        1.0
+      ],
+      "src": "JiangYouXin__9001477095__Tuesday, September 10, 2019_000",
+      "case_id": "nonph_jiangyouxin_9001477095_tuesday_september_10_2019_000",
+      "wall_seconds": 32.68
+    },
+    {
+      "status": "ok",
+      "n_slices": 355,
+      "shape": [
+        512,
+        512,
+        355
+      ],
+      "spacing": [
+        0.81640625,
+        0.81640625,
+        1.0
+      ],
+      "src": "LiuZhaoWen__9001757218__Tuesday, November 17, 2020_000",
+      "case_id": "nonph_liuzhaowen_9001757218_tuesday_november_17_2020_000",
+      "wall_seconds": 31.68
+    },
+    {
+      "status": "ok",
+      "n_slices": 377,
+      "shape": [
+        512,
+        512,
+        377
+      ],
+      "spacing": [
+        0.822265625,
+        0.822265625,
+        1.0000000001861702
+      ],
+      "src": "LiuZhiShu__7100378918__Saturday, April 24, 2021_000",
+      "case_id": "nonph_liuzhishu_7100378918_saturday_april_24_2021_000",
+      "wall_seconds": 30.5
+    },
+    {
+      "status": "ok",
+      "n_slices": 390,
+      "shape": [
+        512,
+        512,
+        390
+      ],
+      "spacing": [
+        0.78515625,
+        0.78515625,
+        1.0
+      ],
+      "src": "MaWenHu__G0265125X__Wednesday, October 27, 2021_000",
+      "case_id": "nonph_mawenhu_g0265125x_wednesday_october_27_2021_000",
+      "wall_seconds": 28.9
+    },
+    {
+      "status": "ok",
+      "n_slices": 289,
+      "shape": [
+        512,
+        512,
+        289
+      ],
+      "spacing": [
+        0.808594,
+        0.808594,
+        1.25
+      ],
+      "src": "RenChao__9001721397__Tuesday, April 20, 2021_000",
+      "case_id": "nonph_renchao_9001721397_tuesday_april_20_2021_000",
+      "wall_seconds": 38.47
+    },
+    {
+      "status": "ok",
+      "n_slices": 380,
+      "shape": [
+        512,
+        512,
+        380
+      ],
+      "spacing": [
+        0.73046875,
+        0.73046875,
+        1.0
+      ],
+      "src": "RuanWenShang__9001311226__Wednesday, April 3, 2019_000",
+      "case_id": "nonph_ruanwenshang_9001311226_wednesday_april_3_2019_000",
+      "wall_seconds": 28.35
+    },
+    {
+      "status": "ok",
+      "n_slices": 543,
+      "shape": [
+        512,
+        512,
+        543
+      ],
+      "spacing": [
+        0.73046875,
+        0.73046875,
+        0.7
+      ],
+      "src": "ShenChengRong__9001646591__Monday, July 20, 2020_000",
+      "case_id": "nonph_shenchengrong_9001646591_monday_july_20_2020_000",
+      "wall_seconds": 36.39
+    },
+    {
+      "status": "ok",
+      "n_slices": 519,
+      "shape": [
+        512,
+        512,
+        519
+      ],
+      "spacing": [
+        0.71875,
+        0.71875,
+        0.7000000000000001
+      ],
+      "src": "SunZeGang__9001412676__Monday, June 29, 2020_000",
+      "case_id": "nonph_sunzegang_9001412676_monday_june_29_2020_000",
+      "wall_seconds": 43.71
+    },
+    {
+      "status": "ok",
+      "n_slices": 374,
+      "shape": [
+        512,
+        512,
+        374
+      ],
+      "spacing": [
+        0.76171875,
+        0.76171875,
+        1.0
+      ],
+      "src": "TengChunHai__H0372768X__Friday, December 11, 2020_000",
+      "case_id": "nonph_tengchunhai_h0372768x_friday_december_11_2020_000",
+      "wall_seconds": 32.11
+    },
+    {
+      "status": "ok",
+      "n_slices": 498,
+      "shape": [
+        512,
+        512,
+        498
+      ],
+      "spacing": [
+        0.751953125,
+        0.751953125,
+        0.7
+      ],
+      "src": "WangYaoTing__J01120061__Wednesday, December 11, 2019_000",
+      "case_id": "nonph_wangyaoting_j01120061_wednesday_december_11_2019_000",
+      "wall_seconds": 35.6
+    },
+    {
+      "status": "ok",
+      "n_slices": 360,
+      "shape": [
+        512,
+        512,
+        360
+      ],
+      "spacing": [
+        0.732421875,
+        0.732421875,
+        1.0
+      ],
+      "src": "XiaAnNian__B02866262__Friday, July 26, 2019_000",
+      "case_id": "nonph_xiaannian_b02866262_friday_july_26_2019_000",
+      "wall_seconds": 24.98
+    },
+    {
+      "status": "ok",
+      "n_slices": 340,
+      "shape": [
+        512,
+        512,
+        340
+      ],
+      "spacing": [
+        0.837890625,
+        0.837890625,
+        1.0
+      ],
+      "src": "YangXinDong__K01065776__Monday, September 7, 2020_000",
+      "case_id": "nonph_yangxindong_k01065776_monday_september_7_2020_000",
+      "wall_seconds": 23.07
+    },
+    {
+      "status": "ok",
+      "n_slices": 346,
+      "shape": [
+        512,
+        512,
+        346
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0000000011594201
+      ],
+      "src": "YangYong__9002255348__Wednesday, July 27, 2022_000",
+      "case_id": "nonph_yangyong_9002255348_wednesday_july_27_2022_000",
+      "wall_seconds": 26.39
+    },
+    {
+      "status": "ok",
+      "n_slices": 380,
+      "shape": [
+        512,
+        512,
+        380
+      ],
+      "spacing": [
+        0.8125,
+        0.8125,
+        1.0
+      ],
+      "src": "YuanQiuRong__E03727573__Monday, October 26, 2020_000",
+      "case_id": "nonph_yuanqiurong_e03727573_monday_october_26_2020_000",
+      "wall_seconds": 22.5
+    },
+    {
+      "status": "ok",
+      "n_slices": 322,
+      "shape": [
+        512,
+        512,
+        322
+      ],
+      "spacing": [
+        0.65625,
+        0.65625,
+        1.0000000015576325
+      ],
+      "src": "YuMingJun__9001629493__Wednesday, June 10, 2020_000",
+      "case_id": "nonph_yumingjun_9001629493_wednesday_june_10_2020_000",
+      "wall_seconds": 28.52
+    },
+    {
+      "status": "ok",
+      "n_slices": 410,
+      "shape": [
+        512,
+        512,
+        410
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ZhangShuiSong__9001803404__Tuesday, January 19, 2021_000",
+      "case_id": "nonph_zhangshuisong_9001803404_tuesday_january_19_2021_000",
+      "wall_seconds": 24.57
+    },
+    {
+      "status": "ok",
+      "n_slices": 346,
+      "shape": [
+        512,
+        512,
+        346
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ZhangZengJian__K03290133__Wednesday, June 26, 2019_000",
+      "case_id": "nonph_zhangzengjian_k03290133_wednesday_june_26_2019_000",
+      "wall_seconds": 23.05
+    },
+    {
+      "status": "ok",
+      "n_slices": 586,
+      "shape": [
+        512,
+        512,
+        586
+      ],
+      "spacing": [
+        0.708984375,
+        0.708984375,
+        0.7
+      ],
+      "src": "ZhangZhenQi__5002270975__Tuesday, June 16, 2015_000",
+      "case_id": "nonph_zhangzhenqi_5002270975_tuesday_june_16_2015_000",
+      "wall_seconds": 35.81
+    },
+    {
+      "status": "ok",
+      "n_slices": 320,
+      "shape": [
+        512,
+        512,
+        320
+      ],
+      "spacing": [
+        0.599609375,
+        0.599609375,
+        1.0
+      ],
+      "src": "ZhengYaQin__M00763825__Tuesday, December 3, 2019_000",
+      "case_id": "nonph_zhengyaqin_m00763825_tuesday_december_3_2019_000",
+      "wall_seconds": 19.99
+    },
+    {
+      "status": "ok",
+      "n_slices": 429,
+      "shape": [
+        512,
+        512,
+        429
+      ],
+      "spacing": [
+        0.7734375,
+        0.7734375,
+        0.7
+      ],
+      "src": "BaoZuXian__L01210416__Saturday, June 8, 2019_000",
+      "case_id": "nonph_baozuxian_l01210416_saturday_june_8_2019_000",
+      "wall_seconds": 10.58
+    },
+    {
+      "status": "ok",
+      "n_slices": 553,
+      "shape": [
+        512,
+        512,
+        553
+      ],
+      "spacing": [
+        0.808594,
+        0.808594,
+        0.625001811594203
+      ],
+      "src": "BoQiKang__G02801414__Tuesday, July 26, 2022_000",
+      "case_id": "nonph_boqikang_g02801414_tuesday_july_26_2022_000",
+      "wall_seconds": 19.96
+    },
+    {
+      "status": "ok",
+      "n_slices": 657,
+      "shape": [
+        512,
+        512,
+        657
+      ],
+      "spacing": [
+        0.804688,
+        0.804688,
+        0.6249984756097562
+      ],
+      "src": "ChenGangLi__K06651686__Saturday, July 3, 2021_000",
+      "case_id": "nonph_chengangli_k06651686_saturday_july_3_2021_000",
+      "wall_seconds": 24.62
+    },
+    {
+      "status": "ok",
+      "n_slices": 508,
+      "shape": [
+        512,
+        512,
+        508
+      ],
+      "spacing": [
+        0.775390625,
+        0.775390625,
+        0.7
+      ],
+      "src": "ChengShanJu__9001559972__Thursday, April 9, 2020_000",
+      "case_id": "nonph_chengshanju_9001559972_thursday_april_9_2020_000",
+      "wall_seconds": 12.36
+    },
+    {
+      "status": "ok",
+      "n_slices": 370,
+      "shape": [
+        512,
+        512,
+        370
+      ],
+      "spacing": [
+        0.73828125,
+        0.73828125,
+        0.9999728997289972
+      ],
+      "src": "ChenHongLian__9001350786__Thursday, April 4, 2019_000",
+      "case_id": "nonph_chenhonglian_9001350786_thursday_april_4_2019_000",
+      "wall_seconds": 9.76
+    },
+    {
+      "status": "ok",
+      "n_slices": 355,
+      "shape": [
+        512,
+        512,
+        355
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ChenLaiDong__9001959127__Sunday, July 25, 2021_000",
+      "case_id": "nonph_chenlaidong_9001959127_sunday_july_25_2021_000",
+      "wall_seconds": 8.6
+    },
+    {
+      "status": "ok",
+      "n_slices": 405,
+      "shape": [
+        512,
+        512,
+        405
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ChenXueBin__M05271600__Monday, July 15, 2019_000",
+      "case_id": "nonph_chenxuebin_m05271600_monday_july_15_2019_000",
+      "wall_seconds": 9.52
+    },
+    {
+      "status": "ok",
+      "n_slices": 335,
+      "shape": [
+        512,
+        512,
+        335
+      ],
+      "spacing": [
+        0.765625,
+        0.765625,
+        1.0
+      ],
+      "src": "ChenYaoMing__J06712779__Thursday, November 7, 2019_000",
+      "case_id": "nonph_chenyaoming_j06712779_thursday_november_7_2019_000",
+      "wall_seconds": 7.8
+    },
+    {
+      "status": "ok",
+      "n_slices": 430,
+      "shape": [
+        512,
+        512,
+        430
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ChenYongHou__K03665679__Monday, November 11, 2019_000",
+      "case_id": "nonph_chenyonghou_k03665679_monday_november_11_2019_000",
+      "wall_seconds": 12.12
+    },
+    {
+      "status": "ok",
+      "n_slices": 431,
+      "shape": [
+        512,
+        512,
+        431
+      ],
+      "spacing": [
+        0.59375,
+        0.59375,
+        0.7
+      ],
+      "src": "FengTianJun__0800201773__Monday, May 27, 2013_000",
+      "case_id": "nonph_fengtianjun_0800201773_monday_may_27_2013_000",
+      "wall_seconds": 9.6
+    },
+    {
+      "status": "ok",
+      "n_slices": 366,
+      "shape": [
+        512,
+        512,
+        366
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        0.9999999991232877
+      ],
+      "src": "HeYuanZhu__7100176769__Friday, June 14, 2019_000",
+      "case_id": "nonph_heyuanzhu_7100176769_friday_june_14_2019_000",
+      "wall_seconds": 15.85
+    },
+    {
+      "status": "ok",
+      "n_slices": 333,
+      "shape": [
+        512,
+        512,
+        333
+      ],
+      "spacing": [
+        0.87109375,
+        0.87109375,
+        1.0000000006024097
+      ],
+      "src": "JiangHaiHong__P05493088__Monday, April 27, 2020_000",
+      "case_id": "nonph_jianghaihong_p05493088_monday_april_27_2020_000",
+      "wall_seconds": 16.45
+    },
+    {
+      "status": "ok",
+      "n_slices": 287,
+      "shape": [
+        512,
+        512,
+        287
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0000000006993006
+      ],
+      "src": "JiaSuQin__E00082896__Monday, March 18, 2019_000",
+      "case_id": "nonph_jiasuqin_e00082896_monday_march_18_2019_000",
+      "wall_seconds": 13.63
+    },
+    {
+      "status": "ok",
+      "n_slices": 395,
+      "shape": [
+        512,
+        512,
+        395
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "KongDeRong__0800108397__Monday, May 6, 2019_000",
+      "case_id": "nonph_kongderong_0800108397_monday_may_6_2019_000",
+      "wall_seconds": 8.47
+    },
+    {
+      "status": "ok",
+      "n_slices": 360,
+      "shape": [
+        512,
+        512,
+        360
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0000000002785514
+      ],
+      "src": "LiuJianBing__M06195806__Friday, April 12, 2019_000",
+      "case_id": "nonph_liujianbing_m06195806_friday_april_12_2019_000",
+      "wall_seconds": 16.9
+    },
+    {
+      "status": "ok",
+      "n_slices": 365,
+      "shape": [
+        512,
+        512,
+        365
+      ],
+      "spacing": [
+        0.73828125,
+        0.73828125,
+        0.9999725274725273
+      ],
+      "src": "LuShanDe__P10515253__Wednesday, February 24, 2021_000",
+      "case_id": "nonph_lushande_p10515253_wednesday_february_24_2021_000",
+      "wall_seconds": 9.05
+    },
+    {
+      "status": "ok",
+      "n_slices": 335,
+      "shape": [
+        512,
+        512,
+        335
+      ],
+      "spacing": [
+        0.720703125,
+        0.720703125,
+        1.000000001497006
+      ],
+      "src": "LuYuKang__P09392540__Tuesday, April 21, 2020_000",
+      "case_id": "nonph_luyukang_p09392540_tuesday_april_21_2020_000",
+      "wall_seconds": 17.86
+    },
+    {
+      "status": "ok",
+      "n_slices": 356,
+      "shape": [
+        512,
+        512,
+        356
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "MaWenJuan__J06837395__Saturday, January 30, 2021_000",
+      "case_id": "nonph_mawenjuan_j06837395_saturday_january_30_2021_000",
+      "wall_seconds": 18.03
+    },
+    {
+      "status": "ok",
+      "n_slices": 324,
+      "shape": [
+        512,
+        512,
+        324
+      ],
+      "spacing": [
+        0.720703125,
+        0.720703125,
+        0.999999999380805
+      ],
+      "src": "PanZhongHua__M03257581__Tuesday, February 2, 2021_000",
+      "case_id": "nonph_panzhonghua_m03257581_tuesday_february_2_2021_000",
+      "wall_seconds": 17.74
+    },
+    {
+      "status": "ok",
+      "n_slices": 345,
+      "shape": [
+        512,
+        512,
+        345
+      ],
+      "spacing": [
+        0.873046875,
+        0.873046875,
+        1.0
+      ],
+      "src": "QianRenYe__M02629128__Saturday, July 30, 2022_000",
+      "case_id": "nonph_qianrenye_m02629128_saturday_july_30_2022_000",
+      "wall_seconds": 8.3
+    },
+    {
+      "status": "ok",
+      "n_slices": 395,
+      "shape": [
+        512,
+        512,
+        395
+      ],
+      "spacing": [
+        0.869140625,
+        0.869140625,
+        1.0000000000000002
+      ],
+      "src": "QiuChongQing__9001699338__Wednesday, January 6, 2021_000",
+      "case_id": "nonph_qiuchongqing_9001699338_wednesday_january_6_2021_000",
+      "wall_seconds": 9.42
+    },
+    {
+      "status": "ok",
+      "n_slices": 300,
+      "shape": [
+        512,
+        512,
+        300
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        0.999999999665552
+      ],
+      "src": "QuanPuFen__K01722430__Monday, June 10, 2019_000",
+      "case_id": "nonph_quanpufen_k01722430_monday_june_10_2019_000",
+      "wall_seconds": 20.45
+    },
+    {
+      "status": "ok",
+      "n_slices": 468,
+      "shape": [
+        512,
+        512,
+        468
+      ],
+      "spacing": [
+        0.67578125,
+        0.67578125,
+        0.7000000000000001
+      ],
+      "src": "ShaoRongHua__9001214172__Wednesday, August 12, 2020_000",
+      "case_id": "nonph_shaoronghua_9001214172_wednesday_august_12_2020_000",
+      "wall_seconds": 10.94
+    },
+    {
+      "status": "ok",
+      "n_slices": 314,
+      "shape": [
+        512,
+        512,
+        314
+      ],
+      "spacing": [
+        0.7421875,
+        0.7421875,
+        1.0
+      ],
+      "src": "ShengJinGen__K04979223__Saturday, September 26, 2020_000",
+      "case_id": "nonph_shengjingen_k04979223_saturday_september_26_2020_000",
+      "wall_seconds": 7.83
+    },
+    {
+      "status": "ok",
+      "n_slices": 343,
+      "shape": [
+        512,
+        512,
+        343
+      ],
+      "spacing": [
+        0.798828125,
+        0.798828125,
+        1.0000000000877194
+      ],
+      "src": "ShiMingYing__H02310639__Tuesday, February 23, 2021_000",
+      "case_id": "nonph_shimingying_h02310639_tuesday_february_23_2021_000",
+      "wall_seconds": 18.47
+    },
+    {
+      "status": "ok",
+      "n_slices": 542,
+      "shape": [
+        512,
+        512,
+        542
+      ],
+      "spacing": [
+        0.724609375,
+        0.724609375,
+        0.7
+      ],
+      "src": "SunYe__J03752185__Wednesday, April 1, 2020_000",
+      "case_id": "nonph_sunye_j03752185_wednesday_april_1_2020_000",
+      "wall_seconds": 12.7
+    },
+    {
+      "status": "ok",
+      "n_slices": 385,
+      "shape": [
+        512,
+        512,
+        385
+      ],
+      "spacing": [
+        0.759765625,
+        0.759765625,
+        1.0000260416666666
+      ],
+      "src": "TangJianPing__Q15418839__Tuesday, February 25, 2020_000",
+      "case_id": "nonph_tangjianping_q15418839_tuesday_february_25_2020_000",
+      "wall_seconds": 8.75
+    },
+    {
+      "status": "ok",
+      "n_slices": 612,
+      "shape": [
+        512,
+        512,
+        612
+      ],
+      "spacing": [
+        0.75,
+        0.75,
+        0.7
+      ],
+      "src": "TangJieLiang__9001252248__Saturday, September 5, 2020_000",
+      "case_id": "nonph_tangjieliang_9001252248_saturday_september_5_2020_000",
+      "wall_seconds": 18.76
+    },
+    {
+      "status": "ok",
+      "n_slices": 320,
+      "shape": [
+        512,
+        512,
+        320
+      ],
+      "spacing": [
+        0.802734375,
+        0.802734375,
+        1.0
+      ],
+      "src": "TangJinBao__B01917216__Friday, March 12, 2021_000",
+      "case_id": "nonph_tangjinbao_b01917216_friday_march_12_2021_000",
+      "wall_seconds": 9.53
+    },
+    {
+      "status": "ok",
+      "n_slices": 349,
+      "shape": [
+        512,
+        512,
+        349
+      ],
+      "spacing": [
+        0.76171875,
+        0.76171875,
+        0.9999999988505748
+      ],
+      "src": "TangLiMing__N04335446__Monday, June 24, 2019_000",
+      "case_id": "nonph_tangliming_n04335446_monday_june_24_2019_000",
+      "wall_seconds": 17.75
+    },
+    {
+      "status": "ok",
+      "n_slices": 345,
+      "shape": [
+        512,
+        512,
+        345
+      ],
+      "spacing": [
+        0.77734375,
+        0.77734375,
+        1.0
+      ],
+      "src": "TangMingFang__T1372018X__Tuesday, October 25, 2022_000",
+      "case_id": "nonph_tangmingfang_t1372018x_tuesday_october_25_2022_000",
+      "wall_seconds": 10.12
+    },
+    {
+      "status": "ok",
+      "n_slices": 320,
+      "shape": [
+        512,
+        512,
+        320
+      ],
+      "spacing": [
+        0.810546875,
+        0.810546875,
+        1.0
+      ],
+      "src": "WangGenSong__J02396721__Wednesday, January 20, 2021_000",
+      "case_id": "nonph_wanggensong_j02396721_wednesday_january_20_2021_000",
+      "wall_seconds": 9.41
+    },
+    {
+      "status": "ok",
+      "n_slices": 360,
+      "shape": [
+        512,
+        512,
+        360
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "WangGuoRong__F02419525__Wednesday, January 13, 2021_000",
+      "case_id": "nonph_wangguorong_f02419525_wednesday_january_13_2021_000",
+      "wall_seconds": 10.44
+    },
+    {
+      "status": "ok",
+      "n_slices": 407,
+      "shape": [
+        512,
+        512,
+        407
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        0.9999999997536947
+      ],
+      "src": "WangJinHuo__9001714083__Thursday, March 4, 2021_000",
+      "case_id": "nonph_wangjinhuo_9001714083_thursday_march_4_2021_000",
+      "wall_seconds": 18.47
+    },
+    {
+      "status": "ok",
+      "n_slices": 339,
+      "shape": [
+        512,
+        512,
+        339
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.000000001183432
+      ],
+      "src": "WangYiXin__B01936265__Wednesday, January 20, 2021_000",
+      "case_id": "nonph_wangyixin_b01936265_wednesday_january_20_2021_000",
+      "wall_seconds": 16.32
+    },
+    {
+      "status": "ok",
+      "n_slices": 363,
+      "shape": [
+        512,
+        512,
+        363
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0000000011049726
+      ],
+      "src": "WangZhenYuan__9001827819__Thursday, February 18, 2021_000",
+      "case_id": "nonph_wangzhenyuan_9001827819_thursday_february_18_2021_000",
+      "wall_seconds": 15.83
+    },
+    {
+      "status": "ok",
+      "n_slices": 340,
+      "shape": [
+        512,
+        512,
+        340
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        0.9999999994100295
+      ],
+      "src": "WangZhiGuang__G02204513__Friday, February 25, 2022_000",
+      "case_id": "nonph_wangzhiguang_g02204513_friday_february_25_2022_000",
+      "wall_seconds": 15.01
+    },
+    {
+      "status": "ok",
+      "n_slices": 320,
+      "shape": [
+        512,
+        512,
+        320
+      ],
+      "spacing": [
+        0.76171875,
+        0.76171875,
+        1.0
+      ],
+      "src": "WengWenQuan__T06534119__Sunday, May 9, 2021_000",
+      "case_id": "nonph_wengwenquan_t06534119_sunday_may_9_2021_000",
+      "wall_seconds": 7.01
+    },
+    {
+      "status": "ok",
+      "n_slices": 369,
+      "shape": [
+        512,
+        512,
+        369
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0000000013586956
+      ],
+      "src": "WuXinLai__H01672427__Thursday, January 14, 2021_000",
+      "case_id": "nonph_wuxinlai_h01672427_thursday_january_14_2021_000",
+      "wall_seconds": 17.72
+    },
+    {
+      "status": "ok",
+      "n_slices": 463,
+      "shape": [
+        512,
+        512,
+        463
+      ],
+      "spacing": [
+        0.677734375,
+        0.677734375,
+        0.7
+      ],
+      "src": "WuZhuXing__P10335519__Friday, May 24, 2019_000",
+      "case_id": "nonph_wuzhuxing_p10335519_friday_may_24_2019_000",
+      "wall_seconds": 10.13
+    },
+    {
+      "status": "ok",
+      "n_slices": 410,
+      "shape": [
+        512,
+        512,
+        410
+      ],
+      "spacing": [
+        0.796875,
+        0.796875,
+        1.0
+      ],
+      "src": "XieChangShou__9001761706__Tuesday, January 12, 2021_000",
+      "case_id": "nonph_xiechangshou_9001761706_tuesday_january_12_2021_000",
+      "wall_seconds": 8.67
+    },
+    {
+      "status": "ok",
+      "n_slices": 405,
+      "shape": [
+        512,
+        512,
+        405
+      ],
+      "spacing": [
+        0.9765625,
+        0.9765625,
+        1.0
+      ],
+      "src": "XiGuoLiang__L02078840__Saturday, June 20, 2020_000",
+      "case_id": "nonph_xiguoliang_l02078840_saturday_june_20_2020_000",
+      "wall_seconds": 8.24
+    },
+    {
+      "status": "ok",
+      "n_slices": 349,
+      "shape": [
+        512,
+        512,
+        349
+      ],
+      "spacing": [
+        0.8359375,
+        0.8359375,
+        0.9999999988505747
+      ],
+      "src": "XuHanMing__9001668916__Monday, August 3, 2020_000",
+      "case_id": "nonph_xuhanming_9001668916_monday_august_3_2020_000",
+      "wall_seconds": 14.73
+    },
+    {
+      "status": "ok",
+      "n_slices": 350,
+      "shape": [
+        512,
+        512,
+        350
+      ],
+      "spacing": [
+        0.7890625,
+        0.7890625,
+        1.0
+      ],
+      "src": "XuJinHong__J02306765__Friday, July 2, 2021_000",
+      "case_id": "nonph_xujinhong_j02306765_friday_july_2_2021_000",
+      "wall_seconds": 7.55
+    },
+    {
+      "status": "ok",
+      "n_slices": 326,
+      "shape": [
+        512,
+        512,
+        326
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0000000006153849
+      ],
+      "src": "XuJinLong__J05425786__Thursday, October 24, 2019_000",
+      "case_id": "nonph_xujinlong_j05425786_thursday_october_24_2019_000",
+      "wall_seconds": 14.97
+    },
+    {
+      "status": "ok",
+      "n_slices": 335,
+      "shape": [
+        512,
+        512,
+        335
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "XuMinGao__9001294412__Monday, July 8, 2019_000",
+      "case_id": "nonph_xumingao_9001294412_monday_july_8_2019_000",
+      "wall_seconds": 7.54
+    },
+    {
+      "status": "ok",
+      "n_slices": 301,
+      "shape": [
+        512,
+        512,
+        301
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        0.9999999989999999
+      ],
+      "src": "XuPeiYu__S00504587__Wednesday, February 16, 2022_000",
+      "case_id": "nonph_xupeiyu_s00504587_wednesday_february_16_2022_000",
+      "wall_seconds": 14.59
+    },
+    {
+      "status": "ok",
+      "n_slices": 558,
+      "shape": [
+        512,
+        512,
+        558
+      ],
+      "spacing": [
+        0.658203125,
+        0.658203125,
+        0.7
+      ],
+      "src": "XuRongQi__M02060453__Friday, May 10, 2019_000",
+      "case_id": "nonph_xurongqi_m02060453_friday_may_10_2019_000",
+      "wall_seconds": 12.69
+    },
+    {
+      "status": "ok",
+      "n_slices": 375,
+      "shape": [
+        512,
+        512,
+        375
+      ],
+      "spacing": [
+        0.736328125,
+        0.736328125,
+        1.0
+      ],
+      "src": "YangGuoQiang__B03360853__Tuesday, September 22, 2020_000",
+      "case_id": "nonph_yangguoqiang_b03360853_tuesday_september_22_2020_000",
+      "wall_seconds": 9.59
+    },
+    {
+      "status": "ok",
+      "n_slices": 350,
+      "shape": [
+        512,
+        512,
+        350
+      ],
+      "spacing": [
+        0.796875,
+        0.796875,
+        1.0000000008595988
+      ],
+      "src": "YangHaoHua__D00225976__Monday, July 19, 2021_000",
+      "case_id": "nonph_yanghaohua_d00225976_monday_july_19_2021_000",
+      "wall_seconds": 22.09
+    },
+    {
+      "status": "ok",
+      "n_slices": 375,
+      "shape": [
+        512,
+        512,
+        375
+      ],
+      "spacing": [
+        0.74609375,
+        0.74609375,
+        1.0
+      ],
+      "src": "YangJianGuo__K06692541__Monday, March 18, 2019_000",
+      "case_id": "nonph_yangjianguo_k06692541_monday_march_18_2019_000",
+      "wall_seconds": 8.45
+    },
+    {
+      "status": "ok",
+      "n_slices": 405,
+      "shape": [
+        512,
+        512,
+        405
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "YangZhengGuo__V14583759__Tuesday, March 9, 2021_000",
+      "case_id": "nonph_yangzhengguo_v14583759_tuesday_march_9_2021_000",
+      "wall_seconds": 9.28
+    },
+    {
+      "status": "ok",
+      "n_slices": 365,
+      "shape": [
+        512,
+        512,
+        365
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "YaoFuMing__H01819468__Monday, February 8, 2021_000",
+      "case_id": "nonph_yaofuming_h01819468_monday_february_8_2021_000",
+      "wall_seconds": 8.75
+    },
+    {
+      "status": "ok",
+      "n_slices": 374,
+      "shape": [
+        512,
+        512,
+        374
+      ],
+      "spacing": [
+        0.751953125,
+        0.751953125,
+        1.0
+      ],
+      "src": "YaoJianGuo__T14085456__Wednesday, November 25, 2020_000",
+      "case_id": "nonph_yaojianguo_t14085456_wednesday_november_25_2020_000",
+      "wall_seconds": 8.48
+    },
+    {
+      "status": "ok",
+      "n_slices": 300,
+      "shape": [
+        512,
+        512,
+        300
+      ],
+      "spacing": [
+        0.76953125,
+        0.76953125,
+        0.999999998929766
+      ],
+      "src": "YaoYiQin__K00196643__Tuesday, October 8, 2019_000",
+      "case_id": "nonph_yaoyiqin_k00196643_tuesday_october_8_2019_000",
+      "wall_seconds": 13.71
+    },
+    {
+      "status": "ok",
+      "n_slices": 345,
+      "shape": [
+        512,
+        512,
+        345
+      ],
+      "spacing": [
+        0.77734375,
+        0.77734375,
+        1.0
+      ],
+      "src": "YeRenYi__V00974759__Tuesday, April 6, 2021_000",
+      "case_id": "nonph_yerenyi_v00974759_tuesday_april_6_2021_000",
+      "wall_seconds": 7.63
+    },
+    {
+      "status": "ok",
+      "n_slices": 533,
+      "shape": [
+        512,
+        512,
+        533
+      ],
+      "spacing": [
+        0.658203125,
+        0.658203125,
+        0.7
+      ],
+      "src": "YinJianGuo__9001412881__Friday, June 21, 2019_000",
+      "case_id": "nonph_yinjianguo_9001412881_friday_june_21_2019_000",
+      "wall_seconds": 11.83
+    },
+    {
+      "status": "ok",
+      "n_slices": 300,
+      "shape": [
+        512,
+        512,
+        300
+      ],
+      "spacing": [
+        0.74609375,
+        0.74609375,
+        0.9999999989966555
+      ],
+      "src": "YuGuiLin__R14640996__Monday, October 14, 2019_000",
+      "case_id": "nonph_yuguilin_r14640996_monday_october_14_2019_000",
+      "wall_seconds": 13.21
+    },
+    {
+      "status": "ok",
+      "n_slices": 396,
+      "shape": [
+        512,
+        512,
+        396
+      ],
+      "spacing": [
+        0.779296875,
+        0.779296875,
+        1.0000000012658228
+      ],
+      "src": "YuShiLiang__F01491728__Tuesday, June 29, 2021_000",
+      "case_id": "nonph_yushiliang_f01491728_tuesday_june_29_2021_000",
+      "wall_seconds": 17.84
+    },
+    {
+      "status": "ok",
+      "n_slices": 355,
+      "shape": [
+        512,
+        512,
+        355
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ZhangFengXia__9001830149__Friday, February 5, 2021_000",
+      "case_id": "nonph_zhangfengxia_9001830149_friday_february_5_2021_000",
+      "wall_seconds": 7.69
+    },
+    {
+      "status": "ok",
+      "n_slices": 321,
+      "shape": [
+        512,
+        512,
+        321
+      ],
+      "spacing": [
+        0.728515625,
+        0.728515625,
+        0.9999999990624999
+      ],
+      "src": "ZhangJianMin__F01675455__Thursday, June 17, 2021_000",
+      "case_id": "nonph_zhangjianmin_f01675455_thursday_june_17_2021_000",
+      "wall_seconds": 14.48
+    },
+    {
+      "status": "ok",
+      "n_slices": 270,
+      "shape": [
+        512,
+        512,
+        270
+      ],
+      "spacing": [
+        0.8046875,
+        0.8046875,
+        0.7000000000000001
+      ],
+      "src": "ZhangXianGuo__M01638612__Wednesday, August 21, 2019_000",
+      "case_id": "nonph_zhangxianguo_m01638612_wednesday_august_21_2019_000",
+      "wall_seconds": 6.01
+    },
+    {
+      "status": "ok",
+      "n_slices": 325,
+      "shape": [
+        512,
+        512,
+        325
+      ],
+      "spacing": [
+        0.69921875,
+        0.69921875,
+        0.9999999993827159
+      ],
+      "src": "ZhangXiuQin__T12334543__Thursday, February 25, 2021_000",
+      "case_id": "nonph_zhangxiuqin_t12334543_thursday_february_25_2021_000",
+      "wall_seconds": 14.29
+    },
+    {
+      "status": "ok",
+      "n_slices": 380,
+      "shape": [
+        512,
+        512,
+        380
+      ],
+      "spacing": [
+        0.724609375,
+        0.724609375,
+        1.0
+      ],
+      "src": "ZhangXueLiang__T00317375__Wednesday, February 10, 2021_000",
+      "case_id": "nonph_zhangxueliang_t00317375_wednesday_february_10_2021_000",
+      "wall_seconds": 8.33
+    },
+    {
+      "status": "ok",
+      "n_slices": 347,
+      "shape": [
+        512,
+        512,
+        347
+      ],
+      "spacing": [
+        0.74609375,
+        0.74609375,
+        1.0000000005780347
+      ],
+      "src": "ZhanHongFa__B02453337__Friday, January 15, 2021_000",
+      "case_id": "nonph_zhanhongfa_b02453337_friday_january_15_2021_000",
+      "wall_seconds": 14.71
+    },
+    {
+      "status": "ok",
+      "n_slices": 365,
+      "shape": [
+        512,
+        512,
+        365
+      ],
+      "spacing": [
+        0.775390625,
+        0.775390625,
+        1.0027472527472527
+      ],
+      "src": "ZhaoGuoXiang__J06129794__Tuesday, March 19, 2019_000",
+      "case_id": "nonph_zhaoguoxiang_j06129794_tuesday_march_19_2019_000",
+      "wall_seconds": 16.2
+    },
+    {
+      "status": "ok",
+      "n_slices": 355,
+      "shape": [
+        512,
+        512,
+        355
+      ],
+      "spacing": [
+        0.802734375,
+        0.802734375,
+        1.0
+      ],
+      "src": "ZhengYaoRong__K01848113__Monday, August 12, 2019_000",
+      "case_id": "nonph_zhengyaorong_k01848113_monday_august_12_2019_000",
+      "wall_seconds": 7.9
+    },
+    {
+      "status": "ok",
+      "n_slices": 375,
+      "shape": [
+        512,
+        512,
+        375
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        0.999999999197861
+      ],
+      "src": "ZhouJianHua__P29127429__Wednesday, August 14, 2019_000",
+      "case_id": "nonph_zhoujianhua_p29127429_wednesday_august_14_2019_000",
+      "wall_seconds": 17.9
+    },
+    {
+      "status": "ok",
+      "n_slices": 314,
+      "shape": [
+        512,
+        512,
+        314
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ZhuCaiGuan__Q03449689__Tuesday, January 26, 2021_000",
+      "case_id": "nonph_zhucaiguan_q03449689_tuesday_january_26_2021_000",
+      "wall_seconds": 7.1
+    },
+    {
+      "status": "ok",
+      "n_slices": 380,
+      "shape": [
+        512,
+        512,
+        380
+      ],
+      "spacing": [
+        0.78125,
+        0.78125,
+        1.0
+      ],
+      "src": "ZhuDeMing__6000365916__Thursday, April 25, 2019_000",
+      "case_id": "nonph_zhudeming_6000365916_thursday_april_25_2019_000",
+      "wall_seconds": 8.37
+    },
+    {
+      "status": "ok",
+      "n_slices": 405,
+      "shape": [
+        512,
+        512,
+        405
+      ],
+      "spacing": [
+        0.8203125,
+        0.8203125,
+        1.0
+      ],
+      "src": "ZhuGuanFa__M02277206__Monday, November 2, 2020_000",
+      "case_id": "nonph_zhuguanfa_m02277206_monday_november_2_2020_000",
+      "wall_seconds": 8.58
+    },
+    {
+      "status": "ok",
+      "n_slices": 400,
+      "shape": [
+        512,
+        512,
+        400
+      ],
+      "spacing": [
+        0.828125,
+        0.828125,
+        1.0
+      ],
+      "src": "ZhuHuaYong__9001419922__Wednesday, June 26, 2019_000",
+      "case_id": "nonph_zhuhuayong_9001419922_wednesday_june_26_2019_000",
+      "wall_seconds": 8.4
+    },
+    {
+      "status": "ok",
+      "n_slices": 428,
+      "shape": [
+        512,
+        512,
+        428
+      ],
+      "spacing": [
+        0.75,
+        0.75,
+        0.7
+      ],
+      "src": "ZhuJian__U01422414__Friday, October 11, 2019_000",
+      "case_id": "nonph_zhujian_u01422414_friday_october_11_2019_000",
+      "wall_seconds": 9.21
+    },
+    {
+      "status": "ok",
+      "n_slices": 395,
+      "shape": [
+        512,
+        512,
+        395
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ZhuJieMing__9001476476__Monday, October 14, 2019_000",
+      "case_id": "nonph_zhujieming_9001476476_monday_october_14_2019_000",
+      "wall_seconds": 8.72
+    },
+    {
+      "status": "ok",
+      "n_slices": 385,
+      "shape": [
+        512,
+        512,
+        385
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        1.0
+      ],
+      "src": "ZhuLiang__9001581280__Friday, April 10, 2020_000",
+      "case_id": "nonph_zhuliang_9001581280_friday_april_10_2020_000",
+      "wall_seconds": 8.41
+    },
+    {
+      "status": "ok",
+      "n_slices": 308,
+      "shape": [
+        512,
+        512,
+        308
+      ],
+      "spacing": [
+        0.68359375,
+        0.68359375,
+        0.999999999674267
+      ],
+      "src": "ZhuYeZhong__P06234811__Monday, March 8, 2021_000",
+      "case_id": "nonph_zhuyezhong_p06234811_monday_march_8_2021_000",
+      "wall_seconds": 13.92
+    }
+  ],
+  "summary": {
+    "total": 100,
+    "ok": 100,
+    "quarantine": 0,
+    "skip": 0,
+    "fail": 0,
+    "ended_at": "2026-04-25T12:54:03"
+  }
+}
