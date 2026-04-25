@@ -284,35 +284,55 @@ def main():
     out_json = OUT / "coral_probe.json"
     out_json.write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
-    # Comparison MD
-    md = ["# R13.4 — CORAL within-nonPH protocol probe (vs corrected-GRL R11)",
+    md = ["# R14.E — Multi-seed CORAL + MMD within-nonPH protocol probe (corrected n=68)",
           "",
-          f"Excluded {len(seg_fail_ids)} cases on seg-failure list (R13.2b).",
+          f"Excluded {len(seg_fail_ids)} cases on seg-failure list (R13.2b). All AUCs are",
+          "5-fold OOF LR/MLP on per-fold encoder embeddings; disease AUC is the per-fold",
+          "5-fold mean from `sprint6_results.json` on remote.",
           "",
-          "## Full cohort (legacy R11/R12 denominator, uncorrected)",
+          "## CORAL multi-seed aggregation (corrected, n=68 within-nonPH)",
           "",
-          "| λ | n | LR AUC [95% CI] | MLP AUC [95% CI] |",
-          "|---|---|---|---|"]
+          "| λ | n_seeds | Protocol LR (μ ± SD) | Protocol MLP (μ ± SD) | Disease AUC (μ ± SD) |",
+          "|---|---|---|---|---|"]
     for lam in LAMBDAS:
         rec = summary["per_lambda"].get(f"lambda_{lam}")
         if not rec: continue
-        f = rec["full_cohort"]
-        md.append(f"| {lam} | {rec['n_full']} | "
-                  f"{f['lr_auc']:.3f} [{f['lr_ci95'][0]:.3f}, {f['lr_ci95'][1]:.3f}] | "
-                  f"{f['mlp_auc']:.3f} [{f['mlp_ci95'][0]:.3f}, {f['mlp_ci95'][1]:.3f}] |")
+        plr = rec["protocol_lr_corrected"]
+        pmlp = rec["protocol_mlp_corrected"]
+        d = rec["disease_auc_meta"]
+        d_str = f"{d['mean']:.3f} ± {d['sd']:.3f}" if d["mean"] is not None else "N/A"
+        md.append(f"| {lam} | {rec['n_seeds']} | "
+                  f"{plr['mean']:.3f} ± {plr['sd']:.3f} | "
+                  f"{pmlp['mean']:.3f} ± {pmlp['sd']:.3f} | "
+                  f"{d_str} |")
 
     md += ["",
-           "## Corrected cohort (excluding seg-failures)",
+           "## Per-seed breakdown",
            "",
-           "| λ | n_full → n_corrected (excluded) | LR AUC [95% CI] | MLP AUC [95% CI] |",
-           "|---|---|---|---|"]
-    for lam in LAMBDAS:
-        rec = summary["per_lambda"].get(f"lambda_{lam}")
-        if not rec: continue
+           "| config | n | LR | LR CI95 | MLP | MLP CI95 | disease μ |",
+           "|---|---|---|---|---|---|---|"]
+    for k, rec in summary.get("per_seed", {}).items():
         c = rec["corrected_cohort"]
-        md.append(f"| {lam} | {rec['n_full']} → {rec['n_corrected']} ({rec['n_excluded_seg_fail']}) | "
-                  f"{c['lr_auc']:.3f} [{c['lr_ci95'][0]:.3f}, {c['lr_ci95'][1]:.3f}] | "
-                  f"{c['mlp_auc']:.3f} [{c['mlp_ci95'][0]:.3f}, {c['mlp_ci95'][1]:.3f}] |")
+        d = rec.get("disease_auc_5fold") or {}
+        md.append(f"| {k} | {rec['n_corrected']} | "
+                  f"{c['lr_auc']:.3f} | "
+                  f"[{c['lr_ci95'][0]:.3f}, {c['lr_ci95'][1]:.3f}] | "
+                  f"{c['mlp_auc']:.3f} | "
+                  f"[{c['mlp_ci95'][0]:.3f}, {c['mlp_ci95'][1]:.3f}] | "
+                  f"{d.get('mean', 'N/A') if isinstance(d.get('mean'), float) else 'N/A'} |")
+
+    md += ["",
+           "## MMD pilot (single seed)",
+           "",
+           "| config | n | LR | LR CI95 | MLP | disease μ |",
+           "|---|---|---|---|---|---|"]
+    for k, rec in summary.get("mmd", {}).items():
+        d = rec.get("disease_auc_5fold") or {}
+        md.append(f"| {k} | {rec['n_corrected']} | "
+                  f"{rec['lr_auc']:.3f} | "
+                  f"[{rec['lr_ci95'][0]:.3f}, {rec['lr_ci95'][1]:.3f}] | "
+                  f"{rec['mlp_auc']:.3f} | "
+                  f"{d.get('mean', 'N/A') if isinstance(d.get('mean'), float) else 'N/A'} |")
 
     md += ["",
            "## Comparison vs corrected-GRL R11 baseline",
