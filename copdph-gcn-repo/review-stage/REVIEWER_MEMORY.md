@@ -30,6 +30,52 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 12 key concerns (2026-04-25 11:30) — CARRY INTO ROUND 13
+
+**Score 7/10 revise** (up from R11=5.0). R12 added auditable artifacts and a
+crucial scientific finding, but the framing must be tightened:
+
+1. **Missingness alone leaks protocol within-nonPH at AUC 0.664**
+   [0.599, 0.724]. 31 of 32 cache-missing nonPH cases are plain-scan, 1
+   contrast. Any "principled missingness" rescue inherits this leak as a
+   floor — even perfect imputation cannot recover invariance with the
+   missingness pattern intact.
+
+2. **Cross-seed pooled-prob + hierarchical bootstrap CIs** confirm corrected
+   GRL is exhausted on legacy 243-cache, n=80 within-nonPH stratum: best
+   λ=10 hierarchical CI [0.719, 0.935], lower bound ≫ 0.60 target. MLP
+   probe stays ~0.88 → non-linear protocol leakage exceeds linear-probe
+   diagnostics.
+
+3. **R12 must NOT be read as general impossibility.** It is impossibility
+   only for: corrected-GRL + nonPH-only adversary + n=80 + legacy 243 cache.
+   Open paths reviewer requires before claiming general impossibility:
+   - non-GRL deconfounder (CORAL/MMD/HSIC kernel independence; conditional
+     adversary with environment IRM; propensity-overlap reweighting)
+   - 345-cohort ingestion (158 plain-scan nonPH = 24 refill + 76 new + 58
+     existing) → properly enlarged within-nonPH stratum
+   - unified HiPaS-style segmentation rebuild (removes protocol-induced
+     segmentation-quality differential at source)
+
+4. **Cohort manifest unresolved**: legacy 282-cohort has PH=170 but user's
+   updated authoritative inventory has PH=160. R13 must do a case_id-level
+   diff and freeze a single cohort manifest.
+
+5. **CI inferential rule (going forward)**: use hierarchical (seeds × cases)
+   bootstrap for any seed-aggregated AUC; the seed-replicate-pooled n=240
+   probe is descriptive only.
+
+6. **Held-out adversary validation curve required**: batch-mean adversary
+   AUC saw-tooths in [0.05, 0.95] in run.log, useful but noisy and not
+   equivalent to a held-out per-epoch validation AUC. Any new adversarial
+   variant must report held-out adversary loss/AUC with fixed early stop.
+
+Round 13 minimum:
+- 345-cohort case_id reconciliation + PH-count audit
+- 1+ non-GRL deconfounder on legacy 243 cohort
+- Reframe REPORT_v2 §23.4 (drop blanket "impossibility")
+- Disease AUC reported alongside any protocol-AUC reduction
+
 ## Round 5 key concerns (2026-04-24 10:30) — CARRY INTO ROUND 6
 
 **Score 6/10 reject.** Two new important findings:

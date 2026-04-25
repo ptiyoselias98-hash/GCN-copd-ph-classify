@@ -1,0 +1,84 @@
+{
+  "per_lambda": {
+    "lambda_0.0": {
+      "n_cases_pooled": 80,
+      "n_seeds": 3,
+      "per_seed_protocol_lr_auc": [
+        0.8404558404558404,
+        0.8205128205128205,
+        0.8831908831908832
+      ],
+      "seed_mean_AUC": 0.8480531813865148,
+      "seed_sd_AUC": 0.03202225128221726,
+      "pooled_seed_avg_prob_AUC": 0.8668091168091168,
+      "case_bootstrap_CI95_on_seed_avg": [
+        0.7834757834757835,
+        0.9330484330484331
+      ],
+      "hierarchical_bootstrap_CI95": [
+        0.7685185185185185,
+        0.9373397435897434
+      ]
+    },
+    "lambda_1.0": {
+      "n_cases_pooled": 80,
+      "n_seeds": 3,
+      "per_seed_protocol_lr_auc": [
+        0.8938746438746439,
+        0.836894586894587,
+        0.858974358974359
+      ],
+      "seed_mean_AUC": 0.8632478632478633,
+      "seed_sd_AUC": 0.028729407450283028,
+      "pooled_seed_avg_prob_AUC": 0.9017094017094017,
+      "case_bootstrap_CI95_on_seed_avg": [
+        0.8254985754985755,
+        0.9650997150997151
+      ],
+      "hierarchical_bootstrap_CI95": [
+        0.7962962962962963,
+        0.957977207977208
+      ]
+    },
+    "lambda_5.0": {
+      "n_cases_pooled": 80,
+      "n_seeds": 3,
+      "per_seed_protocol_lr_auc": [
+        0.8418803418803419,
+        0.8212250712250713,
+        0.8069800569800571
+      ],
+      "seed_mean_AUC": 0.8233618233618234,
+      "seed_sd_AUC": 0.01754798432301263,
+      "pooled_seed_avg_prob_AUC": 0.886039886039886,
+      "case_bootstrap_CI95_on_seed_avg": [
+        0.8084045584045584,
+        0.9522792022792023
+      ],
+      "hierarchical_bootstrap_CI95": [
+        0.7606659544159544,
+        0.9401887464387463
+      ]
+    },
+    "lambda_10.0": {
+      "n_cases_pooled": 80,
+      "n_seeds": 3,
+      "per_seed_protocol_lr_auc": [
+        0.7898860398860399,
+        0.7542735042735043,
+        0.8625356125356125
+      ],
+      "seed_mean_AUC": 0.8022317188983855,
+      "seed_sd_AUC": 0.055176832675009675,
+      "pooled_seed_avg_prob_AUC": 0.8732193732193733,
+      "case_bootstrap_CI95_on_seed_avg": [
+        0.791292735042735,
+        0.9415954415954416
+      ],
+      "hierarchical_bootstrap_CI95": [
+        0.7186609686609687,
+        0.9351851851851851
+      ]
+    }
+  }
+}

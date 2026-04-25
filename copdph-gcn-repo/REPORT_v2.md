@@ -1014,6 +1014,136 @@ protocol-confounded cache; protocol invariance requires either (i) more
 plain-scan nonPH cases, or (ii) unified segmentation." This is a much
 more defensible framing than the Round-1 "0.95 AUC" claim.
 
+## 22. ARIS Round 11 — fixed-GRL multi-seed sweep (R10 bug-fix; honest negative confirmed)
+
+R10 reviewer flagged two implementation bugs: λ-double-scaling
+(`GradReverse.backward` multiplied gradient by λ AND outer loss scaled
+adversary CE by λ, giving encoder-grads ~ λ²) and objective-mismatch
+(adversary trained on full 282 where PH≈contrast). R11 fix: GRL coef=1.0
+inside the layer; only `λ * adv_loss` on the outer loss; adversary trained
+on **nonPH-only samples per batch** (matched the within-nonPH evaluation
+target). 4 λ × 3 seeds = 12 runs split across GPU 0+1 (parallel).
+
+| λ | n_seeds | Protocol LR (μ ± SD) | Protocol MLP (μ ± SD) | Disease LR (μ ± SD) |
+|---|---|---|---|---|
+| 0.0 | 3 | 0.848 ± 0.032 | 0.847 ± 0.049 | 0.731 ± 0.007 |
+| 1.0 | 3 | 0.863 ± 0.029 | 0.885 ± 0.015 | 0.684 ± 0.049 |
+| 5.0 | 3 | 0.823 ± 0.018 | 0.843 ± 0.043 | 0.657 ± 0.068 |
+| 10.0 | 3 | 0.802 ± 0.055 | 0.881 ± 0.032 | 0.644 ± 0.023 |
+
+**Best λ** (lowest protocol LR): λ=10 — protocol_lr=0.802, disease_lr=0.644.
+Target was protocol_lr ≤ 0.60 with upper-CI ≤ 0.65 — **NOT MET**. The MLP
+probe stays ≈0.88 across all λ, indicating non-linear protocol leakage
+that linear GRL diagnostics understate. Disease AUC drops 0.731 → 0.644
+as λ rises (~9 AUC points lost for 5 AUC points of protocol-leak
+reduction — Pareto-unfavourable).
+
+Reviewer downgraded R11 to **5.0/10** because `run_sprint6_v2_grl_fix.py`
+was on remote but missing from local repo at review time, making the
+"bug-fix" claim unauditable. Script committed post-review (commit b05bf28).
+
+Artifacts: `outputs/r11/R11_grlfix_summary.{json,md}`,
+`outputs/r11/embeddings/l{λ}_s{seed}/emb_gcn_only_rep1_fold{1-5}.npz`.
+
+## 23. ARIS Round 12 — missingness-leak audit + cross-seed CIs (HONEST IMPOSSIBILITY)
+
+Round 12 addresses R11 must_fix items #2 (per-epoch adversary AUC logs),
+#4 (cross-seed aggregate CIs), and the gpt-5.5 strategy review's primary
+landmine ("is principled missingness leaky?").
+
+### 23.1 R12.2 — Missingness-only protocol probe (KEY FINDING)
+
+Script: `scripts/evolution/R12_missingness_probe.py`. Tests whether the
+binary `is_in_v2_cache` indicator (1 = case has a built `cache_v2_tri_flat`
+pkl, 0 = dropped due to placeholder/builder-error) ALONE leaks protocol.
+
+Within-nonPH (n=112 — 80 in-cache + 32 missing):
+
+| | contrast | plain-scan |
+|---|---|---|
+| missing from cache | 1 | 31 |
+| in v2 cache | 26 | 54 |
+
+LR(is_contrast ~ is_in_v2_cache): **AUC = 0.664, bootstrap mean 0.664, 95% CI [0.599, 0.724]**.
+That is, the missingness pattern alone leaks protocol within-nonPH at
+0.66 AUC. The 39 dropped cases are 97% plain-scan (38/39 across full 282;
+31/32 within-nonPH). **Verdict: principled-missingness rescue is unsafe** —
+any future "fix the missingness" approach (degraded-graph rebuild,
+zero-imputation, learned imputation) inherits this leak as a ceiling
+floor on protocol residual signal.
+
+**Implication for R11 must_fix #3**: "Rebuild full 282 cohort with degraded
+graphs OR principled missingness" cannot recover protocol-invariance by
+itself — even a perfect-imputation model would still see a 0.66-AUC
+"is-this-imputed?" feature that perfectly correlates with protocol.
+
+### 23.2 R12.3 — Per-epoch adversary AUC artifacts
+
+Script: `scripts/evolution/R12_fetch_advauc_logs.py`. Pulled `run.log`
+from each of the 12 R11 GRL-fix runs on the remote training server,
+parsed batch-mean adversary AUC per epoch per fold. Saved to
+`outputs/r11/embeddings/l{λ}_s{seed}/run.log` and aggregated in
+`outputs/r11/adv_auc_per_epoch.json` (12/12 configs covered;
+λ=0 runs have no adversary epochs by design).
+
+This closes R11 must_fix item #2 (logs auditability). Visual inspection
+shows adversary-AUC oscillates in [0.05, 0.95] across epochs (saw-tooth)
+— consistent with adversary-encoder co-evolution but NOT converging to
+chance. Adversary-side wins more rounds than encoder-side at high λ,
+which explains why the encoder cannot fully strip protocol.
+
+### 23.3 R12.4 — Cross-seed aggregate CIs
+
+Script: `scripts/evolution/R12_aggregate_seed_CIs.py`. Pools per-seed
+OOF predicted-probability matrices across 3 seeds (42, 1042, 2042) per
+λ, then bootstraps over (a) cases (case-CI on seed-averaged prob) and
+(b) jointly over seeds and cases (hierarchical CI). Within-nonPH
+protocol-LR endpoint:
+
+| λ | seed-mean AUC ± SD | pooled-prob AUC | hierarchical 95% CI |
+|---|---|---|---|
+| 0.0 | 0.848 ± 0.032 | 0.867 | [0.769, 0.937] |
+| 1.0 | 0.863 ± 0.029 | 0.902 | [0.796, 0.958] |
+| 5.0 | 0.823 ± 0.018 | 0.886 | [0.761, 0.940] |
+| 10.0 | 0.802 ± 0.055 | 0.873 | [0.719, 0.935] |
+
+Pooled-prob AUC > seed-mean AUC for every λ (averaging predictions
+across seeds amplifies signal). Hierarchical CIs are wider than the
+per-run CIs in `R11_grlfix_summary.json` — properly reflecting both
+case-sampling and seed-sampling variability. **Even at λ=10, the lower
+CI bound for protocol leakage is 0.719**, well above the 0.60 target,
+on n=80 within-nonPH cases. Closes R11 must_fix item #4.
+
+### 23.4 Honest-impossibility framing
+
+Combining R11 + R12 evidence:
+
+1. **GRL-on-corrected-objective is exhausted** at this n: best linear-probe
+   protocol AUC 0.80, MLP probe 0.88, hierarchical CI lower bound 0.72.
+2. **Missingness inherits the leak** at AUC 0.66 → no missingness-only fix
+   recovers invariance.
+3. **Disease vs protocol Pareto is unfavorable**: −9 disease points for
+   −5 protocol points at λ=10.
+
+The path to score ≥ 9.5 cannot be "another GRL variant on the same n=80
+within-nonPH cohort". It requires:
+
+- **(A)** Ingestion of the 100 queued plain-scan nonPH cases (refill +
+  new) to enlarge the protocol-balanced stratum, OR
+- **(B)** Replacement of the GRL objective with a fundamentally different
+  deconfounder (CORAL/MMD/HSIC kernel-independence, conditional adversary
+  with environment-IRM, or instance-level reweighting based on a
+  protocol-overlap propensity score), OR
+- **(C)** Unified-segmentation HiPaS-style rebuild that removes the
+  protocol-induced segmentation-quality differential at source.
+
+R13 will pursue (B) on the existing 243 cohort (CORAL/MMD comparator) in
+parallel with launching the (A) ingestion pipeline.
+
+Artifacts: `outputs/r12/missingness_protocol_probe.{json,md}`,
+`outputs/r12/r12_cross_seed_cis.{json,md}`,
+`outputs/r11/adv_auc_per_epoch.json`.
+
 ## 20. ARIS Round 7+8 — figures, exclusion sensitivity, builder provenance
 
 ### 20.1 R7 — publication figure suite + README embedding

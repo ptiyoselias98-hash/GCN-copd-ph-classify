@@ -25,6 +25,7 @@ collected under `outputs/`.
 | R9 | 6/10 | reject |
 | R10 | 6.2/10 | reject |
 | R11 | 5.0/10 | reject |
+| R12 | 7.0/10 | revise |
 
 ## Task
 
@@ -1256,3 +1257,10 @@ Fixed-GRL multi-seed sweep (λ∈{0,1,5,10} × 3 seeds): best protocol_lr 0.80 (
 - [cohort_reconciliation.md](copdph-gcn-repo/outputs/r11/cohort_reconciliation.md)
 ![fig1_aris_score_progression](copdph-gcn-repo/outputs/figures/fig1_aris_score_progression.png)
 
+## ARIS Round 12 — score 7.0/10
+
+R12 (7.0/10 revise): missingness-only probe shows is_in_v2_cache leaks protocol within-nonPH at AUC 0.664 [0.599, 0.724] (31/32 missing nonPH are plain-scan); hierarchical cross-seed CIs confirm corrected-GRL exhausted on n=80 stratum; per-epoch adversary AUC artifacts now committed.
+
+- [missingness_protocol_probe.md](copdph-gcn-repo/outputs/r12/missingness_protocol_probe.md)
+- [r12_cross_seed_cis.md](copdph-gcn-repo/outputs/r12/r12_cross_seed_cis.md)
+- [adv_auc_per_epoch.json](copdph-gcn-repo/outputs/r11/adv_auc_per_epoch.json)

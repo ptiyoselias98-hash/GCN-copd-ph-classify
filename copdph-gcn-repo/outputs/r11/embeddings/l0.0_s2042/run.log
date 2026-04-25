@@ -1,0 +1,16 @@
+[ROUND10 GRL] loaded 282 protocol labels
+INFO sprint6: [config] arm=arm_a device=cuda epochs=120
+INFO sprint6: [config] augment=['edge_drop', 'feature_mask'] pa_ao=False residual=False
+INFO sprint6: [baseline] matched=243 (pos=163 neg=80) has_rad=92 cache_miss=39 rad_miss=0
+INFO sprint6: === mode=gcn_only gcn_in=13 global_dim=0 aug=['edge_drop', 'feature_mask'] res=False jk=none repeats=1 ===
+INFO sprint6:   fold 1 thr=0.495 AUC=0.9210 Acc=0.8980 Spec=0.8235 F1=0.9231
+INFO sprint6:   fold 2 thr=0.328 AUC=0.9188 Acc=0.8723 Spec=0.9333 F1=0.9000
+INFO sprint6:   fold 3 thr=0.470 AUC=0.9273 Acc=0.8542 Spec=0.8667 F1=0.8889
+INFO sprint6:   fold 4 thr=0.446 AUC=0.9483 Acc=0.9000 Spec=0.9412 F1=0.9206
+INFO sprint6:   fold 5 thr=0.488 AUC=0.8845 Acc=0.9184 Spec=0.7500 F1=0.9429
+INFO sprint6: saved outputs/sprint6_arm_a_grlfix_l0.0_s2042/sprint6_results.json
+
+========================================================================================================================
+SPRINT 6 SUMMARY (arm=arm_a)
+========================================================================================================================
+baseline   gcn_only         0.9200+/-0.0206 0.8886+/-0.0226 0.9331+/-0.0296 0.9017+/-0.0594 0.9151+/-0.0189 0.8629+/-0.0713  pooled=0.8957

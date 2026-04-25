@@ -1,6 +1,6 @@
 {
-  "round": 6,
-  "status": "round_6_complete_needs_fixes",
+  "round": 12,
+  "status": "round_12_complete_needs_fixes",
   "max_rounds": 40,
   "positive_threshold_score": 9.5,
   "difficulty": "hard",
@@ -11,6 +11,41 @@
     {"round": 3, "score": 4, "verdict": "reject"},
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
+    {
+      "round": 12,
+      "timestamp": "2026-04-25T11:30:00",
+      "score": 7.0,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "experiments": [
+        "R12.2 missingness-only protocol probe (R12_missingness_probe.py): within-nonPH LR(is_contrast ~ is_in_v2_cache) AUC=0.664 [0.599, 0.724]; 31/32 missing nonPH are plain-scan. Verdict: principled-missingness rescue is unsafe.",
+        "R12.3 per-epoch adversary AUC fetch (R12_fetch_advauc_logs.py): 12/12 R11 GRL-fix run.log files pulled from remote, parsed batch-mean adv AUC per epoch per fold, saved adv_auc_per_epoch.json. Closes R11 must_fix #2.",
+        "R12.4 cross-seed pooled-prob + hierarchical bootstrap CIs (R12_aggregate_seed_CIs.py): per-λ pooled AUCs 0.867-0.902, hierarchical 95% CIs all far above 0.60 target. λ=10 [0.719, 0.935]. Closes R11 must_fix #4.",
+        "R12.5 honest-impossibility framing in REPORT_v2.md §22-23: corrected-GRL exhausted on n=80 within-nonPH; missingness inherits 0.66 protocol leak; disease/protocol Pareto unfavorable.",
+        "R12.codex_review: gpt-5.5 high-reasoning hostile review. Score 7.0 (up from R11=5.0)."
+      ],
+      "regressions": [
+        "Reviewer flagged 'impossibility' framing too broad — applies to corrected-GRL on legacy cache only, not all deconfounders",
+        "345-cohort reconciliation still pending: legacy 282 used PH=170, user inventory says PH=160; case_id diff not done"
+      ],
+      "must_fix_before_round13": [
+        "case_id-level 345-cohort reconciliation (160 PH contrast + 27 nonPH contrast + 58+24+76 plain-scan nonPH = 345); audit PH=170→160 discrepancy",
+        "Run at least one non-GRL deconfounder comparator: CORAL, MMD, HSIC, IRM, or propensity-overlap reweighting on existing 243 cohort with same within-nonPH protocol probe endpoint",
+        "If new adversary tried: stronger adversary head, balanced-nonPH-protocol batches, held-out adversary validation AUC/loss per epoch, fixed early-stopping rule",
+        "Use hierarchical/case-level CIs as the only inferential CI for seed aggregation; label seed-replicate-pooled analyses as descriptive only",
+        "Reframe §23.4 from 'impossibility' to 'corrected-GRL exhausted on legacy-cache n=80; alternative deconfounders + 345-cohort ingestion required'",
+        "Disease-AUC preservation must be reported alongside any protocol-AUC change"
+      ],
+      "minimum_to_reach_9point5": [
+        "Rebuild/ingest unified 345-case cohort targeting all 158 plain-scan nonPH (24 refill + 76 new + 58 existing); source manifests + segmentation QC",
+        "Resolve PH=170 vs PH=160 mismatch by auditable case_id diff; freeze single cohort manifest",
+        "Within-nonPH protocol AUC ≤ 0.60 with upper 95% CI ≤ 0.65 on final cohort",
+        "Disease AUC preserved (within −0.03 of contrast-only baseline) under protocol control",
+        "Robustness across at least one non-GRL deconfounder family",
+        "Cache provenance + anatomical QC/TEASAR sensitivity + one-command reproducibility"
+      ],
+      "reviewer_notes_for_memory": "R12 upgraded to 7.0 because (a) per-epoch adversary AUC + run.log artifacts now in repo (closes R11 #2), (b) hierarchical cross-seed CIs replace seed-internal CIs (closes R11 #4), (c) missingness-only probe (R12_missingness_probe.py) gives within-nonPH LR AUC=0.664 [0.599, 0.724] showing missingness alone leaks protocol — 31/32 dropped nonPH cases are plain-scan. Honest negative is sound. BUT: 'impossibility' framing too broad (applies only to corrected-GRL on legacy 243 cache, n=80 within-nonPH); 345-cohort PH=160 vs legacy PH=170 not reconciled by case_id; non-GRL comparator (CORAL/MMD/HSIC/IRM/propensity) not yet attempted. R13 must resolve the cohort discrepancy AND try a non-GRL deconfounder before claiming general impossibility."
+    },
     {
       "round": 11,
       "timestamp": "2026-04-25T10:30:00",
@@ -187,6 +222,6 @@
       "reviewer_notes_for_memory": "R6 delivered the W6 paired DeLong primary endpoint (arm_c − arm_a Δ=+0.025 [−0.039,+0.089], p=0.45 NS) with case_id-anchored OOF CSV, and locked the remote env (kimimaro 5.8.1, torch 2.6.0, PyG 2.6.1). Reviewer downgraded to 5/10 because the primary claim is null and embeddings/exclusion-sensitivity/TEASAR-sweep remain deferred. Sign bug in initial commit has been fixed."
     }
   ],
-  "timestamp": "2026-04-24T11:15:00",
-  "next_round_plan": "Round 7 — write adversarial-debiasing arm patch (gradient reversal head on is_contrast), launch on GPU 1 in background; locally compute TEASAR sweep on 5-case subset using skimage skeletonize; rebuild a small placeholder-included sample of cache to test GCN exclusion sensitivity; stamp builder script for next rebuild."
+  "timestamp": "2026-04-25T11:30:00",
+  "next_round_plan": "Round 13 — (1) case_id-level 345-cohort reconciliation script: enumerate 160+27+58+24+76 with manifest hashes; audit legacy 282-cohort PH=170 vs new PH=160 discrepancy by case_id diff. (2) Implement non-GRL deconfounder: CORAL or MMD penalty added to encoder loss (kernel-based, conditional on label) on existing 243 cohort; multi-seed sweep on idle GPU 0+1. (3) Reframe REPORT_v2 §23.4 from 'impossibility' to scoped negative. (4) Held-out adversary validation AUC per epoch (not batch-mean) for any new adversarial variant. (5) Begin 345-cohort ingestion pipeline (DCM→NIfTI→segmentation QC for 100 queued plain-scan nonPH)."
 }

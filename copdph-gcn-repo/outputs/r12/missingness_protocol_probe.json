@@ -1,0 +1,62 @@
+{
+  "counts": {
+    "total": 282,
+    "n_in_cache": 243,
+    "n_missing": 39,
+    "n_ph": 170
+  },
+  "nonph_stratum": {
+    "n": 112
+  },
+  "lr_within_nonph": {
+    "auc": 0.663834422657952,
+    "boot_mean": 0.6641974291938997,
+    "ci95": [
+      0.5991285403050108,
+      0.7235294117647059
+    ],
+    "n_features": 1,
+    "feature": "is_in_v2_cache"
+  },
+  "nonph_crosstab": {
+    "rows_is_in_v2_cache": [
+      0,
+      1
+    ],
+    "cols_is_contrast": [
+      0,
+      1
+    ],
+    "table": [
+      [
+        31,
+        1
+      ],
+      [
+        54,
+        26
+      ]
+    ]
+  },
+  "full_crosstab": {
+    "rows_is_in_v2_cache": [
+      0,
+      1
+    ],
+    "cols_is_contrast": [
+      0,
+      1
+    ],
+    "table": [
+      [
+        31,
+        8
+      ],
+      [
+        54,
+        189
+      ]
+    ]
+  },
+  "verdict": "MISSINGNESS LEAKS PROTOCOL — principled-missingness rescue is unsafe"
+}

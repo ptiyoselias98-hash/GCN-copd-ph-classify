@@ -142,3 +142,24 @@
 - Small-N high-variance: 26 nonPH contrast cases, 3–7 per fold. Round 2 must report DeLong / bootstrap CIs on Δ.
 
 **Round 2 context will include**: §13 (W1 ablation), REVIEWER_MEMORY.md, and the retracted lung-feature gain claim.
+
+---
+
+## Round 12 (2026-04-25 11:30) — score 7.0 / verdict revise
+
+Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R11=5.0 (+2.0).
+
+**R12 deliverables**:
+- `R12_missingness_probe.py` → within-nonPH LR(is_contrast ~ is_in_v2_cache) AUC 0.664 [0.599, 0.724], 31/32 missing nonPH are plain-scan
+- `R12_fetch_advauc_logs.py` → per-(λ,seed) run.log + `outputs/r11/adv_auc_per_epoch.json` (12/12 configs, λ=0 baseline excluded by design)
+- `R12_aggregate_seed_CIs.py` → pooled-prob + hierarchical bootstrap CIs; λ=10 [0.719, 0.935]
+- REPORT_v2.md §22 (R11 summary) + §23 (R12 honest-impossibility framing — to be narrowed in R13)
+
+**Reviewer regressions**:
+- "Impossibility" framing too broad: applies only to corrected-GRL + nonPH-only adversary + legacy 243 + n=80. Non-GRL variants (CORAL/MMD/HSIC/IRM/propensity) untried.
+- 345-cohort PH=160 vs legacy PH=170 not reconciled by case_id diff
+- Held-out adversary validation curves missing (batch-mean is noisy)
+
+**Must fix before R13**: cohort reconciliation, ≥1 non-GRL deconfounder, narrow §23.4 framing, report disease AUC alongside protocol-AUC under any control.
+
+**Path to ≥9.5**: ingest 158 plain-scan nonPH → unified 345 cohort with QC, freeze single manifest, achieve protocol AUC ≤0.60 with upper-CI ≤0.65 while preserving disease AUC within −0.03, demonstrate robustness across multiple deconfounder families.
