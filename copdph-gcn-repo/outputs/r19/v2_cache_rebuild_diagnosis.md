@@ -1,60 +1,71 @@
-# R19.B v2 cache rebuild on new100 — diagnostic note (2026-04-25 22:40)
+# R19.B/C v2 cache rebuild — diagnostic + fix (2026-04-25 22:58)
 
-## Symptom
+## Symptom (R19.B initial run, KILLED)
 
-`_R19B_build_v2_new100.py` ran 12 parallel kimimaro workers on the 100
-new plain-scan nonPH cases (`nii-new100/`) for **35+ minutes with 0 pkls
-written**. All 12 workers stayed pinned at 100% CPU + 4-6GB RSS each;
-none completed even one case. Killed via `pkill -9 -f _R19B_build_v2`.
+`_R19B_build_v2_new100.py` ran 12 parallel kimimaro workers on 100 new
+plain-scan nonPH cases for **35+ minutes with 0 pkls written**. All 12
+workers stayed pinned at 100% CPU + 4-6GB RSS each; killed via pkill.
 
-## Likely root cause
+## Root cause (R19.C diagnostic)
 
-The lung masks in `nii-new100/<case_id>/lung.nii.gz` come from the
-Simple_AV_seg `lung.pth` model and are **oversegmented on plain-scan CT**
-(R16.A finding: median raw lung volume 10.8L vs adult plausible 1.5-8.5L,
-79/100 cases >8.5L).
+The legacy v2 builder (`_remote_build_v2_cache.py`) hard-codes:
+```python
+arr = (raw != -2048).astype(np.uint32)
+```
+assuming HU-sentinel mask convention (background = −2048, structure
+carries raw HU values, used in legacy nii-unified-282 dataset).
 
-Kimimaro TEASAR skeleton extraction is **O(n_voxels × surface_area)** —
-on a 10.8L mask, that's ~2× the work of a normal lung. Plus the
-oversegmented voxels include extra-thoracic mediastinal/diaphragm regions
-that kimimaro tries to skeletonize with high topological complexity.
+**Simple_AV_seg `lung.pth`/`main_AV.pth` outputs are BINARY {0, 1}**, not
+HU-sentinel. So `(raw != -2048)` returned `True` for **every voxel** (0
+and 1 are both ≠ −2048) → the entire 512×512×500 volume was treated as
+foreground → kimimaro tried to skeletonize the **whole 3D volume**
+(O(n_voxels × surface_area)) → unbounded runtime.
 
-Hypothesis: kimimaro hangs / runs unbounded on these dense oversegmented
-volumes.
+## R19.C fix (committed at 5bc0fc9)
 
-## Side effect
+`scripts/evolution/R19C_build_v2_patcher.py` writes a patched builder
+with mask-type auto-detection at load:
+```python
+raw = np.asarray(img.dataobj)
+raw_max = float(raw.max()); raw_min = float(raw.min())
+if raw_max <= 1.5 and raw_min >= -0.5:
+    arr = (raw > 0).astype(np.uint32)        # binary (Simple_AV_seg)
+else:
+    arr = (raw != -2048).astype(np.uint32)   # HU-sentinel (legacy)
+```
 
-DDPM training on GPU 0 was also stuck at epoch 7 during the v2 builder
-runtime — 12 workers × 5GB RSS = ~60GB RAM contention + heavy NIfTI I/O
-contention with DDPM patch loader.
+## Verification (R19.C 5-case test, PASSED)
 
-## Path forward (R19.C in next fire)
+```
+[1/5 done] nonph_hujiaru_...                {'artery': 168, 'vein': 74, 'airway': 0}
+[2/5 done] nonph_huangxiaokang_...          {'artery': 902, 'vein': 441, 'airway': 0}
+[3/5 done] nonph_guruping_...               {'artery': 199, 'vein': 144, 'airway': 0}
+[4/5 done] nonph_gaoyuguo_...               {'artery': 211, 'vein': 172, 'airway': 0}
+[5/5 done] nonph_huangjianxin_...           {'artery': 152, 'vein': 200, 'airway': 0}
+Summary: done=5 skip=0 miss=0 err=0 in 157.4s
+```
 
-1. **Substitute repaired lung masks** before v2 rebuild.
-   `R16.C` produced lung_features_new100_repaired.csv (HU<-300 + top-2-CC
-   filter dropped median lung 10.8L → 7.7L). Need to write the repaired
-   binary mask to `nii-new100/<cid>/lung_repaired.nii.gz` so the v2
-   builder picks it up. OR: have v2 builder apply HU<-300+top-2-CC at
-   load time (small patch to `_remote_build_v2_cache.py`).
+**~30s per case** at 6 workers. 100-case full build ETA ~8-10 min.
 
-2. **Run v2 builder with --limit 5** first to verify single-case time
-   budget. If repaired-mask build of 1 case takes <5 min, full 100-case
-   build at 12 workers should finish in ~50-100 min.
+Note: `airway: 0` for all cases because Simple_AV_seg lung.pth +
+main_AV.pth don't produce airway segmentation; the new100 cohort has
+artery + vein + lung only. R20 multi-branch will still work with airway
+defaulting to empty Data on these cases.
 
-3. **Reduce concurrency to 6 workers** to leave RAM/I/O headroom for
-   DDPM training on GPU 0.
+## Full 100-case build LAUNCHED 23:00 (R19.C)
 
-## Decision
+`nohup python _R19C_build_v2_patched.py --labels data/labels_new100.csv
+--data_dirs nii-new100 --output_cache cache_tri_v2_new100 --workers 6`
+Expected completion: 23:08-23:10. Then unblocks R18 must-fix #2
+(embedding-level enlarged-stratum probe) and #5 (multi-seed CORAL on
+enlarged stratum).
 
-Kill + restart in next cron fire after R19.C patch ready. Not blocking
-embedding-level enlarged-stratum probe permanently — just delays it
-~1 hour.
+## Honest-debt status after this fire
 
-## Honest-debt status (still 5 outstanding, no closures from R18)
-
-1. R19 DDPM training: now resumed (GPU 0 unblocked) — epoch 7/30 with
-   v2-builder gone, ETA recovers to ~3-5h
-2. Embedding-level enlarged probe — still blocked on R19.C v2 rebuild
-3. ✅ Lung overlay gallery — DONE (R19.A)
-4. HiPaS re-segmentation 38 — pending
-5. Multi-seed CORAL on enlarged — still blocked on R19.C v2 rebuild
+1. R19 DDPM training: epoch 8/30 loss 0.041 (down from 0.81), ETA ~3-4h
+   remaining after v2 builder I/O contention removed
+2. Embedding-level enlarged probe: UNBLOCKED in ~10 min after v2 build
+   completes
+3. ✅ Lung overlay gallery: DONE (R19.A)
+4. HiPaS re-segmentation 38: still pending
+5. Multi-seed CORAL on enlarged: UNBLOCKED in ~10 min after v2 build
