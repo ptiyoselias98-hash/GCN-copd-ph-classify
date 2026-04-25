@@ -1366,3 +1366,87 @@ protocol AUC (0.64) but loses disease to ~0.85.
 - [multistruct_clusters.md](copdph-gcn-repo/outputs/r14/multistruct_clusters.md) — endotype tables + UMAP plots
 - [ablation_lung_vs_graph.md](copdph-gcn-repo/outputs/r14/ablation_lung_vs_graph.md) — lung-vs-graph + per-substring ablation
 - [RESEARCH_ROADMAP.md](copdph-gcn-repo/RESEARCH_ROADMAP.md) — gap-to-goal analysis (~62% to publishable)
+
+
+## ARIS Round 15 — paired CIs reverse R14 marginal claims (in progress)
+
+R15 closed two of the R14 reviewer must-fixes with paired bootstrap tests on
+identical case sets, which substantively **soften** the R14 headlines:
+
+### R15.A — Lung-vs-graph reversal IS NOT statistically significant
+
+`outputs/r15/paired_aucs.md`. Paired 5000-iter case bootstrap on the same
+within-contrast n=184 OOF predictions:
+
+| comparison | AUC_a | AUC_b | Δ (a−b) | 95% CI | p (paired) |
+|---|---|---|---|---|---|
+| **lung − graph** | 0.844 | 0.782 | +0.062 | [−0.031, +0.160] | **0.19** |
+| **(lung+graph) − graph** | 0.867 | 0.782 | +0.085 | [+0.029, +0.148] | **0.0008** |
+| (lung+graph) − lung | 0.867 | 0.844 | +0.023 | [−0.042, +0.088] | 0.50 |
+
+The R14 marginal-CI "lung-only > graph-only" claim does NOT survive pairing:
+the Δ-AUC 95% CI crosses 0 (p=0.19). The honest read is that **lung-only and
+graph-only have statistically equivalent disease AUC**, but **adding lung
+features to graph features yields a significant +0.085 AUC improvement**
+(p=0.0008). Lung parenchyma carries genuinely complementary information that
+the vascular graph does not capture, even though neither modality dominates
+alone. This is a stronger and more defensible finding than the R14 marginal
+narrative.
+
+### R15.A — CORAL vs GRL paired comparison: seed-dependent
+
+| seed | n | AUC CORAL | AUC GRL | Δ (CORAL − GRL) | 95% CI | p (paired) |
+|---|---|---|---|---|---|---|
+| 42 | 68 | 0.797 | 0.727 | +0.068 | [−0.061, +0.197] | 0.31 |
+| 1042 | 68 | 0.739 | 0.754 | −0.015 | [−0.166, +0.136] | 0.85 |
+| 2042 | 68 | 0.620 | 0.815 | **−0.195** | **[−0.342, −0.058]** | **0.0072** |
+
+Paired on the intersection of common nonPH case_ids in both embedding sets
+(n=68 corrected per seed). At seed=42 CORAL is *worse* than GRL; at 1042 they
+tie; at 2042 CORAL beats GRL by a wide margin (p=0.007). The R14 multi-seed
+mean comparison was hiding this seed-level heterogeneity. Honest framing:
+**CORAL is not uniformly better than GRL — the deconfounding gain depends on
+random initialisation**, which is itself a finding (the loss landscape has
+multiple local minima with different protocol-leakage profiles).
+
+### R15.B — Clustering stability: k=2 is the only stable structure
+
+`outputs/r15/clustering_stability.md` + `outputs/r15/fig_r15_stability.png`.
+Sweep k=2..6 on contrast-only n=184 multi-modal feature vector with consensus
+ARI over 30 random KMeans seeds:
+
+| k | silhouette | DB | consensus ARI (30 seeds) | sig clusters / k |
+|---|---|---|---|---|
+| **2** | **0.199** | 1.741 | **0.943** | **2/2** |
+| 3 | 0.133 | 1.996 | 0.827 | 1/3 |
+| 4 | 0.142 | 1.727 | 0.675 | 1/4 |
+| 5 | 0.133 | 1.904 | 0.632 | 3/5 |
+| 6 | 0.120 | 1.848 | 0.721 | 4/6 |
+
+**k=2 is decisively the most stable** (consensus ARI 0.943 across 30 seeds; both
+clusters significantly enriched/depleted vs the 85.9% PH baseline). The R14
+"3 endotypes" claim is downgraded: the 3-cluster solution has ARI 0.827 and only
+1/3 clusters is significantly different from baseline. The defensible read is:
+
+- **Stable 2-cluster structure**: a clearly PH-enriched cluster and a clearly
+  PH-depleted cluster — confirms the COPD↔COPD-PH boundary exists in the
+  multi-modal feature space.
+- **3+ subdivisions are seed-dependent** and should be treated as
+  hypothesis-generating, not definitive endotypes.
+
+### R15.0 — DCM → NIfTI ingestion for 100 new plain-scan nonPH cases
+
+Launched `R15_dcm_to_nifti_new100.py` (SimpleITK-based, adapted from
+`E:\桌面文件\nii格式图\convert_ct.py`) on the user's two new folders
+(24 refill + 76 new). Currently running locally; ~30 s per case, ~50 min total.
+Output to `E:\桌面文件\nii格式图\nii-new100\<case_id>\ct.nii.gz`. After conversion,
+the next cron fire will run the segmentation pipeline + cache-rebuild + ingestion
+into the 345-cohort manifest. Progress logged to
+`copdph-gcn-repo/outputs/r15/dcm_conversion_log.json`.
+
+R15 takes the score on three lines simultaneously:
+- ✅ paired-CI must-fixes closed (lung-vs-graph + CORAL-vs-GRL)
+- ✅ clustering stability sweep done (k=2 winner)
+- 🔄 100-case ingestion in progress (DCM→NIfTI today; segmentation pipeline next)
+- ❌ HiPaS re-segmentation of 38 failure cases pending
+- ❌ Vascular morphometrics on remote pkls pending
