@@ -1,0 +1,128 @@
+{
+  "target_features": [
+    "artery_tort_p10",
+    "artery_len_p25",
+    "artery_len_p50",
+    "artery_len_mean",
+    "artery_total_len_mm",
+    "vein_len_p25",
+    "vein_total_len_mm"
+  ],
+  "subsets": {
+    "legacy_only": {
+      "n": 153,
+      "stage_counts": {
+        "0": 47,
+        "1": 27,
+        "2": 8,
+        "3": 44,
+        "4": 27
+      },
+      "trends": {
+        "artery_tort_p10": {
+          "n": 147,
+          "rho": -0.6187717546554474,
+          "p": 6.702116579958483e-17,
+          "stages_present": 5
+        },
+        "artery_len_p25": {
+          "n": 147,
+          "rho": -0.7673274246462533,
+          "p": 8.974232225168175e-30,
+          "stages_present": 5
+        },
+        "artery_len_p50": {
+          "n": 147,
+          "rho": -0.7533777429080389,
+          "p": 3.5041610563089844e-28,
+          "stages_present": 5
+        },
+        "artery_len_mean": {
+          "n": 147,
+          "rho": -0.7305156083142045,
+          "p": 8.624723251721964e-26,
+          "stages_present": 5
+        },
+        "artery_total_len_mm": {
+          "n": 147,
+          "rho": 0.10046700880375406,
+          "p": 0.2259854712656757,
+          "stages_present": 5
+        },
+        "vein_len_p25": {
+          "n": 145,
+          "rho": -0.6125520999549015,
+          "p": 2.666867638689835e-16,
+          "stages_present": 5
+        },
+        "vein_total_len_mm": {
+          "n": 145,
+          "rho": -0.2862669093111033,
+          "p": 0.0004819025904025456,
+          "stages_present": 5
+        }
+      }
+    },
+    "new100_only": {
+      "n": 78,
+      "stage_counts": {
+        "0": 78
+      },
+      "trends": {}
+    },
+    "enlarged_all": {
+      "n": 231,
+      "stage_counts": {
+        "0": 125,
+        "1": 27,
+        "2": 8,
+        "3": 44,
+        "4": 27
+      },
+      "trends": {
+        "artery_tort_p10": {
+          "n": 225,
+          "rho": -0.1592166419013528,
+          "p": 0.01683852524283189,
+          "stages_present": 5
+        },
+        "artery_len_p25": {
+          "n": 225,
+          "rho": -0.28177067039337056,
+          "p": 1.784576015361836e-05,
+          "stages_present": 5
+        },
+        "artery_len_p50": {
+          "n": 225,
+          "rho": -0.32022247725447484,
+          "p": 9.276623234922007e-07,
+          "stages_present": 5
+        },
+        "artery_len_mean": {
+          "n": 225,
+          "rho": -0.5350154822444753,
+          "p": 4.626061660678175e-18,
+          "stages_present": 5
+        },
+        "artery_total_len_mm": {
+          "n": 225,
+          "rho": 0.5774118951439156,
+          "p": 2.1022898528326744e-21,
+          "stages_present": 5
+        },
+        "vein_len_p25": {
+          "n": 223,
+          "rho": -0.13898435058801448,
+          "p": 0.038089440481762056,
+          "stages_present": 5
+        },
+        "vein_total_len_mm": {
+          "n": 223,
+          "rho": 0.43046950721886856,
+          "p": 1.787074066410267e-11,
+          "stages_present": 5
+        }
+      }
+    }
+  }
+}
