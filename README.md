@@ -1292,12 +1292,20 @@ to break the GRL floor cleanly.
 
 ## ARIS Round 14 — score 8.4/10
 
-**Multi-seed CORAL beats GRL; lung parenchyma dominates disease signal; three PH
-endotypes emerge.** Protocol-leakage reduction with disease preserved is no longer
-a single-seed result; lung-only ablation reverses the assumption that vascular
-graph topology drives the headline AUC; clustering surfaces a defensible
-two-pathway PH endotype structure with a transition cluster between COPD and
-COPD-PH.
+**Multi-seed CORAL improves the Pareto vs GRL (NOT a confirmed win — see R15
+paired tests below); lung-vs-graph is statistically equivalent (paired test);
+two PH endotypes are stable, three only at lower stability.** R15's paired
+bootstrap analyses substantively softened R14's marginal-CI claims:
+
+- CORAL @ λ=1 multi-seed mean 0.71 vs GRL 0.80 SD-floor _looks_ like a win, but
+  paired same-case CIs (R15) show seed-dependent comparison: only seed=2042
+  significantly favors CORAL (p=0.007); seed=42 favors GRL (NS); seed=1042 ties.
+- "Lung-only AUC dominates graph-only" was a CI-overlap artifact; paired Δ p=0.19 NS.
+  Combined > graph alone IS significant (p=0.0008) — lung adds complementary signal.
+- Cluster k=3 has consensus ARI 0.83 (unstable); k=2 is the only stable structure
+  (ARI=0.94).
+
+Treat the R14 narrative below as preliminary and the R15 paired-test conclusions as authoritative.
 
 ### R14 figure 1 — CORAL vs GRL multi-seed protocol-leakage reduction
 
