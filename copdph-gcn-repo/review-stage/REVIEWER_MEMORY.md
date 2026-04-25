@@ -30,6 +30,61 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 16 key concerns (2026-04-25 18:30) — CARRY INTO ROUND 17
+
+**Score 9.0/10 revise** (up from R15=8.8). Half a point from target 9.5. R16
+delivered the strongest methodological progression of the project so far:
+
+1. **Simple_AV_seg plain-scan oversegmentation independently detected** (R16.A):
+   79/100 new lung masks >8.5L (median 10.8L), confirming domain-transfer flag.
+
+2. **Holm-Bonferroni endotype** (R16.B): 9/14 features survive at α=0.05.
+   **paren_std_HU is the LARGEST effect (Cohen's d=+1.10 [+0.80, +1.48],
+   p_holm=1.7e-7)** — PH lungs +15.7 HU more heterogeneous parenchyma.
+   This is the highest-quality single endotype finding to date.
+
+3. **Lung-mask repair** (R16.C): HU<-300 + top-2-CC filter → median vol
+   10839 mL → 7678 mL (26% drop, 100/100 cases).
+
+4. **Repaired enlarged probe** (R16.D) — KEY INVERSE FINDING:
+   - Within-nonPH protocol LR **rises** 0.908 → **0.958** [0.924, 0.983]
+     after repair. R15.G was CONSERVATIVE, not inflated. Protocol confound
+     is even more severe than reported on the enlarged stratum.
+   - Within-contrast disease drops 0.847 → 0.816 [0.706, 0.909]; ~3 AUC
+     points lived in over-mask soft-tissue. **0.816 is the cleaner estimate.**
+   - Endotype replicates IDENTICALLY on repaired data — confirms robust.
+
+5. **R17 schema discovered**: `tri_structure/cache_tri_v2/<case_id>_tri.pkl`
+   has native `{artery: Data, vein: Data, airway: Data}` — direct per-structure
+   access without reverse-engineering merged cache_v2_tri_flat.
+
+6. **Outstanding R16 reviewer flags for R17**:
+   - Embedding-level enlarged probe NOT yet done (scalar 0.958 insufficient)
+   - Multi-seed CORAL/MMD on enlarged n=151 NOT redone
+   - Paired DeLong repaired vs unrepaired disease/protocol AUC missing
+   - Blinded overlay gallery / Dice / coverage QC missing for repaired masks
+   - Per-structure morphometrics from cache_tri_v2 NOT yet extracted
+   - HiPaS re-seg of 38 legacy failures pending
+   - paren_std_HU not yet covariate-adjusted (age/sex/scanner)
+   - vein_vol_mL & vessel_airway_over_lung have extreme variance (Simple_AV_seg
+     artery/vein-confusion artifacts; need per-structure QC)
+
+7. **Path to 9.5/10** (codex):
+   - Embedding-level protocol AUC reduced AFTER deconfounding while disease
+     AUC stays ≥0.80
+   - paren_std_HU confirmatory-grade: covariate-adjusted + scanner-robust
+   - Final locked cohort manifest + reproducibility from case IDs
+   - Anatomical mask validation (overlay gallery, Dice if labels available)
+
+Round 17 minimum:
+- v2 cache rebuild on new100 (after lung-mask repair) → enlarged GCN-input cohort
+- Embedding-level within-nonPH protocol probe at n≈151
+- Multi-seed CORAL on enlarged stratum w/ hierarchical CIs
+- Per-structure morphometrics from cache_tri_v2 (artery/vein/airway separate)
+- Paired DeLong repaired-vs-unrepaired
+- Lung-mask overlay gallery (5-10 representative + 5-10 worst-case repaired)
+- Covariate-adjusted paren_std_HU model
+
 ## Round 15 key concerns (2026-04-25 16:30) — CARRY INTO ROUND 16
 
 **Score 8.8/10 revise** (up from R14=8.4). Major progress on enlarged

@@ -247,3 +247,32 @@ Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R14=8.4 (+0.4).
 **Must fix R16**: embedding-level enlarged probe; Simple_AV_seg plain-scan QC; HiPaS re-seg of 38; per-structure morphometrics; multiplicity-corrected endotype tests.
 
 **Path to ≥9.5**: final unified 360-case cohort with frozen QC manifest + enlarged deconfounding + endotype-clinical correlation + external/temporal validation.
+
+---
+
+## Round 16 (2026-04-25 18:30) — score 9.0 / verdict revise
+
+Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R15=8.8 (+0.2). **0.5 from target 9.5.**
+
+**R16 deliverables**:
+- ✅ R16.A independent seg QC: 79/100 new lung masks oversize (median 10.8L); confirms Simple_AV_seg domain-transfer flag
+- ✅ R16.B Holm-Bonferroni endotype: 9/14 features significant; **paren_std_HU LARGEST d=+1.10 p_holm=1.7e-7** (PH +15.7 HU more heterogeneous parenchyma)
+- ✅ R16.C lung-mask repair (HU<-300 + top-2-CC): median vol 10839→7678 mL on 100/100
+- ✅ R16.D repaired enlarged probe — KEY INVERSE FINDING: protocol LR RISES 0.908→0.958 (repair makes confound CLEARER, R15.G was conservative); disease 0.847→0.816 (3pt of signal was in over-mask soft-tissue); endotype IDENTICAL on repaired data
+- ✅ R17 schema discovered (tri_structure/cache_tri_v2/<case_id>_tri.pkl native per-structure)
+- ✅ Multi-task-per-GPU policy adopted (2-3 GCN/GPU, 2 Simple_AV_seg/GPU, 1 diffusion exclusive)
+
+**Key science findings**:
+- Protocol confound is even MORE severe than reported (0.96 LR with cleaner masks)
+- Within-contrast disease cleaner estimate is **0.816** (replaces 0.847)
+- **paren_std_HU is the highest-quality single endotype finding to date** — d=+1.10 LARGE effect, replicated on repaired data, Holm-Bonferroni significant
+
+**Reviewer regressions**:
+- Repair is distributional QC only, no blinded overlay/Dice/coverage
+- vein_vol_mL & vessel_airway_over_lung extreme variance (Simple_AV_seg AV-confusion)
+- paren_std_HU scanner/kernel/noise-sensitive — covariate adjustment needed
+- Embedding-level enlarged probe NOT done (scalar 0.958 insufficient evidence)
+
+**Must fix R17**: embedding-level enlarged probe + multi-seed CORAL on n=151 + paired DeLong + overlay gallery + per-structure morphometrics + HiPaS re-seg of 38 + covariate-adjusted endotype.
+
+**Path to ≥9.5**: deconfounded enlarged embedding AUC + confirmatory-grade paren_std_HU + locked cohort manifest + anatomical validation.

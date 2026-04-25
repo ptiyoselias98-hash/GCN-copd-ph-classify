@@ -29,6 +29,7 @@ collected under `outputs/`.
 | R13 | 8.0/10 | revise |
 | R14 | 8.4/10 | revise |
 | R15 | 8.8/10 | revise |
+| R16 | 9.0/10 | revise |
 
 ## Task
 
@@ -1453,4 +1454,15 @@ re-running R15.G probes; the repaired-mask result is the authoritative version.
 - [vascular_morphometrics_v2.csv](copdph-gcn-repo/outputs/r14/vascular_morphometrics_v2.csv) — explicit graph morphometrics (243 cases × 12 cols)
 - [endotype_corrected.md](copdph-gcn-repo/outputs/r16/endotype_corrected.md) — Holm-Bonferroni corrected endotype effect sizes (R16.B)
 - [seg_qc_new100.md](copdph-gcn-repo/outputs/r16/seg_qc_new100.md) — independent segmentation QC for the 100 new cases (R16.A)
+
+## ARIS Round 16 — score 9.0/10
+
+R16 (9.0/10 revise, +0.2): Simple_AV_seg lung-mask oversegmentation detected (79/100 >8.5L) and repaired (HU<-300+top-2-CC, median 10.8L→7.7L); repaired-mask enlarged probe shows protocol LR RISES 0.908→0.958 (R15.G was CONSERVATIVE not inflated), disease drops 0.847→0.816 (3pt was in over-mask tissue); Holm-Bonferroni endotype: paren_std_HU LARGEST effect d=+1.10 p=1.7e-7; 9/14 features sig
+
+- [repaired_enlarged_results.md](copdph-gcn-repo/outputs/r16/repaired_enlarged_results.md)
+- [seg_qc_new100.md](copdph-gcn-repo/outputs/r16/seg_qc_new100.md)
+- [endotype_corrected.md](copdph-gcn-repo/outputs/r16/endotype_corrected.md)
+![fig_r16_segqc_volumes](copdph-gcn-repo/outputs/figures/fig_r16_segqc_volumes.png)
+
+![fig_r15_endotype_forest](copdph-gcn-repo/outputs/figures/fig_r15_endotype_forest.png)
 

@@ -1,6 +1,6 @@
 {
-  "round": 15,
-  "status": "round_15_complete_score_8.8_revise",
+  "round": 16,
+  "status": "round_16_complete_score_9.0_revise",
   "running_actions": [
     {"action": "DCM→NIfTI for 100 new plain-scan nonPH", "status": "DONE 100/100", "ended_at": "2026-04-25T12:54:03", "log": "outputs/r15/dcm_conversion_log.json"},
     {"action": "scp nii-new100 (12GB) to imss@10.60.147.117:/home/imss/cw/GCN copdnoph copdph/nii-new100/", "status": "DONE 100/100 (completed 2026-04-25T14:36); nested path FLATTENED via `mv`; ready for seg pipeline"},
@@ -24,6 +24,44 @@
     {"round": 3, "score": 4, "verdict": "reject"},
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
+    {
+      "round": 16,
+      "timestamp": "2026-04-25T18:30:00",
+      "score": 9.0,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "experiments": [
+        "R16.A independent seg QC on new100: 79/100 lung masks >8.5L (median 10.8L; normal 1.5-8.5L). Confirms reviewer-flagged Simple_AV_seg domain-transfer concern (CTPA-trained lung.pth oversegments on plain-scan).",
+        "R16.B Holm-Bonferroni endotype: 9/14 features survive at α=0.05. paren_std_HU LARGEST effect d=+1.10 [+0.80, +1.48] p_holm=1.7e-7; whole_std_HU d=+0.62; paren_mean_HU d=+0.66; lung_vol_mL d=-0.64; apical_basal_LAA950_gradient d=-0.50; paren_LAA_856_frac d=-0.62; vessel_airway_over_lung d=-0.32; artery_vol_mL d=+0.27. NS: paren_LAA_950_frac, paren_LAA_910_frac, vein_vol_mL, basal/apical_LAA_950_frac.",
+        "R16.C lung-mask repair (HU<-300 + top-2-CC filter): 100/100 cases, median lung vol 10839 mL → 7678 mL (26% drop).",
+        "R16.D repaired enlarged probe: within-nonPH protocol LR 0.908 → 0.958 [0.924, 0.983] (Δ=+0.05) — repair INCREASES protocol decodability, R15.G was CONSERVATIVE not inflated. Within-contrast disease 0.847 → 0.816 [0.706, 0.909] (Δ=-0.031) — 3pt of signal lived in over-mask soft-tissue. Endotype replicates IDENTICALLY (paren_std_HU still LARGEST p=1.2e-8).",
+        "R17 schema discovery: tri_structure/cache_tri_v2/<case_id>_tri.pkl has native {artery: Data, vein: Data, airway: Data} keys; cache_v2_tri_flat is merged via _remote_v2_flat_convert.py (vein offset by n_artery, structure-id is node-index range)",
+        "Multi-task-per-GPU policy adopted (user 2026-04-25): 2-3 GCN/GPU, 2 Simple_AV_seg/GPU, 1 diffusion/GPU exclusive, 24-core remote CPU pool"
+      ],
+      "regressions_r16": [
+        "Protocol confound got WORSE after mask repair (0.908→0.958 LR within-nonPH n=151) — methodological diagnostic win but scientific liability",
+        "Within-contrast disease AUC drops 0.847→0.816 — repair removed non-lung shortcut signal; 0.816 must replace 0.847 as defensible estimate",
+        "Repair is distributional QC only, no blinded overlay/Dice/coverage audit",
+        "vein_vol_mL & vessel_airway_over_lung have unstable/extreme variance (likely Simple_AV_seg artery/vein-confusion artifacts)",
+        "paren_std_HU strongest finding but HU std is scanner/kernel/noise-sensitive — needs covariate adjustment"
+      ],
+      "must_fix_before_round17": [
+        "Run embedding-level enlarged-stratum protocol probe on rebuilt v2 cache/new100 (scalar 0.958 not enough — GCN inputs must be tested)",
+        "Redo CORAL/MMD or alternative deconfounder on enlarged n=151 with multi-seed hierarchical CIs",
+        "Paired DeLong comparing repaired vs unrepaired disease AUC + protocol AUC on same cases",
+        "Blinded overlay gallery or quantitative anatomical QC for repaired lung masks (esp. high-volume residual)",
+        "Per-structure artery/vein/airway morphometrics from native cache_tri_v2 pkls (R17 schema discovered)",
+        "HiPaS re-segmentation outcomes for 38 legacy failures or frozen exclusion policy",
+        "Covariate-adjusted endotype models (age, sex, scanner/reconstruction); HU std especially scanner-sensitive"
+      ],
+      "minimum_to_reach_9point5": [
+        "Enlarged embedding protocol AUC materially reduced after deconfounding while repaired within-contrast disease AUC stays ≥0.80 with CIs",
+        "paren_std_HU confirmatory-grade: repaired+within-contrast+Holm-sig+covariate-adjusted+scanner-robust",
+        "Locked final cohort manifest + segmentation policy + cache rebuild path (reproducibility from case IDs)",
+        "Anatomical validation for lung + tri-structure masks (overlay gallery, Dice/coverage if blinded labels available)"
+      ],
+      "reviewer_notes_for_memory": "R16 9.0/10 (up from R15 8.8). Strongest advance: independent detection + repair of Simple_AV_seg plain-scan oversegmentation (median 10.8L→7.7L), AND the repaired rerun falsified the easy objection that R15.G protocol AUC was overmask artifact. Protocol leakage is STRONGER after repair: LR 0.958 [0.924, 0.983] within nonPH n=151. Repaired within-contrast disease 0.816 [0.706, 0.909] is the cleaner estimate (replaces 0.847). paren_std_HU is currently best single endotype finding (d=+1.10 [+0.80,+1.48], Holm p=1.7e-7), repaired-replicated, within-contrast — higher quality than R14 cluster claims but not final (n=27 nonPH-contrast small; HU heterogeneity scanner-sensitive). 5/14 NS features support 'distribution/heterogeneity not total LAA-950 burden' narrative cautiously. R17 must move from scalar repaired probes to embedding-level enlarged deconfounding + anatomical mask validation + per-structure morphometrics."
+    },
     {
       "round": 15,
       "timestamp": "2026-04-25T16:30:00",
