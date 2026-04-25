@@ -30,6 +30,51 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 14 key concerns (2026-04-25 12:30) — CARRY INTO ROUND 15
+
+**Score 8.4/10 revise** (up from R13=8.0). R14 added multi-seed CORAL +
+lung-vs-graph ablation + multi-structure clustering + research roadmap:
+
+1. **Multi-seed CORAL λ=1 reduces protocol LR to 0.71 (mean of 3 seeds,
+   range 0.62-0.79) on n=68 corrected, with disease AUC 0.93 preserved**.
+   First deconfounder to break corrected-GRL R11 0.80 floor with intact
+   disease signal. NOT confirmed yet — needs hierarchical seed×case CI
+   and paired comparison vs GRL on identical n=68 cases (R15 must-fix).
+
+2. **Lung-only AUC 0.844 > graph-only AUC 0.782 (within-contrast n=184)** —
+   lung parenchyma carries MORE disease signal than vascular graph
+   topology in this cohort. graph+lung 0.867 = complementary (+0.085
+   AUC). Reviewer flag: contrast-nonPH n=26 is small; HU features may
+   retain residual scanner/reconstruction confound; CIs overlap so
+   reversal needs paired AUC-diff CI.
+
+3. **3 within-contrast PH endotypes** from UMAP+KMeans on 66-D feature
+   vector: C0 transition (69%PH; vessel-diameter+emphysema), C1
+   PH-arterial-rich (93%PH), C2 PH-dense-lung (93%PH). Plausible
+   hypothesis-generator but baseline contrast PH prevalence is 85.9%,
+   so C1/C2 only modestly enriched. No stability/silhouette/ARI yet.
+
+4. **MMD λ=5 LR=0.644 but disease drops to 0.85** — too aggressive;
+   λ=1 MMD has LR 0.86, no advantage over CORAL.
+
+5. **R14_vascular_morphometrics.py scaffolded** but not run (scp blocked
+   in transcript). Move to R15.
+
+6. **RESEARCH_ROADMAP.md** scopes 5 axes; overall ~62% to publishable
+   answer. Most binding constraint: longitudinal data absence (cohort
+   limitation).
+
+Round 15 minimum:
+- Hierarchical seed × case bootstrap CI for CORAL λ=1 vs λ=0 vs GRL,
+  paired on n=68
+- Paired AUC-difference CI for lung_only > graph_only
+- Lung-feature residual-confound audit within contrast-only
+- Clustering stability sweep (k=2..6, multiple seeds, silhouette,
+  consensus ARI)
+- Launch DCM→NIfTI pipeline for 100 new plain-scan nonPH cases
+- HiPaS re-segmentation status report for 38 failure cases
+- Run vascular morphometrics extraction on remote pkls
+
 ## Round 13 key concerns (2026-04-25 12:10) — CARRY INTO ROUND 14
 
 **Score 8.0/10 revise** (up from R12=7.0). R13 closed several R12 must_fix

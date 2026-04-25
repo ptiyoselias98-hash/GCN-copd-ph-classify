@@ -1,6 +1,6 @@
 {
-  "round": 13,
-  "status": "round_13_complete_score_8.0_revise",
+  "round": 14,
+  "status": "round_14_complete_score_8.4_revise",
   "running_gpu_jobs": [
     {"host": "imss@10.60.147.117", "script": "run_sprint6_v2_coral.py", "args": "lam in [0,1,5,10] seed=42 (4-job pilot, 1 per GPU sequentially)", "started": "2026-04-25T11:25:00", "expected_done": "2026-04-25T13:00:00", "logs": "/tmp/r13_logs/coral_l*_s42_gpu*.log", "outputs": "outputs/sprint6_arm_a_coral_l*_s42/sprint6_results.json + embeddings/"}
   ],
@@ -14,6 +14,46 @@
     {"round": 3, "score": 4, "verdict": "reject"},
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
+    {
+      "round": 14,
+      "timestamp": "2026-04-25T12:30:00",
+      "score": 8.4,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "experiments": [
+        "R14.E multi-seed CORAL probe (R13_coral_probe.py, expanded): 4 λ × 3 seeds = 12 CORAL + 2 MMD configs harvested. CORAL λ=1 corrected n=68 LR per-seed [0.791, 0.714, 0.624], mean 0.71 ± 0.08; disease AUC 0.933 ± 0.001 across all λ. CORAL beats corrected-GRL R11 0.80 floor by 0.10 AUC with disease preserved. MMD λ=5 LR=0.644 but disease drops to 0.85.",
+        "R14.B multi-structure phenotype clustering (R14_multistruct_phenotype_clustering.py): UMAP+KMeans on 66-D feature vector (50 graph + 16 lung) over 226 cases. Within-contrast n=184: 3 PH endotypes — C0 transition (69%PH; vessel-diameter+emphysema), C1 PH-arterial-rich (93%PH; high node/edge+artery vol), C2 PH-dense-lung (93%PH; small lung vol+high HU+low LAA-856).",
+        "R14.D lung-only vs graph-only disease ablation (R14_lung_only_vs_graph_only_ablation.py): within-contrast n=184 — graph_only 0.782 [0.676, 0.877], lung_only 0.844 [0.754, 0.917], graph+lung 0.867 [0.796, 0.930]. LUNG DOMINATES; graph adds +0.085 AUC complementary signal. Per-graph-substring: x1 (diameter) 0.807, e0 0.602.",
+        "R14.A graph aggregates flattened to CSV (50 features) for downstream multi-modal use",
+        "RESEARCH_ROADMAP.md created with axis-by-axis gap-to-goal analysis (~62% overall)"
+      ],
+      "regressions_r14": [
+        "Reviewer flagged: CORAL still reported as mean±SD per λ, not hierarchical seed×case bootstrap CI or paired comparison vs GRL on identical n=68",
+        "Lung-only > graph-only AUC reversal needs paired AUC-difference CI; current CIs overlap",
+        "Lung HU features may retain acquisition/reconstruction confound even within-contrast — audit needed",
+        "Clustering descriptive only: fixed k=4/3, fixed seed=42, no stability sweep / silhouette / consensus ARI",
+        "R14_vascular_morphometrics.py scaffolded but not run on remote (scp denied in transcript scope)",
+        "Roadmap had stale 'ablation not yet run' line (now fixed)"
+      ],
+      "must_fix_before_round15": [
+        "Hierarchical seed × case bootstrap CI for CORAL λ=1 vs λ=0 vs GRL on identical corrected n=68 cases (paired)",
+        "AUC-difference paired CI for lung_only > graph_only (current CIs overlap; reversal not yet proven)",
+        "Audit lung features for residual scanner/reconstruction confound within contrast-only",
+        "Clustering stability sweep: k=2..6, multiple UMAP/KMeans seeds, silhouette, consensus ARI/NMI, cluster vs 85.9% PH baseline enrichment tests",
+        "Launch DCM→NIfTI pipeline for 100 new plain-scan nonPH cases (still pending)",
+        "HiPaS re-segmentation pipeline status for 38 failure cases",
+        "Run R14_vascular_morphometrics.py on remote when scp permission allows"
+      ],
+      "minimum_to_reach_9point5": [
+        "345-cohort ingestion + unified segmentation/re-seg of 38 failures",
+        "Within-nonPH protocol probe on enlarged corrected stratum (n>>68)",
+        "CORAL/HSIC/MMD/propensity comparison with hierarchical CIs + paired tests + held-out probes + preserved disease AUC",
+        "Paper-grade anatomical QC: overlay gallery, skeleton-to-mask coverage, TEASAR/kimimaro sensitivity, explicit vascular morphometrics",
+        "Endotype validation beyond KMeans: stability + mPAP/FEV1/6MWT correlation + ideally stage-stratified or longitudinal evidence",
+        "External or temporally-separated validation"
+      ],
+      "reviewer_notes_for_memory": "R14 8.4/10 (up from R13 8.0). Multi-seed CORAL λ=1 reduces corrected within-nonPH protocol LR from λ=0 mean 0.862 to 0.710 with disease AUC ~0.93 preserved — real Pareto improvement over GRL. NOT a confirmed deconfounding victory: n=68, 3 seeds, LR range 0.624-0.791, MLP mean 0.752, no hierarchical CI, no paired GRL test. MMD λ=5 LR=0.644 but disease 0.85 (unacceptable). Lung-only ablation 0.844 > graph-only 0.782 is a hypothesis-generator but contrast-nonPH n=26 small and HU may retain confound. Clusters plausible but not validated (PH prevalence 85.9% baseline). R15 must add paired CIs + clustering stability + 345 ingestion start."
+    },
     {
       "round": 13,
       "timestamp": "2026-04-25T12:10:00",

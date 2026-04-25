@@ -27,6 +27,7 @@ collected under `outputs/`.
 | R11 | 5.0/10 | reject |
 | R12 | 7.0/10 | revise |
 | R13 | 8.0/10 | revise |
+| R14 | 8.4/10 | revise |
 
 ## Task
 
@@ -1274,3 +1275,13 @@ R13 (8.0/10 revise): 345-cohort reconciliation closes PH=170→160 audit; 38 seg
 - [cohort_345_summary.md](copdph-gcn-repo/outputs/r13/cohort_345_summary.md)
 - [seg_findings_summary.md](copdph-gcn-repo/outputs/r13/seg_findings_summary.md)
 - [coral_probe.md](copdph-gcn-repo/outputs/r13/coral_probe.md)
+
+
+## ARIS Round 14 — score 8.4/10
+
+R14 (8.4/10 revise): multi-seed CORAL @ λ=1 protocol LR 0.71 with disease 0.93 preserved (beats GRL 0.80 floor); lung-only AUC 0.844 > graph-only 0.782 (lung dominates disease signal); 3 contrast-only PH endotypes (transition/arterial-rich/dense-lung); ~62% gap-to-goal.
+
+- [multistruct_clusters.md](copdph-gcn-repo/outputs/r14/multistruct_clusters.md)
+- [ablation_lung_vs_graph.md](copdph-gcn-repo/outputs/r14/ablation_lung_vs_graph.md)
+- [coral_probe.md](copdph-gcn-repo/outputs/r13/coral_probe.md)
+- [RESEARCH_ROADMAP.md](copdph-gcn-repo/RESEARCH_ROADMAP.md)

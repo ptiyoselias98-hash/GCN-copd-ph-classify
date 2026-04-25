@@ -186,3 +186,32 @@ Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R12=7.0 (+1.0).
 **Must fix before R14**: multi-seed CORAL {1042, 2042} (8 runs) + paired GRL comparison + hierarchical CIs; MMD pilot; disease AUC into JSON artifact; full machine-readable 345 manifest; HiPaS re-segmentation outcomes; DCM→NIfTI for 100 new cases.
 
 **Path to ≥9.5**: 345-cohort ingestion + multi-seed multi-family deconfounder evidence (CORAL/MMD/HSIC) + paired uncertainty on same case set + no impossibility language without 345 evidence.
+
+---
+
+## Round 14 (2026-04-25 12:30) — score 8.4 / verdict revise
+
+Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R13=8.0 (+0.4).
+
+**R14 deliverables**:
+- Multi-seed CORAL λ=1 corrected n=68: protocol LR per-seed [0.791, 0.714, 0.624], mean 0.71 ± 0.08; disease AUC 0.933 preserved
+- MMD λ=5 LR=0.644 but disease 0.85 (unacceptable)
+- Lung-vs-graph ablation: lung_only 0.844 > graph_only 0.782; graph+lung 0.867 (complementary)
+- Multi-structure clustering: 3 contrast-only PH endotypes (transition/arterial-rich/dense-lung)
+- RESEARCH_ROADMAP.md gap-to-goal (62% overall)
+
+**Key science findings**:
+- CORAL beats GRL's 0.80 floor by 0.10 AUC with disease preserved (best deconfounder so far; not yet confirmed Path-B win)
+- Lung parenchyma carries MORE disease signal than vascular graph topology — flips the assumption that graph topology dominates
+- Two PH endotype patterns (vascular-remodelling vs restrictive-dense-lung) with a vessel-diameter+emphysema transition cluster
+
+**Reviewer regressions**:
+- CORAL still mean±SD per λ, not hierarchical seed×case CI or paired GRL test
+- Lung-vs-graph CIs overlap; reversal needs paired AUC-diff CI
+- Lung HU may retain scanner/reconstruction confound
+- Clustering not stability-validated
+- Vascular morphometrics scaffolded but not executed
+
+**Must fix R15**: hierarchical paired CIs; AUC-diff CIs; lung confound audit; cluster stability; 345-cohort ingestion pipeline launch; HiPaS re-seg status; vascular morphometrics on remote.
+
+**Path to ≥9.5**: 345-cohort ingestion + paired CIs across deconfounder families + endotype clinical correlation (mPAP/FEV1/6MWT) + ideally longitudinal/external validation.

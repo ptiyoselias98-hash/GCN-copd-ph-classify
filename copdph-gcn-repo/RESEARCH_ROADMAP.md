@@ -118,27 +118,37 @@ Quantifying 距离最终目标的差距 in 5 axes:
    from the pkl graphs)
 - ❌ No paper-quality vascular-evolution figure yet
 
-### Axis D — Lung-parenchyma + airway auxiliary  (40 % done)
+### Axis D — Lung-parenchyma + airway auxiliary  (60 % done)
 - ✅ `lung_features_v2.csv` has LAA-950, apical-basal gradient,
    pure-parenchyma HU stats for 282 cases
 - ✅ R14.B multi-modal clustering uses lung features alongside graph
-- ⚠ Lung-feature-only disease classifier vs graph-only disease classifier
-   ablation NOT YET RUN — would tell us how much of the disease signal
-   is in lung vs vasculature
-- ⚠ Airway wall thickness, tapering not extracted (the airway
-   appears in the graph but only as 13-D node features, not as
-   morphometric global features)
+- ✅ **R14.D lung-only vs graph-only ablation** (`outputs/r14/ablation_lung_vs_graph.md`):
+   within-contrast n=184 — lung_only AUC **0.844** > graph_only **0.782**
+   > graph+lung **0.867** (complementary). Lung parenchyma is the
+   primary disease signal carrier; vascular graph adds **+0.085 AUC**.
+   ⚠ CIs overlap; reviewer requires paired AUC-difference CI for the
+   reversal claim (R15).
+- ⚠ Audit needed: lung HU features may retain acquisition/reconstruction
+   confound even within-contrast (R15 must-fix)
+- ⚠ Airway wall thickness, tapering not extracted (the airway appears in
+   the graph as 13-D node features, not as morphometric global features)
 - ❌ Lung-CT radiomics (PyRadiomics) on the parenchyma not extracted
 
-### Axis E — Confounder control + reproducibility  (75 % done)
+### Axis E — Confounder control + reproducibility  (80 % done)
 - ✅ Protocol confound flagged + within-nonPH primary endpoint
-- ✅ Two deconfounders attempted (GRL, CORAL)
-- ⚠ Multi-seed CORAL + MMD evidence pending (R14 launched)
-- ⚠ Propensity-matched primary endpoint promised (R8) but only
-   proxied
+- ✅ Three deconfounder families tested: GRL (R10-R12), CORAL (R13-R14
+   12 configs multi-seed), MMD (R14 2 configs single-seed)
+- ✅ **CORAL @ λ=1 mean LR 0.71 (best 0.624) on n=68 corrected with
+   disease 0.93 preserved** — first deconfounder to break GRL's 0.80
+   floor. Best-deconfounder-so-far; not yet a confirmed Path-B win
+   (3 seeds, no hierarchical CI, no paired test against GRL — R15).
+- ⚠ Hierarchical seed × case bootstrap CI + paired CORAL-vs-GRL on
+   identical corrected n=68 cases pending (R15 must-fix)
+- ⚠ Lung HU residual-confound audit pending (R15)
+- ⚠ HSIC / IRM / propensity-overlap reweighting still untried
 - ❌ External cohort validation absent
 
-### Overall: ~57% of the way to a publishable answer.
+### Overall: ~62% of the way to a publishable answer (up from 57% in R13).
 
 The most binding constraints, in priority order:
 
