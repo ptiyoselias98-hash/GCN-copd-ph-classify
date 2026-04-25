@@ -1,0 +1,138 @@
+{
+  "n_total": 322,
+  "feature_set": [
+    "airway_vol_mL",
+    "apical_LAA_910_frac",
+    "apical_LAA_950_frac",
+    "apical_basal_LAA950_gradient",
+    "apical_mean_HU",
+    "apical_n_voxels",
+    "artery_vol_mL",
+    "basal_LAA_910_frac",
+    "basal_LAA_950_frac",
+    "basal_mean_HU",
+    "basal_n_voxels",
+    "lung_vol_mL",
+    "middle_LAA_910_frac",
+    "middle_LAA_950_frac",
+    "middle_mean_HU",
+    "middle_n_voxels",
+    "paren_HU_p25",
+    "paren_HU_p5",
+    "paren_HU_p50",
+    "paren_HU_p75",
+    "paren_HU_p95",
+    "paren_LAA_856_frac",
+    "paren_LAA_910_frac",
+    "paren_LAA_950_frac",
+    "paren_mean_HU",
+    "paren_n_voxels",
+    "paren_std_HU",
+    "vein_vol_mL",
+    "vessel_airway_over_lung",
+    "whole_HU_p25",
+    "whole_HU_p5",
+    "whole_HU_p50",
+    "whole_HU_p75",
+    "whole_HU_p95",
+    "whole_LAA_856_frac",
+    "whole_LAA_910_frac",
+    "whole_LAA_950_frac",
+    "whole_mean_HU",
+    "whole_n_voxels",
+    "whole_std_HU"
+  ],
+  "n_features": 40,
+  "A_within_nonph_protocol": {
+    "n": 151,
+    "n_contrast": 27,
+    "n_plain": 124,
+    "lr_auc": 0.9080047789725207,
+    "lr_ci95": [
+      0.819295101553166,
+      0.9683393070489844
+    ],
+    "mlp_auc": 0.9139784946236559,
+    "mlp_ci95": [
+      0.8204898446833931,
+      0.9781959378733572
+    ],
+    "comparison_to_R12": "R12 reported n=80 LR=0.853 [0.722, 0.942]; new n is 151"
+  },
+  "B_within_contrast_disease": {
+    "n": 186,
+    "n_ph": 159,
+    "n_nonph": 27,
+    "lr_auc": 0.8469601677148847,
+    "lr_ci95": [
+      0.7549440950384346,
+      0.9233869089214999
+    ],
+    "comparison_to_R14": "R14 reported lung-only AUC 0.844 [0.754, 0.917] at n=184"
+  },
+  "C_endotype_replication": {
+    "paren_mean_HU": {
+      "PH_mean": -807.7355715193838,
+      "PH_sd": 55.292617764428506,
+      "nonPH_mean": -844.73681640625,
+      "nonPH_sd": 59.4630489709103,
+      "delta": 37.001244886866175,
+      "mwu_p": 0.001262156174430707
+    },
+    "apical_basal_LAA950_gradient": {
+      "PH_mean": -0.027220526181460043,
+      "PH_sd": 0.13638886410825588,
+      "nonPH_mean": 0.04120871302883352,
+      "nonPH_sd": 0.1362167958313528,
+      "delta": -0.06842923921029356,
+      "mwu_p": 0.005374330935766128
+    },
+    "paren_LAA_950_frac": {
+      "PH_mean": 0.071596604644975,
+      "PH_sd": 0.09440878511241528,
+      "nonPH_mean": 0.10869841400303978,
+      "nonPH_sd": 0.1987229726085184,
+      "delta": -0.037101809358064786,
+      "mwu_p": 0.5936585733747652
+    },
+    "vessel_airway_over_lung": {
+      "PH_mean": 0.27451245957692255,
+      "PH_sd": 1.166323518320532,
+      "nonPH_mean": 0.859894694536794,
+      "nonPH_sd": 3.782147624019505,
+      "delta": -0.5853822349598714,
+      "mwu_p": 0.0007375350946647481
+    },
+    "lung_vol_mL": {
+      "PH_mean": 3380.32592409875,
+      "PH_sd": 1516.325847818223,
+      "nonPH_mean": 4352.523604388781,
+      "nonPH_sd": 1661.5729221617262,
+      "delta": -972.1976802900308,
+      "mwu_p": 0.005247588252976914
+    },
+    "artery_vol_mL": {
+      "PH_mean": 260.96096310383564,
+      "PH_sd": 98.30599928566407,
+      "nonPH_mean": 202.9295910468001,
+      "nonPH_sd": 45.66293506537902,
+      "delta": 58.031372057035526,
+      "mwu_p": 0.0008966196357216711
+    },
+    "vein_vol_mL": {
+      "PH_mean": 201.91005859382088,
+      "PH_sd": 74.6237294434699,
+      "nonPH_mean": 2139.265991801986,
+      "nonPH_sd": 10039.20529231262,
+      "delta": -1937.355933208165,
+      "mwu_p": 0.526038934237977
+    }
+  },
+  "new_ingestion_check": {
+    "n_new": 78,
+    "all_label0": true,
+    "all_plain": true,
+    "paren_mean_HU_mean": -878.0317093286759,
+    "paren_LAA_950_frac_mean": 0.23800080001065368
+  }
+}
