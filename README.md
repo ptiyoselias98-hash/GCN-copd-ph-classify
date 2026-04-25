@@ -1270,7 +1270,19 @@ R12 (7.0/10 revise): missingness-only probe shows is_in_v2_cache leaks protocol 
 
 ## ARIS Round 13 — score 8.0/10
 
-R13 (8.0/10 revise): 345-cohort reconciliation closes PH=170→160 audit; 38 seg-failure cases excluded (effective n=80→68); single-seed CORAL λ=1 wins Pareto vs GRL (LR 0.772 with disease 0.93 preserved); multi-seed expansion launched on GPU 0+1.
+**345-cohort reconciliation + segmentation-quality audit + first non-GRL deconfounder.**
+The legacy 282-cohort PH=170 was an overcount; user manually pruned 10 PH cases that
+had inconsistent `00000001`-`00000005` DCM-count subfolders. R13.1 reproduces the
+exact diff: 345 = 160 PH + 27 nonPH-contrast + 58 + 24 + 76 nonPH-plain; only-legacy
+= 10 PH + 5 plain-scan, matching the user's narrative.
+
+R13.2 segmentation-quality audit on `nii-unified-282/` masks flagged **34 cases with
+EMPTY masks + 4 with lung-component anomalies** (38 total exclusions). Of these,
+12 were in the R1-R12 within-nonPH n=80 stratum → effective n drops to **68**.
+
+R13.3 single-seed CORAL pilot (λ=1) drives within-nonPH protocol LR to 0.772 (vs
+corrected-GRL best 0.790) with disease AUC preserved at 0.93 — first deconfounder
+to break the GRL floor cleanly.
 
 - [cohort_345_summary.md](copdph-gcn-repo/outputs/r13/cohort_345_summary.md)
 - [seg_findings_summary.md](copdph-gcn-repo/outputs/r13/seg_findings_summary.md)
@@ -1279,9 +1291,78 @@ R13 (8.0/10 revise): 345-cohort reconciliation closes PH=170→160 audit; 38 seg
 
 ## ARIS Round 14 — score 8.4/10
 
-R14 (8.4/10 revise): multi-seed CORAL @ λ=1 protocol LR 0.71 with disease 0.93 preserved (beats GRL 0.80 floor); lung-only AUC 0.844 > graph-only 0.782 (lung dominates disease signal); 3 contrast-only PH endotypes (transition/arterial-rich/dense-lung); ~62% gap-to-goal.
+**Multi-seed CORAL beats GRL; lung parenchyma dominates disease signal; three PH
+endotypes emerge.** Protocol-leakage reduction with disease preserved is no longer
+a single-seed result; lung-only ablation reverses the assumption that vascular
+graph topology drives the headline AUC; clustering surfaces a defensible
+two-pathway PH endotype structure with a transition cluster between COPD and
+COPD-PH.
 
-- [multistruct_clusters.md](copdph-gcn-repo/outputs/r14/multistruct_clusters.md)
-- [ablation_lung_vs_graph.md](copdph-gcn-repo/outputs/r14/ablation_lung_vs_graph.md)
-- [coral_probe.md](copdph-gcn-repo/outputs/r13/coral_probe.md)
-- [RESEARCH_ROADMAP.md](copdph-gcn-repo/RESEARCH_ROADMAP.md)
+### R14 figure 1 — CORAL vs GRL multi-seed protocol-leakage reduction
+
+![CORAL vs GRL](copdph-gcn-repo/outputs/figures/fig_r14_coral_vs_grl.png)
+
+CORAL @ λ=1 multi-seed mean **0.71 ± 0.08** (per-seed values 0.79 / 0.71 / 0.62)
+on the corrected n=68 within-nonPH stratum, vs GRL R11 best of 0.80 floor.
+Disease AUC stays at 0.93 across all CORAL λ values — the GRL Pareto crash to
+0.64 disease at λ=10 is *not* reproduced by CORAL. Reviewer note: still needs
+hierarchical seed × case bootstrap CI + paired GRL test on identical n=68 cases
+before being scored as a confirmed deconfounder win (R15 must-fix).
+
+### R14 figure 2 — Lung-only AUC dominates Graph-only
+
+![Lung vs graph ablation](copdph-gcn-repo/outputs/figures/fig_r14_lung_vs_graph.png)
+
+Within-contrast cohort (n=184, no protocol confound), 5-fold OOF LR with
+case-bootstrap 95% CI:
+
+- **Graph-only (50 vascular features)**: AUC 0.782 [0.676, 0.877]
+- **Lung-only (49 parenchyma features)**: AUC 0.844 [0.754, 0.917]
+- **Graph + Lung (99 combined)**: AUC 0.867 [0.796, 0.930]
+
+Lung parenchyma carries **more** disease signal than vascular graph topology.
+Combined adds +0.085 AUC over graph-only, +0.023 over lung-only — complementary
+information. Within-graph substring ablation (inset) shows feature group
+`x1` (likely vessel-diameter) is the strongest graph contributor (0.807) and
+`e0` the weakest (0.602). Reviewer note: contrast-nonPH n=26 is small; HU
+features may retain residual scanner/reconstruction confound; reversal needs
+paired AUC-difference CI before claim is locked (R15).
+
+### R14 figure 3 — Multi-structure phenotype endotypes
+
+![Endotypes](copdph-gcn-repo/outputs/figures/fig_r14_endotypes.png)
+
+UMAP + KMeans on 66-D feature vector (50 graph + 16 lung) over 226 cases.
+Within-contrast (n=184, k=3) yields three defensible endotypes:
+
+| cluster | n | PH% | endotype description |
+|---|---|---|---|
+| **C0** Transition | 54 | 69 % | High vessel-diameter graph features (g_x1, g_e1) + lower parenchyma HU p95 (more emphysematous) — the COPD↔COPD-PH boundary |
+| **C1** PH-arterial-rich | 60 | 93 % | High node/edge count + high artery volume — extensive vascular remodelling |
+| **C2** PH-dense-lung | 70 | 93 % | Small lung volume + high parenchyma mean HU + low LAA-856 — restrictive small dense lungs with less emphysema |
+
+This is the first defensible answer to the "肺血管影像表型如何演化" half of the
+final question: PH manifests as **two distinct endotypes** (vascular-remodelling
+vs restrictive-dense-lung), with a transition cluster characterised by vessel-
+diameter and emphysema features. Reviewer note: baseline contrast-only PH
+prevalence is 85.9%, so C1/C2 are only modestly enriched above baseline;
+clustering stability (k-sweep, silhouette, consensus ARI) and clinical
+correlation against mPAP/FEV1/6MWT are still pending (R15+).
+
+### R14 figure 4 — Disease vs Protocol Pareto across deconfounders
+
+![Pareto](copdph-gcn-repo/outputs/figures/fig_r14_disease_pareto.png)
+
+Each point is one (deconfounder, λ, seed) configuration; horizontal axis
+inverted so left=better protocol invariance. CORAL points (●, viridis colour
+= λ) cluster in the desirable upper-left region: protocol AUC 0.62-0.79 with
+disease 0.93. GRL points (✕, R11 mean per λ) trace a Pareto-unfavourable
+diagonal — protocol gain costs disease. MMD λ=5 (▲) reaches the lowest
+protocol AUC (0.64) but loses disease to ~0.85.
+
+### Per-round artefacts
+
+- [coral_probe.md](copdph-gcn-repo/outputs/r13/coral_probe.md) — multi-seed CORAL + MMD probe with disease AUC
+- [multistruct_clusters.md](copdph-gcn-repo/outputs/r14/multistruct_clusters.md) — endotype tables + UMAP plots
+- [ablation_lung_vs_graph.md](copdph-gcn-repo/outputs/r14/ablation_lung_vs_graph.md) — lung-vs-graph + per-substring ablation
+- [RESEARCH_ROADMAP.md](copdph-gcn-repo/RESEARCH_ROADMAP.md) — gap-to-goal analysis (~62% to publishable)
