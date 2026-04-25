@@ -30,6 +30,54 @@ ct_density=0, Strahler-approx without cycle handling.
 class balance). Exclusion rules (vox_per_key, mask_vox + num_nodes) are
 ad-hoc thresholds.
 
+## Round 17 key concerns (2026-04-25 19:35) — CARRY INTO ROUND 18
+
+**Score 9.2/10 revise** (up from R16=9.0). **0.3 from target 9.5.**
+
+1. **Strongest topology finding to date** (R17.A): native per-structure
+   morphometrics from `cache_tri_v2` reveal artery/vein edge-distribution
+   phenotype within contrast (n=197):
+   - **artery_tort_p10 d=−1.42 p_holm=2.6e-7** (LARGE, project's strongest
+     single feature)
+   - artery_len_p25/p50/p10 d=−1.22 to −1.25
+   - vein_len_p25 d=−1.19, vein_tort_p10 d=−1.15
+   - All top-18 Holm-sig are artery+vein edge-LENGTH+TORTUOSITY
+     **DISTRIBUTIONS** — the user's hypothesized vessel-pruning signature
+     captured precisely by percentile features that GCN mean-pool destroys.
+
+2. **Airway 0/44 Holm-sig** is a WEAK negative, not proof of vessel-only PH
+   phenotype. Airway-only LR AUC=0.797 paradoxically highest (different-N
+   artifact). Reviewer requires same-case paired comparison.
+
+3. **Mechanistic claim must be tightened**: artery total_len_mm IS NOT
+   lower, n_nodes/n_edges higher — so "vessel pruning/dropout" overclaims.
+   Supported claim: **"segment-length percentile downshift + low-percentile
+   tortuosity downshift consistent with vascular remodeling/pruning"** —
+   NOT proven dropout.
+
+4. **R17 extraction artifacts**: n_terminals=0 for all structures (bug —
+   probably edge-doubling double-counting degrees), near-zero nonPH SD on
+   some features, Laplacian eig0 numerical zero (degenerate, drop).
+
+5. **R16 must-fix items NOT closed in R17**: only 1/7 closed (per-structure
+   morphometrics). Embedding-level enlarged probe, multi-seed CORAL,
+   paired DeLong, overlay QC, HiPaS repair, covariate adjustment all
+   PENDING.
+
+6. **Path to 9.5**: same-case paired AUCs + covariate/scanner-adjusted
+   confirmation of artery_tort_p10/length-percentiles + extraction audit
+   + embedding-level enlarged deconfounding + anatomical QC overlay
+   gallery.
+
+Round 18 minimum:
+- Same-case paired artery/vein/airway/all_three AUCs (identical n)
+- R17 extraction audit (n_terminals bug, edge-doubling [::2] check, Lap eig0)
+- Scanner/age/sex covariate-adjusted models for artery_tort_p10 + artery/vein
+  length percentiles + paren_std_HU
+- Sensitivity: scanner-stratified, leave-one-out, robust regression
+- Rephrase mechanistic narrative (no "proven dropout")
+- Embedding-level enlarged probe (R16 must-fix #1)
+
 ## Round 16 key concerns (2026-04-25 18:30) — CARRY INTO ROUND 17
 
 **Score 9.0/10 revise** (up from R15=8.8). Half a point from target 9.5. R16

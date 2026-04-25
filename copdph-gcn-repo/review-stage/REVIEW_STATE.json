@@ -1,6 +1,6 @@
 {
-  "round": 16,
-  "status": "round_16_complete_score_9.0_revise",
+  "round": 17,
+  "status": "round_17_complete_score_9.2_revise",
   "running_actions": [
     {"action": "DCM→NIfTI for 100 new plain-scan nonPH", "status": "DONE 100/100", "ended_at": "2026-04-25T12:54:03", "log": "outputs/r15/dcm_conversion_log.json"},
     {"action": "scp nii-new100 (12GB) to imss@10.60.147.117:/home/imss/cw/GCN copdnoph copdph/nii-new100/", "status": "DONE 100/100 (completed 2026-04-25T14:36); nested path FLATTENED via `mv`; ready for seg pipeline"},
@@ -24,6 +24,42 @@
     {"round": 3, "score": 4, "verdict": "reject"},
     {"round": 4, "score": 5, "verdict": "reject"},
     {"round": 5, "score": 6, "verdict": "reject"},
+    {
+      "round": 17,
+      "timestamp": "2026-04-25T19:35:00",
+      "score": 9.2,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "experiments": [
+        "R17 per-structure topology extractor on remote 24-core: 282 cases × 132 features from cache_tri_v2 (native artery/vein/airway), eigsh shift-invert + n_max=2000 guard. Per-structure: graph metrics, edge-attr distributions (diam/len/tort: p10/p25/p50/p75/p90+mean+sd+skew+kurt), total_len/vol_proxy, BFS depth distribution, Laplacian top-5 eigenvalues",
+        "R17.A within-contrast Holm-Bonferroni endotype (n=197): artery 10/44 sig, vein 9/44 sig, airway 0/44 sig. Top: artery_tort_p10 d=-1.42 p_holm=2.6e-7 (LARGE); artery_len_p25/p50/p10 d=-1.25/-1.23/-1.22; vein_len_p25 d=-1.19; vein_tort_p10 d=-1.15. ALL top-18 Holm-sig are artery+vein edge-length+tortuosity DISTRIBUTIONS (the user's hypothesized vessel-pruning signature)",
+        "R17.A per-structure within-contrast disease classifier: artery 0.749, vein 0.777, airway 0.797 (different N — not paired)",
+        "Forest + volcano figures: outputs/figures/fig_r17_per_structure_forest.png + volcano.png"
+      ],
+      "regressions_r17": [
+        "Only 1/7 R16 must-fix actually closed (per-structure morphometrics); embedding-level enlarged probe, multi-seed CORAL, paired DeLong, overlay QC, HiPaS repair, covariate adjustment all PENDING",
+        "Airway interpretation overclaimed — 0/44 Holm-sig is weak negative (n_nonPH=27 small); airway-only LR AUC=0.797 paradoxically highest",
+        "Topology features have artifacts: n_terminals=0 for all (likely BFS/degree bug), near-zero nonPH SD on some, Laplacian eig0 essentially numerical zero — weakens 132-feature table",
+        "'Pruning' language too strong — artery total_len_mm not lower, n_nodes/n_edges higher; supported claim is 'segment-length percentile downshift + low-percentile tortuosity downshift consistent with remodeling/pruning' NOT proven dropout"
+      ],
+      "must_fix_before_round18": [
+        "Same-case paired analysis: artery/vein/airway/all_three AUCs with IDENTICAL n + paired bootstrap/DeLong intervals (current different-N comparison not interpretable)",
+        "Audit R17 extraction: fix terminal counts (deg==1 may be wrong for un-doubled edges), duplicated edge handling in edge_attr (ea[::2] assumption), Laplacian eig0 numerical zero handling",
+        "Covariate-adjusted models for artery_tort_p10, artery_len_p25/p50, vein_len_p25, paren_std_HU (scanner/age/sex if metadata exist)",
+        "Sensitivity checks for artery_tort_p10: scanner-stratified, leave-one-site-out, robust regression/winsorization, case-influence diagnostics",
+        "Rephrase findings: 'segment-length distribution downshift + low-percentile tortuosity downshift consistent with vascular remodeling/pruning' NOT 'proven vessel dropout'",
+        "Resolve airway contradiction: paired same-N AUC, permutation test, or stop calling phenotype vessel-only"
+      ],
+      "minimum_to_reach_9point5": [
+        "Embedding-level enlarged-stratum protocol probe after v2 cache rebuild on new100; protocol AUC reduced while disease AUC ≥0.80",
+        "Multi-seed CORAL/MMD on enlarged cohort with hierarchical seed-by-case CIs",
+        "Covariate/scanner-adjusted confirmation of artery_tort_p10 + artery/vein length percentiles + paren_std_HU",
+        "Anatomical QC overlay gallery for repaired lung masks and per-structure skeletons (esp. worst cases)",
+        "Locked same-case manifest + reproducible scripts for R17 extraction/analysis",
+        "Paired repaired-vs-unrepaired disease/protocol AUC"
+      ],
+      "reviewer_notes_for_memory": "R17 9.2/10 (up from R16 9.0). Best new finding: native per-structure cache_tri_v2 morphometrics reveal strong within-contrast artery/vein edge-distribution phenotype. **artery_tort_p10 d=-1.42 p_holm=2.6e-7** (LARGE), artery_len_p25/p50/p10 d≈-1.22 to -1.25, vein_len_p25 d=-1.19. This is the strongest topology-specific finding to date and cleaner for the user's vascular-remodeling hypothesis than R16 paren_std_HU. NOT yet 9.5 because: nonPH-contrast n=27, scanner sensitivity untested, extraction has topology artifacts (n_terminals=0 bug, Laplacian eig0 numerical zero, edge_attr [::2] assumption needs verification). Airway 0/44 sig is WEAK negative not proof of vessel-only phenotype (airway-LR AUC=0.797 paradoxical due to different N). Mechanistic wording: 'segment-length+low-tort percentile downshift consistent with remodeling/pruning' NOT 'proven dropout' (artery total_len_mm not lower; n_nodes/n_edges not reduced). R18 must do same-case paired AUCs + covariate/scanner adjustment + extraction audit + embedding-level enlarged deconfounding."
+    },
     {
       "round": 16,
       "timestamp": "2026-04-25T18:30:00",

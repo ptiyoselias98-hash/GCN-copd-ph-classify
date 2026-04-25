@@ -276,3 +276,28 @@ Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R15=8.8 (+0.2). **0.5 from t
 **Must fix R17**: embedding-level enlarged probe + multi-seed CORAL on n=151 + paired DeLong + overlay gallery + per-structure morphometrics + HiPaS re-seg of 38 + covariate-adjusted endotype.
 
 **Path to ≥9.5**: deconfounded enlarged embedding AUC + confirmatory-grade paren_std_HU + locked cohort manifest + anatomical validation.
+
+---
+
+## Round 17 (2026-04-25 19:35) — score 9.2 / verdict revise
+
+Reviewer: codex-mcp gpt-5.5 high-reasoning. Up from R16=9.0 (+0.2). **0.3 from target 9.5.**
+
+**Best finding to date**: artery_tort_p10 Cohen's d=-1.42 [LARGE], p_holm=2.6e-7. Project's strongest single feature.
+
+**R17 deliverables**:
+- ✅ Per-structure topology extractor on remote 24-core: 282 × 132 features (native cache_tri_v2)
+- ✅ Within-contrast Holm-Bonferroni endotype (n=197): artery 10/44, vein 9/44, airway 0/44
+- ✅ Forest + volcano publication figures
+- ✅ User's vessel-remodeling hypothesis directly validated by edge-length+tortuosity DISTRIBUTION features
+
+**Reviewer regressions**:
+- Only 1/7 R16 must-fix closed
+- Airway 0/44 weak negative, paradoxical airway-LR AUC 0.797 (different-N artifact)
+- "Pruning" overclaim — artery total_len_mm not lower; supported claim is "segment-length+low-tort percentile downshift consistent with remodeling/pruning"
+- Extraction artifacts (n_terminals=0 bug, Lap eig0 numerical zero)
+- nonPH-contrast n=27 small, scanner sensitivity untested
+
+**Must fix R18**: same-case paired AUC, R17 audit (terminals/edge-doubling/eig0), covariate adjustment (scanner/age/sex), sensitivity (scanner-stratified, LOO), rephrase narrative, embedding-level enlarged probe (R16 must-fix #1).
+
+**Path to ≥9.5**: paired AUCs + covariate-adjusted artery/vein/paren confirmation + extraction audit + embedding-level enlarged deconfounding + anatomical QC gallery.

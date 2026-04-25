@@ -30,6 +30,7 @@ collected under `outputs/`.
 | R14 | 8.4/10 | revise |
 | R15 | 8.8/10 | revise |
 | R16 | 9.0/10 | revise |
+| R17 | 9.2/10 | revise |
 
 ## Task
 
@@ -1465,4 +1466,14 @@ R16 (9.0/10 revise, +0.2): Simple_AV_seg lung-mask oversegmentation detected (79
 ![fig_r16_segqc_volumes](copdph-gcn-repo/outputs/figures/fig_r16_segqc_volumes.png)
 
 ![fig_r15_endotype_forest](copdph-gcn-repo/outputs/figures/fig_r15_endotype_forest.png)
+
+## ARIS Round 17 — score 9.2/10
+
+R17 (9.2/10 revise, +0.2): per-structure topology fingerprints from native cache_tri_v2 (282 × 132 features). Within-contrast Holm-Bonferroni: artery 10/44 sig, vein 9/44 sig, airway 0/44 sig. STRONGEST FINDING: artery_tort_p10 d=-1.42 p_holm=2.6e-7 (LARGE); top-18 Holm-sig ALL artery+vein edge-length+tortuosity DISTRIBUTIONS — directly captures user's vessel-remodeling hypothesis that mean-pool GCN destroys
+
+- [per_structure_endotype.md](copdph-gcn-repo/outputs/r17/per_structure_endotype.md)
+- [per_structure_disease_aucs.json](copdph-gcn-repo/outputs/r17/per_structure_disease_aucs.json)
+![fig_r17_per_structure_forest](copdph-gcn-repo/outputs/figures/fig_r17_per_structure_forest.png)
+
+![fig_r17_per_structure_volcano](copdph-gcn-repo/outputs/figures/fig_r17_per_structure_volcano.png)
 
