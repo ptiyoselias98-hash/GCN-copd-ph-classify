@@ -18,7 +18,7 @@ CACHE="$ROOT/cache_tri_v2_unified301"
 mkdir -p "$CACHE"
 echo "[R20.G] building cache → $CACHE"
 python -u _R19C_build_v2_patched.py \
-  --labels "$ROOT/copdph-gcn-repo/data/labels_extended_382.csv" \
+  --labels "$ROOT/data/labels_extended_382.csv" \
   --data_dirs "$ROOT/nii-unified-201-savseg" "$ROOT/nii-new100" \
   --output_cache "$CACHE" \
   --workers 6 2>&1 | tail -30
@@ -36,10 +36,10 @@ sed -i 's|CACHE_NEW100 = .*|CACHE_NEW100 = Path("/dev/null")|' "$TMP_R19D"
 sed -i 's|"legacy"|"unified301"|' "$TMP_R19D"
 python -u "$TMP_R19D" 2>&1 | tail -20
 
-# Step 3: copy outputs to project repo
-mkdir -p "$ROOT/copdph-gcn-repo/outputs/r20"
+# Step 3: outputs go to /tmp for scp back to local
+mkdir -p /tmp/r20g_out
 cp "$ROOT/outputs/r19/extended_morphometrics.csv" \
-   "$ROOT/copdph-gcn-repo/outputs/r20/morph_unified301.csv" 2>/dev/null || true
+   /tmp/r20g_out/morph_unified301.csv 2>/dev/null || true
 
 echo "[R20.G] DONE"
-ls -la "$ROOT/copdph-gcn-repo/outputs/r20/morph_unified301.csv" 2>&1 | tail -2
+ls -la /tmp/r20g_out/morph_unified301.csv 2>&1 | tail -2
