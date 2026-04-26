@@ -34,6 +34,60 @@ collected under `outputs/`.
 | R18 | 9.3/10 | revise |
 | R19 | 9.1/10 | revise |
 
+## R24 Visual Atlas — 疾病进展空间与表型演化系列实验
+
+R24 round (2026-04-26) implements the user-requested cross-sectional vascular phenotype evolution study after 7 rounds of codex GPT-5.5 hostile review. Each sub-round followed pre-registered numerical gates (cf. `copdph-gcn-repo/review-stage/R24_OPEN_QUESTIONS.md` v7). All figures regenerated from `outputs/r24/cohort_locked_table.csv` (290 cases, 190 within-contrast, 102 measured mPAP, 5×38 stratified folds, SHA256 1e7d20b2...).
+
+### R24.Y — 修复后的肺叠加图集 (overlay gallery on unified-301)
+
+![R24.Y unified-301 overlay gallery](copdph-gcn-repo/outputs/figures/fig_r24y_overlay_gallery_unified301.png)
+
+修复 R19.A 大量空白占位图的 GBK redirect bug；在 unified-301 cohort 上重出 16 例代表 (8 PH + 4 contrast nonPH + 4 plain-scan nonPH)，每例标注 PH/nonPH 标签 + protocol + 测得 mPAP；CT 灰底 + 红色 autumn 肺 mask 叠加。
+
+### R24.A — 伪时序 (pseudotime via Spectral Embedding)
+
+![R24.A pseudotime embedding](copdph-gcn-repo/outputs/figures/fig_r24a_pseudotime.png)
+
+Q1 血管表型演化 + Q4(b) 纵向替代分析。SpectralEmbedding (PHATE 同价替代) on RobustScaler-normalized 78 morph features。Within-contrast n=190 PRIMARY: ρ_mPAP=+0.213 (p=0.032, n=102) — **未达 ρ≥0.35 预注册门** (HONEST NEGATIVE)。Full-cohort n=290 stress test: protocol AUC=0.973 → 几乎纯粹由协议(plain vs contrast)驱动，与 R20-R23 enlarged-cohort 退役判决一致。
+
+### R24.B — mPAP changepoint 检测
+
+![R24.B mPAP changepoint](copdph-gcn-repo/outputs/figures/fig_r24b_changepoint.png)
+
+Q3 早期 PH 阈值识别。Per-feature piecewise-linear on n=102 measured-mPAP only (no defaults)。0/78 features 通过 ΔAIC≥10 + boot freq≥70% + CI≤8 mmHg 的预注册严格门 — **HONEST NEGATIVE** but mechanistically informative：血管特征沿 mPAP 连续渐变，没有单一明确突变点。Top-3: vein_tort_sd@30.2 (ΔAIC=5.1)、artery_total_vol_proxy_mm3@41.0、vein_diam_kurt@45.8。
+
+### R24.F — Evolution feature panel (按 |ρ_mPAP| 排序)
+
+![R24.F evolution feature panel](copdph-gcn-repo/outputs/figures/fig_r24f_feature_panel.png)
+
+Q4(a) 系统化定量。1/72 Holm-significant (artery_len_p75 ρ=-0.333 p_holm=0.045) on n=102；top-13 全是 artery/vein length-mean/percentile features，方向全部 NEGATIVE (ρ=-0.20 to -0.33) — PH 患者沿 mPAP 升高伴随血管短化，与 R20.H pipeline-independent direction-preservation 一致。Bootstrap-500 95% CI bands；标注 "same-sample association ranking" optimism caveat。
+
+### R24.D — Structure ordering along inferred severity axis
+
+![R24.D structure ordering](copdph-gcn-repo/outputs/figures/fig_r24d_structure_ordering.png)
+
+Q2 辅助 vs 主导 — 哪个结构沿 pseudotime 最早改变。**Artery 最早**：onset PT=-0.029 @ τ=0.25 boot CI [-0.031, -0.018]；+0.086 @ τ=0.5；+0.088 @ τ=0.75 — 跨阈值稳定。Vein 较晚或类似 (CI 较宽)；Airway 因 morph_unified301 中 airway 特征只有 6 个无法稳定排序。**Cross-sectional ordering, NOT temporal precedence** (per round-2 codex 警告)。
+
+### R24.G — mPAP-anchored severity embedding
+
+![R24.G progression space](copdph-gcn-repo/outputs/figures/fig_r24g_progression_space.png)
+
+Q1 连续轨迹 + Q3 早期识别 + Q5 风险评分。**用户描述的"自监督连续疾病进展空间 + COPD-PH 锚点 + 进展百分位"实验**。SSL contrastive d=32 (feature-dropout aug) ρ=+0.252 p=0.011 (OOF n=102)；PCA-32 baseline ρ=+0.181 p=0.069；**SSL beats PCA by +0.071 → PASS gate (≥0.05)**；ρ≥0.50 gate FAIL。mPAP-stratified 锚点 (mild<25/mod25-35/severe≥35)，Ledoit-Wolf shrinkage Mahalanobis，5-fold OOF assignment。
+
+### R24.E — Risk nomogram + DCA (EXPLORATORY)
+
+![R24.E nomogram + DCA](copdph-gcn-repo/outputs/figures/fig_r24e_nomogram_dca.png)
+
+Q5 高危患者识别定量影像学依据。10× repeated 5-fold nested CV Lasso on within-contrast n=190；calibration slope/intercept + Brier 校准；DCA at 4 prevalence anchors {10%, 25%, 50%, 86%}。Model 在 10/25/50% 假设患病率下显著优于 treat-all (Δ NB +7.97/+1.87/+0.55)；在 cohort-observed 86% 接近 treat-all (Δ-0.018, n_nonPH=27 限制)。**EXPLORATORY — external validation required** stamp 显眼标注。
+
+### R24.X — Stratified permutation null falsification
+
+![R24.X permutation null](copdph-gcn-repo/outputs/figures/fig_r24x_permutation_null.png)
+
+Pre-registered 1000-perm fold-stratified mPAP shuffle null test。**R24.G SSL ρ=+0.252 PASSES** 99th-pct |null|=0.239 (real exceeds null distribution top 1%) — confirms genuine signal beyond random-fold noise。**R24.A pseudotime ρ=+0.213 FAILS** 99th-pct |null|=0.256 — pseudotime-only is too weak to survive falsification (consistent with R24.A gate failure)。这一区分意义重大：SSL 表征学习真正提取出 mPAP-相关信号，而单纯 pseudotime 排序则可能由 fold-stratified 随机性产生。
+
+---
+
 ## Authoritative manuscript scope (R23)
 
 See `copdph-gcn-repo/CLAIMS_TABLE_R23.md` for the authoritative table

@@ -1,6 +1,6 @@
 {
-  "round": 23,
-  "status": "reopened_R23_user_raised_target_to_9.9_for_4_science_questions",
+  "round": 24,
+  "status": "round_24_complete_pending_codex_for_9.9_target",
   "round_20_progress": {
     "unified_pipeline_verification": {
       "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
@@ -167,6 +167,13 @@
   "difficulty": "hard",
   "target_reached": false,
   "history": [
+    {
+      "round": 24,
+      "timestamp": "2026-04-26T11:00:00",
+      "score": null,
+      "verdict": "pending_codex_review",
+      "r24_summary": "Wave-1+2+3 all complete. R24.0 cohort lock (290 cases SHA256 1e7d20b2). R24.A pseudotime within-contrast ρ_mPAP=+0.213 FAIL gate ρ≥0.35 (honest neg). R24.B 0/78 features pass ΔAIC≥10 (mechanistically informative — continuous remodeling not threshold). R24.D artery onset earliest along pseudotime (cross-sectional ordering). R24.E nomogram exploratory: 10× repeated 5-fold Lasso, DCA at 4 prevalence anchors, EXPLORATORY stamp. R24.F 1/72 Holm-sig (artery_len_p75 ρ=-0.333), top-13 all NEGATIVE direction. R24.G SSL d=32 ρ=+0.252 OOF, PCA-32 ρ=+0.181, Δ=+0.071 PASS SSL-vs-PCA gate, FAIL ρ≥0.50. R24.X CRITICAL FALSIFICATION: SSL severity PASSES 99th-pct null (0.252 > 0.239), pseudotime FAILS (0.213 < 0.256) — SSL is genuine signal beyond fold-stratified noise. R24.Y overlay regen: 12/16 cases rendered (PH+contrast nonPH all OK), 4 plain-scan blank (CT only on remote). 9 figures all in outputs/figures/fig_r24*.png; 5-piece sync committed each sub-round; README atlas section added with Chinese explanations."
+    },
     {
       "round": 23,
       "timestamp": "2026-04-26T10:30:00",
