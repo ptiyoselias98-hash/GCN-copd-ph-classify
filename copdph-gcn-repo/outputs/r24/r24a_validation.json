@@ -1,0 +1,32 @@
+{
+  "within_contrast": {
+    "stratum": "within_contrast",
+    "n": 190,
+    "rho_label": 0.14250040995575206,
+    "p_label": 0.04984503554587454,
+    "rho_mpap": 0.21251776432222508,
+    "p_mpap": 0.03199832821186705,
+    "n_mpap_resolved": 102,
+    "protocol_auc_5fold": NaN,
+    "rho_protocol": null,
+    "gate_mpap_rho_ge_0.35": false,
+    "gate_protocol_auc_lt_0.65": null,
+    "gate_protocol_rho_lt_0.20": null
+  },
+  "full_cohort_stress_test": {
+    "stratum": "full_protocol_stress_test",
+    "n": 290,
+    "rho_label": 0.05118381174552945,
+    "p_label": 0.3851569057856006,
+    "rho_mpap": 0.0667841841448181,
+    "p_mpap": 0.5048235036679697,
+    "n_mpap_resolved": 102,
+    "protocol_auc_5fold": 0.9731578947368422,
+    "rho_protocol": 0.00901263423038244,
+    "gate_mpap_rho_ge_0.35": false,
+    "gate_protocol_auc_lt_0.65": false,
+    "gate_protocol_rho_lt_0.20": true
+  },
+  "feature_count": 78,
+  "method": "SpectralEmbedding + RobustScaler (PHATE unavailable locally; eigenmap is theoretical equivalent at small scale)"
+}
