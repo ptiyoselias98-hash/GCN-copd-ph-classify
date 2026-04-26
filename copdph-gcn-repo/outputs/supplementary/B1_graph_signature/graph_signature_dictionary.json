@@ -1,0 +1,880 @@
+{
+  "n_features_clean": 172,
+  "n_blacklisted_artifacts": 13,
+  "n_dropped_near_zero_or_constant": 0,
+  "category_breakdown": {
+    "3_diameter_length_distribution": 87,
+    "7_lung_parenchyma": 38,
+    "2_branching_topology": 18,
+    "1_basic_graph_size": 17,
+    "8_TDA_persistence": 12
+  },
+  "source_breakdown": {
+    "unified_301_Simple_AV_seg": 78,
+    "legacy_R17_HiPaS_style_pipeline": 42,
+    "lung_features_v2": 40,
+    "R17.5_TDA_gudhi": 12
+  },
+  "feature_dictionary": {
+    "artery_branch_per_node": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_kurt": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_mean": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_p10": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_p25": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_p50": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_p75": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_p90": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_sd": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_diam_skew": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_kurt": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_mean": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_p10": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_p25": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_p50": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_p75": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_p90": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_sd": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_len_skew": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_max_degree": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_mean_degree": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_n_branches": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_n_edges": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_n_nodes": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_kurt": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_mean": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_p10": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_p25": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_p50": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_p75": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_p90": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_sd": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tort_skew": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_tortuosity_proxy": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_total_len_mm": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_total_vol_proxy_mm3": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_branch_per_node": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_kurt": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_mean": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_p10": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_p25": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_p50": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_p75": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_p90": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_sd": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_diam_skew": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_kurt": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_mean": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_p10": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_p25": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_p50": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_p75": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_p90": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_sd": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_len_skew": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_max_degree": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_mean_degree": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_n_branches": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_n_edges": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_n_nodes": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_kurt": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_mean": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_p10": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_p25": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_p50": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_p75": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_p90": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_sd": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tort_skew": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_tortuosity_proxy": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_total_len_mm": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_total_vol_proxy_mm3": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_branch_per_node_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_kurt_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_mean_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_p10_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_p25_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_p50_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_p75_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_p90_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_sd_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_diam_skew_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_lap_eig0_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_lap_eig1_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_lap_eig2_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_lap_eig3_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_lap_eig4_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_kurt_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_mean_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_p10_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_p25_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_p50_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_p75_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_p90_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_sd_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_len_skew_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_max_degree_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_mean_degree_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_n_branches_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_n_components_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "2_branching_topology",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_n_edges_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_n_nodes_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_kurt_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_mean_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_p10_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_p25_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_p50_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_p75_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_p90_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_sd_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tort_skew_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_tortuosity_proxy_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_total_len_mm_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "3_diameter_length_distribution",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_total_vol_proxy_mm3_legR17": {
+      "source": "legacy_R17_HiPaS_style_pipeline",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_mean_HU": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "airway_vol_mL": {
+      "source": "lung_features_v2",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "apical_LAA_910_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "apical_LAA_950_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "apical_basal_LAA950_gradient": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "apical_mean_HU": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "apical_n_voxels": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_mean_HU": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_p95_HU": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_vol_mL": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "basal_LAA_910_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "basal_LAA_950_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "basal_mean_HU": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "basal_n_voxels": {
+      "source": "lung_features_v2",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "lung_vol_mL": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "middle_LAA_910_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "middle_LAA_950_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "middle_mean_HU": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "middle_n_voxels": {
+      "source": "lung_features_v2",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_HU_p25": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_HU_p5": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_HU_p50": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_HU_p75": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_HU_p95": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_LAA_856_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_LAA_910_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_LAA_950_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_mean_HU": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_n_voxels": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "paren_std_HU": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_mean_HU": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_p95_HU": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_vol_mL": {
+      "source": "unified_301_Simple_AV_seg",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "vessel_airway_over_lung": {
+      "source": "lung_features_v2",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "vessel_airway_vol_mL": {
+      "source": "lung_features_v2",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_HU_p25": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_HU_p5": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_HU_p50": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_HU_p75": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_HU_p95": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_LAA_856_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_LAA_910_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_LAA_950_frac": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_mean_HU": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_n_voxels": {
+      "source": "lung_features_v2",
+      "category": "1_basic_graph_size",
+      "blacklisted_R17_artifact": false
+    },
+    "whole_std_HU": {
+      "source": "lung_features_v2",
+      "category": "7_lung_parenchyma",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_persH0_max": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_persH0_n_pairs": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_persH0_total": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_persH1_max": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_persH1_n_loops": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "artery_persH1_total": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_persH0_max": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_persH0_n_pairs": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_persH0_total": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_persH1_max": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_persH1_n_loops": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    },
+    "vein_persH1_total": {
+      "source": "R17.5_TDA_gudhi",
+      "category": "8_TDA_persistence",
+      "blacklisted_R17_artifact": false
+    }
+  }
+}
