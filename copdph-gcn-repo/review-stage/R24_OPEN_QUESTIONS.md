@@ -63,9 +63,12 @@ evidence for these questions:
 | R24.D | Pseudotime structure-leadership analysis (which structure changes earliest along trajectory) | Q2 (辅助 vs 主导) | ~30 min |
 | R24.E | Risk-score nomogram + calibration + DCA | Q5 | ~60 min |
 | R24.F | "Evolution feature panel" Holm-corrected ranked by pseudotime monotonicity | Q4(a) | ~20 min |
+| **R24.G** | **Disease Progression Space**: self/weakly-supervised representation learning (contrastive on 152D feature space) → low-dim latent → PH-anchor centroid → per-patient progression-percentile via Mahalanobis distance to PH manifold. Validate vs mPAP. Identify borderline-PH candidates (50-75% percentile) | Q1 (continuous trajectory) + Q3 (early identification) + Q5 (risk score) | **~60 min** |
+
+R24.G is the explicit user-requested experiment (2026-04-26): "依托大样本横断面COPD CT...自监督/弱监督表示学习...连续疾病进展空间...COPD-PH患者作为终点锚点...通过相似度及进展轴相对距离推断阶段". Method: contrastive SSL on unified-301 152D features → 32D latent → PH centroid → per-patient progression-percentile.
 
 Each R24 sub-round produces an artifact in `outputs/r24/` and a paragraph
 update in FINAL_FINDINGS.md or a new SCIENCE_ANSWERS_R24.md document.
 
 Final R24 codex review: target 9.9, with explicit yes/no on each of
-Q1–Q5.
+Q1–Q5 + R24.G validation.
