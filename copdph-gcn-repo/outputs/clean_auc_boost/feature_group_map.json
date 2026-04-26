@@ -140,9 +140,11 @@
       "artery_diam_peripheral_central_ratio_legR17",
       "artery_len_peripheral_central_ratio_legR17",
       "vein_diam_peripheral_central_ratio_legR17",
-      "vein_len_peripheral_central_ratio_legR17"
+      "vein_len_peripheral_central_ratio_legR17",
+      "artery_pruning_alpha",
+      "vein_pruning_alpha"
     ],
-    "n": 4
+    "n": 6
   },
   "E_av_imbalance": {
     "features": [

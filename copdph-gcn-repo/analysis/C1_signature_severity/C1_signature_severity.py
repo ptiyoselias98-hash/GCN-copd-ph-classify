@@ -196,9 +196,13 @@ def task_t3(df, feat_cols):
 
 # ================= T4 pruning curve =================
 def task_t4(df, feat_cols):
-    """Fit log-log N(d) ~ d^-alpha for artery + vein diameter percentiles within-contrast."""
+    """Fit log-log N(d) ~ d^-alpha for artery + vein diameter percentiles within-contrast.
+
+    Also saves PER-PATIENT alpha for downstream feature panel (audit point 7 fix).
+    """
     sub = df[df["is_contrast_only_subset"]].copy()
     out = {"n_within_contrast": int(len(sub)), "structures": {}}
+    per_patient_alphas = {struct: {} for struct in ("artery", "vein")}
     for struct in ("artery", "vein"):
         # Use diameter percentile features as log-binned diameter sample
         diam_cols = [f"{struct}_diam_p10", f"{struct}_diam_p25",
@@ -219,19 +223,19 @@ def task_t4(df, feat_cols):
             if len(cols_used) < 2: continue
             # Per-patient log-log slope on (mean diameter at each bin) vs (1 - perc/100 = surviving fraction proxy)
             slopes = []
-            for _, row in sub.iterrows():
+            for cid, row in zip(sub["case_id"].values, sub.to_dict("records")):
                 diams = np.array([row[c] for c in cols_used], dtype=float)
                 if not np.isfinite(diams).all() or (diams <= 0).any(): continue
                 surviving = np.array([1.0 - int(c.split("_p")[-1]) / 100.0 for c in cols_used])
-                # avoid 0
                 surviving = np.clip(surviving, 0.01, 1.0)
                 try:
                     log_d = np.log(diams); log_s = np.log(surviving)
                     A = np.vstack([log_d, np.ones_like(log_d)]).T
                     slope, _ = np.linalg.lstsq(A, log_s, rcond=None)[0]
-                    # N(d) ~ d^-alpha → log N = -alpha * log d + c → alpha = -slope
                     alpha = -float(slope)
                     slopes.append(alpha)
+                    if scheme_name == "p10_p25_p50_p75_p90":
+                        per_patient_alphas[struct][cid] = alpha
                 except Exception:
                     continue
             if slopes:
@@ -242,6 +246,21 @@ def task_t4(df, feat_cols):
                     "alpha_median": float(np.median(slopes)),
                 }
         out["structures"][struct] = results_per_scheme
+    # Save per-patient α to a CSV for downstream feature panel (audit point 7)
+    if any(per_patient_alphas[s] for s in per_patient_alphas):
+        rows_alpha = []
+        all_cids = set()
+        for s in per_patient_alphas: all_cids.update(per_patient_alphas[s].keys())
+        for cid in sorted(all_cids):
+            rows_alpha.append({
+                "case_id": cid,
+                "artery_pruning_alpha": per_patient_alphas["artery"].get(cid, np.nan),
+                "vein_pruning_alpha": per_patient_alphas["vein"].get(cid, np.nan),
+            })
+        alpha_df = pd.DataFrame(rows_alpha)
+        alpha_df.to_csv(OUT / "pruning_alpha_per_patient.csv", index=False)
+        out["per_patient_alpha_saved"] = str(OUT / "pruning_alpha_per_patient.csv")
+        out["n_per_patient_alpha"] = int(len(alpha_df))
     return out
 
 

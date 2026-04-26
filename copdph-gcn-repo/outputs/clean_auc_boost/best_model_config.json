@@ -1,0 +1,7 @@
+{
+  "panel": "P5_all_clean",
+  "model": "GradBoost",
+  "pooled_oof_auc": 0.8891161099750057,
+  "ci_lo": 0.8366414878411222,
+  "ci_hi": 0.9412129246985589
+}

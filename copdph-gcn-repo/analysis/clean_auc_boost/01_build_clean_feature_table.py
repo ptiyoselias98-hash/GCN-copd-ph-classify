@@ -77,9 +77,17 @@ def main():
     morph_av = morph[["case_id"] + av_cols].copy()
     print(f"  C. Vascular topology (artery+vein): {len(av_cols)} cols ({len(morph_av)} cases) — unified Simple_AV_seg")
 
-    # === Feature group D: pruning / distribution (computed proxies + alpha placeholder) ===
-    # Use R17 morph for pruning if available
-    pruning_cols = []
+    # === Feature group D: pruning / distribution (computed proxies + per-patient α) ===
+    # Audit point 7 fix: include per-patient pruning_alpha from C1 T4
+    pruning_cols = []   # only legacy-R17 derived cols; alpha cols tracked separately
+    alpha_cols = []
+    legacy_pruning_extra = pd.DataFrame({"case_id": []})
+    ALPHA_FILE = ROOT / "outputs" / "supplementary" / "C1_signature_severity" / "pruning_alpha_per_patient.csv"
+    if ALPHA_FILE.exists():
+        alpha_df = pd.read_csv(ALPHA_FILE)
+        legacy_pruning_extra = alpha_df.copy()
+        alpha_cols = ["artery_pruning_alpha", "vein_pruning_alpha"]
+        print(f"  D-pre. Per-patient pruning α (R17 5-bin scheme): {len(alpha_df)} cases × 2 cols")
     if MORPH_LEGACY.exists():
         legacy = pd.read_csv(MORPH_LEGACY).drop(columns=["label"], errors="ignore")
         # peripheral / central proxies — use diam_p10/p90 ratios
@@ -143,11 +151,12 @@ def main():
           .merge(lung, on="case_id", how="left")
           .merge(morph_av, on="case_id", how="left")
           .merge(legacy_pruning, on="case_id", how="left")
+          .merge(legacy_pruning_extra, on="case_id", how="left")
           .merge(morph_imbalance, on="case_id", how="left")
           .merge(tda, on="case_id", how="left"))
     print(f"\nmerged ALL n={len(df)} × {df.shape[1]} cols")
 
-    feat_cols = (ssl_cols + lung_cols_keep + av_cols + pruning_cols
+    feat_cols = (ssl_cols + lung_cols_keep + av_cols + pruning_cols + alpha_cols
                  + av_imbalance_cols + tda_cols)
     feat_cols = [c for c in feat_cols if c in df.columns]
     print(f"raw feature cols: {len(feat_cols)}")
@@ -166,7 +175,7 @@ def main():
         "A_ssl_severity": [c for c in ssl_cols if c in feat_cols],
         "B_lung_heterogeneity": [c for c in lung_cols_keep if c in feat_cols],
         "C_vascular_topology": [c for c in av_cols if c in feat_cols],
-        "D_pruning_distribution": [c for c in pruning_cols if c in feat_cols],
+        "D_pruning_distribution": [c for c in (pruning_cols + alpha_cols) if c in feat_cols],
         "E_av_imbalance": [c for c in av_imbalance_cols if c in feat_cols],
         "F_tda": [c for c in tda_cols if c in feat_cols],
         "G_benchmark": [c for c in benchmark_cols if c in feat_cols],
