@@ -1,0 +1,18 @@
+{
+  "n_total": 290,
+  "n_contrast": 190,
+  "n_plain_scan": 100,
+  "n_PH": 163,
+  "n_nonPH": 127,
+  "n_within_contrast_PH": 163,
+  "n_within_contrast_nonPH": 27,
+  "n_measured_mpap": 102,
+  "fold_distribution": {
+    "fold_1": 38,
+    "fold_2": 38,
+    "fold_3": 38,
+    "fold_4": 38,
+    "fold_5": 38
+  },
+  "sha256": "1e7d20b2a56317960fb8d288b2eae54de3a2cc493812e89d10672faa45a3e3f9"
+}

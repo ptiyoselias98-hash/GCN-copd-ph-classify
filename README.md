@@ -1518,7 +1518,13 @@ R19 (codex 9.1 / HONEST 8.7 revise, -0.1 from R18 honest 8.8). Closed only 1 mus
 - [within_pipeline_trends.md](copdph-gcn-repo/outputs/r19/within_pipeline_trends.md)
 - [v2_cache_rebuild_diagnosis.md](copdph-gcn-repo/outputs/r19/v2_cache_rebuild_diagnosis.md)
 
-> ⚠️ **R19.A overlay gallery 已废弃 (2026-04-26)**：上图大部分格子显示 "missing CT/lung" 占位框，是因为 R19 时代生成 gallery 的远程 worker 无法访问 PH 病例的源 CT — 当时 `nii-unified-282/` 下 PH dirs 只是 GBK 编码的 `_source.txt` redirect stub（实际 CT 在 parent `nii/` 目录），仅 nonPH new100 病例有完整 CT 渲染。R20.F (2026-04-26) 已用 Simple_AV_seg 在 unified-301 上重新分割了 199 contrast 病例 (174 PH + 27 nonPH) + 100 plain-scan = 290 完整 CT+lung+artery+vein 数据。R24.Y 将在 unified-301 上重出 overlay gallery，覆盖此处空白格图。下面两张图保留作为 R19 时代 bug 的历史记录。
+> ⚠️ **R19.A overlay gallery 已废弃 → R24.Y 修复 (2026-04-26)**：原图大部分格子显示 "missing CT/lung" 占位框，是因为 R19 时代生成 gallery 的远程 worker 无法访问 PH 病例的源 CT — 当时 `nii-unified-282/` 下 PH dirs 只是 GBK 编码的 `_source.txt` redirect stub（实际 CT 在 parent `nii/` 目录），仅 nonPH new100 病例有完整 CT 渲染。R20.F 已用 Simple_AV_seg 在 unified-301 上重新分割了 199 contrast (174 PH + 27 nonPH) + 100 plain-scan = 290 完整数据。**R24.Y 已重出 overlay gallery**（下图替换占位图）：
+
+![R24.Y overlay gallery — 修复后](copdph-gcn-repo/outputs/figures/fig_r24y_overlay_gallery_unified301.png)
+
+R24.Y 图说明：4×4 网格展示 unified-301 cohort 中 8 个 PH 病例（前 2 行） + 4 个 contrast nonPH（第 3 行） + 4 个 plain-scan nonPH（最后一行）。每格上方标注 PH/nonPH 标签 + protocol + 测得 mPAP（若有）。CT 灰底叠加红色 autumn colormap 的肺 mask。最后一行 4 格显示 "CT not local" 是因为 plain-scan 源 CT 仅在远程 `nii-new100/`（用户算力规划：CPU 路径走本地，远程数据不下传）；R19 时代 PH 病例空白的 GBK redirect bug 已通过 R24.Y 中的 GBK/UTF-8/CP936 多编码 fallback 解析器修复。
+
+下面两张是 R19 时代 bug 的历史记录（保留以便审查）：
 
 ![lung_overlay_gallery_representative — DEPRECATED, see R24.Y](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_representative.png)
 
