@@ -34,6 +34,15 @@ collected under `outputs/`.
 | R18 | 9.3/10 | revise |
 | R19 | 9.1/10 | revise |
 
+## Authoritative manuscript scope (R23)
+
+See `copdph-gcn-repo/CLAIMS_TABLE_R23.md` for the authoritative table
+enumerating each candidate paper claim with its (cohort, pipeline, evidence,
+limitation, status). R22 explicitly retired cross-protocol enlarged-cohort
+PH-vs-nonPH AUC claims, single-pipeline ρ magnitude claims, label-free
+DDPM PH-detector framing, and GCN-embedding-level enlarged-cohort
+deconfounding (out of scope for this paper).
+
 ## Terminology — "evolution" vs "cross-sectional severity ordering"
 
 This project does **not** include paired longitudinal scans of the same patient

@@ -1,6 +1,14 @@
 # Final Findings — COPD → COPD-PH Structural Cross-Sectional Severity Ordering
 
-_Last updated 2026-04-26 R20. Pipeline unification completed via Simple_AV_seg on legacy contrast 199 + new100 100 = unified-301 cohort (290 cached, 190 within-contrast). Honest scoring: codex 9.2 / honest 8.9._
+_Last updated 2026-04-26 R23. Pipeline unification completed via Simple_AV_seg on legacy contrast 199 + new100 100 = unified-301 cohort (290 cached, 190 within-contrast). Honest scoring: codex 9.4 / honest 9.3._
+
+> **Authoritative manuscript scope: see `CLAIMS_TABLE_R23.md`.** That table
+> enumerates each candidate claim with its (cohort, pipeline, evidence,
+> limitation, status) and is the source of truth for which claims are
+> CITED, DEMOTED, or RETIRED in the manuscript. R22 explicitly retired
+> cross-protocol enlarged-cohort PH-vs-nonPH AUC claims, single-pipeline
+> magnitude claims, label-free DDPM PH-detector framing, and
+> GCN-embedding-level enlarged-cohort deconfounding.
 
 ## R20 headline correction (added 2026-04-26)
 
