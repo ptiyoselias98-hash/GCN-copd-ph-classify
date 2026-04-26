@@ -1,50 +1,199 @@
 {
-  "manifest_version": "v7-skeleton",
+  "manifest_version": "v8-populated",
   "round": 24,
   "status": "pre-execution skeleton; populated by R24.Z aggregator after each wave commit",
   "created": "2026-04-26",
   "schema": {
     "inputs": {
-      "cohort_locked_table_csv": {"sha256": null, "commit_sha": null, "path": "outputs/r24/cohort_locked_table.csv"}
+      "cohort_locked_table_csv": {
+        "sha256": "1e7d20b2a56317960fb8d288b2eae54de3a2cc493812e89d10672faa45a3e3f9",
+        "commit_sha": null,
+        "path": "outputs/r24/cohort_locked_table.csv"
+      }
     },
     "wave_1_artifacts": {
-      "r24a_pseudotime_within_contrast": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24a_pseudotime_within_contrast.csv"},
-      "r24a_pseudotime_full_cohort": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24a_pseudotime_full.csv"},
-      "r24b_changepoints": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24b_changepoints.csv"},
-      "r24f_feature_rank": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24f_feature_rank.csv"}
+      "r24a_pseudotime_within_contrast": {
+        "sha256": "40e4471418fca5cf77d5571e45e582635f0717c4a7213ba8f50c6371eec9070a",
+        "commit_sha": null,
+        "path": "outputs/r24/r24a_pseudotime_within_contrast.csv"
+      },
+      "r24a_pseudotime_full_cohort": {
+        "sha256": "5ef67c4fed76f4d95746b262c3c94530e515e9595a05deed7568a02d91c458b5",
+        "commit_sha": null,
+        "path": "outputs/r24/r24a_pseudotime_full.csv"
+      },
+      "r24b_changepoints": {
+        "sha256": "66496f9c98831b8520e2960e3e70dcfefdd1c60c5205a19c81295cecb46e95d3",
+        "commit_sha": null,
+        "path": "outputs/r24/r24b_changepoints.csv"
+      },
+      "r24f_feature_rank": {
+        "sha256": "3e45c683ccb18af16f6b80a9187f154e63961b2df3798b76c618c8aa5aab53ae",
+        "commit_sha": null,
+        "path": "outputs/r24/r24f_feature_rank.csv"
+      }
     },
     "wave_2_artifacts": {
-      "r24g_ssl_d32": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24g_ssl_d32_oof_severity.csv"},
-      "r24g_ssl_d16": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24g_ssl_d16_oof_severity.csv"},
-      "r24g_ssl_d64": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24g_ssl_d64_oof_severity.csv"},
-      "r24g_pca32_baseline": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24g_pca32_baseline_oof.csv"},
-      "r20_within_contrast_encoder": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r20_within_contrast_encoder.pt"}
+      "r24g_ssl_d32": {
+        "sha256": "8488319468208eff41da2c010ea5b51fe590b475ea0b523df4863c8bf01d10ff",
+        "commit_sha": null,
+        "path": "outputs/r24/r24g_ssl_d32_oof_severity.csv"
+      },
+      "r24g_ssl_d16": {
+        "sha256": "MISSING",
+        "commit_sha": "MISSING",
+        "path": "outputs/r24/r24g_ssl_d16_oof_severity.csv"
+      },
+      "r24g_ssl_d64": {
+        "sha256": "MISSING",
+        "commit_sha": "MISSING",
+        "path": "outputs/r24/r24g_ssl_d64_oof_severity.csv"
+      },
+      "r24g_pca32_baseline": {
+        "sha256": "f072f1ee84ced2a23ec94ce541fe3c381bda18cefc153752cc706ad4c672e708",
+        "commit_sha": null,
+        "path": "outputs/r24/r24g_pca32_baseline_oof.csv"
+      },
+      "r20_within_contrast_encoder": {
+        "sha256": "MISSING",
+        "commit_sha": "MISSING",
+        "path": "outputs/r24/r20_within_contrast_encoder.pt"
+      }
     },
     "wave_3_artifacts": {
-      "r24d_structure_onset": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24d_structure_onset.csv"},
-      "r24e_nomogram_dca": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24e_nomogram_dca.csv"},
-      "r24x_permutation_null": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24x_permutation_null.csv"}
+      "r24d_structure_onset": {
+        "sha256": "fb9a3c7919abcc8f62554e7b820514ffe4a5eaae7be70d3bb056249b0bfc7d11",
+        "commit_sha": null,
+        "path": "outputs/r24/r24d_structure_onset.csv"
+      },
+      "r24e_nomogram_dca": {
+        "sha256": "6d140d4b5f2f0e525629e21aee8bf2858aa0df2cebdf51daab2102996b9d4912",
+        "commit_sha": null,
+        "path": "outputs/r24/r24e_nomogram_dca.csv"
+      },
+      "r24x_permutation_null": {
+        "sha256": "214607b0faad697292e70528933df28be3732b408beb67ba87a0dc738febbacc",
+        "commit_sha": null,
+        "path": "outputs/r24/r24x_permutation_null.csv"
+      }
     },
     "figures": {
-      "fig_r24a_pseudotime": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24a_pseudotime.png"},
-      "fig_r24b_changepoint": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24b_changepoint.png"},
-      "fig_r24d_structure_ordering": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24d_structure_ordering.png"},
-      "fig_r24e_nomogram_dca": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24e_nomogram_dca.png"},
-      "fig_r24f_feature_panel": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24f_feature_panel.png"},
-      "fig_r24g_progression_space": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24g_progression_space.png"},
-      "fig_r24x_permutation_null": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24x_permutation_null.png"}
+      "fig_r24a_pseudotime": {
+        "sha256": "acf5b9cf99696ecc39f37e968a56c553c37b400a3ca3ff23acea4911fc54f3c6",
+        "commit_sha": null,
+        "path": "outputs/figures/fig_r24a_pseudotime.png"
+      },
+      "fig_r24b_changepoint": {
+        "sha256": "10f2c371740bc1d3ded9a23edf74007010b34f3b100c657f8e4ab4ce70f4f80c",
+        "commit_sha": null,
+        "path": "outputs/figures/fig_r24b_changepoint.png"
+      },
+      "fig_r24d_structure_ordering": {
+        "sha256": "a566a9f554db6963c08c0f3178f52c7d5196c20540072656252b19d77f2f3536",
+        "commit_sha": null,
+        "path": "outputs/figures/fig_r24d_structure_ordering.png"
+      },
+      "fig_r24e_nomogram_dca": {
+        "sha256": "ef97681b17903484465efd0ba617a951f423302d7c2a1665f510da68c826a9e0",
+        "commit_sha": null,
+        "path": "outputs/figures/fig_r24e_nomogram_dca.png"
+      },
+      "fig_r24f_feature_panel": {
+        "sha256": "4a04ef26c39e0ed425580a261a032b022caa37abf1ea7caf1eefc29d1d0e8a5e",
+        "commit_sha": null,
+        "path": "outputs/figures/fig_r24f_feature_panel.png"
+      },
+      "fig_r24g_progression_space": {
+        "sha256": "3b0a02bb4d17f61d5e3bcc443b5681dd4a923bd19b97894c5980acf502b08428",
+        "commit_sha": null,
+        "path": "outputs/figures/fig_r24g_progression_space.png"
+      },
+      "fig_r24x_permutation_null": {
+        "sha256": "fa60feb6d9fe0a65718e25e6f362938bc775457f19c470f42ec33cc052c83734",
+        "commit_sha": null,
+        "path": "outputs/figures/fig_r24x_permutation_null.png"
+      }
     },
     "per_job": [],
     "gates": {
-      "r24a_mpap_rho_ge_0.35": {"statistic": null, "threshold": 0.35, "verdict": null},
-      "r24a_protocol_auc_lt_0.65": {"statistic": null, "threshold": 0.65, "verdict": null},
-      "r24a_protocol_rho_lt_0.20": {"statistic": null, "threshold": 0.20, "verdict": null},
-      "r24b_delta_aic_ge_10": {"statistic": null, "threshold": 10.0, "verdict": null},
-      "r24b_boot_freq_ge_0.70": {"statistic": null, "threshold": 0.70, "verdict": null},
-      "r24b_breakpoint_ci_le_8mmHg": {"statistic": null, "threshold": 8.0, "verdict": null},
-      "r24g_oof_rho_ge_0.50": {"statistic": null, "threshold": 0.50, "verdict": null},
-      "r24g_ssl_beats_pca32_by_0.05": {"statistic": null, "threshold": 0.05, "verdict": null},
-      "r24x_real_above_99th_percentile_null": {"statistic": null, "threshold": 0.99, "verdict": null}
+      "r24a_mpap_rho_ge_0.35": {
+        "statistic": 0.21251776432222508,
+        "threshold": 0.35,
+        "verdict": "FAIL"
+      },
+      "r24a_protocol_auc_lt_0.65": {
+        "statistic": null,
+        "threshold": 0.65,
+        "verdict": null
+      },
+      "r24a_protocol_rho_lt_0.20": {
+        "statistic": null,
+        "threshold": 0.2,
+        "verdict": null
+      },
+      "r24b_delta_aic_ge_10": {
+        "statistic": null,
+        "threshold": 10.0,
+        "verdict": null
+      },
+      "r24b_boot_freq_ge_0.70": {
+        "statistic": null,
+        "threshold": 0.7,
+        "verdict": null
+      },
+      "r24b_breakpoint_ci_le_8mmHg": {
+        "statistic": null,
+        "threshold": 8.0,
+        "verdict": null
+      },
+      "r24g_oof_rho_ge_0.50": {
+        "statistic": 0.25169259299714913,
+        "threshold": 0.5,
+        "verdict": "FAIL"
+      },
+      "r24g_ssl_beats_pca32_by_0.05": {
+        "statistic": null,
+        "threshold": 0.05,
+        "verdict": null
+      },
+      "r24x_real_above_99th_percentile_null": {
+        "statistic": null,
+        "threshold": 0.99,
+        "verdict": null
+      },
+      "r25c_ensemble_rho_ge_0.50": {
+        "statistic": 0.529130134737157,
+        "threshold": 0.5,
+        "verdict": "PASS"
+      }
+    },
+    "r25_r26_artifacts": {
+      "r25b_ssl_extended_oof": {
+        "sha256": "8b50878652f1d7b0449016e1f09afc28a83f53f76c2a681bc1311ad0ca5d69af",
+        "commit_sha": null,
+        "path": "outputs/r24/r25b_ssl_extended_oof.csv"
+      },
+      "r25b_pca_baseline_oof": {
+        "sha256": "1443101d0b75981cd2e8ffadc0b7fd91e1a8e5f023d14407f934db28ea8c9ae3",
+        "commit_sha": null,
+        "path": "outputs/r24/r25b_pca_extended_oof.csv"
+      },
+      "r25c_ensemble_oof": {
+        "sha256": "48ff530ad0a92bb594359d5b90d185e172ac55caaca00f6fab2b6173d46f5f7a",
+        "commit_sha": null,
+        "path": "outputs/r24/r25c_ensemble_oof.csv"
+      },
+      "r26a_modality_ablation": {
+        "sha256": "MISSING",
+        "commit_sha": "MISSING",
+        "path": "outputs/r24/r26a_modality_ablation.csv"
+      },
+      "extended_features_212": {
+        "sha256": "75eb9161aefe5cdd3c860aa1a786414396ba37206f404281c461ec1bafe1f4d4",
+        "commit_sha": null,
+        "path": "outputs/r24/extended_features_212.csv"
+      }
     }
-  }
+  },
+  "populated_at": "2026-04-26"
 }
