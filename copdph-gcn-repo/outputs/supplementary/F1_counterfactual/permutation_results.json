@@ -1,0 +1,8 @@
+{
+  "n_perms": 50,
+  "real_full_auc": 0.898659395591911,
+  "null_full_auc_mean": 0.49005226084980685,
+  "null_full_auc_p99": 0.6613383321972278,
+  "perm_p_real_above_null": 0.0,
+  "real_above_99pct_null": true
+}
