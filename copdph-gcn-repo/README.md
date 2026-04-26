@@ -1,24 +1,62 @@
-# COPD-PH Pulmonary Vessel GCN
+# COPD-PH Cross-Sectional Vascular Endotype Study
 
 > **Authoritative manuscript scope (R23): see `CLAIMS_TABLE_R23.md`.**
 > That table is the source of truth for which claims are CITED, DEMOTED,
-> or RETIRED in the manuscript. R22 explicitly retired cross-protocol
-> enlarged-cohort PH-vs-nonPH AUC claims, single-pipeline ρ magnitude
-> claims, label-free DDPM PH-detector framing, and GCN-embedding-level
-> enlarged-cohort deconfounding (out of scope for this paper).
->
-> **All Sprint 2/3/5/6 classifier AUC tables below are HISTORICAL
-> ENGINEERING ARTIFACTS, NOT manuscript claims.** They document the
-> engineering progression of the project before peer-review-equivalent
-> hostile review forced scope reduction. Do not cite these AUC numbers
-> as paper findings without consulting `CLAIMS_TABLE_R23.md` first.
+> or RETIRED. R22 explicitly retired cross-protocol enlarged-cohort
+> PH-vs-nonPH AUC claims, single-pipeline ρ magnitude claims, label-free
+> DDPM PH-detector framing, and GCN-embedding-level enlarged-cohort
+> deconfounding (out of scope for this paper).
 
-Graph-neural-network classification of pulmonary hypertension (PH) from chest-CT
-pulmonary vessel trees, fused with commercial radiomics features. The repo
-covers the full Sprint 2 pipeline: vessel-tree graph construction, hybrid GCN
-training, 5-fold cross-validation, and interpretability visualizations.
+## Project scope (manuscript-relevant)
 
-## Task
+This repository's **manuscript-relevant scientific contribution** is a
+**cross-sectional within-contrast vascular endotype study** (n=190, 163 PH +
+27 nonPH, contrast-enhanced CT only):
+
+- **Pipeline-robust direction of remodeling**: Within contrast-enhanced CT,
+  COPD-PH cases show artery and vein edge-length percentile downshift,
+  reduced low-percentile tortuosity, and reduced vein H1-loop topology
+  persistence. The DIRECTION of all four flagship features is preserved
+  across two independent segmentation pipelines (HiPaS-style legacy +
+  unified Simple_AV_seg), while the magnitude of severity-correlation is
+  pipeline-specific (legacy ρ=-0.767 vs unified ρ=-0.211 for
+  artery_len_p25; per-pipeline reporting only).
+- **TDA loop-topology evidence**: vein_persH1_total Cohen's d=-1.214,
+  Holm p=2.98e-6 (R20.D, 18-feature TDA panel), 100% bootstrap-1000
+  sign-stable.
+- **3-modality endotype panel**: 26 Holm-significant features across
+  vessel + parenchyma + TDA modalities (R18.F).
+- **Honest negatives**: DDPM trained on plain-scan does NOT generalize
+  as a PH detector for legacy CTPA cohort (R20.B); feature-level CORAL
+  cannot deconfound the protocol confound on the enlarged 290-cohort
+  (R21.D / R22.A) — these are documented as case studies, not as
+  paper claims.
+
+Limitations: n_nonPH=27 is small; no longitudinal data; no external
+validation cohort; cross-protocol generalization requires future
+GCN-embedding-level training-time deconfounding (out of scope for
+this paper, per R22 repositioning decision).
+
+---
+
+## Historical engineering work (NOT manuscript claims)
+
+> **Everything below this line — Sprint 2/3/5/6 GCN classifier
+> development, AUC tables, hyperparameter sweeps, ARIS round history —
+> is engineering documentation only.** None of these AUC numbers are
+> manuscript claims. Refer to `CLAIMS_TABLE_R23.md` and
+> `PAPER_REPOSITIONING_R22.md` before citing any number from this
+> repository in a paper.
+
+The original goal was end-to-end GCN classification of PH from chest-CT
+vessel trees, fused with commercial radiomics. That engineering line of
+work culminated in Sprint 2/3/5/6 results documented below. R20–R23
+hostile review (codex MCP gpt-5.5 high-reasoning) revealed that the
+enlarged-cohort classifier AUCs are dominated by protocol decoding, not
+disease biology, and the project was repositioned around the
+within-contrast endotype evidence above.
+
+## Task (legacy)
 
 Binary classification — **COPD-PH vs COPD-nonPH** — from:
 - **Graph modality**: per-patient pulmonary vessel tree. Nodes = vessel
