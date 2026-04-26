@@ -1,0 +1,5 @@
+loaded cohort + pseudotime + SSL severity
+               target  real_rho  real_abs_rho  null_99_pct_abs  n_perms  gate_real_above_99_null
+0    R24.A_pseudotime  0.212518      0.212518         0.256438     1000                    False
+1  R24.G_ssl_severity  0.251693      0.251693         0.239072     1000                     True
+saved E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\outputs\figures\fig_r24x_permutation_null.png

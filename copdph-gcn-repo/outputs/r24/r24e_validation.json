@@ -1,0 +1,41 @@
+{
+  "n": 190,
+  "n_PH": 163,
+  "n_nonPH": 27,
+  "fold_count": 50,
+  "fold_auc_mean": 0.6359469696969696,
+  "fold_auc_std": 0.11414360237291635,
+  "fold_auc_min": 0.40625,
+  "fold_auc_max": 0.8424242424242424,
+  "oof_auc_pooled": 0.6262213133378778,
+  "calibration_slope": 0.2610613779965567,
+  "calibration_intercept": 1.3075867171200817,
+  "brier_score": 0.140840867693052,
+  "dca_anchors": [
+    {
+      "prevalence": 0.1,
+      "net_benefit_model": -0.24099649153607022,
+      "net_benefit_treat_all": -8.206905271473897,
+      "delta_nb": 7.965908779937826
+    },
+    {
+      "prevalence": 0.25,
+      "net_benefit_model": -0.3431705316579514,
+      "net_benefit_treat_all": -2.217331397268727,
+      "delta_nb": 1.8741608656107756
+    },
+    {
+      "prevalence": 0.5,
+      "net_benefit_model": -0.1167002610751307,
+      "net_benefit_treat_all": -0.6650907049028529,
+      "delta_nb": 0.5483904438277223
+    },
+    {
+      "prevalence": 0.86,
+      "net_benefit_model": 0.6096015160626899,
+      "net_benefit_treat_all": 0.6275601688308768,
+      "delta_nb": -0.017958652768186978
+    }
+  ],
+  "exploratory_stamp": "EXPLORATORY \u2014 external validation required"
+}
