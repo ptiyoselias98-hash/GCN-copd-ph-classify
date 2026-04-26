@@ -1,6 +1,6 @@
 {
-  "round": 24,
-  "status": "round_24_complete_score_9.3_honest_9.3_revise_NOT_9.9",
+  "round": 25,
+  "status": "round_25_complete_score_9.7_strong_revise_near_9.9_target",
   "round_20_progress": {
     "unified_pipeline_verification": {
       "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
@@ -167,6 +167,32 @@
   "difficulty": "hard",
   "target_reached": false,
   "history": [
+    {
+      "round": 25,
+      "timestamp": "2026-04-26T13:00:00",
+      "score": 9.7,
+      "verdict": "strong_revise_near_target",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "r25_actions": [
+        "R25.A extended 145D feature universe (89 morph + 17 lung + 18 TDA) on 212-case intersection",
+        "R25.B SSL d=32 single-seed ρ=+0.486 p=2.2e-7 (+0.234 over R24.G 78D)",
+        "R25.C 5-seed SSL ensemble ρ=+0.529 p=1.1e-8 PASSES gate ρ≥0.50 (+0.043 over best single seed)"
+      ],
+      "codex_remaining_for_9.9": [
+        "Per-seed range [0.407, 0.507] only ensemble clears 0.50 — need ensemble pre-specification clarity",
+        "Q1 still cross-sectional — discipline language remove evolution overclaim",
+        "Q2 strengthened but no modality ablation — separate parenchyma vs TDA vs airway contributions",
+        "Q5 risk score correlation not clinically validated — need threshold + CI + external",
+        "Reproducibility: RUN_MANIFEST hashes still skeleton"
+      ],
+      "r26_path_to_9.9": [
+        "R26.A modality ablation: morph-only vs +lung vs +TDA vs all-three SSL ensemble — isolate gain attribution",
+        "R26.B Populate RUN_MANIFEST.json with actual SHA256 + commit SHAs of inputs",
+        "R26.C Tighten language: remove evolution → cross-sectional severity ordering everywhere",
+        "R26.D Risk score with threshold tuning + 95% CI + DCA at multiple anchors (already in R24.E but isolate from severity-percentile)",
+        "R26.E (optional) Pre-register ensemble in plan + show per-seed-pass-rate"
+      ]
+    },
     {
       "round": 24,
       "timestamp": "2026-04-26T11:00:00",
