@@ -1,6 +1,6 @@
 {
-  "round": 21,
-  "status": "round_21_complete_score_9.2_honest_9.0_revise",
+  "round": 22,
+  "status": "round_22_complete_score_9.4_honest_9.3_revise_close_to_9.5",
   "round_20_progress": {
     "unified_pipeline_verification": {
       "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
@@ -167,6 +167,25 @@
   "difficulty": "hard",
   "target_reached": false,
   "history": [
+    {
+      "round": 22,
+      "timestamp": "2026-04-26T09:30:00",
+      "score": 9.4,
+      "honest_score_after_debt_penalty": 9.3,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "r22_actions": [
+        "R22.A nested CORAL + bootstrap-500 CI: HONEST NEGATIVE on feature-level deconfounding (orientation 0.912→0.912 or 0.959 sign-flip); within-contrast disease AUC 5-seed×5-fold mean=0.710, fold range [0.438, 0.879]",
+        "R22.B paper repositioning: RETIRES cross-protocol enlarged-cohort claims, cross-pipeline magnitude claims, label-free DDPM PH-detector framing, GCN-embedding enlarged-cohort deconfounding. Repositions paper around within-contrast n=190 endotype evidence as PRIMARY contribution"
+      ],
+      "reviewer_accepted_retirements": true,
+      "must_fix_for_R23_to_reach_9.5": [
+        "Purge/annotate every remaining enlarged-cohort AUC / deconfounded classifier / DDPM PH-detector claim outside PAPER_REPOSITIONING_R22.md (especially older FINAL summary text)",
+        "Replace or demote the disease-AUC bootstrap CI [0.729, 0.948] — over-optimistic due to resample duplicates. Report 0.710 + fold/seed variability + n_nonPH=27 caveat instead",
+        "Write final claims table: claim, cohort, pipeline, evidence, limitation, retired/not-retired. Prevents scope creep during manuscript drafting"
+      ],
+      "reviewer_notes_for_memory": "R22 codex 9.4 / honest 9.3 (up +0.2/+0.3 from R21 9.2/9.0). Reviewer accepts retirement-via-repositioning as legitimate closure of must-fix #3+#5 (since feature-level deconfounding fundamentally fails). Paper now well-scoped, not under-scoped. Surviving major claim: cross-sectional within-contrast vascular endotype with direction preserved across HiPaS-style legacy and Simple_AV_seg unified pipelines (artery_len_p25 d=-0.30, artery_len_p50 d=-0.47 Holm-sig, vein_persH1_total d=-1.21 robust). Path to 9.5: claims-consistency purge + bootstrap CI demotion + final claims table."
+    },
     {
       "round": 21,
       "timestamp": "2026-04-26T08:30:00",
