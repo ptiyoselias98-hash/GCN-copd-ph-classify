@@ -154,7 +154,10 @@ Important codex follow-ups (deferred — not blocking arm_a):
 - Mask sentinel convention: HU == -2048 = background, all other voxels = structure
 
 
-## 9. Multi-structure Phenotype Evolution (auto)
+## 9. Multi-structure Phenotype Cross-sectional Severity-Ordering (auto)
+
+> ⚠️ Renamed from "Phenotype Evolution" per R26 codex review: R24.A pseudotime ρ_mPAP=+0.213 FAILED 99-pct permutation null (0.256). All "evolution" / "trajectory" wording in this section means **cross-sectional severity ordering across patients arranged by mPAP**, NOT within-patient temporal progression.
+
 
 # Phenotype Evolution Report
 - n_cases: 280
@@ -1436,4 +1439,4 @@ Zero cases unmatched. This is the authoritative protocol label used by
 - **Disease-focused clustering** (user-facing scientific question): repeat
   §9 phenotype clustering on **parenchyma-only** + **vessel-graph stats**,
   stratified by protocol, to separate emphysema severity from vascular
-  remodelling signatures during COPD → COPD-PH evolution.
+  remodelling signatures during COPD vs COPD-PH cross-sectional severity ordering (per R26 codex: not "evolution" — pseudotime failed null falsification, no longitudinal data).

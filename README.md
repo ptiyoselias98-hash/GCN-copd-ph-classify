@@ -36,7 +36,7 @@ collected under `outputs/`.
 
 ## R24 Visual Atlas — 疾病进展空间与表型演化系列实验
 
-R24 round (2026-04-26) implements the user-requested cross-sectional vascular phenotype evolution study after 7 rounds of codex GPT-5.5 hostile review. Each sub-round followed pre-registered numerical gates (cf. `copdph-gcn-repo/review-stage/R24_OPEN_QUESTIONS.md` v7). All figures regenerated from `outputs/r24/cohort_locked_table.csv` (290 cases, 190 within-contrast, 102 measured mPAP, 5×38 stratified folds, SHA256 1e7d20b2...).
+R24 round (2026-04-26) implements the user-requested cross-sectional vascular **severity-ordering study** (originally framed as "phenotype evolution" but R24.A pseudotime FAILED null falsification — paper now disciplined to cross-sectional severity ordering only, not longitudinal evolution) after 7 rounds of codex GPT-5.5 hostile review. Each sub-round followed pre-registered numerical gates (cf. `copdph-gcn-repo/review-stage/R24_OPEN_QUESTIONS.md` v7). All figures regenerated from `outputs/r24/cohort_locked_table.csv` (290 cases, 190 within-contrast, 102 measured mPAP, 5×38 stratified folds, SHA256 1e7d20b2...).
 
 ### R24.Y — 修复后的肺叠加图集 (overlay gallery on unified-301)
 
@@ -924,7 +924,9 @@ just by Euclidean distance).
 Per-fold metrics + config:
 [`outputs/p_zeta_cluster_269/plan_c/cv_results.json`](outputs/p_zeta_cluster_269/plan_c/cv_results.json).
 
-## Topology evolution — does unsupervised topology alone separate PH? (2026-04-21)
+## Topology cross-sectional ordering — does unsupervised topology alone separate PH? (2026-04-21)
+
+> ⚠️ **Cross-sectional severity ordering only**: this section's "evolution" wording predates R24's null-falsification finding. R24.A pseudotime ρ_mPAP=+0.213 FAILED 99-pct permutation null (0.256). Treat any "evolution" / "trajectory" language below as **cross-sectional severity ordering across patients arranged by mPAP**, NOT within-patient temporal progression. No paired longitudinal scans exist in this cohort.
 
 Plans A–C all use the *supervised* tri-structure GCN embedding, so any cluster
 structure there could be a memorised decision boundary. A cleaner question:
@@ -986,7 +988,7 @@ structure it picks up is not PH-specific.
 - Segmentation-quality auditing should be a mandatory first gate on any
   future unsupervised analysis here; otherwise any reported cluster / ARI
   is suspect.
-- For the "from COPD to COPD-PH topological evolution" question, the next
+- For the "from COPD to COPD-PH cross-sectional topological severity-ordering" question (renamed from "evolution" per R26 codex; R24.A pseudotime null-failed), the next
   productive direction is **supervised contrastive or weakly-label-conditioned
   representation learning**, not pure SSL clustering.
 
