@@ -1,6 +1,6 @@
 {
   "round": 24,
-  "status": "round_24_complete_pending_codex_for_9.9_target",
+  "status": "round_24_complete_score_9.3_honest_9.3_revise_NOT_9.9",
   "round_20_progress": {
     "unified_pipeline_verification": {
       "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
@@ -170,9 +170,26 @@
     {
       "round": 24,
       "timestamp": "2026-04-26T11:00:00",
-      "score": null,
-      "verdict": "pending_codex_review",
-      "r24_summary": "Wave-1+2+3 all complete. R24.0 cohort lock (290 cases SHA256 1e7d20b2). R24.A pseudotime within-contrast ρ_mPAP=+0.213 FAIL gate ρ≥0.35 (honest neg). R24.B 0/78 features pass ΔAIC≥10 (mechanistically informative — continuous remodeling not threshold). R24.D artery onset earliest along pseudotime (cross-sectional ordering). R24.E nomogram exploratory: 10× repeated 5-fold Lasso, DCA at 4 prevalence anchors, EXPLORATORY stamp. R24.F 1/72 Holm-sig (artery_len_p75 ρ=-0.333), top-13 all NEGATIVE direction. R24.G SSL d=32 ρ=+0.252 OOF, PCA-32 ρ=+0.181, Δ=+0.071 PASS SSL-vs-PCA gate, FAIL ρ≥0.50. R24.X CRITICAL FALSIFICATION: SSL severity PASSES 99th-pct null (0.252 > 0.239), pseudotime FAILS (0.213 < 0.256) — SSL is genuine signal beyond fold-stratified noise. R24.Y overlay regen: 12/16 cases rendered (PH+contrast nonPH all OK), 4 plain-scan blank (CT only on remote). 9 figures all in outputs/figures/fig_r24*.png; 5-piece sync committed each sub-round; README atlas section added with Chinese explanations."
+      "score": 9.3,
+      "verdict": "revise",
+      "r24_summary": "Wave-1+2+3 all complete. R24.0 cohort lock (290 cases SHA256 1e7d20b2). R24.A pseudotime within-contrast ρ_mPAP=+0.213 FAIL gate ρ≥0.35 (honest neg). R24.B 0/78 features pass ΔAIC≥10 (mechanistically informative — continuous remodeling not threshold). R24.D artery onset earliest along pseudotime (cross-sectional ordering). R24.E nomogram exploratory: 10× repeated 5-fold Lasso, DCA at 4 prevalence anchors, EXPLORATORY stamp. R24.F 1/72 Holm-sig (artery_len_p75 ρ=-0.333), top-13 all NEGATIVE direction. R24.G SSL d=32 ρ=+0.252 OOF, PCA-32 ρ=+0.181, Δ=+0.071 PASS SSL-vs-PCA gate, FAIL ρ≥0.50. R24.X CRITICAL FALSIFICATION: SSL severity PASSES 99th-pct null (0.252 > 0.239), pseudotime FAILS (0.213 < 0.256) — SSL is genuine signal beyond fold-stratified noise. R24.Y overlay regen: 12/16 cases rendered (PH+contrast nonPH all OK), 4 plain-scan blank (CT only on remote). 9 figures all in outputs/figures/fig_r24*.png; 5-piece sync committed each sub-round; README atlas section added with Chinese explanations.",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "codex_top_issues": [
+        "R24.G SSL is the only new genuine signal (rho=+0.252 passes 99-pct null) but fails strength gate rho≥0.50 — cannot carry disease progression space claim alone",
+        "R24.A pseudo-longitudinal claim FAILS null falsification (rho=+0.213 < 99-pct null 0.256). Q1/Q4 cannot frame as proven vascular evolution or defensible substitute for longitudinal scans",
+        "Q2 still mostly unanswered: airway too sparse (6 features) to rank, parenchyma absent from R24 morph universe, R24.C killed. Lung+airway auxiliary role / interaction / synergy NOT proven by R24",
+        "Q3 early-PH: 0/78 features pass ΔAIC≥10 changepoint gate — no validated early mPAP threshold",
+        "Q5 R24.E nomogram exploratory only: pooled AUC 0.626, calibration slope 0.261 poor, n_nonPH=27",
+        "Reproducibility: RUN_MANIFEST.json still skeleton with null hashes",
+        "Reproducibility: README R24 Visual Atlas section not found via codex text search (may need utf-8 BOM or section header rebuild)"
+      ],
+      "minimum_to_reach_9.9": [
+        "R25.A Add parenchyma (paren_*) + lung-features-v2 features to feature universe (152D total instead of 78D); rerun R24.G SSL on extended feature set — likely improves rho beyond 0.50",
+        "R25.B Add airway-rich features from per_structure_morphometrics.csv legacy (airway has 28+ features there, not 6 in unified-301)",
+        "R25.C Populate RUN_MANIFEST.json with actual SHA256 + commit SHAs",
+        "R25.D Verify README Visual Atlas renders (check utf-8, recommit if needed)",
+        "R25.E (optional) Run R24.G_v2 SSL on within-contrast 152D to attempt ρ≥0.50 gate"
+      ]
     },
     {
       "round": 23,
