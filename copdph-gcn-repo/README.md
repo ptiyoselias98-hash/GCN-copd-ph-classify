@@ -487,7 +487,7 @@ picks up is not PH-specific.
   unsupervised variation** in this cohort.
 - Segmentation-quality auditing should be a mandatory first gate on any future
   unsupervised analysis here; otherwise any reported cluster/ARI is suspect.
-- For the "from COPD to COPD-PH cross-sectional topological severity-ordering" question (renamed from "topological evolution" per R26 codex review; R24.A pseudotime null-failed), the next
+- For the "from COPD to COPD-PH cross-sectional topological severity-ordering" question (renamed per R26 codex review from longitudinal-implying wording; R24.A pseudotime null-failed), the next
   productive direction is **supervised contrastive or weakly-label-conditioned
   representation learning**, not pure SSL clustering.
 
