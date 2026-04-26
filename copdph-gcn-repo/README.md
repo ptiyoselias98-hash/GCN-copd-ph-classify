@@ -424,7 +424,9 @@ Full analysis (10-variant table, per-fold variance, retirement list):
 
 ---
 
-## Topology evolution — does unsupervised topology alone separate PH?
+## Topology cross-sectional severity-ordering — does unsupervised topology alone separate PH?
+
+> ⚠️ **Cross-sectional severity ordering only**: this section's "evolution" wording predates R24's null-falsification finding. R24.A pseudotime ρ_mPAP=+0.213 FAILED 99-pct permutation null (0.256). Treat any "evolution" / "trajectory" language below as **cross-sectional severity ordering across patients arranged by mPAP**, NOT within-patient temporal progression. No paired longitudinal scans exist in this cohort.
 
 The Sprint 6 GCN is *supervised* — any cluster structure in its embeddings could
 just be a memorised decision boundary. A cleaner question is:
@@ -445,7 +447,7 @@ validation — never during training.
 
 ### Raw n=269 result — looks promising but is confounded
 
-![Topology evolution — raw vs filtered](outputs/_drivers_sprint6/topo_evolution_raw_vs_filtered.png)
+![Cross-sectional topology severity-ordering — raw vs filtered (file path retains "evolution" for backward compat; content is cross-sectional severity ordering only, no longitudinal scans)](outputs/_drivers_sprint6/topo_evolution_raw_vs_filtered.png)
 
 Raw best is **C_GAE spectral k=3, ARI 0.544**. Inspecting the three clusters
 tells a different story than "topology phenotype":
@@ -485,7 +487,7 @@ picks up is not PH-specific.
   unsupervised variation** in this cohort.
 - Segmentation-quality auditing should be a mandatory first gate on any future
   unsupervised analysis here; otherwise any reported cluster/ARI is suspect.
-- For the "from COPD to COPD-PH topological evolution" question, the next
+- For the "from COPD to COPD-PH cross-sectional topological severity-ordering" question (renamed from "topological evolution" per R26 codex review; R24.A pseudotime null-failed), the next
   productive direction is **supervised contrastive or weakly-label-conditioned
   representation learning**, not pure SSL clustering.
 
