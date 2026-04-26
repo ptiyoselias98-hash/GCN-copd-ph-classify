@@ -1,6 +1,6 @@
 {
-  "round": 26,
-  "status": "round_26_complete_score_9.8_NOT_9.9_single_blocker_language",
+  "round": 27,
+  "status": "TARGET_REACHED_codex_10.0_target_9.9_reached",
   "round_20_progress": {
     "unified_pipeline_verification": {
       "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
@@ -165,8 +165,23 @@
   "max_rounds": 40,
   "positive_threshold_score": 9.9,
   "difficulty": "hard",
-  "target_reached": false,
+  "target_reached": true,
   "history": [
+    {
+      "round": 27,
+      "timestamp": "2026-04-26T14:30:00",
+      "score": 10.0,
+      "verdict": "GREEN_LIGHT_target_9.9_reached",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "r27_actions": [
+        "R27.A README + REPORT_v2 evolution → cross-sectional severity-ordering with R24.A null-fail caveat",
+        "R27.B README image alt-text + REPORT_v2 sub-heading rename",
+        "R27.C copdph-gcn-repo/README.md (the one inside repo, distinct from top-level) same disciplined language",
+        "R27.D removed last residual quoted topological evolution from parenthetical at line 490"
+      ],
+      "codex_final": "10.0/10 GREEN_LIGHT — target ≥9.9 reached",
+      "reviewer_notes_for_memory": "R27 codex 10.0/10. Loop terminating. Manuscript scope locked at within-contrast n=190 cross-sectional severity-ordering with R25.C ensemble ρ=+0.529 PASS, R26.A modality ablation parenchyma dominant +0.144, R24.X null falsification, R20.H pipeline-independent direction. 4 honest negatives kept as case studies (DDPM, pseudotime null-fail, CORAL, changepoint). 9 publication-ready figures. RUN_MANIFEST populated with SHA256 + gate verdicts."
+    },
     {
       "round": 26,
       "timestamp": "2026-04-26T13:35:00",
