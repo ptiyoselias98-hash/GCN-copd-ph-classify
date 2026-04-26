@@ -88,6 +88,7 @@ R24.G is the explicit user-requested experiment (2026-04-26): "依托大样本�
 | **R24.G** | mPAP-anchored severity embedding (RENAMED) | within-contrast n=190 PRIMARY | OOF severity-percentile vs mPAP ρ ≥ +0.50 (positive orientation, boot CI excludes 0); SSL must beat PCA-32 by ≥0.05 ρ | m=1 primary + m=1 SSL-vs-PCA + m=3 anchor pairs | remote GPU (SSL) + local CPU (PCA baseline + Ledoit-Wolf) |
 | **R24.X** | stratified permutation null falsification | R24.A + R24.G | real statistic > 99th percentile of permuted-mPAP null (perm within protocol×fold strata, 1000 permutations) | n/a (null block) | local CPU joblib |
 | ~~R24.C~~ | ~~cross-attention Sankey~~ | KILLED per round-2 codex (interpretability liability without scientific value) | - | - | - |
+| **R24.Y** | overlay gallery REGENERATION on unified-301 (fixes R19.A blank-placeholder bug — PH source CTs were stub `_source.txt` redirects in R19 era, only nonPH new100 cases rendered) | unified-301 (16 representative + 16 worst-repaired by lung-mask CC fraction) | structural; visual QC only, not inferential | n/a | local CPU (~5 min) |
 
 ### Parallel execution DAG (user "尽量多GPU多worker并行" 2026-04-26)
 

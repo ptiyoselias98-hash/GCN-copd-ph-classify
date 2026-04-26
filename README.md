@@ -1517,7 +1517,10 @@ R19 (codex 9.1 / HONEST 8.7 revise, -0.1 from R18 honest 8.8). Closed only 1 mus
 
 - [within_pipeline_trends.md](copdph-gcn-repo/outputs/r19/within_pipeline_trends.md)
 - [v2_cache_rebuild_diagnosis.md](copdph-gcn-repo/outputs/r19/v2_cache_rebuild_diagnosis.md)
-![lung_overlay_gallery_representative](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_representative.png)
 
-![lung_overlay_gallery_worst_repaired](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_worst_repaired.png)
+> ⚠️ **R19.A overlay gallery 已废弃 (2026-04-26)**：上图大部分格子显示 "missing CT/lung" 占位框，是因为 R19 时代生成 gallery 的远程 worker 无法访问 PH 病例的源 CT — 当时 `nii-unified-282/` 下 PH dirs 只是 GBK 编码的 `_source.txt` redirect stub（实际 CT 在 parent `nii/` 目录），仅 nonPH new100 病例有完整 CT 渲染。R20.F (2026-04-26) 已用 Simple_AV_seg 在 unified-301 上重新分割了 199 contrast 病例 (174 PH + 27 nonPH) + 100 plain-scan = 290 完整 CT+lung+artery+vein 数据。R24.Y 将在 unified-301 上重出 overlay gallery，覆盖此处空白格图。下面两张图保留作为 R19 时代 bug 的历史记录。
+
+![lung_overlay_gallery_representative — DEPRECATED, see R24.Y](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_representative.png)
+
+![lung_overlay_gallery_worst_repaired — DEPRECATED, see R24.Y](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_worst_repaired.png)
 
