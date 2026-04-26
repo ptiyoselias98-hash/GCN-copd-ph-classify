@@ -49,6 +49,29 @@ Every R24+ sub-round MUST satisfy **all five** of these:
 **The codex hostile reviewer will explicitly check for these 5 items in
 each round and downgrade if any are missing.**
 
+## R24+ 5-MIN CADENCE + MULTI-SUB-ROUND PARALLELISM (user 2026-04-26)
+
+User upgraded cadence from 10-min → 5-min for R24+ acceleration. New cron:
+`2,7,12,17,22,27,32,37,42,47,52,57 * * * *` (12 fires/hour).
+
+Two coupled changes:
+
+1. **DEDUP GUARD lowered**: 480s → **240s** (4-min). If `now - last_commit_ct < 240s`, exit silently. This is the only thing that prevents fire-on-fire stomping at 5-min cadence.
+
+2. **EACH FIRE MUST LAUNCH ≥2 INDEPENDENT SUB-ROUNDS IN PARALLEL** wherever the v7 DAG allows it:
+   - Wave-1: R24.A (PHATE within-contrast + full) + R24.B (78-feat changepoint) + R24.F (78-feat bootstrap optimism) — **all 3 concurrent in joblib n_jobs split (4+4+2 = 10 cores)**
+   - Wave-2 (can start in parallel with wave-1): GPU 0 worker α (R24.G SSL d=32) + worker β (R24.G SSL d=16) + GPU 1 worker α (R20 within-contrast retrain) + worker β (R24.G SSL d=64) — **4 concurrent GPU jobs**
+   - Wave-3: R24.D + R24.E + R24.X — sequential after wave-1+2 commits, but D/E can run concurrent (X must wait for A/G commit)
+   - R24.0 + R24.Y: same fire (lock cohort + regen overlay gallery, both local CPU, no conflict)
+
+3. **In each fire**, the agent must:
+   - check what wave-state is committed (read latest commits + outputs/r24/)
+   - launch any not-yet-running sub-round whose dependencies are satisfied
+   - check on background processes (ssh remote pgrep / local task list)
+   - commit progress checkpoints (don't wait for full sub-round to finish before pushing)
+
+This is the v7 plan's whole point — saturate 16-core local + 24-core remote + 2× RTX 3090 simultaneously, not run one sub-round per fire serially.
+
 ## BLOCKER POLICY
 
 User chose "auto-try all plausible alternatives silently, no marker".
