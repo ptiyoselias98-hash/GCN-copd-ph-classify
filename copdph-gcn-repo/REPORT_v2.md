@@ -159,7 +159,7 @@ Important codex follow-ups (deferred — not blocking arm_a):
 > ⚠️ Renamed from "Phenotype Evolution" per R26 codex review: R24.A pseudotime ρ_mPAP=+0.213 FAILED 99-pct permutation null (0.256). All "evolution" / "trajectory" wording in this section means **cross-sectional severity ordering across patients arranged by mPAP**, NOT within-patient temporal progression.
 
 
-# Phenotype Evolution Report
+# Phenotype Cross-sectional Severity-Ordering Report (renamed from "Evolution")
 - n_cases: 280
 - n_features: 34
 - n_clusters: 4

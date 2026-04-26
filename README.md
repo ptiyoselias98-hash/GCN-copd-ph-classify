@@ -947,7 +947,7 @@ validation — never during training.
 
 ### Raw n=269 result — looks promising but is confounded
 
-![Topology evolution — raw vs filtered](outputs/p_zeta_cluster_269/topology_evolution/topo_evolution_raw_vs_filtered.png)
+![Cross-sectional topology severity-ordering — raw vs filtered (file path retains "evolution" for backward compat; content is severity-ordering only)](outputs/p_zeta_cluster_269/topology_evolution/topo_evolution_raw_vs_filtered.png)
 
 Raw best is **C_GAE spectral k=3, ARI 0.544**. Inspecting the three clusters
 tells a different story than "topology phenotype":
