@@ -1,0 +1,50 @@
+{
+  "manifest_version": "v7-skeleton",
+  "round": 24,
+  "status": "pre-execution skeleton; populated by R24.Z aggregator after each wave commit",
+  "created": "2026-04-26",
+  "schema": {
+    "inputs": {
+      "cohort_locked_table_csv": {"sha256": null, "commit_sha": null, "path": "outputs/r24/cohort_locked_table.csv"}
+    },
+    "wave_1_artifacts": {
+      "r24a_pseudotime_within_contrast": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24a_pseudotime_within_contrast.csv"},
+      "r24a_pseudotime_full_cohort": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24a_pseudotime_full.csv"},
+      "r24b_changepoints": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24b_changepoints.csv"},
+      "r24f_feature_rank": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24f_feature_rank.csv"}
+    },
+    "wave_2_artifacts": {
+      "r24g_ssl_d32": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24g_ssl_d32_oof_severity.csv"},
+      "r24g_ssl_d16": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24g_ssl_d16_oof_severity.csv"},
+      "r24g_ssl_d64": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24g_ssl_d64_oof_severity.csv"},
+      "r24g_pca32_baseline": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24g_pca32_baseline_oof.csv"},
+      "r20_within_contrast_encoder": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r20_within_contrast_encoder.pt"}
+    },
+    "wave_3_artifacts": {
+      "r24d_structure_onset": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24d_structure_onset.csv"},
+      "r24e_nomogram_dca": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24e_nomogram_dca.csv"},
+      "r24x_permutation_null": {"sha256": null, "commit_sha": null, "path": "outputs/r24/r24x_permutation_null.csv"}
+    },
+    "figures": {
+      "fig_r24a_pseudotime": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24a_pseudotime.png"},
+      "fig_r24b_changepoint": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24b_changepoint.png"},
+      "fig_r24d_structure_ordering": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24d_structure_ordering.png"},
+      "fig_r24e_nomogram_dca": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24e_nomogram_dca.png"},
+      "fig_r24f_feature_panel": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24f_feature_panel.png"},
+      "fig_r24g_progression_space": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24g_progression_space.png"},
+      "fig_r24x_permutation_null": {"sha256": null, "commit_sha": null, "path": "outputs/figures/fig_r24x_permutation_null.png"}
+    },
+    "per_job": [],
+    "gates": {
+      "r24a_mpap_rho_ge_0.35": {"statistic": null, "threshold": 0.35, "verdict": null},
+      "r24a_protocol_auc_lt_0.65": {"statistic": null, "threshold": 0.65, "verdict": null},
+      "r24a_protocol_rho_lt_0.20": {"statistic": null, "threshold": 0.20, "verdict": null},
+      "r24b_delta_aic_ge_10": {"statistic": null, "threshold": 10.0, "verdict": null},
+      "r24b_boot_freq_ge_0.70": {"statistic": null, "threshold": 0.70, "verdict": null},
+      "r24b_breakpoint_ci_le_8mmHg": {"statistic": null, "threshold": 8.0, "verdict": null},
+      "r24g_oof_rho_ge_0.50": {"statistic": null, "threshold": 0.50, "verdict": null},
+      "r24g_ssl_beats_pca32_by_0.05": {"statistic": null, "threshold": 0.05, "verdict": null},
+      "r24x_real_above_99th_percentile_null": {"statistic": null, "threshold": 0.99, "verdict": null}
+    }
+  }
+}
