@@ -1,0 +1,15 @@
+{
+  "n_within_contrast": 190,
+  "n_mpap_resolved": 102,
+  "ssl_d32": {
+    "oof_rho_vs_mpap": 0.25169259299714913,
+    "p": 0.01071484069379499
+  },
+  "pca_d32": {
+    "oof_rho_vs_mpap": 0.18067775880068807,
+    "p": 0.06917831767575904
+  },
+  "ssl_minus_pca": 0.07101483419646107,
+  "gate_oof_rho_ge_0.50": false,
+  "gate_ssl_beats_pca_by_0.05": true
+}
