@@ -17,9 +17,37 @@ just do:
 4. **codex MCP** with `model=gpt-5.2`, `approval-policy=never`,
    `sandbox=read-only`, `config={"model_reasoning_effort":"high"}`.
    Each round auto-fires codex review.
-5. **CronDelete the loop** when `score ≥ 9.5` OR `round ≥ 40` (user raised targets 2026-04-24).
+5. **CronDelete the loop** when `score ≥ 9.9` OR `round ≥ 40` (user raised target 2026-04-26 to 9.9 because R23 9.6 closed manuscript-scope but did NOT prove the 4 core science questions).
 6. **Multi-hour remote jobs** allowed: kimimaro cache rebuilds,
    TEASAR sensitivity sweeps, domain-adversarial arms, cohort re-ingestion.
+
+## R24+ VISUALIZATION & EXPLAINABILITY HARD REQUIREMENT (user 2026-04-26)
+
+Every R24+ sub-round MUST satisfy **all five** of these:
+
+1. **PNG figure required** in `copdph-gcn-repo/outputs/figures/` named
+   `fig_r24<sub>_<topic>.png`. Each sub-round produces ≥1 figure.
+2. **Each figure must be explainable**: title states the question (Q1–Q5),
+   axes labelled with units in 中英对照, figure caption explicitly notes
+   effect size + p-value + n + interpretation.
+3. **README.md must inline-embed the figure** under a new
+   `## R24 Visual Atlas` section (both top-level `README.md` and
+   `copdph-gcn-repo/README.md`). Use repo-relative path
+   `copdph-gcn-repo/outputs/figures/<file>.png` so GitHub renders inline.
+   Each embed must have ≥2-3 sentences of Chinese explanation.
+4. **5-piece sync commit**: every R24 sub-round commit must contain
+   (a) the script under `scripts/evolution/R24*.py`,
+   (b) the data CSV under `outputs/r24/`,
+   (c) the figure PNG under `outputs/figures/`,
+   (d) `REVIEW_STATE.json` updated,
+   (e) `README.md` (both top-level and repo) updated with the figure embed.
+5. **Style guide**: matplotlib Agg backend, dpi=150, bbox_inches="tight",
+   font size ≥10, color palette viridis/plasma/Set2, PH=red/warm,
+   nonPH=blue/cool, early-PH=orange. Use seaborn-darkgrid background where
+   appropriate.
+
+**The codex hostile reviewer will explicitly check for these 5 items in
+each round and downgrade if any are missing.**
 
 ## BLOCKER POLICY
 
