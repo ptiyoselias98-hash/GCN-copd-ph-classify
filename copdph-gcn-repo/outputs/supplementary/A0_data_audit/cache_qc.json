@@ -1,0 +1,156 @@
+{
+  "feature_files_found": {
+    "morph_unified301": {
+      "n_cases": 290,
+      "n_columns": 87
+    },
+    "morph_legacy_R17": {
+      "n_cases": 282,
+      "n_columns": 134
+    },
+    "tda_legacy_R17.5": {
+      "n_cases": 282,
+      "n_columns": 20
+    },
+    "lung_features_v2": {
+      "n_cases": 282,
+      "n_columns": 53
+    }
+  },
+  "per_structure_unified301": [
+    {
+      "structure": "artery",
+      "n_total_cases": 290,
+      "n_with_nonzero_nodes": 290,
+      "n_empty_graph": 0,
+      "n_single_node": 0,
+      "n_nodes_p10_p50_p90": [
+        82.80000000000001,
+        167.0,
+        605.7000000000002
+      ],
+      "n_edges_p10_p50_p90": [
+        150.0,
+        319.0,
+        1200.4
+      ],
+      "n_branches_p10_p50_p90": [
+        32.900000000000006,
+        72.5,
+        290.4000000000001
+      ]
+    },
+    {
+      "structure": "vein",
+      "n_total_cases": 290,
+      "n_with_nonzero_nodes": 290,
+      "n_empty_graph": 0,
+      "n_single_node": 0,
+      "n_nodes_p10_p50_p90": [
+        58.0,
+        149.5,
+        374.0000000000002
+      ],
+      "n_edges_p10_p50_p90": [
+        95.00000000000003,
+        271.0,
+        698.200000000001
+      ],
+      "n_branches_p10_p50_p90": [
+        17.0,
+        59.0,
+        161.3000000000003
+      ]
+    },
+    {
+      "structure": "airway",
+      "n_total_cases": 290,
+      "n_with_nonzero_nodes": 290,
+      "n_empty_graph": 0,
+      "n_single_node": 290,
+      "n_nodes_p10_p50_p90": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "n_edges_p10_p50_p90": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "n_branches_p10_p50_p90": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "per_structure_legacy_R17": [
+    {
+      "structure": "artery",
+      "n_total_cases": 282,
+      "n_with_nonzero_nodes": 282,
+      "n_empty_graph": 0,
+      "n_single_node": 28,
+      "n_nodes_p10_p50_p90": [
+        277.1000000000001,
+        1807.0,
+        3722.6000000000004
+      ],
+      "n_edges_p10_p50_p90": [
+        552.2000000000002,
+        3611.0,
+        7443.200000000001
+      ],
+      "n_branches_p10_p50_p90": [
+        136.90000000000003,
+        895.0,
+        1833.8000000000002
+      ]
+    },
+    {
+      "structure": "vein",
+      "n_total_cases": 282,
+      "n_with_nonzero_nodes": 282,
+      "n_empty_graph": 0,
+      "n_single_node": 33,
+      "n_nodes_p10_p50_p90": [
+        1.0,
+        1535.5,
+        2460.8
+      ],
+      "n_edges_p10_p50_p90": [
+        0.0,
+        3066.0,
+        4919.6
+      ],
+      "n_branches_p10_p50_p90": [
+        0.0,
+        758.5,
+        1213.6000000000001
+      ]
+    },
+    {
+      "structure": "airway",
+      "n_total_cases": 282,
+      "n_with_nonzero_nodes": 282,
+      "n_empty_graph": 0,
+      "n_single_node": 22,
+      "n_nodes_p10_p50_p90": [
+        50.400000000000006,
+        182.0,
+        341.9
+      ],
+      "n_edges_p10_p50_p90": [
+        98.80000000000001,
+        362.0,
+        681.8
+      ],
+      "n_branches_p10_p50_p90": [
+        24.200000000000003,
+        90.0,
+        169.9
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "C1_all_available": {
+    "n": 290,
+    "n_PH": 163,
+    "n_nonPH": 127,
+    "n_measured_mpap": 102,
+    "mpap_p25_p50_p75": [
+      20.0,
+      28.0,
+      34.75
+    ],
+    "mpap_min_max": [
+      11.0,
+      64.0
+    ],
+    "protocol_distribution": {
+      "contrast": 190,
+      "plain_scan": 100
+    }
+  },
+  "C2_within_contrast_only": {
+    "n": 190,
+    "n_PH": 163,
+    "n_nonPH": 27,
+    "n_measured_mpap": 102,
+    "mpap_p25_p50_p75": [
+      20.0,
+      28.0,
+      34.75
+    ],
+    "mpap_min_max": [
+      11.0,
+      64.0
+    ],
+    "protocol_distribution": {
+      "contrast": 190
+    }
+  },
+  "C3_borderline_mPAP_18_22": {
+    "n": 12,
+    "n_PH": 1,
+    "n_nonPH": 11,
+    "n_measured_mpap": 12,
+    "mpap_p25_p50_p75": [
+      18.0,
+      19.0,
+      19.25
+    ],
+    "mpap_min_max": [
+      18.0,
+      22.0
+    ],
+    "protocol_distribution": {
+      "contrast": 12
+    }
+  },
+  "C4_clear_low_high": {
+    "n": 51,
+    "n_PH": 26,
+    "n_nonPH": 25,
+    "n_measured_mpap": 51,
+    "mpap_p25_p50_p75": [
+      17.0,
+      35.0,
+      43.5
+    ],
+    "mpap_min_max": [
+      11.0,
+      64.0
+    ],
+    "protocol_distribution": {
+      "contrast": 51
+    }
+  },
+  "C5_early_COPD_no_PH_proxy": {
+    "n": 127,
+    "n_PH": 0,
+    "n_nonPH": 127,
+    "n_measured_mpap": 27,
+    "mpap_p25_p50_p75": [
+      14.5,
+      17.0,
+      18.5
+    ],
+    "mpap_min_max": [
+      11.0,
+      20.0
+    ],
+    "protocol_distribution": {
+      "plain_scan": 100,
+      "contrast": 27
+    }
+  }
+}
