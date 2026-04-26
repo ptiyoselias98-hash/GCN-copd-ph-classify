@@ -1,0 +1,32 @@
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:160: UserWarning: Glyph 26089 (\N{CJK UNIFIED IDEOGRAPH-65E9}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:160: UserWarning: Glyph 26399 (\N{CJK UNIFIED IDEOGRAPH-671F}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:160: UserWarning: Glyph 38408 (\N{CJK UNIFIED IDEOGRAPH-9608}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:160: UserWarning: Glyph 20540 (\N{CJK UNIFIED IDEOGRAPH-503C}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:160: UserWarning: Glyph 35782 (\N{CJK UNIFIED IDEOGRAPH-8BC6}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:160: UserWarning: Glyph 21035 (\N{CJK UNIFIED IDEOGRAPH-522B}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:162: UserWarning: Glyph 26089 (\N{CJK UNIFIED IDEOGRAPH-65E9}) missing from font(s) DejaVu Sans.
+  plt.savefig(out_fig, dpi=150, bbox_inches="tight")
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:162: UserWarning: Glyph 26399 (\N{CJK UNIFIED IDEOGRAPH-671F}) missing from font(s) DejaVu Sans.
+  plt.savefig(out_fig, dpi=150, bbox_inches="tight")
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:162: UserWarning: Glyph 38408 (\N{CJK UNIFIED IDEOGRAPH-9608}) missing from font(s) DejaVu Sans.
+  plt.savefig(out_fig, dpi=150, bbox_inches="tight")
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:162: UserWarning: Glyph 20540 (\N{CJK UNIFIED IDEOGRAPH-503C}) missing from font(s) DejaVu Sans.
+  plt.savefig(out_fig, dpi=150, bbox_inches="tight")
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:162: UserWarning: Glyph 35782 (\N{CJK UNIFIED IDEOGRAPH-8BC6}) missing from font(s) DejaVu Sans.
+  plt.savefig(out_fig, dpi=150, bbox_inches="tight")
+E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\scripts\evolution\R24_B_changepoint.py:162: UserWarning: Glyph 21035 (\N{CJK UNIFIED IDEOGRAPH-522B}) missing from font(s) DejaVu Sans.
+  plt.savefig(out_fig, dpi=150, bbox_inches="tight")
+R24.B input: n=102 measured-mPAP cases
+features passing all 3 gates: 0
+saved E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\outputs\r24\r24b_changepoints.csv + E:\桌面文件\图卷积-肺小血管演化规律探索\copdph-gcn-repo\outputs\figures\fig_r24b_changepoint.png
+top-3 by ΔAIC:
+                      feature  threshold  delta_aic_vs_linear  boot_freq_within_2mmHg  ci_width  all_gates_pass
+0                vein_tort_sd       30.2             5.130485                   0.640     27.03           False
+1  artery_total_vol_proxy_mm3       41.0             3.483042                   0.284     22.29           False
+2              vein_diam_kurt       45.8             3.215782                   0.622     27.60           False
