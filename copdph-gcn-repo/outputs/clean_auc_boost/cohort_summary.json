@@ -1,0 +1,17 @@
+{
+  "n_all": 290,
+  "n_within_contrast": 190,
+  "n_PH_within": 163,
+  "n_nonPH_within": 27,
+  "n_measured_mpap_within": 102,
+  "n_features_total": 141,
+  "feature_group_n": {
+    "A_ssl_severity": 3,
+    "B_lung_heterogeneity": 46,
+    "C_vascular_topology": 72,
+    "D_pruning_distribution": 4,
+    "E_av_imbalance": 4,
+    "F_tda": 12,
+    "G_benchmark": 0
+  }
+}
