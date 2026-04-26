@@ -1,6 +1,6 @@
 {
-  "round": 25,
-  "status": "round_25_complete_score_9.7_strong_revise_near_9.9_target",
+  "round": 26,
+  "status": "round_26_complete_score_9.8_NOT_9.9_single_blocker_language",
   "round_20_progress": {
     "unified_pipeline_verification": {
       "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
@@ -167,6 +167,25 @@
   "difficulty": "hard",
   "target_reached": false,
   "history": [
+    {
+      "round": 26,
+      "timestamp": "2026-04-26T13:35:00",
+      "score": 9.8,
+      "verdict": "strong_accept_near_9.9",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "r26_actions": [
+        "R26.A modality ablation: morph 0.346 / morph+lung 0.490 / morph+TDA 0.330 / all 0.513 — parenchyma dominant +0.144 auxiliary",
+        "R26.B RUN_MANIFEST populated 21/25 artifacts with SHA256 + gate verdicts"
+      ],
+      "codex_single_remaining_for_9.9": [
+        "Cross-sectional language discipline: README still has \"Topology evolution\" / \"COPD→COPD-PH topological evolution\"; REPORT_v2 still has \"COPD → COPD-PH evolution\". Since R24.A pseudotime FAILED null falsification, residual evolution/trajectory wording must be mechanically replaced or explicitly qualified at point of use as cross-sectional severity ordering, not longitudinal progression"
+      ],
+      "r27_plan": [
+        "R27.A Mass language replacement: scan README.md + REPORT_v2.md + FINAL_FINDINGS.md for evolution/trajectory/演化 in non-disclaimer contexts, replace with cross-sectional severity ordering or add inline qualifier",
+        "R27.B Re-populate RUN_MANIFEST with R26.A SHA + remaining gates",
+        "R27.C Final codex review for 9.9"
+      ]
+    },
     {
       "round": 25,
       "timestamp": "2026-04-26T13:00:00",
