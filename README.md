@@ -4,11 +4,57 @@ Graph-convolutional classification of pulmonary hypertension (PH) from chest-CT
 pulmonary vessel trees, fused with commercial radiomics features. This
 repository tracks the full experimental progression from Sprint 2 baseline
 through Sprint 5 final improvements plus a follow-up CT-based PA/Ao
-measurement study.
+measurement study, R17–R27 ARIS hostile-review iterations, and the **Phase A→H clean signature analysis pipeline (2026-04-26)**.
 
 Active code lives in `copdph-gcn-repo/`. Experiment artifacts
 (JSON results, Excel reports, radar/bar charts, saliency figures) are
 collected under `outputs/`.
+
+---
+
+## 📑 Table of Contents (顶层导航 / Top-level navigation)
+
+| # | Section | Status | Key result |
+|---|---|---|---|
+| 1 | [ARIS round history](#aris-round-history-auto-generated) | R1→R27 done | R27 codex 10.0/10 GREEN_LIGHT |
+| 2 | [R24-R26 Visual Atlas (11 figures)](#r24r26-visual-atlas--跨断面疾病严重度空间与表型系列实验) | done | 跨断面 severity-ordering 11 张图 |
+| 3 | [Phase A→H clean signature pipeline (2026-04-26)](#-phase-ah-clean-signature-analysis-pipeline-2026-04-26) | **NEW done** | within-contrast AUC=**0.890** + ρ_mPAP=**+0.710** |
+| 4 | [Authoritative manuscript scope (R23 CLAIMS_TABLE)](#authoritative-manuscript-scope-r23) | locked | retired claims documented |
+| 5 | [Terminology — cross-sectional vs evolution](#terminology--evolution-vs-cross-sectional-severity-ordering) | locked | NOT longitudinal |
+| 6 | Sprint Progression / legacy results | historical | retired per R22 repositioning |
+
+## 🎯 Phase A→H clean signature analysis pipeline (2026-04-26)
+
+8-phase protocol-controlled pipeline replacing Sprint 5 confounded all-cohort AUC. Within-contrast n=190 (163 PH + 27 nonPH) is PRIMARY cohort. Each phase passed **codex GPT-5.5 dual review (pre + post execution)** = 14 reviews total, most caught REVISE issues fixed before commit.
+
+| Phase | Script + README | Output | Headline |
+|---|---|---|---|
+| **A0** cohort lock + cache QC | [analysis/A0_data_audit/README_A0.md](copdph-gcn-repo/analysis/A0_data_audit/README_A0.md) | [outputs/supplementary/A0_data_audit/](copdph-gcn-repo/outputs/supplementary/A0_data_audit/) | 5 cohorts (C1=290, **C2=190 primary**, C3=12 borderline, C4=51 clear, C5=127 nonPH-proxy); critical finding: unified-301 airway is trivial 1-node graph |
+| **B1** signature panel (172 features) | [analysis/B1_graph_signature/README_B1.md](copdph-gcn-repo/analysis/B1_graph_signature/README_B1.md) | [outputs/supplementary/B1_graph_signature/](copdph-gcn-repo/outputs/supplementary/B1_graph_signature/) | 78 unified artery+vein + 42 legR17 airway + 40 lung + 12 TDA = **172 features × 290 cases** |
+| **C1** signature vs severity | [analysis/C1_signature_severity/README_C1.md](copdph-gcn-repo/analysis/C1_signature_severity/README_C1.md) | [outputs/supplementary/C1_signature_severity/](copdph-gcn-repo/outputs/supplementary/C1_signature_severity/) | T1 9 Holm-sig + 43 FDR-sig PH-vs-nonPH; **T2 22 Holm-sig + 58 FDR-sig mPAP-correlated**, top paren_std_HU **ρ=+0.664 perm-p=0** |
+| **D1** clean classifier 🎯 | [analysis/D1_clean_classifier/README_D1.md](copdph-gcn-repo/analysis/D1_clean_classifier/README_D1.md) | [outputs/supplementary/D1_clean_classifier/](copdph-gcn-repo/outputs/supplementary/D1_clean_classifier/) | **AUC = 0.890 [bootstrap 95% CI 0.813, 0.965]** within-contrast n=190 (P4 combined-clean Ridge_LR 5-seed × 5-fold, Youden train-fold threshold) |
+| **E1** phenotype clustering | [analysis/E1_phenotype_clustering/README_E1.md](copdph-gcn-repo/analysis/E1_phenotype_clustering/README_E1.md) | [outputs/supplementary/E1_phenotype_clustering/](copdph-gcn-repo/outputs/supplementary/E1_phenotype_clustering/) | HONEST NEGATIVE — no robust subtypes beyond severity gradient (k=3 GMM split 183/6/1) |
+| **F1** counterfactual / sensitivity | [analysis/F1_counterfactual/README_F1.md](copdph-gcn-repo/analysis/F1_counterfactual/README_F1.md) | [outputs/supplementary/F1_counterfactual/](copdph-gcn-repo/outputs/supplementary/F1_counterfactual/) | bucket ablation: **artery −0.043 > airway −0.032 > lung −0.013 > vein −0.005 > TDA +0.002 (negligible)**; 50-perm null PASS (real 0.899 >> 99-pct null 0.661) |
+| **G1** progression score 🎯 | [analysis/G1_progression_score/README_G1.md](copdph-gcn-repo/analysis/G1_progression_score/README_G1.md) | [outputs/supplementary/G1_progression_score/](copdph-gcn-repo/outputs/supplementary/G1_progression_score/) | within-contrast severity score AUC=0.890; **Spearman ρ vs measured mPAP = +0.710 p=6.9e-17** (n=102, strongest project-wide); cross-protocol projection HONEST NEGATIVE |
+| **H1** master report | [analysis/H1_report/H1_make_master_report.py](copdph-gcn-repo/analysis/H1_report/H1_make_master_report.py) | [outputs/supplementary/FINAL/](copdph-gcn-repo/outputs/supplementary/FINAL/) | master_results.xlsx (10 sheets) + master_figure.png (7 panels) + supplement_narrative.md (8 points) + limitations.md (10 caveats) |
+
+### 📊 Phase A→H master figure
+
+![Phase A→H master figure](copdph-gcn-repo/outputs/supplementary/FINAL/master_figure.png)
+
+7-panel composite of A0 cache QC, C1 mPAP-bin trends, C1 forest plot top-20 PH-vs-nonPH effects, D1 ROC + calibration, E1 cluster heatmap, F1 bucket ablation + per-patient drivers, G1 severity-axis + cross-protocol projection. Full table aggregation in `outputs/supplementary/FINAL/master_results.xlsx`.
+
+### Headline numbers (within-contrast n=190 primary)
+
+- **D1 disease classifier**: AUC = **0.890** [bootstrap-500 95% CI 0.813, 0.965]; F1 = 0.911; balanced acc = 0.810; Brier = 0.084. P4 combined-clean (lung + artery + vein + airway-legR17 + TDA) > P1 lung-only (0.820) > P3 airway (0.778) > P2 vascular-only (0.723).
+- **G1 severity-mPAP correlation**: Spearman ρ = **+0.710 p=6.9e-17** (n=102 measured-mPAP) — strongest in project history.
+- **C1 top mPAP correlates**: paren_std_HU ρ=+0.664, whole_std_HU ρ=+0.635, vein_persH1_total ρ=−0.594, paren_HU_p95 ρ=+0.558 (all permutation-null p=0).
+- **F1 permutation-null**: real AUC 0.899 >> 99-pct null 0.661 → perm-p = 0 PASS (50 perms × 5-seed × 5-fold matched protocol).
+- **Honest negatives kept as case studies**: cross-protocol projection (plain-scan→1.0, contrast-nonPH→0.016 protocol shift), phenotype clustering (no subtype structure), TDA bucket (removal slightly improves AUC).
+
+⚠️ **Claim status (codex post-review)**: defensible internally cross-validated EXPLORATORY. Multiplicity (4 panels × 4 models = 16 configs), n_nonPH=27 small, NO external held-out validation. Not for clinical deployment.
+
+---
 
 ## ARIS round history (auto-generated)
 
