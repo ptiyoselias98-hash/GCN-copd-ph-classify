@@ -16,16 +16,22 @@ Cohort: unified-301 (n=290); features=78 (8 R17-artifact features excluded)
 - HIGH means protocol confound is REAL: features can decode protocol
   even when disease is held constant.
 
-## T3. Multi-seed CORAL deconfounding (5-seed)
+## T3. Multi-seed CORAL deconfounding (5-seed) — ORIENTATION-FREE
 
-- protocol-AUC after CORAL = **0.041 ± 0.010**
+Per R21 codex review feedback: report orientation-free leakage `max(AUC, 1-AUC)` because below-chance signed AUC means classifier learned *inverted* protocol signal, NOT that protocol information was *removed*.
+
+- protocol-AUC after CORAL (SIGNED) = 0.041
+- protocol-AUC after CORAL (orientation-free max(AUC,1-AUC)) = **0.959**
 - within-contrast disease AUC after CORAL = **0.710 ± 0.066**
 
 ## Verdict
 
-- Protocol-AUC drop after CORAL: +0.870
+- Pre-CORAL protocol-AUC: 0.912 (already > 0.5)
+- Post-CORAL signed AUC: 0.041
+- Post-CORAL orientation-free leakage: 0.959
+- Information-leakage drop: -0.047
 - Disease-AUC change after CORAL: +0.000
-- Deconfounding works (drop > 0.05): **True**
+- Deconfounded to chance (oriented < 0.6): **False**
 - Biology survives (|disease change| < 0.05): **True**
 
-**Closes R20 must-fix #3 + #5 with POSITIVE verdict**: feature-level CORAL deconfounds protocol while preserving within-contrast disease signal across 5 seeds.
+**HONEST NEGATIVE**: orientation-free leakage post-CORAL = 0.959 — feature-level CORAL OVER-CORRECTED, creating an inverted-direction artifact. Information content largely preserved (just sign-flipped). #5 NOT cleanly closed.

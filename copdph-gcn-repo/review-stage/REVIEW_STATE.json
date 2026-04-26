@@ -1,6 +1,6 @@
 {
-  "round": 20,
-  "status": "round_20_complete_score_9.2_honest_8.9_revise",
+  "round": 21,
+  "status": "round_21_complete_score_9.2_honest_9.0_revise",
   "round_20_progress": {
     "unified_pipeline_verification": {
       "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
@@ -167,6 +167,34 @@
   "difficulty": "hard",
   "target_reached": false,
   "history": [
+    {
+      "round": 21,
+      "timestamp": "2026-04-26T08:30:00",
+      "score": 9.2,
+      "honest_score_after_debt_penalty": 9.0,
+      "verdict": "revise",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "must_fix_closed_in_R21": [
+        "R20-#4 Locked cohort/provenance manifest: outputs/r20/COHORT_MANIFEST_R20.md",
+        "R21.B unified-301 stratified splits generated on remote (data/splits_unified_301/)",
+        "R20-claim-demotion: FINAL_FINDINGS / REPORT_v2 § headlines updated (R20.E)"
+      ],
+      "attempted_but_negative": [
+        "R21.C GCN-CORAL pilot: failed fast, cache schema mismatch (sprint6 entry[graph] vs unified-301 per-structure). KILLED. Pivoted to feature-level R21.D.",
+        "R21.D feature-level CORAL: orientation-free leakage 0.912 → 0.959 = INFO PRESERVED via sign-flip (CORAL over-corrected, not true deconfounding). Disease AUC 0.710 stable. Honest negative: feature-level path does NOT clean close #5"
+      ],
+      "still_open_after_R21": [
+        "R20-#3 Embedding-level enlarged-stratum probe: requires GCN-cache adapter (multi-structure schema) OR repositioning paper to morphometric-feature claims",
+        "R20-#5 Multi-seed CORAL deconfounding: feature-level CORAL is INVERSE artifact, not deconfounding. Need different approach (e.g., training-time GRL/MMD at GCN embedding level, OR larger contrast-nonPH cohort)"
+      ],
+      "reviewer_notes_for_memory": "R21 codex 9.2 / honest 9.0 (up +0.0/+0.1 from R20). R21.D feature-level CORAL appeared to close #5 with PROTOCOL-AUC 0.91→0.04 drop, but R21 codex flagged below-chance AUC as inverted-direction artifact. Orientation-free max(AUC, 1-AUC) = 0.959 — protocol info actually preserved, just sign-flipped. CORAL OVER-CORRECTED. R20 must-fix #5 NOT cleanly closed. Within-contrast disease AUC = 0.710 ± 0.066 stable across CORAL — biology robust. Path to 9.5 requires either (a) GCN-cache adapter for proper embedding-level deconfounding, or (b) repositioning paper to morphometric/feature-level claims with explicit acknowledgement of feature-CORAL limitations. 2 must-fix items still open: #3 + #5.",
+      "minimum_to_reach_9point5": [
+        "Re-attempt protocol deconfounding with: nested train-fold CORAL, GRL/MMD at training time, OR feature-level training-time domain-adversarial",
+        "Add bootstrap/DeLong CIs on within-contrast disease AUC (n_nonPH=27 small; need uncertainty quantification)",
+        "Either adapt GCN cache to multi-structure schema OR retire GCN-embedding claims and reposition paper around morphometric features",
+        "Fold-level disease AUC table for within-contrast n=190 with explicit n_nonPH=27 caveat"
+      ]
+    },
     {
       "round": 20,
       "timestamp": "2026-04-26T07:35:00",

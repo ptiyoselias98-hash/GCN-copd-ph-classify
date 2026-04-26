@@ -145,9 +145,11 @@ def main():
     # T3. Multi-seed CORAL on enlarged stratum:
     #   align plain-scan features to contrast features within nonPH;
     #   re-run within-contrast disease AUC with aligned-plain shadow.
-    # In practice: align plain-scan→contrast then test protocol-auc drops
+    # NOTE: report orientation-free leakage `max(AUC, 1-AUC)` per R21 codex
+    #   review feedback — below-chance AUC means signal is INVERTED not REMOVED.
     print("\n=== T3. Multi-seed CORAL: protocol-AUC after alignment ===")
     coral_protocol_aucs = []
+    coral_protocol_aucs_oriented = []  # orientation-free max(AUC, 1-AUC)
     coral_disease_aucs = []
     for s in seeds:
         rng = np.random.default_rng(s)
@@ -164,16 +166,22 @@ def main():
         nonph_X_coral = Xall_coral[nonph_mask]
         proto_auc, _ = kfold_auc(nonph_X_coral, nonph_protocol, seed=s)
         coral_protocol_aucs.append(proto_auc)
+        coral_protocol_aucs_oriented.append(max(proto_auc, 1.0 - proto_auc))
         # Re-test within-contrast disease AUC (should be stable — biology survives)
         contrast_X = Xall_coral[is_contrast]
         contrast_y = y[is_contrast]
         dis_auc, _ = kfold_auc(contrast_X, contrast_y, seed=s)
         coral_disease_aucs.append(dis_auc)
     out["T3_multiseed_coral"] = {
-        "protocol_auc_post_coral": {
+        "protocol_auc_post_coral_signed": {
             "mean": float(np.mean(coral_protocol_aucs)),
             "std": float(np.std(coral_protocol_aucs)),
             "per_seed": [float(a) for a in coral_protocol_aucs]},
+        "protocol_auc_post_coral_orientation_free": {
+            "mean": float(np.mean(coral_protocol_aucs_oriented)),
+            "std": float(np.std(coral_protocol_aucs_oriented)),
+            "per_seed": [float(a) for a in coral_protocol_aucs_oriented],
+            "note": "max(AUC, 1-AUC) — measures information content regardless of sign. Distance from 0.5 = how much protocol info remains."},
         "within_contrast_disease_auc_post_coral": {
             "mean": float(np.mean(coral_disease_aucs)),
             "std": float(np.std(coral_disease_aucs)),
@@ -183,16 +191,36 @@ def main():
     print(f"  CORAL within-contrast disease AUC = {np.mean(coral_disease_aucs):.3f} "
           f"± {np.std(coral_disease_aucs):.3f}")
 
-    # Verdict
-    pre_proto = out["T2_protocol_auc_within_nonph"]["auc_mean"]
-    post_proto = out["T3_multiseed_coral"]["protocol_auc_post_coral"]["mean"]
+    # Verdict — use orientation-free leakage to avoid below-chance artifact
+    pre_proto = out["T2_protocol_auc_within_nonph"]["auc_mean"]  # already > 0.5
+    post_proto_signed = out["T3_multiseed_coral"]["protocol_auc_post_coral_signed"]["mean"]
+    post_proto_oriented = out["T3_multiseed_coral"]["protocol_auc_post_coral_orientation_free"]["mean"]
     pre_disease = out["T1_disease_auc_by_stratum"]["within_contrast_n190"]["auc_mean"]
     post_disease = out["T3_multiseed_coral"]["within_contrast_disease_auc_post_coral"]["mean"]
 
+    # Bootstrap CI for within-contrast disease AUC (R21 codex feedback)
+    rng = np.random.default_rng(0)
+    is_contrast_idx = np.where(is_contrast)[0]
+    boot_aucs = []
+    for _ in range(500):
+        idx = rng.choice(is_contrast_idx, size=len(is_contrast_idx), replace=True)
+        if y[idx].sum() < 3 or (y[idx]==0).sum() < 3:
+            continue
+        m, _ = kfold_auc(Xall[idx], y[idx], seed=42)
+        if not np.isnan(m):
+            boot_aucs.append(m)
+    if boot_aucs:
+        out["T1_disease_auc_by_stratum"]["within_contrast_n190"]["bootstrap_500_ci95"] = [
+            float(np.percentile(boot_aucs, 2.5)),
+            float(np.percentile(boot_aucs, 97.5))]
+
     out["verdict"] = {
-        "protocol_auc_drop_post_coral": float(pre_proto - post_proto),
+        "protocol_auc_signed_post_coral": float(post_proto_signed),
+        "protocol_auc_orientation_free_post_coral": float(post_proto_oriented),
+        "info_leakage_drop_oriented": float(pre_proto - post_proto_oriented),
         "disease_auc_change_post_coral": float(post_disease - pre_disease),
-        "deconfounding_works": bool(pre_proto - post_proto > 0.05),
+        "deconfounding_works_oriented": bool(pre_proto - post_proto_oriented > 0.05),
+        "deconfounding_to_chance": bool(post_proto_oriented < 0.6),
         "biology_survives": bool(abs(post_disease - pre_disease) < 0.05),
     }
 
@@ -222,26 +250,42 @@ def main():
            "- HIGH means protocol confound is REAL: features can decode protocol",
            "  even when disease is held constant.",
            "",
-           "## T3. Multi-seed CORAL deconfounding (5-seed)",
+           "## T3. Multi-seed CORAL deconfounding (5-seed) — ORIENTATION-FREE",
            "",
-           f"- protocol-AUC after CORAL = **{out['T3_multiseed_coral']['protocol_auc_post_coral']['mean']:.3f} "
-           f"± {out['T3_multiseed_coral']['protocol_auc_post_coral']['std']:.3f}**",
+           "Per R21 codex review feedback: report orientation-free leakage `max(AUC, 1-AUC)` because "
+           "below-chance signed AUC means classifier learned *inverted* protocol signal, NOT that "
+           "protocol information was *removed*.",
+           "",
+           f"- protocol-AUC after CORAL (SIGNED) = {post_proto_signed:.3f}",
+           f"- protocol-AUC after CORAL (orientation-free max(AUC,1-AUC)) = **{post_proto_oriented:.3f}**",
            f"- within-contrast disease AUC after CORAL = **{out['T3_multiseed_coral']['within_contrast_disease_auc_post_coral']['mean']:.3f} "
            f"± {out['T3_multiseed_coral']['within_contrast_disease_auc_post_coral']['std']:.3f}**",
            "",
            "## Verdict",
            "",
-           f"- Protocol-AUC drop after CORAL: {out['verdict']['protocol_auc_drop_post_coral']:+.3f}",
+           f"- Pre-CORAL protocol-AUC: {pre_proto:.3f} (already > 0.5)",
+           f"- Post-CORAL signed AUC: {post_proto_signed:.3f}",
+           f"- Post-CORAL orientation-free leakage: {post_proto_oriented:.3f}",
+           f"- Information-leakage drop: {pre_proto - post_proto_oriented:+.3f}",
            f"- Disease-AUC change after CORAL: {out['verdict']['disease_auc_change_post_coral']:+.3f}",
-           f"- Deconfounding works (drop > 0.05): **{out['verdict']['deconfounding_works']}**",
+           f"- Deconfounded to chance (oriented < 0.6): **{out['verdict']['deconfounding_to_chance']}**",
            f"- Biology survives (|disease change| < 0.05): **{out['verdict']['biology_survives']}**"]
-    if out["verdict"]["deconfounding_works"] and out["verdict"]["biology_survives"]:
-        md.append("\n**Closes R20 must-fix #3 + #5 with POSITIVE verdict**: "
-                  "feature-level CORAL deconfounds protocol while preserving "
-                  "within-contrast disease signal across 5 seeds.")
+    if out["verdict"]["deconfounding_to_chance"] and out["verdict"]["biology_survives"]:
+        md.append("\n**Closes R20 must-fix #5 with POSITIVE verdict** (feature-level): "
+                  "orientation-free protocol leakage drops to chance AND within-contrast "
+                  "disease signal survives across 5 seeds. NOTE: #3 (GCN-embedding-level) "
+                  "still requires per-structure cache adapter or repositioning paper to "
+                  "morphometric-feature claims.")
+    elif post_proto_oriented < 0.7:
+        md.append(f"\n**PARTIAL verdict**: orientation-free leakage post-CORAL = "
+                  f"{post_proto_oriented:.3f} (vs chance 0.5). Feature CORAL substantially "
+                  "reduces protocol info but residual remains. Closure of #5 is "
+                  "FEATURE-LEVEL ONLY — does NOT close GCN-embedding-level concern (#3).")
     else:
-        md.append("\n**Mixed verdict** — see numbers; may need GCN-level deconfounding "
-                  "or different protocol-stratification.")
+        md.append(f"\n**HONEST NEGATIVE**: orientation-free leakage post-CORAL = "
+                  f"{post_proto_oriented:.3f} — feature-level CORAL OVER-CORRECTED, "
+                  "creating an inverted-direction artifact. Information content largely "
+                  "preserved (just sign-flipped). #5 NOT cleanly closed.")
     (OUT / "r21d_probe_coral.md").write_text("\n".join(md), encoding="utf-8")
     print(f"\nsaved → {OUT}/r21d_probe_coral.{{json,md}}")
 
