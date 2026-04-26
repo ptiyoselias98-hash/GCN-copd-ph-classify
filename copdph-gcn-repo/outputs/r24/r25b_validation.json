@@ -1,0 +1,13 @@
+{
+  "n_within_contrast": 190,
+  "n_features": 145,
+  "n_mpap_resolved": 102,
+  "ssl_rho": 0.486005468288479,
+  "ssl_p": 2.2403894515000215e-07,
+  "pca_rho": 0.44278096546215623,
+  "pca_p": 3.1621185694677495e-06,
+  "ssl_minus_pca": 0.043224502826322786,
+  "gate_rho_ge_0.50": false,
+  "gate_ssl_beats_pca_0.05": false,
+  "improvement_vs_R24G_78D": 0.234005468288479
+}
