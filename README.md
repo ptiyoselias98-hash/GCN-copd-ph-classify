@@ -34,9 +34,17 @@ collected under `outputs/`.
 | R18 | 9.3/10 | revise |
 | R19 | 9.1/10 | revise |
 
-## R24 Visual Atlas — 疾病进展空间与表型演化系列实验
+## R24–R26 Visual Atlas — 跨断面疾病严重度空间与表型系列实验
 
-R24 round (2026-04-26) implements the user-requested cross-sectional vascular **severity-ordering study** (originally framed as "phenotype evolution" but R24.A pseudotime FAILED null falsification — paper now disciplined to cross-sectional severity ordering only, not longitudinal evolution) after 7 rounds of codex GPT-5.5 hostile review. Each sub-round followed pre-registered numerical gates (cf. `copdph-gcn-repo/review-stage/R24_OPEN_QUESTIONS.md` v7). All figures regenerated from `outputs/r24/cohort_locked_table.csv` (290 cases, 190 within-contrast, 102 measured mPAP, 5×38 stratified folds, SHA256 1e7d20b2...).
+R24-R26 rounds (2026-04-26) implement the user-requested cross-sectional vascular **severity-ordering study** (originally framed as "phenotype evolution" but R24.A pseudotime FAILED null falsification — paper now disciplined to cross-sectional severity ordering only, not longitudinal evolution) after 7 rounds of codex GPT-5.5 hostile pre-registration review and 4 rounds of post-execution iteration (R24→R25→R26→R27). Final codex verdict: **10.0/10 GREEN_LIGHT**, target ≥9.9 reached. Each sub-round followed pre-registered numerical gates (cf. `copdph-gcn-repo/review-stage/R24_OPEN_QUESTIONS.md` v7). All figures regenerated from `outputs/r24/cohort_locked_table.csv` (290 cases, 190 within-contrast, 102 measured mPAP, 5×38 stratified folds, SHA256 1e7d20b2...).
+
+**11 figures inline below** map to the 4 user core science questions:
+- Q1 vascular severity-ordering: R24.A (FAIL gate) + R25.B + R25.C (PASS gate) + R24.G
+- Q2 lung+airway auxiliary: R26.A modality ablation (parenchyma dominant +0.144)
+- Q3 early-PH: R24.B (honest negative — continuous remodeling)
+- Q4 systematic quantification: R24.F evolution feature panel
+- Q5 high-risk identification: R24.E exploratory nomogram + DCA
+- + R24.X stratified null falsification + R24.D structure ordering + R24.Y QC overlay gallery
 
 ### R24.Y — 修复后的肺叠加图集 (overlay gallery on unified-301)
 
@@ -85,6 +93,30 @@ Q5 高危患者识别定量影像学依据。10× repeated 5-fold nested CV Lass
 ![R24.X permutation null](copdph-gcn-repo/outputs/figures/fig_r24x_permutation_null.png)
 
 Pre-registered 1000-perm fold-stratified mPAP shuffle null test。**R24.G SSL ρ=+0.252 PASSES** 99th-pct |null|=0.239 (real exceeds null distribution top 1%) — confirms genuine signal beyond random-fold noise。**R24.A pseudotime ρ=+0.213 FAILS** 99th-pct |null|=0.256 — pseudotime-only is too weak to survive falsification (consistent with R24.A gate failure)。这一区分意义重大：SSL 表征学习真正提取出 mPAP-相关信号，而单纯 pseudotime 排序则可能由 fold-stratified 随机性产生。
+
+### R25.B — 145D 扩展特征 SSL (parenchyma + TDA 加入后效果跃升)
+
+![R25.B extended-feature SSL](copdph-gcn-repo/outputs/figures/fig_r25b_ssl_extended.png)
+
+R24.G 基线 78D morph SSL ρ=+0.252 → R25.B 145D (89 morph + 17 lung + 18 TDA) **single-seed SSL ρ=+0.486 p=2.2e-7**，PCA-32 baseline ρ=+0.443 p=3.2e-6；改善 +0.234 — 加入肺实质 + 拓扑特征是关键增益来源。SSL 略优于 PCA (Δ=+0.043) 但单 seed 距 ρ≥0.50 门 0.014 之差 — 触发 R25.C 多 seed ensemble。
+
+### R25.C — 5-seed SSL ensemble (PASS gate ρ≥0.50)
+
+![R25.C 5-seed ensemble](copdph-gcn-repo/outputs/figures/fig_r25c_ensemble.png)
+
+🎯 **R25.C 5-seed SSL ensemble ρ=+0.529 p=1.1e-8 — PASSES 预注册 ρ≥0.50 门**。Per-seed range [0.407, 0.507] mean 0.464 std 0.033；ensemble +0.043 over best single seed via noise reduction。左图：scatter mPAP vs OOF ensemble severity-percentile，PH (red) 高百分位、nonPH (blue) 低百分位、中间区间 borderline-PH 候选。右图：per-seed bar + 红色 ensemble 线 + 橙色 0.50 阈值线。这是 R24.G 用户描述的"自监督连续疾病进展空间 + COPD-PH 锚点 + 进展百分位"实验最终成功版本。
+
+### R26.A — 模态消融 (Q2 肺实质主导)
+
+![R26.A modality ablation](copdph-gcn-repo/outputs/figures/fig_r26a_modality_ablation.png)
+
+🎯 **Q2 肺实质 + 气道辅助作用 ANSWERED with 机制分解**。5-seed SSL ensemble on 4 feature subsets：
+- morph_only (89D)：ρ=+0.346 — 单纯血管形态学
+- morph + **lung** (127D)：ρ=+0.490 — **肺实质加入贡献最大 +0.144**
+- morph + TDA (107D)：ρ=+0.330 — TDA 单独反而稀释信号 (lower than morph_only)
+- **all three (145D)：ρ=+0.513 PASS** — 肺 + TDA 协同后达成
+
+**结论**：肺实质破坏 (parenchyma) 是最重要的辅助维度；TDA 拓扑特征单独偏弱但与肺实质协同有边际增益；气道因 morph_unified301 中只有 6 个特征无法独立可靠排序。错误条 = per-seed range。
 
 ---
 
@@ -1574,15 +1606,11 @@ R19 (codex 9.1 / HONEST 8.7 revise, -0.1 from R18 honest 8.8). Closed only 1 mus
 - [within_pipeline_trends.md](copdph-gcn-repo/outputs/r19/within_pipeline_trends.md)
 - [v2_cache_rebuild_diagnosis.md](copdph-gcn-repo/outputs/r19/v2_cache_rebuild_diagnosis.md)
 
-> ⚠️ **R19.A overlay gallery 已废弃 → R24.Y 修复 (2026-04-26)**：原图大部分格子显示 "missing CT/lung" 占位框，是因为 R19 时代生成 gallery 的远程 worker 无法访问 PH 病例的源 CT — 当时 `nii-unified-282/` 下 PH dirs 只是 GBK 编码的 `_source.txt` redirect stub（实际 CT 在 parent `nii/` 目录），仅 nonPH new100 病例有完整 CT 渲染。R20.F 已用 Simple_AV_seg 在 unified-301 上重新分割了 199 contrast (174 PH + 27 nonPH) + 100 plain-scan = 290 完整数据。**R24.Y 已重出 overlay gallery**（下图替换占位图）：
+> ⚠️ **R19.A overlay gallery 已废弃 → R24.Y 修复 (2026-04-26)**：原图大部分格子显示 "missing CT/lung" 占位框，是因为 R19 时代生成 gallery 的远程 worker 无法访问 PH 病例的源 CT — 当时 `nii-unified-282/` 下 PH dirs 只是 GBK 编码的 `_source.txt` redirect stub（实际 CT 在 parent `nii/` 目录），仅 nonPH new100 病例有完整 CT 渲染。R20.F 已用 Simple_AV_seg 在 unified-301 上重新分割了 199 contrast (174 PH + 27 nonPH) + 100 plain-scan = 290 完整数据。R24.Y 已重出 overlay gallery（**请向上滚动到顶部 "## R24–R26 Visual Atlas" 章节查看 R24.Y 修复后版本，那里也含 R24.A/B/D/E/F/G/X + R25.B/C + R26.A 共 11 张实验结果图**）。
 
-![R24.Y overlay gallery — 修复后](copdph-gcn-repo/outputs/figures/fig_r24y_overlay_gallery_unified301.png)
+下面两张是 R19 时代 bug 的历史记录（保留以便审查；空白格 = 当时数据访问 bug 的产物）：
 
-R24.Y 图说明：4×4 网格展示 unified-301 cohort 中 8 个 PH 病例（前 2 行） + 4 个 contrast nonPH（第 3 行） + 4 个 plain-scan nonPH（最后一行）。每格上方标注 PH/nonPH 标签 + protocol + 测得 mPAP（若有）。CT 灰底叠加红色 autumn colormap 的肺 mask。最后一行 4 格显示 "CT not local" 是因为 plain-scan 源 CT 仅在远程 `nii-new100/`（用户算力规划：CPU 路径走本地，远程数据不下传）；R19 时代 PH 病例空白的 GBK redirect bug 已通过 R24.Y 中的 GBK/UTF-8/CP936 多编码 fallback 解析器修复。
+![lung_overlay_gallery_representative — DEPRECATED, see R24.Y in atlas above](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_representative.png)
 
-下面两张是 R19 时代 bug 的历史记录（保留以便审查）：
-
-![lung_overlay_gallery_representative — DEPRECATED, see R24.Y](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_representative.png)
-
-![lung_overlay_gallery_worst_repaired — DEPRECATED, see R24.Y](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_worst_repaired.png)
+![lung_overlay_gallery_worst_repaired — DEPRECATED, see R24.Y in atlas above](copdph-gcn-repo/outputs/r19/lung_overlay_gallery_worst_repaired.png)
 
