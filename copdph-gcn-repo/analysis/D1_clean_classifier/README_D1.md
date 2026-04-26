@@ -2,11 +2,13 @@
 
 _2026-04-26_
 
-## 🎯 Headline result
+## 🎯 Headline result (claim status: INTERNALLY CROSS-VALIDATED EXPLORATORY)
 
 **Best within-contrast n=190 classifier: P4 combined-clean panel + Ridge_LR → AUC = 0.890 [bootstrap-500 95% CI 0.813, 0.965]**
 
-STOP RULE check (AUC<0.75): **NOT TRIPPED — classification claim is defensible**.
+STOP RULE check (AUC<0.75): **NOT TRIPPED — classification signal is internally defensible**.
+
+⚠️ **Honest claim status (codex post-review)**: this is a **defensible internal D1 classification signal**, NOT publication-grade until external validation lands. Multiplicity caveats: 4 panels × 4 models = 16 configs evaluated; n_nonPH=27 is small; no external held-out cohort yet. The headline is for internal scientific evidence + manuscript drafting, not for clinical deployment claims.
 
 ## Top-5 configs (16 total: 4 panels × 4 models)
 
