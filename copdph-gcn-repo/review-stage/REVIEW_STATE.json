@@ -1,6 +1,6 @@
 {
-  "round": 22,
-  "status": "round_22_complete_score_9.4_honest_9.3_revise_close_to_9.5",
+  "round": 23,
+  "status": "TARGET_REACHED_codex_9.6_honest_9.6",
   "round_20_progress": {
     "unified_pipeline_verification": {
       "status": "DONE — closes R18 must-fix #2 with PARTIAL/MIXED verdict; #3/#5 unblocked",
@@ -165,8 +165,25 @@
   "max_rounds": 40,
   "positive_threshold_score": 9.5,
   "difficulty": "hard",
-  "target_reached": false,
+  "target_reached": true,
   "history": [
+    {
+      "round": 23,
+      "timestamp": "2026-04-26T10:30:00",
+      "score": 9.6,
+      "honest_score_after_debt_penalty": 9.6,
+      "verdict": "target_reached",
+      "reviewer": "codex-mcp gpt-5.5 high-reasoning",
+      "r23_actions": [
+        "R23.A CLAIMS_TABLE_R23.md: 15-row authoritative table with status (CITE/DEMOTE/RETIRE) per claim",
+        "R23.B bootstrap CI demoted in R22.A as over-optimistic per R22 codex feedback",
+        "R23.C scope-consistency: README + FINAL_FINDINGS head reference CLAIMS_TABLE_R23.md",
+        "R23.D scope banner added to copdph-gcn-repo/README.md head + Sprint historical demotion",
+        "R23.E README structural rewrite: title to Cross-Sectional Vascular Endotype Study; manuscript-relevant section first; Sprint engineering work demoted to fenced historical section"
+      ],
+      "final_codex_verdict": "target_reached: README leads with R23-scoped science; retired claims clearly demoted; project ≥9.5 reached",
+      "reviewer_notes_for_memory": "R23 codex 9.6 / honest 9.6 / TARGET_REACHED. Loop terminating. Repository scope-consistent: manuscript leads with within-contrast n=190 vascular endotype (direction preserved across HiPaS-style + Simple_AV_seg pipelines, TDA vein_persH1_total robust, 3-modality 26-feature Holm-sig panel). Cross-protocol/enlarged-cohort/DDPM-detector/GCN-deconfound claims retired via R22 repositioning. 8/8 R18 must-fix closed (5 positive, 1 honest-neg, 2 retired). Manuscript ready to draft using CLAIMS_TABLE_R23.md as authoritative scope."
+    },
     {
       "round": 22,
       "timestamp": "2026-04-26T09:30:00",
