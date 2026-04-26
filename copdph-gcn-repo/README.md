@@ -1,5 +1,18 @@
 # COPD-PH Pulmonary Vessel GCN
 
+> **Authoritative manuscript scope (R23): see `CLAIMS_TABLE_R23.md`.**
+> That table is the source of truth for which claims are CITED, DEMOTED,
+> or RETIRED in the manuscript. R22 explicitly retired cross-protocol
+> enlarged-cohort PH-vs-nonPH AUC claims, single-pipeline ρ magnitude
+> claims, label-free DDPM PH-detector framing, and GCN-embedding-level
+> enlarged-cohort deconfounding (out of scope for this paper).
+>
+> **All Sprint 2/3/5/6 classifier AUC tables below are HISTORICAL
+> ENGINEERING ARTIFACTS, NOT manuscript claims.** They document the
+> engineering progression of the project before peer-review-equivalent
+> hostile review forced scope reduction. Do not cite these AUC numbers
+> as paper findings without consulting `CLAIMS_TABLE_R23.md` first.
+
 Graph-neural-network classification of pulmonary hypertension (PH) from chest-CT
 pulmonary vessel trees, fused with commercial radiomics features. The repo
 covers the full Sprint 2 pipeline: vessel-tree graph construction, hybrid GCN
