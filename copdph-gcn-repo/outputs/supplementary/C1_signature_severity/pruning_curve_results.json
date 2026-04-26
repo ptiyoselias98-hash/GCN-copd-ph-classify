@@ -1,0 +1,45 @@
+{
+  "n_within_contrast": 190,
+  "structures": {
+    "artery": {
+      "p10_p25_p50_p75_p90": {
+        "n_patients": 190,
+        "alpha_mean": 1.658117835548335,
+        "alpha_std": 0.39450983585285065,
+        "alpha_median": 1.564730825655856
+      },
+      "p10_p50_p90": {
+        "n_patients": 190,
+        "alpha_mean": 1.6796362246742764,
+        "alpha_std": 0.4063844627269457,
+        "alpha_median": 1.5703160033133376
+      },
+      "p25_p75": {
+        "n_patients": 190,
+        "alpha_mean": 1.6898634603555318,
+        "alpha_std": 0.6847212537795005,
+        "alpha_median": 1.5313800553361014
+      }
+    },
+    "vein": {
+      "p10_p25_p50_p75_p90": {
+        "n_patients": 190,
+        "alpha_mean": 1.7147450801590272,
+        "alpha_std": 0.5739894645172706,
+        "alpha_median": 1.6123452384330503
+      },
+      "p10_p50_p90": {
+        "n_patients": 190,
+        "alpha_mean": 1.7308912750672525,
+        "alpha_std": 0.6076102566886208,
+        "alpha_median": 1.617843741641405
+      },
+      "p25_p75": {
+        "n_patients": 190,
+        "alpha_mean": 1.7287944887598894,
+        "alpha_std": 0.6186142144649808,
+        "alpha_median": 1.5594947723067423
+      }
+    }
+  }
+}
