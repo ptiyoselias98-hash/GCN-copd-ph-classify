@@ -1,0 +1,785 @@
+{
+  "config": {
+    "n_patients": 100,
+    "n_features": 175,
+    "n_ph": 74,
+    "n_nonph": 26,
+    "fold_aucs": [
+      0.9866666666666667,
+      0.96,
+      0.9066666666666667,
+      0.9466666666666668,
+      0.8928571428571429
+    ]
+  },
+  "permutation_importance_top50": [
+    {
+      "rank": 1,
+      "feature_col": "ct_365",
+      "feature_name": "动脉(右上肺叶)容积(ml)",
+      "group": "Volume",
+      "importance_mean": 0.021647619047619065,
+      "importance_std": 0.018138484662461204
+    },
+    {
+      "rank": 2,
+      "feature_col": "ct_382",
+      "feature_name": "动脉(右下肺叶)弯曲度",
+      "group": "Vessel Tortuosity",
+      "importance_mean": 0.013114285714285728,
+      "importance_std": 0.015693538974140872
+    },
+    {
+      "rank": 3,
+      "feature_col": "ct_381",
+      "feature_name": "动脉(右下肺叶)血管分支数量",
+      "group": "Branch Count",
+      "importance_mean": 0.012219047619047626,
+      "importance_std": 0.008230885917882562
+    },
+    {
+      "rank": 4,
+      "feature_col": "ct_411",
+      "feature_name": "静脉(右下肺叶)血管分支数量",
+      "group": "Branch Count",
+      "importance_mean": 0.010180952380952377,
+      "importance_std": 0.009349859033460237
+    },
+    {
+      "rank": 5,
+      "feature_col": "ct_407",
+      "feature_name": "静脉(右下肺叶)容积(ml)",
+      "group": "Volume",
+      "importance_mean": 0.010114285714285721,
+      "importance_std": 0.01596667731810532
+    },
+    {
+      "rank": 6,
+      "feature_col": "ct_383",
+      "feature_name": "动脉(左上肺叶)容积(ml)",
+      "group": "Volume",
+      "importance_mean": 0.009914285714285731,
+      "importance_std": 0.008762339533726625
+    },
+    {
+      "rank": 7,
+      "feature_col": "ct_280",
+      "feature_name": "右肺密度标准差(HU)_y",
+      "group": "Density StdDev",
+      "importance_mean": 0.006619047619047624,
+      "importance_std": 0.01370469241188244
+    },
+    {
+      "rank": 8,
+      "feature_col": "ct_256",
+      "feature_name": "左右肺支气管数量",
+      "group": "Other",
+      "importance_mean": 0.004885714285714276,
+      "importance_std": 0.01246562984520402
+    },
+    {
+      "rank": 9,
+      "feature_col": "ct_375",
+      "feature_name": "动脉(右中肺叶)血管分支数量",
+      "group": "Branch Count",
+      "importance_mean": 0.004409523809523792,
+      "importance_std": 0.011596840605015672
+    },
+    {
+      "rank": 10,
+      "feature_col": "ct_404",
+      "feature_name": "静脉(右中肺叶)最小密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.00377142857142857,
+      "importance_std": 0.004619430519230206
+    },
+    {
+      "rank": 11,
+      "feature_col": "ct_348",
+      "feature_name": "动脉最小密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0036666666666666735,
+      "importance_std": 0.011167412910388478
+    },
+    {
+      "rank": 12,
+      "feature_col": "ct_258",
+      "feature_name": "左右肺支气管体积(ml)",
+      "group": "Volume",
+      "importance_mean": 0.003361904761904777,
+      "importance_std": 0.022163678894342384
+    },
+    {
+      "rank": 13,
+      "feature_col": "ct_272",
+      "feature_name": "右肺支气管数量",
+      "group": "Other",
+      "importance_mean": 0.00321904761904761,
+      "importance_std": 0.015590031119108904
+    },
+    {
+      "rank": 14,
+      "feature_col": "ct_341",
+      "feature_name": "肺血管分形维度",
+      "group": "Fractal Dimension",
+      "importance_mean": 0.002704761904761914,
+      "importance_std": 0.003744976983602155
+    },
+    {
+      "rank": 15,
+      "feature_col": "ct_366",
+      "feature_name": "动脉(右上肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.002609523809523808,
+      "importance_std": 0.00608200945430599
+    },
+    {
+      "rank": 16,
+      "feature_col": "ct_264",
+      "feature_name": "左右肺密度标准差(HU)",
+      "group": "Density StdDev",
+      "importance_mean": 0.0023809523809523946,
+      "importance_std": 0.004761904761904789
+    },
+    {
+      "rank": 17,
+      "feature_col": "ct_253",
+      "feature_name": "左右肺LAA910(%)",
+      "group": "LAA (emphysema)",
+      "importance_mean": 0.0021428571428571555,
+      "importance_std": 0.004285714285714311
+    },
+    {
+      "rank": 18,
+      "feature_col": "ct_387",
+      "feature_name": "动脉(左上肺叶)血管分支数量",
+      "group": "Branch Count",
+      "importance_mean": 0.0021428571428571555,
+      "importance_std": 0.004285714285714311
+    },
+    {
+      "rank": 19,
+      "feature_col": "ct_405",
+      "feature_name": "静脉(右中肺叶)血管分支数量",
+      "group": "Branch Count",
+      "importance_mean": 0.002095238095238083,
+      "importance_std": 0.01203954180579243
+    },
+    {
+      "rank": 20,
+      "feature_col": "ct_370",
+      "feature_name": "动脉(右上肺叶)弯曲度",
+      "group": "Vessel Tortuosity",
+      "importance_mean": 0.0019333333333333425,
+      "importance_std": 0.003453822359196995
+    },
+    {
+      "rank": 21,
+      "feature_col": "ct_350",
+      "feature_name": "动脉弯曲度",
+      "group": "Vessel Tortuosity",
+      "importance_mean": 0.0019047619047619182,
+      "importance_std": 0.003809523809523836
+    },
+    {
+      "rank": 22,
+      "feature_col": "ct_412",
+      "feature_name": "静脉(右下肺叶)弯曲度",
+      "group": "Vessel Tortuosity",
+      "importance_mean": 0.001866666666666663,
+      "importance_std": 0.003733333333333326
+    },
+    {
+      "rank": 23,
+      "feature_col": "ct_384",
+      "feature_name": "动脉(左上肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0014380952380952361,
+      "importance_std": 0.009343842479957025
+    },
+    {
+      "rank": 24,
+      "feature_col": "ct_415",
+      "feature_name": "静脉(左上肺叶)平均密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0014285714285714368,
+      "importance_std": 0.0028571428571428736
+    },
+    {
+      "rank": 25,
+      "feature_col": "ct_392",
+      "feature_name": "动脉(左下肺叶)最小密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.001333333333333331,
+      "importance_std": 0.0016865480854231325
+    },
+    {
+      "rank": 26,
+      "feature_col": "ct_390",
+      "feature_name": "动脉(左下肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0012761904761904863,
+      "importance_std": 0.0023557523556175792
+    },
+    {
+      "rank": 27,
+      "feature_col": "ct_275",
+      "feature_name": "右肺Agatston钙化",
+      "group": "Calcification",
+      "importance_mean": 0.0011904761904761973,
+      "importance_std": 0.0023809523809523946
+    },
+    {
+      "rank": 28,
+      "feature_col": "ct_397",
+      "feature_name": "静脉(右上肺叶)平均密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0011904761904761973,
+      "importance_std": 0.0023809523809523946
+    },
+    {
+      "rank": 29,
+      "feature_col": "ct_270",
+      "feature_name": "右肺LAA950(%)_y",
+      "group": "LAA (emphysema)",
+      "importance_mean": 0.0011904761904761973,
+      "importance_std": 0.0023809523809523946
+    },
+    {
+      "rank": 30,
+      "feature_col": "ct_352",
+      "feature_name": "动脉BV5(ml)_y",
+      "group": "BV5 (small vessel <5mm)",
+      "importance_mean": 0.0011809523809523782,
+      "importance_std": 0.005088816603275129
+    },
+    {
+      "rank": 31,
+      "feature_col": "ct_361",
+      "feature_name": "静脉分形维度",
+      "group": "Fractal Dimension",
+      "importance_mean": 0.0010666666666666648,
+      "importance_std": 0.0021333333333333295
+    },
+    {
+      "rank": 32,
+      "feature_col": "ct_340",
+      "feature_name": "肺血管弯曲度",
+      "group": "Vessel Tortuosity",
+      "importance_mean": 0.0010095238095238091,
+      "importance_std": 0.0012397059120207979
+    },
+    {
+      "rank": 33,
+      "feature_col": "ct_344",
+      "feature_name": "肺血管BV10+(ml)_y",
+      "group": "BV10 (vessel <10mm)",
+      "importance_mean": 0.0007999999999999984,
+      "importance_std": 0.0015999999999999968
+    },
+    {
+      "rank": 34,
+      "feature_col": "ct_288",
+      "feature_name": "左肺支气管数量",
+      "group": "Other",
+      "importance_mean": 0.0007999999999999984,
+      "importance_std": 0.0015999999999999968
+    },
+    {
+      "rank": 35,
+      "feature_col": "ct_291",
+      "feature_name": "左肺Agatston钙化",
+      "group": "Calcification",
+      "importance_mean": 0.0007999999999999984,
+      "importance_std": 0.003919183588453078
+    },
+    {
+      "rank": 36,
+      "feature_col": "ct_378",
+      "feature_name": "动脉(右下肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0007999999999999984,
+      "importance_std": 0.0015999999999999968
+    },
+    {
+      "rank": 37,
+      "feature_col": "ct_312",
+      "feature_name": "左肺支气管长度(cm).1",
+      "group": "Other",
+      "importance_mean": 0.0007142857142857184,
+      "importance_std": 0.0014285714285714368
+    },
+    {
+      "rank": 38,
+      "feature_col": "ct_329",
+      "feature_name": "左上肺叶支气管体积(ml)",
+      "group": "Volume",
+      "importance_mean": 0.0007142857142857184,
+      "importance_std": 0.0014285714285714368
+    },
+    {
+      "rank": 39,
+      "feature_col": "ct_408",
+      "feature_name": "静脉(右下肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0004761904761904789,
+      "importance_std": 0.0009523809523809578
+    },
+    {
+      "rank": 40,
+      "feature_col": "ct_293",
+      "feature_name": "左肺血管体积(ml)",
+      "group": "Volume",
+      "importance_mean": 0.0004761904761904789,
+      "importance_std": 0.0009523809523809578
+    },
+    {
+      "rank": 41,
+      "feature_col": "ct_271",
+      "feature_name": "右肺平均密度(HU)_y",
+      "group": "Mean Density",
+      "importance_mean": 0.0004761904761904789,
+      "importance_std": 0.0009523809523809578
+    },
+    {
+      "rank": 42,
+      "feature_col": "ct_259",
+      "feature_name": "左右肺Agatston钙化",
+      "group": "Calcification",
+      "importance_mean": 0.0004761904761904789,
+      "importance_std": 0.0009523809523809578
+    },
+    {
+      "rank": 43,
+      "feature_col": "ct_296",
+      "feature_name": "左肺密度标准差(HU)_y",
+      "group": "Density StdDev",
+      "importance_mean": 0.0002666666666666883,
+      "importance_std": 0.0021333333333333265
+    },
+    {
+      "rank": 44,
+      "feature_col": "ct_354",
+      "feature_name": "动脉BV10+(ml)_y",
+      "group": "BV10 (vessel <10mm)",
+      "importance_mean": 0.0002666666666666662,
+      "importance_std": 0.0005333333333333324
+    },
+    {
+      "rank": 45,
+      "feature_col": "ct_402",
+      "feature_name": "静脉(右中肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0002666666666666662,
+      "importance_std": 0.0005333333333333324
+    },
+    {
+      "rank": 46,
+      "feature_col": "ct_346",
+      "feature_name": "动脉最大密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0002666666666666662,
+      "importance_std": 0.0005333333333333324
+    },
+    {
+      "rank": 47,
+      "feature_col": "ct_372",
+      "feature_name": "动脉(右中肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "importance_mean": 0.0002666666666666661,
+      "importance_std": 0.0021333333333333295
+    },
+    {
+      "rank": 48,
+      "feature_col": "ct_261",
+      "feature_name": "左右肺血管体积(ml)",
+      "group": "Volume",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 49,
+      "feature_col": "ct_260",
+      "feature_name": "左右肺体积钙化(mm3)",
+      "group": "Calcification",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "rank": 50,
+      "feature_col": "ct_252",
+      "feature_name": "左右肺LAA950(ml)",
+      "group": "LAA (emphysema)",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    }
+  ],
+  "xgboost_gain_top50": [
+    {
+      "feature_col": "ct_385",
+      "feature_name": "动脉(左上肺叶)平均密度(HU)",
+      "group": "Mean Density",
+      "gain": 6.226416110992432,
+      "rank": 1
+    },
+    {
+      "feature_col": "ct_411",
+      "feature_name": "静脉(右下肺叶)血管分支数量",
+      "group": "Branch Count",
+      "gain": 5.798509120941162,
+      "rank": 2
+    },
+    {
+      "feature_col": "ct_362",
+      "feature_name": "静脉BV5(ml)_y",
+      "group": "BV5 (small vessel <5mm)",
+      "gain": 4.235729217529297,
+      "rank": 3
+    },
+    {
+      "feature_col": "ct_256",
+      "feature_name": "左右肺支气管数量",
+      "group": "Other",
+      "gain": 4.189154624938965,
+      "rank": 4
+    },
+    {
+      "feature_col": "ct_381",
+      "feature_name": "动脉(右下肺叶)血管分支数量",
+      "group": "Branch Count",
+      "gain": 3.9324758052825928,
+      "rank": 5
+    },
+    {
+      "feature_col": "ct_257",
+      "feature_name": "左右肺支气管长度(cm)",
+      "group": "Other",
+      "gain": 2.75899076461792,
+      "rank": 6
+    },
+    {
+      "feature_col": "ct_280",
+      "feature_name": "右肺密度标准差(HU)_y",
+      "group": "Density StdDev",
+      "gain": 2.5596978664398193,
+      "rank": 7
+    },
+    {
+      "feature_col": "ct_382",
+      "feature_name": "动脉(右下肺叶)弯曲度",
+      "group": "Vessel Tortuosity",
+      "gain": 2.4455177783966064,
+      "rank": 8
+    },
+    {
+      "feature_col": "ct_272",
+      "feature_name": "右肺支气管数量",
+      "group": "Other",
+      "gain": 2.2548766136169434,
+      "rank": 9
+    },
+    {
+      "feature_col": "ct_342",
+      "feature_name": "肺血管BV5(ml)_y",
+      "group": "BV5 (small vessel <5mm)",
+      "gain": 2.1892247200012207,
+      "rank": 10
+    },
+    {
+      "feature_col": "ct_273",
+      "feature_name": "右肺支气管长度(cm)",
+      "group": "Other",
+      "gain": 1.9873762130737305,
+      "rank": 11
+    },
+    {
+      "feature_col": "ct_366",
+      "feature_name": "动脉(右上肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "gain": 1.847626805305481,
+      "rank": 12
+    },
+    {
+      "feature_col": "ct_262",
+      "feature_name": "左右肺肺组织体积(ml)",
+      "group": "Volume",
+      "gain": 1.767049789428711,
+      "rank": 13
+    },
+    {
+      "feature_col": "ct_359",
+      "feature_name": "静脉血管分支数量_y",
+      "group": "Branch Count",
+      "gain": 1.6452078819274902,
+      "rank": 14
+    },
+    {
+      "feature_col": "ct_396",
+      "feature_name": "静脉(右上肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "gain": 1.6233549118041992,
+      "rank": 15
+    },
+    {
+      "feature_col": "ct_258",
+      "feature_name": "左右肺支气管体积(ml)",
+      "group": "Volume",
+      "gain": 1.3887500762939453,
+      "rank": 16
+    },
+    {
+      "feature_col": "ct_407",
+      "feature_name": "静脉(右下肺叶)容积(ml)",
+      "group": "Volume",
+      "gain": 1.2489941120147705,
+      "rank": 17
+    },
+    {
+      "feature_col": "ct_403",
+      "feature_name": "静脉(右中肺叶)平均密度(HU)",
+      "group": "Mean Density",
+      "gain": 1.2297266721725464,
+      "rank": 18
+    },
+    {
+      "feature_col": "ct_384",
+      "feature_name": "动脉(左上肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "gain": 1.172096610069275,
+      "rank": 19
+    },
+    {
+      "feature_col": "ct_375",
+      "feature_name": "动脉(右中肺叶)血管分支数量",
+      "group": "Branch Count",
+      "gain": 1.1470656394958496,
+      "rank": 20
+    },
+    {
+      "feature_col": "ct_283",
+      "feature_name": "左肺LAA910(ml)_y",
+      "group": "LAA (emphysema)",
+      "gain": 1.1119900941848755,
+      "rank": 21
+    },
+    {
+      "feature_col": "ct_274",
+      "feature_name": "右肺支气管体积(ml)",
+      "group": "Volume",
+      "gain": 1.109449028968811,
+      "rank": 22
+    },
+    {
+      "feature_col": "ct_390",
+      "feature_name": "动脉(左下肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.9809484481811523,
+      "rank": 23
+    },
+    {
+      "feature_col": "ct_356",
+      "feature_name": "静脉最大密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.9175007939338684,
+      "rank": 24
+    },
+    {
+      "feature_col": "ct_328",
+      "feature_name": "左上肺叶支气管长度(cm)",
+      "group": "Other",
+      "gain": 0.8324999809265137,
+      "rank": 25
+    },
+    {
+      "feature_col": "ct_255",
+      "feature_name": "左右肺平均密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.8306667804718018,
+      "rank": 26
+    },
+    {
+      "feature_col": "ct_372",
+      "feature_name": "动脉(右中肺叶)最大密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.8213551044464111,
+      "rank": 27
+    },
+    {
+      "feature_col": "ct_405",
+      "feature_name": "静脉(右中肺叶)血管分支数量",
+      "group": "Branch Count",
+      "gain": 0.8145248889923096,
+      "rank": 28
+    },
+    {
+      "feature_col": "ct_286",
+      "feature_name": "左肺LAA950(%)_y",
+      "group": "LAA (emphysema)",
+      "gain": 0.7541694641113281,
+      "rank": 29
+    },
+    {
+      "feature_col": "ct_373",
+      "feature_name": "动脉(右中肺叶)平均密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.7398450374603271,
+      "rank": 30
+    },
+    {
+      "feature_col": "ct_354",
+      "feature_name": "动脉BV10+(ml)_y",
+      "group": "BV10 (vessel <10mm)",
+      "gain": 0.7278661727905273,
+      "rank": 31
+    },
+    {
+      "feature_col": "ct_361",
+      "feature_name": "静脉分形维度",
+      "group": "Fractal Dimension",
+      "gain": 0.7267829179763794,
+      "rank": 32
+    },
+    {
+      "feature_col": "ct_404",
+      "feature_name": "静脉(右中肺叶)最小密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.7249767184257507,
+      "rank": 33
+    },
+    {
+      "feature_col": "ct_350",
+      "feature_name": "动脉弯曲度",
+      "group": "Vessel Tortuosity",
+      "gain": 0.6766725182533264,
+      "rank": 34
+    },
+    {
+      "feature_col": "ct_383",
+      "feature_name": "动脉(左上肺叶)容积(ml)",
+      "group": "Volume",
+      "gain": 0.6663439869880676,
+      "rank": 35
+    },
+    {
+      "feature_col": "ct_352",
+      "feature_name": "动脉BV5(ml)_y",
+      "group": "BV5 (small vessel <5mm)",
+      "gain": 0.654791533946991,
+      "rank": 36
+    },
+    {
+      "feature_col": "ct_365",
+      "feature_name": "动脉(右上肺叶)容积(ml)",
+      "group": "Volume",
+      "gain": 0.6122562885284424,
+      "rank": 37
+    },
+    {
+      "feature_col": "ct_367",
+      "feature_name": "动脉(右上肺叶)平均密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.5955182313919067,
+      "rank": 38
+    },
+    {
+      "feature_col": "ct_379",
+      "feature_name": "动脉(右下肺叶)平均密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.5909874439239502,
+      "rank": 39
+    },
+    {
+      "feature_col": "ct_348",
+      "feature_name": "动脉最小密度(HU)",
+      "group": "Mean Density",
+      "gain": 0.5820375680923462,
+      "rank": 40
+    },
+    {
+      "feature_col": "ct_341",
+      "feature_name": "肺血管分形维度",
+      "group": "Fractal Dimension",
+      "gain": 0.5582860708236694,
+      "rank": 41
+    },
+    {
+      "feature_col": "ct_340",
+      "feature_name": "肺血管弯曲度",
+      "group": "Vessel Tortuosity",
+      "gain": 0.5561703443527222,
+      "rank": 42
+    },
+    {
+      "feature_col": "ct_277",
+      "feature_name": "右肺血管体积(ml)",
+      "group": "Volume",
+      "gain": 0.5443910360336304,
+      "rank": 43
+    },
+    {
+      "feature_col": "ct_394",
+      "feature_name": "动脉(左下肺叶)弯曲度",
+      "group": "Vessel Tortuosity",
+      "gain": 0.5357322692871094,
+      "rank": 44
+    },
+    {
+      "feature_col": "ct_302",
+      "feature_name": "左右肺支气管数量[D<2mm]",
+      "group": "Diameter/Size",
+      "gain": 0.5309223532676697,
+      "rank": 45
+    },
+    {
+      "feature_col": "ct_369",
+      "feature_name": "动脉(右上肺叶)血管分支数量",
+      "group": "Branch Count",
+      "gain": 0.5117563605308533,
+      "rank": 46
+    },
+    {
+      "feature_col": "ct_393",
+      "feature_name": "动脉(左下肺叶)血管分支数量",
+      "group": "Branch Count",
+      "gain": 0.5106037259101868,
+      "rank": 47
+    },
+    {
+      "feature_col": "ct_296",
+      "feature_name": "左肺密度标准差(HU)_y",
+      "group": "Density StdDev",
+      "gain": 0.4944767355918884,
+      "rank": 48
+    },
+    {
+      "feature_col": "ct_253",
+      "feature_name": "左右肺LAA910(%)",
+      "group": "LAA (emphysema)",
+      "gain": 0.4604945182800293,
+      "rank": 49
+    },
+    {
+      "feature_col": "ct_401",
+      "feature_name": "静脉(右中肺叶)容积(ml)",
+      "group": "Volume",
+      "gain": 0.45159804821014404,
+      "rank": 50
+    }
+  ],
+  "feature_groups": {
+    "Volume": 37,
+    "LAA (emphysema)": 12,
+    "Mean Density": 42,
+    "Other": 30,
+    "Calcification": 6,
+    "Density StdDev": 3,
+    "Mass": 3,
+    "Diameter/Size": 1,
+    "Pi10 (airway)": 1,
+    "Vessel Tortuosity": 14,
+    "Fractal Dimension": 4,
+    "Branch Count": 13,
+    "BV5 (small vessel <5mm)": 3,
+    "BV10 (vessel <10mm)": 6
+  }
+}
